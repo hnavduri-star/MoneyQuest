@@ -608,7 +608,10 @@
             "start": "over",
             "lockFixed": true,
             "target": {
-              "minSavingsPct": 10
+              "minSavings": {
+                "7-9": 100,
+                "default": 1600
+              }
             }
           },
           "text": {
@@ -617,8 +620,14 @@
           },
           "concept": "budgeting",
           "goalText": {
-            "en": "Goal: nothing left below zero, and at least 10% of income in savings + emergency fund.",
-            "ar": "الهدف: لا شيء تحت الصفر، و١٠٪ على الأقل من الدخل للادخار وصندوق الطوارئ."
+            "7-9": {
+              "en": "Goal: nothing left below zero, and at least [[100]] in savings + emergency fund.",
+              "ar": "الهدف: لا شيء تحت الصفر، و[[100]] على الأقل في الادخار وصندوق الطوارئ."
+            },
+            "default": {
+              "en": "Goal: nothing left below zero, and at least [[1600]] in savings + emergency fund.",
+              "ar": "الهدف: لا شيء تحت الصفر، و[[1600]] على الأقل في الادخار وصندوق الطوارئ."
+            }
           },
           "explain": {
             "en": "You balanced it! Fixed bills first, then savings, then you trimmed the wants. That's exactly how real families do it.",
@@ -646,7 +655,10 @@
             "lockFixed": true,
             "surpriseShare": 0.08,
             "target": {
-              "minSavingsPct": 10
+              "minSavings": {
+                "7-9": 100,
+                "default": 1600
+              }
             }
           },
           "text": {
@@ -655,8 +667,14 @@
           },
           "concept": "emergency-fund",
           "goalText": {
-            "en": "Goal: balance the plan with the repair in it, keeping at least 10% for savings + emergency fund.",
-            "ar": "الهدف: وازن الخطة مع الإصلاح واحتفظ بـ١٠٪ على الأقل للادخار وصندوق الطوارئ."
+            "7-9": {
+              "en": "Goal: balance the plan with the repair in it, keeping at least [[100]] in savings + emergency fund.",
+              "ar": "الهدف: وازن الخطة مع الإصلاح واحتفظ بـ[[100]] على الأقل في الادخار وصندوق الطوارئ."
+            },
+            "default": {
+              "en": "Goal: balance the plan with the repair in it, keeping at least [[1600]] in savings + emergency fund.",
+              "ar": "الهدف: وازن الخطة مع الإصلاح واحتفظ بـ[[1600]] على الأقل في الادخار وصندوق الطوارئ."
+            }
           },
           "explain": {
             "en": "Brilliant! You found the money by cutting wants for one month, not by borrowing. A bigger emergency fund makes surprises even easier.",

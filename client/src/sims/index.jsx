@@ -83,6 +83,7 @@ const L = {
   rateNote: { en: 'Example rates. Real rates change every day.', ar: 'أسعار للتوضيح. الأسعار الحقيقية تتغير كل يوم.' },
   repair: { en: 'Car repair (this month)', ar: 'إصلاح السيارة (هذا الشهر)' },
   savingsRate: { en: 'Saved', ar: 'المدخر' },
+  needAtLeast: { en: '(need at least {n})', ar: '(تحتاج {n} على الأقل)' },
   customersDay: { en: 'Customers a day', ar: 'الزبائن يومياً' },
   avgSpend: { en: 'Average spend per customer', ar: 'متوسط إنفاق الزبون' },
   foodCost: { en: 'Food & drink cost (% of sales)', ar: 'تكلفة الطعام والشراب (٪ من المبيعات)' },
@@ -334,7 +335,9 @@ function Budget({ params, onGoal }) {
   const [surpriseResult, setSurpriseResult] = useState(null);
   const sum = S.budgetSummary(income, { ...alloc, ...(surprise ? { repair: surprise } : {}) });
   const target = params.target;
-  const met = !!target && sum.balanced && sum.savingsRate >= (target.minSavingsPct || 0);
+  // Savings goals are amounts ("at least 1,600"), which children find easier than percentages.
+  const minSaved = target ? pickAge(target.minSavings, age) ?? ((target.minSavingsPct || 0) * income) / 100 : 0;
+  const met = !!target && sum.balanced && sum.saved >= minSaved;
   useEffect(() => {
     if (onGoal) onGoal(met);
   }, [met]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -349,7 +352,7 @@ function Budget({ params, onGoal }) {
       {surprise > 0 && <div className="rounded-2xl bg-ember-pale p-3 font-bold flex justify-between"><span>🚗💥 {tx(L.repair)} 🔒</span><span>{money(surprise)}</span></div>}
       <div className={`rounded-2xl p-3 text-center font-extrabold ${sum.balanced ? 'bg-leaf-pale' : 'bg-ember-pale'}`} role="status">
         {sum.balanced ? tx(L.balanced) : tx(L.over)} · {tx(L.left)}: {money(sum.left)}
-        {target && <div className="text-sm font-bold">🐷 {tx(L.savingsRate)}: {Math.round(sum.savingsRate)}% {sum.savingsRate >= (target.minSavingsPct || 0) ? '✓' : `(≥ ${target.minSavingsPct}%)`}</div>}
+        {target && <div className="text-sm font-bold">🐷 {tx(L.savingsRate)}: {money(sum.saved)} {sum.saved >= minSaved ? '✓' : tx(L.needAtLeast, { n: money(minSaved) })}</div>}
       </div>
       {!target && (
         <button type="button" className="btn-ghost w-full" onClick={() => setSurpriseResult(S.coverSurprise({ emergency: alloc.emergency, savings: alloc.savings }, Math.round(income * 0.08)))}>
