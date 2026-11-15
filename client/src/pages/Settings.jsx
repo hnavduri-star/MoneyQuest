@@ -28,15 +28,18 @@ export default function Settings() {
           <button className="btn-ghost min-h-[44px] mt-1 text-base" onClick={() => nav('/edit-character')}>✏️ {t('settings.editCharacter')}</button>
         </div>
       </section>
-      <button
-        className="btn-ghost w-full"
-        onClick={() => {
-          signOutProfile();
-          nav('/');
-        }}
-      >
-        👥 {t('settings.switchPlayer')}
-      </button>
+      <div className="grid grid-cols-2 gap-2">
+        <button
+          className="btn-ghost"
+          onClick={() => {
+            signOutProfile();
+            nav('/');
+          }}
+        >
+          👥 {t('settings.switchPlayer')}
+        </button>
+        <button className="btn-ghost" onClick={() => nav('/parent')}>👨‍👩‍👧 {t('parentMode.title')}</button>
+      </div>
 
       <section className="card p-4 space-y-3">
         <label className="font-bold block" htmlFor="set-city">🌍 {t('settings.city')}</label>

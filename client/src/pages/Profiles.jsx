@@ -45,7 +45,11 @@ export default function Profiles() {
           {t('profiles.add')}
         </button>
       </div>
-      {family?.code && <p className="text-center text-soft mt-6" dir="auto">{t('profiles.familyCode', { code: family.code })}</p>}
+      <div className="grid grid-cols-2 gap-2 mt-6">
+        <button className="btn-ghost" onClick={() => nav('/parent')}>👨‍👩‍👧 {t('parentMode.title')}</button>
+        <button className="btn-ghost" onClick={() => nav('/teacher')}>🏫 {t('welcome.teacher')}</button>
+      </div>
+      {family?.code && <p className="text-center text-soft mt-4" dir="auto">{t('profiles.familyCode', { code: family.code })}</p>}
       <Modal open={!!removing} onClose={() => setRemoving(null)} label={t('profiles.delete')}>
         {removing && (
           <div className="flex flex-col items-center gap-3 text-center">

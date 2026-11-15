@@ -16,6 +16,11 @@ import Quests from './pages/Quests.jsx';
 import Trophies from './pages/Trophies.jsx';
 import Shop from './pages/Shop.jsx';
 import Settings from './pages/Settings.jsx';
+import Check from './pages/Check.jsx';
+import Parent from './pages/Parent.jsx';
+import Teacher from './pages/Teacher.jsx';
+import Worksheet from './pages/Worksheet.jsx';
+import Taster from './pages/Taster.jsx';
 
 export default function App() {
   const { family, active, profiles, settings } = useGame();
@@ -23,6 +28,9 @@ export default function App() {
   if (!family) {
     routes = (
       <Routes>
+        <Route path="/teacher" element={<Teacher />} />
+        <Route path="/worksheet/:worldId" element={<Worksheet />} />
+        <Route path="/taster" element={<Taster />} />
         <Route path="*" element={<Welcome />} />
       </Routes>
     );
@@ -30,6 +38,9 @@ export default function App() {
     routes = (
       <Routes>
         <Route path="/create" element={<Creator />} />
+        <Route path="/parent" element={<Parent />} />
+        <Route path="/teacher" element={<Teacher />} />
+        <Route path="/worksheet/:worldId" element={<Worksheet />} />
         <Route path="*" element={Object.keys(profiles).length ? <Profiles /> : <Navigate to="/create" replace />} />
       </Routes>
     );
@@ -47,6 +58,10 @@ export default function App() {
         </Route>
         <Route path="/play/:worldId/:nodeId" element={<Play />} />
         <Route path="/review" element={<Review />} />
+        <Route path="/check/:worldId/:phase" element={<Check />} />
+        <Route path="/parent" element={<Parent />} />
+        <Route path="/teacher" element={<Teacher />} />
+        <Route path="/worksheet/:worldId" element={<Worksheet />} />
         <Route path="/edit-character" element={<Creator edit />} />
         <Route path="/create" element={<Creator />} />
         <Route path="/profiles" element={<Profiles />} />

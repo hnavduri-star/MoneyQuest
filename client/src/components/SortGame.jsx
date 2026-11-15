@@ -15,7 +15,7 @@ const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
 
 /** Timed sorting mini-game: combos, power-ups (paid with earned coins) and no penalties for mistakes. */
 export default function SortGame({ world, node }) {
-  const { age, dispatch, content, state, cityCtx } = useGame();
+  const { age, dispatch, content, state, cityCtx, takeDeferred } = useGame();
   const { t, tx } = useT(world.id);
   const cfg = useMemo(() => minigameConfig(node, cityCtx), [node, cityCtx]);
   const total = pickAge(cfg.seconds, age) || 40;
@@ -54,8 +54,9 @@ export default function SortGame({ world, node }) {
     const stars = starsFromScore(correct, cfg.stars);
     const accuracy = correct / Math.max(1, correct + mistakes);
     const answers = (node.concepts || []).map((c) => ({ concept: c, correct: accuracy >= 0.7 }));
-    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes, score: points, combo: best, comboBonus: Math.min(15, Math.floor(best / 3) * 3), correct, coinBoost: boost ? 2 : 1, answers });
-    setTimeout(() => setResult({ stars, effects }), 900);
+    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes, score: points, combo: best, comboBonus: Math.min(15, Math.floor(best / 3) * 3), correct, coinBoost: boost ? 2 : 1, answers, cityId: cityCtx.cityId }, { defer: true });
+    const extras = takeDeferred();
+    setTimeout(() => setResult({ stars, effects, extras }), 900);
   };
 
   const sort = (bin) => {
@@ -110,7 +111,7 @@ export default function SortGame({ world, node }) {
   };
 
   const extra = useMemo(() => result && <p className="font-bold">{t('game.sorted', { n: correct })} · ⚡ {t('game.combo', { n: best })}</p>, [result]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (result) return <Results key={run} world={world} node={node} stars={result.stars} effects={result.effects} onReplay={restart} extra={extra} />;
+  if (result) return <Results key={run} world={world} node={node} stars={result.stars} effects={result.effects} extras={result.extras} onReplay={restart} extra={extra} />;
 
   return (
     <PlayFrame world={world} progress={phase === 'ready' ? 0 : 1 - time / total} color={meta.color}>

@@ -13,7 +13,7 @@ import { play } from '../lib/sound.js';
 
 export default function WorldMap() {
   const { worldId } = useParams();
-  const { content, state, age, city, bank, checkPin } = useGame();
+  const { content, state, age, city, bank, checkPin, dispatch } = useGame();
   const { worldId: wid } = useParams();
   const { t, tx } = useT(wid);
   const [gate, setGate] = useState(null);
@@ -38,6 +38,16 @@ export default function WorldMap() {
         </div>
       </div>
 
+      {!state.checks?.[worldId]?.pre && !nodes.some((n) => state.progress?.[worldId]?.[n.id]) && (
+        <button className="card w-full p-4 mb-4 flex items-center gap-3 text-start" onClick={() => nav(`/check/${worldId}/pre`)}>
+          <span className="text-3xl" aria-hidden>🧠</span>
+          <span className="flex-1">
+            <span className="font-extrabold block">{t('check.beforeTitle')}</span>
+            <span className="text-sm text-soft">{t('check.intro')}</span>
+          </span>
+          <span className="rtl:rotate-180">→</span>
+        </button>
+      )}
       <ol className="relative flex flex-col gap-3">
         {nodes.map((n, i) => {
           const done = nodeProgress(state, worldId, n.id);
@@ -71,6 +81,20 @@ export default function WorldMap() {
         })}
       </ol>
 
+      {content.missions?.[worldId] && (
+        <div className="card p-4 mt-6">
+          <p className="font-extrabold">{content.missions[worldId].icon} {t('mission.title')}</p>
+          <p className="my-1">{tx(content.missions[worldId].text)}</p>
+          <p className="text-sm text-soft mb-2">🪙 {t('mission.reward', { n: content.missions[worldId].reward.coins })}</p>
+          {!state.missions?.[worldId] ? (
+            <button className="btn-leaf w-full" onClick={() => dispatch({ type: 'mission.done', worldId })}>✅ {t('mission.did')}</button>
+          ) : state.missions[worldId].status === 'pending' ? (
+            <p className="chip bg-sun-pale">⏳ {t('mission.pending')}</p>
+          ) : (
+            <p className="chip bg-leaf-pale">🏅 {t('mission.approved')}</p>
+          )}
+        </div>
+      )}
       {meta.sponsored && bank.sponsor && (
         <div className="card p-4 mt-6">
           <div className="flex items-center gap-3">

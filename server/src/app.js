@@ -26,6 +26,11 @@ export function createApp({ db, clientDist } = {}) {
     insertProfile: db.prepare('INSERT INTO profiles (id, family_id, nickname, age_tier, meta, state, summary, updated_at, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'),
     updateProfile: db.prepare('UPDATE profiles SET nickname = ?, age_tier = ?, meta = ?, state = ?, summary = ?, updated_at = ? WHERE id = ?'),
     deleteProfile: db.prepare('DELETE FROM profiles WHERE id = ? AND family_id = ?'),
+    insertClass: db.prepare('INSERT INTO classes (code, name, pin_hash, created_at) VALUES (?, ?, ?, ?)'),
+    classByCode: db.prepare('SELECT * FROM classes WHERE code = ?'),
+    insertClassToken: db.prepare('INSERT INTO class_tokens (token_hash, code, created_at) VALUES (?, ?, ?)'),
+    classToken: db.prepare('SELECT * FROM class_tokens WHERE token_hash = ?'),
+    classStudents: db.prepare("SELECT id, nickname, age_tier, summary, updated_at FROM profiles WHERE json_extract(meta, '$.classCode') = ? ORDER BY nickname"),
   };
 
   const pinLimiter = rateLimiter({ windowMs: 60_000, max: 6 });
@@ -124,6 +129,46 @@ export function createApp({ db, clientDist } = {}) {
     const top = [...rows].sort((a, b) => (b.summary.weekXp || 0) - (a.summary.weekXp || 0));
     const improved = [...rows].sort((a, b) => (b.summary.improvement || 0) - (a.summary.improvement || 0));
     res.json({ top, improved });
+  });
+
+  // ---------- Teacher mode: classes ----------
+  // A teacher creates a class (name + PIN) and shares the class code. A parent adds the code to their child's
+  // profile; the teacher then sees nicknames and progress numbers only, never the full game state.
+  app.post('/api/classes', createLimiter, (req, res) => {
+    const { name, pin } = req.body || {};
+    const nm = String(name || '').trim().slice(0, 40);
+    if (nm.length < 2 || !isPin(pin)) return res.status(400).json({ error: 'badInput' });
+    let code;
+    for (let i = 0; i < 5; i++) {
+      code = newFamilyCode();
+      if (!q.classByCode.get(code)) break;
+    }
+    q.insertClass.run(code, nm, hashPin(pin), Date.now());
+    const token = newToken();
+    q.insertClassToken.run(sha256(token), code, Date.now());
+    res.status(201).json({ code, name: nm, token });
+  });
+  app.post('/api/classes/login', pinLimiter, (req, res) => {
+    const { code, pin } = req.body || {};
+    const c = typeof code === 'string' && q.classByCode.get(code.trim().toUpperCase());
+    if (!c || !isPin(pin) || !verifyPin(pin, c.pin_hash)) return res.status(403).json({ error: 'badCodeOrPin' });
+    const token = newToken();
+    q.insertClassToken.run(sha256(token), c.code, Date.now());
+    res.json({ code: c.code, name: c.name, token });
+  });
+  app.get('/api/classes/:code/info', pinLimiter, (req, res) => {
+    const c = q.classByCode.get(String(req.params.code).toUpperCase());
+    if (!c) return res.status(404).json({ error: 'notFound' });
+    res.json({ code: c.code, name: c.name });
+  });
+  app.get('/api/classes/:code', (req, res) => {
+    const m = /^Bearer (.+)$/.exec(req.get('authorization') || '');
+    const tok = m && q.classToken.get(sha256(m[1]));
+    const code = String(req.params.code).toUpperCase();
+    if (!tok || tok.code !== code) return res.status(401).json({ error: 'unauthorized' });
+    const c = q.classByCode.get(code);
+    const students = q.classStudents.all(code).map((r) => ({ id: r.id, nickname: r.nickname, ageTier: r.age_tier, summary: JSON.parse(r.summary), updatedAt: r.updated_at }));
+    res.json({ code, name: c.name, students });
   });
 
   app.use('/api', (req, res) => res.status(404).json({ error: 'notFound' }));

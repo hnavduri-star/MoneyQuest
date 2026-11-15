@@ -43,5 +43,9 @@ export function summarize(state, day, daysBack) {
   const weekXp = sumRange(daysBack(day, 7), day);
   const prevWeekXp = sumRange(daysBack(day, 14), daysBack(day, 7));
   const stars = Object.values(state.progress || {}).reduce((s, w) => s + Object.values(w).reduce((a, n) => a + (n.stars || 0), 0), 0);
-  return { level: state.level, xp: state.xp, weekXp, prevWeekXp, improvement: weekXp - prevWeekXp, stars, badges: Object.keys(state.badges || {}).length, streak: state.streak?.count || 0 };
+  // Compact learning picture for family/class dashboards: stops done, skill levels, before/after checks.
+  const levelOf = (c) => (c.score >= 80 && c.box >= 3 ? 'mastered' : c.score >= 40 ? 'practising' : 'learning');
+  const concepts = Object.fromEntries(Object.entries(state.mastery || {}).map(([id, c]) => [id, levelOf(c)]));
+  const stops = Object.keys(state.town?.buildings || {}).filter((k) => typeof state.town.buildings[k] === 'number' && state.town.buildings[k] > 0);
+  return { level: state.level, xp: state.xp, weekXp, prevWeekXp, improvement: weekXp - prevWeekXp, stars, badges: Object.keys(state.badges || {}).length, streak: state.streak?.count || 0, stops, concepts, checks: state.checks || {} };
 }

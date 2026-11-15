@@ -35,6 +35,17 @@ export function openDb(file) {
       created_at INTEGER NOT NULL
     );
     CREATE INDEX IF NOT EXISTS profiles_family ON profiles(family_id);
+    CREATE TABLE IF NOT EXISTS classes (
+      code TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      pin_hash TEXT NOT NULL,
+      created_at INTEGER NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS class_tokens (
+      token_hash TEXT PRIMARY KEY,
+      code TEXT NOT NULL REFERENCES classes(code) ON DELETE CASCADE,
+      created_at INTEGER NOT NULL
+    );
   `);
   return db;
 }

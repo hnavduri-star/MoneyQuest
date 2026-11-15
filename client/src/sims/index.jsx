@@ -162,19 +162,20 @@ function Jars({ params }) {
   const { tx } = useT();
   const money = useMoney();
   const amount = params.amount || 20;
-  const [save, setSave] = useState(50);
-  const [give, setGive] = useState(10);
-  const spend = Math.max(0, 100 - save - give);
-  const j = S.jarSplit(amount, { save, spend, give });
+  const step = amount >= 100 ? 5 : 1;
+  // Amounts, not percentages: children move coins between jars and see exactly how much is in each.
+  const [save, setSave] = useState(Math.round(amount / 2 / step) * step);
+  const [give, setGive] = useState(Math.round(amount / 10 / step) * step);
+  const spend = Math.max(0, amount - save - give);
   const jars = [
-    ['save', '🐷', j.save, 'bg-berry-pale'],
-    ['spend', '🛍️', j.spend, 'bg-sun-pale'],
-    ['give', '💝', j.give, 'bg-leaf-pale'],
+    ['save', '🐷', save, 'bg-berry-pale'],
+    ['spend', '🛍️', spend, 'bg-sun-pale'],
+    ['give', '💝', give, 'bg-leaf-pale'],
   ];
   return (
     <div className="space-y-3">
-      <Slider label={`${tx(L.save)} %`} value={save} min={0} max={100 - give} step={5} onChange={setSave} format={(v) => `${v}%`} />
-      <Slider label={`${tx(L.give)} %`} value={give} min={0} max={100 - save} step={5} onChange={setGive} format={(v) => `${v}%`} />
+      <Slider label={`🐷 ${tx(L.save)}`} value={save} min={0} max={amount - give} step={step} onChange={setSave} format={money} />
+      <Slider label={`💝 ${tx(L.give)}`} value={give} min={0} max={amount - save} step={step} onChange={setGive} format={money} />
       <div className="grid grid-cols-3 gap-2">
         {jars.map(([k, e, v, tone]) => (
           <div key={k} className={`rounded-2xl ${tone} p-2 text-center`}>

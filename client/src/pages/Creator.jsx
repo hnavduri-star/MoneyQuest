@@ -49,7 +49,7 @@ export default function Creator({ edit = false }) {
   const [d, setD] = useState(() =>
     edit && active
       ? { nickname: active.nickname, ageTier: active.ageTier, avatar: active.meta.avatar, companion: active.meta.companion, theme: active.meta.theme, presetId: null, lang, currency: g.settings.currency }
-      : { nickname: '', ageTier: '10-12', avatar: { ...startPreset.avatar }, presetId: startPreset.id, companion: 'owl', theme: partner ? 'partner' : 'sky', lang, city: defaultCity.id, currency: 'auto' },
+      : { nickname: '', ageTier: '10-12', avatar: { ...startPreset.avatar }, presetId: startPreset.id, companion: 'owl', theme: 'sky', lang, city: defaultCity.id, currency: 'auto' },
   );
   const steps = edit ? ['look', 'buddy', 'theme', 'name'] : ['language', 'age', 'name', 'look', 'buddy', 'theme'];
   const [i, setI] = useState(0);

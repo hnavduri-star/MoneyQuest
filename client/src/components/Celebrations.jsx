@@ -16,7 +16,7 @@ export default function Celebrations() {
   const cur = celebrations[0];
 
   // Small news (quests, streaks) shows as a toast; big moments as a modal.
-  const isToast = cur && (cur.type === 'questDone' || cur.type === 'streak' || cur.type === 'bankInterest');
+  const isToast = cur && ['questDone', 'streak', 'bankInterest', 'goalReached', 'missionApproved', 'stamp'].includes(cur.type);
   useEffect(() => {
     if (!cur) return;
     if (cur.type === 'levelUp') {
@@ -42,6 +42,9 @@ export default function Celebrations() {
       const def = [...content.quests.daily, ...content.quests.weekly].find((q) => q.id === cur.questId);
       text = `✅ ${tx(def?.text)}`;
     } else if (cur.type === 'bankInterest') text = `🏦 ${t('bank.interestToast', { n: cur.amount })}`;
+    else if (cur.type === 'goalReached') text = `🎯 ${t('goal.reached')}`;
+    else if (cur.type === 'missionApproved') text = `🏡 ${t('mission.approvedToast')}`;
+    else if (cur.type === 'stamp') text = `🛂 ${t('passport.stampToast')}`;
     else text = `🔥 ${t(`streak.${cur.result}`, { n: cur.count })}`;
     return (
       <AnimatePresence>

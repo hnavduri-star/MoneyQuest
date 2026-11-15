@@ -22,7 +22,7 @@ export const DEFAULT_SETTINGS = {
   sessionLimit: 20,
   appearance: 'auto', // 'light' | 'dark' | 'auto' (follow the device)
 };
-const CELEBRATE = new Set(['levelUp', 'badge', 'buildingUnlocked', 'buildingUpgraded', 'questDone', 'streak', 'bankInterest']);
+const CELEBRATE = new Set(['levelUp', 'badge', 'buildingUnlocked', 'buildingUpgraded', 'questDone', 'streak', 'bankInterest', 'stamp', 'goalReached', 'missionApproved']);
 const deviceLang = () => (typeof navigator !== 'undefined' && navigator.language?.startsWith('ar') ? 'ar' : 'en');
 
 const GameCtx = createContext(null);
@@ -180,8 +180,20 @@ export function GameProvider({ children }) {
   const [breakDue, setBreakDue] = useState(false);
   useEffect(() => {
     if (!active) return;
+    let ticks = 0;
     const t = setInterval(() => {
-      if (document.visibilityState === 'visible') setPlaySeconds((s) => s + 5);
+      if (document.visibilityState !== 'visible') return;
+      setPlaySeconds((s) => s + 5);
+      // Minutes played per day, for the parent dashboard.
+      if (++ticks % 12 === 0) {
+        commitQuiet((x) => {
+          const p = x.profiles[x.activeId];
+          if (!p) return x;
+          const d = dayKey();
+          const log = { ...(p.meta.timeLog || {}), [d]: ((p.meta.timeLog || {})[d] || 0) + 1 };
+          return setProfile(x, p.id, { meta: { ...p.meta, timeLog: log } });
+        });
+      }
     }, 5000);
     return () => clearInterval(t);
   }, [active?.id]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -258,8 +270,10 @@ export function GameProvider({ children }) {
       checkPin: (pin) => checkLocalPin(pin, ref.current.family?.pinHash),
       createProfile({ nickname, ageTier, meta }) {
         const id = newProfileId();
-        const state = createInitialState({ profileId: id, start: { coins: content.rewards.startingCoins } });
-        commit((x) => ({ ...x, activeId: id, profiles: { ...x.profiles, [id]: { id, nickname, ageTier, meta, state, updatedAt: Date.now(), dirty: true } } }));
+        // Coins earned in the play-before-signup taster carry over.
+        const taster = ref.current.device.tasterCoins || 0;
+        const state = createInitialState({ profileId: id, start: { coins: content.rewards.startingCoins + taster } });
+        commit((x) => ({ ...x, device: { ...x.device, tasterCoins: 0 }, activeId: id, profiles: { ...x.profiles, [id]: { id, nickname, ageTier, meta, state, updatedAt: Date.now(), dirty: true } } }));
         return id;
       },
       updateProfile(patch) {
@@ -275,6 +289,19 @@ export function GameProvider({ children }) {
         });
       },
       switchProfile: (id) => commit((x) => ({ ...x, activeId: id })),
+      /** Grown-up actions on any child's profile (e.g. confirming a mission from the parent dashboard). */
+      dispatchFor(id, event) {
+        const p = ref.current.profiles[id];
+        if (!p) return [];
+        const { state, effects } = processEvent(p.state, event, content, { age: p.ageTier });
+        if (state !== p.state) commit((x) => setProfile(x, id, { state, updatedAt: Date.now(), dirty: true }));
+        return effects;
+      },
+      updateProfileFor(id, metaPatch) {
+        commit((x) => setProfile(x, id, { meta: { ...x.profiles[id].meta, ...metaPatch }, updatedAt: Date.now(), dirty: true }));
+      },
+      setTasterCoins: (n) => commit((x) => ({ ...x, device: { ...x.device, tasterCoins: n } })),
+      setTeacher: (teacher) => commit((x) => ({ ...x, device: { ...x.device, teacher } })),
       signOutProfile: () => commit((x) => ({ ...x, activeId: null })),
       async deleteProfile(id, pin) {
         if (!(await checkLocalPin(pin, ref.current.family?.pinHash))) return false;
@@ -302,6 +329,8 @@ export function GameProvider({ children }) {
         }
       },
       shiftCelebration: () => setQueue((q) => q.slice(1)),
+      /** Hand over (and clear) celebrations held back during a level, for the victory screen. */
+      takeDeferred: () => batchCelebrations(deferred.current.splice(0)),
       snoozeBreak,
       syncNow: pull,
     }),
@@ -311,6 +340,7 @@ export function GameProvider({ children }) {
   const value = {
     content,
     family: data.family,
+    device: data.device,
     profiles: data.profiles,
     active,
     state: active?.state,
@@ -351,7 +381,7 @@ function batchCelebrations(list) {
   for (const e of list) {
     if (e.type === 'levelUp') level = { ...e, from: level?.from ?? e.level - 1, rankChanged: !!(level?.rankChanged || e.rankChanged) };
     else if (e.type === 'badge') badges.push(e.badgeId);
-    else if (e.type === 'questDone' || e.type === 'streak' || e.type === 'bankInterest') toasts.push(e);
+    else if (['questDone', 'streak', 'bankInterest', 'goalReached', 'missionApproved'].includes(e.type)) toasts.push(e);
     else big.push(e);
   }
   return [level, ...big, badges.length ? { type: 'badges', ids: badges } : null, ...toasts].filter(Boolean);
