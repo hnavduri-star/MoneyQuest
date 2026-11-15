@@ -49,7 +49,7 @@ const L = {
   income: { en: 'Family income', ar: 'دخل العائلة' },
   rent: { en: '🏠 Rent', ar: '🏠 الإيجار' },
   food: { en: '🛒 Groceries', ar: '🛒 البقالة' },
-  bills: { en: '💡 {utilityShort} & phone', ar: '💡 {utilityShort} والهاتف' },
+  bills: { en: '💡 Bills: {utilityShort}, phone', ar: '💡 الفواتير: {utilityShort}، الهاتف' },
   school: { en: '🎒 School', ar: '🎒 المدرسة' },
   transport: { en: '🚗 {transportShort}', ar: '🚗 {transportShort}' },
   emergency: { en: '☔ Emergency fund', ar: '☔ صندوق الطوارئ' },
@@ -328,7 +328,9 @@ function Budget({ params, onGoal }) {
   const locked = params.lockFixed ? ['rent', 'school'] : [];
   const surprise = params.surpriseShare ? Math.round((income * params.surpriseShare) / step) * step : 0;
   const startFactor = params.start === 'over' ? 1.14 : 1;
-  const [alloc, setAlloc] = useState(() => Object.fromEntries(BUDGET_KEYS.map((k) => [k, Math.round((income * BUDGET_SHARE[k] * (locked.includes(k) ? 1 : startFactor)) / step) * step])));
+  // Savings round up so a challenge starts with savings on target; the puzzle is fitting everything else in.
+  const roundFor = (k) => (k === 'savings' || k === 'emergency' ? Math.ceil : Math.round);
+  const [alloc, setAlloc] = useState(() => Object.fromEntries(BUDGET_KEYS.map((k) => [k, roundFor(k)((income * BUDGET_SHARE[k] * (locked.includes(k) ? 1 : startFactor)) / step) * step])));
   const [surpriseResult, setSurpriseResult] = useState(null);
   const sum = S.budgetSummary(income, { ...alloc, ...(surprise ? { repair: surprise } : {}) });
   const target = params.target;
