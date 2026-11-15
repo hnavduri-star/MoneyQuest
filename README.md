@@ -40,6 +40,27 @@ npm start            # http://localhost:4100   (PORT, DB_FILE env vars optional)
 
 The SQLite file defaults to `moneyquest/data/moneyquest.db`. On hosts with ephemeral disks, point `DB_FILE` at a persistent volume.
 
+## For families, schools and partners
+
+- **Play before signing up:** "Play now" lets a child pick a guide and answer 3 questions for coins. A grown-up then ticks the consent box, sets the parent PIN, and the coins carry over.
+- **Parent mode** (Settings or the players screen, PIN-protected): per child, minutes played per day, stops done, missions to confirm, before/after check results, certificates to print, skill levels, "try this at home" ideas and conversation prompts, a real-life savings goal (shown in the child's Town Bank), and joining a class.
+- **Teacher mode** ("I'm a teacher" on the welcome screen): create a class with a name and PIN, share the class code with parents, see a class grid (nicknames only) with stops done and average improvement, and print worksheets with an answer key for every stop. Needs the online version.
+- **Learning evidence:** each stop offers a 5-question check before starting and after the boss (the same questions both times). Parent and Teacher mode show the improvement.
+- **Realistic prices per city** (`prices` in `content/cities.json`): everyday amounts use `small`, salary-sized steps use `big` (e.g. ×0.25 in pounds and euros, ×0.3 in dollars, ×5 in rupees), and every amount and answer in a step scales together.
+- **Documents:** `docs/privacy-and-consent.md`, `docs/partner-policy.md` (child-marketing rules, data sharing, DPA checklist), `docs/pilot-and-pricing.md`, `docs/content-review.md`.
+- **Review sheets:** `npm run review:export` writes spreadsheets of every city fact and every English/Arabic text for reviewers; `npm run review:import` applies their corrections.
+- **Hosting that keeps data:** `render.yaml` (New → Blueprint) creates a starter instance with a 1 GB disk.
+
+## Game features added after Phase 1
+
+- **14 stops** with a branching journey: after Family Budget, children choose the banking path, the shopping path or the business path (`requires` / `requiresAny` in `worlds/index.json`). New stops: Scam Shield, Smart Shopper, Investment Island, Giving Garden.
+- **Question types:** choice, number, sort, **order** (tap the steps in order), **estimate** (slider, close enough counts), **scenario** (story choices, each with its own outcome; choices are saved for Story Mode), plus goal simulations.
+- **City passport:** beating a stop's boss stamps the passport for the current city (Trophies → Money passport).
+- **Real-life missions** (`content/missions.json`): the child taps "I did it", a grown-up confirms in Parent mode, and coins are paid.
+- **Savings goals:** "Save for this" on any shop item; the Town Bank shows progress and celebrates when it's affordable.
+- **Family challenge:** a weekly XP target for the whole family; each child claims the reward.
+- **One victory screen** after each level instead of a stack of pop-ups; **70 badges** (fewer, more special); coins rebalanced; drawn pets and decorations instead of emoji.
+
 ## Cities, partner editions and the newer stops
 
 - **Six cities:** Dubai, Abu Dhabi, London, Paris, Mumbai and New York. The child picks a city in the character creator (and can change it in Settings). The city sets the journey stops and landmarks, the skyline, the currency (money shows in the city's currency by default), notes and coins, central bank, ATM network, taxes, bills, payday, exchange rates and the places in the currency game. Lessons use `{placeholders}` that `content/cities.json` fills; numeric answers such as `"{fxTen}"` resolve per city. Mumbai uses `priceScale: 10`, so amounts read like real rupee prices.
