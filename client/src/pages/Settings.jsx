@@ -10,14 +10,14 @@ import Avatar from '../components/Avatar.jsx';
 import PinPad from '../components/PinPad.jsx';
 
 export default function Settings() {
-  const { settings, updateSettings, updateProfile, active, state, family, syncStatus, signOutProfile, linkFamily, content } = useGame();
+  const { settings, updateSettings, updateProfile, active, state, family, syncStatus, signOutProfile, linkFamily, content, themeColor } = useGame();
   const { t, tx } = useT();
   const nav = useNavigate();
   const [ageGate, setAgeGate] = useState(null);
   const [linking, setLinking] = useState(false);
   const [err, setErr] = useState('');
-  const { checkPin } = useGame();
-  const theme = content.characters.themes.find((x) => x.id === active.meta.theme)?.color;
+  const { checkPin, allowedCities, city, editionPicker, editionId, setDeviceEdition } = useGame();
+  const theme = themeColor(active.meta.theme);
   return (
     <div className="space-y-4">
       <Header title={t('settings.title')} onBack={() => nav('/town')} />
@@ -39,6 +39,10 @@ export default function Settings() {
       </button>
 
       <section className="card p-4 space-y-3">
+        <label className="font-bold block" htmlFor="set-city">🌍 {t('settings.city')}</label>
+        <select id="set-city" className="w-full min-h-[52px] rounded-2xl border border-line bg-surface px-4 font-bold" value={city.id} onChange={(e) => { const c = allowedCities.find((x) => x.id === e.target.value); updateSettings({ city: c.id, currency: c.currency }); }}>
+          {allowedCities.map((c) => <option key={c.id} value={c.id}>{c.flag} {tx(c.name)}</option>)}
+        </select>
         <p className="font-bold">{t('settings.language')}</p>
         <Segmented label={t('settings.language')} value={settings.lang} onChange={(v) => updateSettings({ lang: v })} options={LANGUAGES.map((l) => ({ value: l.id, label: l.name }))} />
         <p className="font-bold">{t('settings.currency')}</p>
@@ -68,6 +72,15 @@ export default function Settings() {
           <Segmented label={t('settings.sessionLimit')} value={settings.sessionLimit} onChange={(v) => updateSettings({ sessionLimit: v })} options={[15, 20, 30, 45].map((n) => ({ value: n, label: `${n}′` }))} />
         </div>
       </section>
+
+      {editionPicker && (
+        <section className="card p-4">
+          <label className="font-bold block mb-2" htmlFor="set-edition">🏷️ {t('settings.edition')}</label>
+          <select id="set-edition" className="w-full min-h-[52px] rounded-2xl border border-line bg-surface px-4 font-bold" value={editionId} onChange={(e) => setDeviceEdition(e.target.value)}>
+            {content.editions.editions.map((ed) => <option key={ed.id} value={ed.id}>{tx(ed.name)}</option>)}
+          </select>
+        </section>
+      )}
 
       <section className="card p-4">
         <p className="font-extrabold">🔒 {t('settings.privacy')}</p>

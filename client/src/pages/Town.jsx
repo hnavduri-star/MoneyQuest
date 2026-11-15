@@ -8,18 +8,19 @@ import { townLiveliness } from '@engine/town.js';
 import Building from '../components/Building.jsx';
 import Avatar from '../components/Avatar.jsx';
 import Mascot from '../components/Mascot.jsx';
+import { PartnerStrip } from '../components/Brand.jsx';
 import { play } from '../lib/sound.js';
 
 const WALKERS = ['🚶', '🚴', '🧍', '🛵', '🚶‍♀️', '🧑‍🦽', '🛴', '🚗', '🚌', '🏃'];
 
 export default function Town() {
-  const { state, active, content, settings, isDark } = useGame();
+  const { state, active, content, settings, isDark, themeColor, school, bank, city } = useGame();
   const { t, tx } = useT();
   const nav = useNavigate();
   const worlds = useWorlds();
   const due = useDueReviews();
   const live = townLiveliness(state, content);
-  const theme = content.characters.themes.find((x) => x.id === active.meta.theme)?.color;
+  const theme = themeColor(active.meta.theme);
   const pet = content.items[state.inventory.equipped.pet];
   const decorations = state.inventory.decorations.map((id) => content.items[id]).filter(Boolean);
   const current = worlds.find((w) => w.status === 'open');
@@ -32,6 +33,7 @@ export default function Town() {
   return (
     <div className="space-y-4">
       <Mascot text={greeting} mood="happy" size={72} />
+      <PartnerStrip compact />
 
       {/* Town scene */}
       <section className="relative rounded-blob overflow-hidden border border-line shadow-card" aria-label={t('nav.town')}>
@@ -48,6 +50,7 @@ export default function Town() {
             ☁️
           </motion.div>
         ))}
+        <span className="absolute top-3 start-4 chip bg-surface/85 text-sm">{city.flag} {tx(city.name)}</span>
         <div className="relative pt-20 px-2 pb-3">
           <div className="grid grid-cols-3 gap-y-1 items-end">
             {/* Home with the avatar and pet */}
@@ -62,8 +65,8 @@ export default function Town() {
               <span className="text-xs font-bold bg-surface/80 rounded-full px-2">{t('town.home')}</span>
             </div>
             <div className="flex flex-col items-center">
-              <Building type="hall" tier={1} size={96} label={t('town.hall')} night={isDark} />
-              <span className="text-xs font-bold bg-surface/80 rounded-full px-2">{t('town.hall')}</span>
+              <Building type="hall" tier={1} size={96} label={school ? tx(school.short) : t('town.hall')} night={isDark} color={school?.colors.primary} sign={school ? tx(school.short) : undefined} />
+              <span className="text-xs font-bold bg-surface/80 rounded-full px-2">{school ? `🎓 ${tx(school.short)}` : t('town.hall')}</span>
             </div>
             {worlds.filter(({ meta }) => meta.playable).map(({ meta, status }) => {
               const tier = meta.playable ? state.town.buildings[meta.id] ?? 0 : 0;
@@ -79,7 +82,7 @@ export default function Town() {
                   aria-label={`${tx(meta.name)}: ${locked ? t('common.locked') : typeof tier === 'number' && tier > 0 ? t('town.plot.tier', { tier }) : t('town.plot.building')}`}
                 >
                   <div className={locked ? 'opacity-55 saturate-50' : ''}>
-                    <Building type={meta.building} tier={tier} color={meta.color} icon={meta.icon} size={96} night={isDark} />
+                    <Building type={meta.building} tier={tier} color={meta.sponsored ? bank.colors.primary : meta.color} icon={meta.icon} size={96} night={isDark} sign={meta.sponsored ? tx(bank.short) : undefined} />
                   </div>
                   <span className="text-xs font-bold bg-surface/85 rounded-full px-2 leading-tight text-center max-w-[100px] truncate">
                     {locked && '🔒 '}

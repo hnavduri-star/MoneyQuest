@@ -7,11 +7,12 @@ import Building from '../components/Building.jsx';
 import Companion from '../components/Companion.jsx';
 import PinPad from '../components/PinPad.jsx';
 import { Segmented } from '../components/ui.jsx';
+import { PartnerStrip } from '../components/Brand.jsx';
 
 /** First run: a grown-up sets the parent PIN (or links this device to an existing family). */
 export default function Welcome() {
-  const { createFamily, joinFamily, setDeviceLang, lang, appearance, setDeviceAppearance } = useGame();
-  const { t } = useT();
+  const { createFamily, joinFamily, setDeviceLang, lang, appearance, setDeviceAppearance, editionPicker, editionId, setDeviceEdition, content } = useGame();
+  const { t, tx } = useT();
   const [step, setStep] = useState('hello');
   const [first, setFirst] = useState(null);
   const [error, setError] = useState('');
@@ -35,6 +36,7 @@ export default function Welcome() {
             {['owl', 'camel', 'robot', 'dragon'].map((c) => <Companion key={c} id={c} size={56} />)}
           </div>
           <h1 className="title text-4xl">{t('welcome.title')}</h1>
+          <div className="w-full"><PartnerStrip /></div>
           <p className="text-lg text-soft">{t('welcome.body')}</p>
           <button className="btn-primary w-full mt-2" onClick={() => setStep('pin')}>
             {t('welcome.start')} →
@@ -43,6 +45,14 @@ export default function Welcome() {
             {t('welcome.join')}
           </button>
           <p className="text-sm text-soft mt-2">🔒 {t('parent.privacy')}</p>
+          {editionPicker && (
+            <label className="w-full text-start text-sm font-bold">
+              🏷️ {t('welcome.edition')}
+              <select className="mt-1 w-full min-h-[48px] rounded-2xl border border-line bg-surface px-3 font-bold" value={editionId} onChange={(e) => setDeviceEdition(e.target.value)}>
+                {content.editions.editions.map((ed) => <option key={ed.id} value={ed.id}>{tx(ed.name)}</option>)}
+              </select>
+            </label>
+          )}
         </div>
       )}
       {step === 'pin' && (

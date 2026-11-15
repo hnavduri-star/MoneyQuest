@@ -2,7 +2,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { processEvent } from '@engine/rewards.js';
 import { createInitialState, migrateState, summarize } from '@engine/state.js';
 import { dayKey, addDays } from '@engine/dates.js';
-import { content } from './content.js';
+import { content, BUILD_EDITION, EDITION_PICKER } from './content.js';
+import { getCity, getEdition, getBank, getSchool, editionCities, cityContext } from '@engine/city.js';
 import { loadSaved, persist, newProfileId, localPinHash, checkLocalPin } from './lib/storage.js';
 import { api } from './lib/api.js';
 import { setSoundEnabled, setHapticsEnabled } from './lib/sound.js';
@@ -60,6 +61,22 @@ export function GameProvider({ children }) {
     return () => mq.removeEventListener?.('change', on);
   }, []);
   const isDark = appearance === 'dark' || (appearance === 'auto' && systemDark);
+
+  // ---------- partner edition (bank / school) and city ----------
+  const editionId = (EDITION_PICKER && data.device.edition) || BUILD_EDITION;
+  const edition = getEdition(content, editionId);
+  const bank = getBank(content, edition);
+  const school = getSchool(content, edition);
+  const allowedCities = editionCities(content, edition);
+  const wantedCity = active ? settings.city : data.device.city;
+  const city = allowedCities.find((c) => c.id === wantedCity) || allowedCities.find((c) => c.id === edition.defaultCity) || allowedCities[0] || getCity(content);
+  const cityCtx = useMemo(() => cityContext(content, city.id), [city.id]);
+  const partner = bank.sponsor ? bank : school;
+  const themes = useMemo(
+    () => [...(partner ? [{ id: 'partner', color: partner.colors.primary, name: partner.short }] : []), ...content.characters.themes],
+    [partner],
+  );
+  const themeColor = useCallback((id) => themes.find((x) => x.id === id)?.color || '#0072B2', [themes]);
   const deferred = useRef([]);
   const age = active?.ageTier || '10-12';
 
@@ -196,18 +213,20 @@ export function GameProvider({ children }) {
       root.dataset.mqTheme = '1';
     }
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#0E1220' : '#0072B2');
-    const theme = content.characters.themes.find((x) => x.id === active?.meta?.theme)?.color || '#0072B2';
+    const theme = themeColor(active?.meta?.theme);
     root.style.setProperty('--theme', theme);
     setSoundEnabled(settings.sound);
     setHapticsEnabled(settings.haptics);
     setVoiceEnabled(settings.voice);
-  }, [appearance, isDark, lang, settings.dyslexia, settings.reducedMotion, settings.textSize, settings.sound, settings.haptics, settings.voice, active?.meta?.theme]);
+  }, [themeColor, appearance, isDark, lang, settings.dyslexia, settings.reducedMotion, settings.textSize, settings.sound, settings.haptics, settings.voice, active?.meta?.theme]);
 
   // ---------- family + profiles ----------
   const actions = useMemo(
     () => ({
       setDeviceLang: (l) => commit((x) => ({ ...x, device: { ...x.device, lang: l } })),
       setDeviceAppearance: (a) => commit((x) => ({ ...x, device: { ...x.device, appearance: a } })),
+      setDeviceEdition: (e) => commit((x) => ({ ...x, device: { ...x.device, edition: e } })),
+      setDeviceCity: (c) => commit((x) => ({ ...x, device: { ...x.device, city: c } })),
       async createFamily(pin) {
         const pinHash = await localPinHash(pin);
         let fam = { pinHash, local: true };
@@ -300,6 +319,18 @@ export function GameProvider({ children }) {
     age,
     appearance,
     isDark,
+    editionId,
+    edition,
+    bank,
+    school,
+    partner,
+    city,
+    cityId: city.id,
+    cityCtx,
+    allowedCities,
+    editionPicker: EDITION_PICKER,
+    themes,
+    themeColor,
     currency: settings.currency,
     dispatch,
     celebrations: queue,

@@ -44,9 +44,29 @@ export function worldStatus(state, meta, content, age) {
   return isWorldComplete(state, world, age) ? 'complete' : 'open';
 }
 
-/** Steps of a node visible to this age tier, with age-tiered values resolved. */
-export function stepsForAge(node, age) {
-  return (node.steps || []).filter((s) => !s.ages || s.ages.includes(age)).map((s) => resolveAgeDeep(s, age));
+/**
+ * Steps of a node visible to this age tier (and city region), with age-tiered values resolved.
+ * City numbers fill answers written as "{fxTen}" so one lesson works in every currency.
+ */
+export function stepsForAge(node, age, ctx) {
+  return (node.steps || [])
+    .filter((s) => !s.ages || s.ages.includes(age))
+    .filter((s) => !ctx || ((!s.regions || s.regions.includes(ctx.region)) && (!s.notRegions || !s.notRegions.includes(ctx.region))))
+    .map((s) => resolveNums(resolveAgeDeep(s, age), ctx));
+}
+
+function resolveNums(step, ctx) {
+  const fix = (v) => (typeof v === 'string' ? Number(v.replace(/\{(\w+)\}/g, (_, k) => ctx?.nums?.[k] ?? NaN)) : v);
+  if (typeof step.answer === 'string' || typeof step.tolerance === 'string') return { ...step, answer: fix(step.answer), tolerance: fix(step.tolerance) };
+  return step;
+}
+
+/** Mini-games marked "cityItems" sort the chosen city's own places vs places abroad. */
+export function minigameConfig(node, ctx) {
+  const cfg = node.config;
+  if (!cfg.cityItems || !ctx?.places) return cfg;
+  const items = [...ctx.places.home.map((p) => ({ ...p, bin: 'home' })), ...ctx.places.abroad.map((p) => ({ ...p, bin: 'abroad' }))];
+  return { ...cfg, items };
 }
 
 const LOCALISED_KEYS = new Set(['en', 'ar']);

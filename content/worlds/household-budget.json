@@ -60,8 +60,8 @@
           "art": "family",
           "mascot": "excited",
           "text": {
-            "en": "Welcome to the Al Noor family home in Mirdif! Mum works at a hospital and Dad runs a small shop. Their salaries and business earnings are the family's INCOME: all the money coming in each month.",
-            "ar": "أهلاً بك في بيت عائلة النور في مردف! الأم تعمل في مستشفى والأب يدير متجراً صغيراً. رواتبهما وأرباح التجارة هي دخل العائلة: كل المال الذي يدخل كل شهر."
+            "en": "Welcome to {stop} in {city}! Meet the {familyName} family. Mum works at a hospital and Dad runs a small shop. Their salaries and business earnings are the family's INCOME: all the money coming in each month.",
+            "ar": "أهلاً بك في {stop} في {city}! تعرّف على عائلة {familyName}. الأم تعمل في مستشفى والأب يدير متجراً صغيراً. رواتبهما وأرباح التجارة هي دخل العائلة: كل المال الذي يدخل كل شهر."
           }
         },
         {
@@ -172,8 +172,8 @@
           "art": "bills",
           "mascot": "thinking",
           "text": {
-            "en": "EXPENSES are what the family spends money on. Some cost the same every month, like rent and school fees: FIXED costs. Others change, like groceries, the electricity and water bill from DEWA, and petrol: VARIABLE costs.",
-            "ar": "المصاريف هي ما تنفق العائلة المال عليه. بعضها ثابت كل شهر مثل الإيجار والرسوم المدرسية: تكاليف ثابتة. وبعضها يتغير مثل البقالة وفاتورة الكهرباء والماء من ديوا والبنزين: تكاليف متغيرة."
+            "en": "EXPENSES are what the family spends money on. Some cost the same every month, like rent and school fees: FIXED costs. Others change, like groceries, {utilityBill}, and {transportCost}: VARIABLE costs.",
+            "ar": "المصاريف هي ما تنفق العائلة المال عليه. بعضها ثابت كل شهر مثل الإيجار والرسوم المدرسية: تكاليف ثابتة. وبعضها يتغير مثل البقالة و{utilityBill} و{transportCost}: تكاليف متغيرة."
           }
         },
         {
@@ -229,8 +229,8 @@
             {
               "emoji": "💡",
               "text": {
-                "en": "DEWA electricity & water",
-                "ar": "كهرباء وماء ديوا"
+                "en": "{utilityShort}",
+                "ar": "{utilityShort}"
               },
               "bin": "var"
             },
@@ -369,8 +369,8 @@
           "art": "family",
           "mascot": "happy",
           "text": {
-            "en": "A BUDGET is a plan for every dirham before the month starts: needs first, then savings, then fun. If the plan spends more than the income, it needs fixing!",
-            "ar": "الميزانية خطة لكل درهم قبل بداية الشهر: الحاجات أولاً ثم الادخار ثم المتعة. إذا كانت الخطة تنفق أكثر من الدخل، فيجب إصلاحها!"
+            "en": "A BUDGET is a plan for every {currencyName} before the month starts: needs first, then savings, then fun. If the plan spends more than the income, it needs fixing!",
+            "ar": "الميزانية خطة لكل {currencyName} قبل بداية الشهر: الحاجات أولاً ثم الادخار ثم المتعة. إذا كانت الخطة تنفق أكثر من الدخل، فيجب إصلاحها!"
           }
         },
         {
@@ -383,8 +383,8 @@
             }
           },
           "text": {
-            "en": "Plan the Al Noor family's month. Can you balance it AND save?",
-            "ar": "خطط لشهر عائلة النور. هل تستطيع موازنتها والادخار أيضاً؟"
+            "en": "Plan the {familyName} family's month. Can you balance it AND save?",
+            "ar": "خطط لشهر عائلة {familyName}. هل تستطيع موازنتها والادخار أيضاً؟"
           }
         },
         {
@@ -439,8 +439,8 @@
             }
           ],
           "explain": {
-            "en": "Balanced means every dirham spent is covered by income, with nothing borrowed.",
-            "ar": "متوازنة تعني أن كل درهم يُنفق يغطيه الدخل دون اقتراض."
+            "en": "Balanced means everything spent is covered by income, with nothing borrowed.",
+            "ar": "متوازنة تعني أن كل ما يُنفق يغطيه الدخل دون اقتراض."
           }
         },
         {
@@ -536,14 +536,14 @@
           "type": "choice",
           "concept": "emergency-fund",
           "prompt": {
-            "en": "Eid is coming and gifts cost money. Is that an emergency?",
-            "ar": "العيد قادم والهدايا تكلف مالاً. هل هذه حالة طارئة؟"
+            "en": "{festival} is coming and presents cost money. Is that an emergency?",
+            "ar": "{festival} قادم والهدايا تكلف مالاً. هل هذه حالة طارئة؟"
           },
           "options": [
             {
               "text": {
-                "en": "No, it's planned! Save a little each month before Eid",
-                "ar": "لا، إنه متوقع! ادخر قليلاً كل شهر قبل العيد"
+                "en": "No, it's planned! Save a little each month before {festival}",
+                "ar": "لا، إنه متوقع! ادخر قليلاً كل شهر قبل {festival}"
               },
               "correct": true
             },
@@ -555,8 +555,8 @@
             }
           ],
           "explain": {
-            "en": "Things you know are coming, like Eid, birthdays and school trips, belong in the budget, not the emergency fund.",
-            "ar": "الأشياء المعروفة مسبقاً مثل العيد وأعياد الميلاد والرحلات المدرسية مكانها الميزانية، لا صندوق الطوارئ."
+            "en": "Things you know are coming, like {festival}, birthdays and school trips, belong in the budget, not the emergency fund.",
+            "ar": "الأشياء المعروفة مسبقاً مثل {festival} وأعياد الميلاد والرحلات المدرسية مكانها الميزانية، لا صندوق الطوارئ."
           }
         },
         {

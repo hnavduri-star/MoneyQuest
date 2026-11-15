@@ -8,12 +8,12 @@ import { Coin, Gem, Progress } from './ui.jsx';
 import { play } from '../lib/sound.js';
 
 export function HUD() {
-  const { state, active, content, syncStatus } = useGame();
+  const { state, active, content, syncStatus, themeColor } = useGame();
   const { t, tx } = useT();
   const nav = useNavigate();
   const lp = levelProgress(state.xp, content.rewards.levelCurve);
   const rank = rankForLevel(state.level, content.ranks.ranks);
-  const theme = content.characters.themes.find((x) => x.id === active.meta.theme)?.color;
+  const theme = themeColor(active.meta.theme);
   return (
     <header className="sticky top-0 z-30 bg-cream/95 backdrop-blur border-b border-line">
       <div className="max-w-app mx-auto px-3 py-2 flex items-center gap-2">

@@ -41,7 +41,7 @@ function Picker({ items, value, onChange, label, tx }) {
 
 export default function Creator({ edit = false }) {
   const g = useGame();
-  const { content, active, createProfile, updateProfile, setDeviceLang, lang, profiles } = g;
+  const { content, active, createProfile, updateProfile, setDeviceLang, lang, profiles, allowedCities, city: defaultCity, setDeviceCity, themes, partner } = g;
   const { t, tx } = useT();
   const nav = useNavigate();
   const ch = content.characters;
@@ -49,7 +49,7 @@ export default function Creator({ edit = false }) {
   const [d, setD] = useState(() =>
     edit && active
       ? { nickname: active.nickname, ageTier: active.ageTier, avatar: active.meta.avatar, companion: active.meta.companion, theme: active.meta.theme, presetId: null, lang, currency: g.settings.currency }
-      : { nickname: '', ageTier: '10-12', avatar: { ...startPreset.avatar }, presetId: startPreset.id, companion: 'owl', theme: 'sky', lang, currency: lang === 'ar' ? 'AED' : 'USD' },
+      : { nickname: '', ageTier: '10-12', avatar: { ...startPreset.avatar }, presetId: startPreset.id, companion: 'owl', theme: partner ? 'partner' : 'sky', lang, city: defaultCity.id, currency: defaultCity.currency },
   );
   const steps = edit ? ['look', 'buddy', 'theme', 'name'] : ['language', 'age', 'name', 'look', 'buddy', 'theme'];
   const [i, setI] = useState(0);
@@ -59,7 +59,7 @@ export default function Creator({ edit = false }) {
   const set = (patch) => setD((x) => ({ ...x, ...patch }));
   const setA = (patch) => setD((x) => ({ ...x, presetId: null, avatar: { ...x.avatar, ...patch } }));
   const nick = checkNickname(d.nickname);
-  const themeColor = ch.themes.find((x) => x.id === d.theme)?.color;
+  const themeColor = themes.find((x) => x.id === d.theme)?.color;
   const canNext = step !== 'name' || nick.ok;
 
   const finish = () => {
@@ -68,7 +68,8 @@ export default function Creator({ edit = false }) {
       updateProfile({ nickname: nick.value, meta });
       nav('/settings');
     } else {
-      createProfile({ nickname: nick.value, ageTier: d.ageTier, meta: { ...meta, settings: { ...DEFAULT_SETTINGS, lang: d.lang, currency: d.currency } } });
+      const chosen = allowedCities.find((c) => c.id === d.city) || defaultCity;
+      createProfile({ nickname: nick.value, ageTier: d.ageTier, meta: { ...meta, settings: { ...DEFAULT_SETTINGS, lang: d.lang, currency: d.currency, city: chosen.id, islamic: chosen.islamicDefault } } });
       nav('/town');
     }
   };
@@ -98,6 +99,22 @@ export default function Creator({ edit = false }) {
         <motion.section key={step} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="flex-1 space-y-4">
           {step === 'language' && (
             <>
+              <div>
+                <label className="font-bold block mb-2" htmlFor="city">🌍 {t('creator.city')}</label>
+                <select
+                  id="city"
+                  className="w-full min-h-[56px] rounded-2xl border border-line bg-surface px-4 text-lg font-bold"
+                  value={d.city}
+                  onChange={(e) => {
+                    const c = allowedCities.find((x) => x.id === e.target.value);
+                    set({ city: c.id, currency: c.currency });
+                    setDeviceCity(c.id);
+                  }}
+                >
+                  {allowedCities.map((c) => <option key={c.id} value={c.id}>{c.flag} {tx(c.name)}</option>)}
+                </select>
+                <p className="text-sm text-soft mt-1">{t('creator.cityHelp')}</p>
+              </div>
               <div>
                 <p className="font-bold mb-2">{t('creator.language')}</p>
                 <Segmented label={t('creator.language')} value={d.lang} onChange={(v) => { set({ lang: v }); setDeviceLang(v); }} options={LANGUAGES.map((l) => ({ value: l.id, label: l.name }))} />
@@ -184,7 +201,7 @@ export default function Creator({ edit = false }) {
             <div>
               <p className="font-bold mb-2">{t('creator.theme')}</p>
               <div className="grid grid-cols-3 gap-3">
-                {ch.themes.map((th) => (
+                {themes.map((th) => (
                   <button key={th.id} onClick={() => set({ theme: th.id })} aria-pressed={d.theme === th.id} className={`min-h-[72px] rounded-blob border-4 text-white font-extrabold ${d.theme === th.id ? 'border-ink' : 'border-white'}`} style={{ background: th.color }}>
                     {tx(th.name)} {d.theme === th.id && '✓'}
                   </button>

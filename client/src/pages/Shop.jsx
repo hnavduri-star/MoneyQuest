@@ -5,6 +5,7 @@ import { useT } from '../lib/i18n.js';
 import { Header, Segmented, Coin, Gem } from '../components/ui.jsx';
 import Avatar from '../components/Avatar.jsx';
 import Companion from '../components/Companion.jsx';
+import { BrandMark } from '../components/Brand.jsx';
 import { play } from '../lib/sound.js';
 
 const TYPES = ['bank', 'outfit', 'hat', 'pet', 'decoration', 'mascotSkin'];
@@ -17,7 +18,7 @@ function Preview({ item, active, state }) {
 
 /** The in-game Town Bank: save coins to earn weekly compound interest, and swap coins for gems. */
 function BankPanel({ amt, setAmt, setNote }) {
-  const { content, state, dispatch } = useGame();
+  const { content, state, dispatch, bank } = useGame();
   const { t } = useT();
   const rate = content.rewards.bank?.weeklyRatePct ?? 5;
   const price = content.rewards.gemPriceCoins ?? 120;
@@ -33,7 +34,7 @@ function BankPanel({ amt, setAmt, setNote }) {
   return (
     <div className="space-y-3 mb-4">
       <section className="card p-4 space-y-3">
-        <h2 className="title flex items-center gap-2">🏦 {t('bank.title')}</h2>
+        <h2 className="title flex items-center gap-2"><BrandMark brand={bank} size={36} /> {t('bank.title')}</h2>
         <p className="text-soft">{t('bank.intro', { rate })}</p>
         <div className="grid grid-cols-2 gap-2 text-center">
           <div className="rounded-2xl bg-sun-pale p-3">

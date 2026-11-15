@@ -15,4 +15,5 @@ export * from './rewards.js';
 export * from './validate.js';
 export * from './registry.js';
 export * from './nickname.js';
+export * from './city.js';
 export * as sims from './sims/index.js';

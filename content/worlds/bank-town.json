@@ -68,8 +68,8 @@
           "art": "difc",
           "mascot": "excited",
           "text": {
-            "en": "Next stop: DIFC, Dubai's financial centre, full of banks! Let's find out what banks really do with money.",
-            "ar": "المحطة التالية: مركز دبي المالي العالمي، المليء بالبنوك! لنكتشف ماذا تفعل البنوك بالمال فعلاً."
+            "en": "Next stop: {stop} in {city}, full of banks! Let's find out what banks really do with money.",
+            "ar": "المحطة التالية: {stop} في {city}، المليء بالبنوك! لنكتشف ماذا تفعل البنوك بالمال فعلاً."
           }
         },
         {
@@ -143,8 +143,8 @@
             {
               "emoji": "🎁",
               "text": {
-                "en": "Putting your Eid money in the bank",
-                "ar": "وضع عيديتك في البنك"
+                "en": "Putting your {festival} gift money in the bank",
+                "ar": "وضع مال هدايا {festival} في البنك"
               },
               "bin": "in"
             },

@@ -7,6 +7,8 @@ import quests from '@content/quests.json';
 import shop from '@content/shop.json';
 import characters from '@content/characters.json';
 import worldIndex from '@content/worlds/index.json';
+import cities from '@content/cities.json';
+import editions from '@content/editions.json';
 import en from '@content/i18n/en.json';
 import ar from '@content/i18n/ar.json';
 
@@ -15,8 +17,13 @@ const worlds = Object.entries(worldFiles)
   .filter(([path]) => !path.endsWith('/index.json'))
   .map(([, w]) => w);
 
-export const content = buildContent({ rewards, ranks, badges, quests, shop, characters, worldIndex, worlds, i18n: { en, ar } });
+export const content = buildContent({ rewards, ranks, badges, quests, shop, characters, worldIndex, worlds, cities, editions, i18n: { en, ar } });
 export const LANGUAGES = [
   { id: 'en', name: 'English', dir: 'ltr', speech: 'en-US' },
   { id: 'ar', name: 'العربية', dir: 'rtl', speech: 'ar-SA' },
 ];
+
+/** Which partner edition this build is for (set VITE_EDITION when building for a bank or school). */
+export const BUILD_EDITION = import.meta.env.VITE_EDITION || content.editions.defaultEdition;
+/** Demo builds can show an edition picker on the welcome screen (VITE_EDITION_PICKER=1). */
+export const EDITION_PICKER = import.meta.env.VITE_EDITION_PICKER === '1';

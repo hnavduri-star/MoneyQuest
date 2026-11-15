@@ -64,8 +64,8 @@
           "art": "souk",
           "mascot": "excited",
           "text": {
-            "en": "Welcome to Al Fahidi in old Dubai! Your journey starts here, by the Creek. Long ago, pearl divers and traders met in the souks to swap pearls, dates, fish and spices.",
-            "ar": "أهلاً بك في الفهيدي في دبي القديمة! رحلتك تبدأ هنا عند الخور. قديماً كان الغوّاصون والتجار يلتقون في الأسواق لتبادل اللؤلؤ والتمر والسمك والبهارات."
+            "en": "Welcome to {stop} in {city}! Your money journey starts here. {historyLine}",
+            "ar": "أهلاً بك في {stop} في {city}! رحلتك المالية تبدأ من هنا. {historyLine}"
           }
         },
         {

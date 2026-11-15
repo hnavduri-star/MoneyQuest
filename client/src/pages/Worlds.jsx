@@ -7,6 +7,7 @@ import { Progress } from '../components/ui.jsx';
 import Avatar from '../components/Avatar.jsx';
 import Companion from '../components/Companion.jsx';
 import Skyline from '../components/Skyline.jsx';
+import { PartnerStrip } from '../components/Brand.jsx';
 import { play } from '../lib/sound.js';
 
 /**
@@ -15,30 +16,33 @@ import { play } from '../lib/sound.js';
  */
 export default function Worlds() {
   const { t, tx } = useT();
-  const { active, state, content } = useGame();
+  const { active, state, content, themeColor, city, isDark, bank } = useGame();
   const nav = useNavigate();
   const worlds = useWorlds();
   const stops = worlds.filter((w) => w.meta.playable);
   const later = worlds.filter((w) => !w.meta.playable);
   const currentIdx = Math.max(0, stops.findIndex((w) => w.status === 'open'));
-  const theme = content.characters.themes.find((x) => x.id === active.meta.theme)?.color;
+  const theme = themeColor(active.meta.theme);
 
   return (
     <div>
       <div className="rounded-blob overflow-hidden border border-line shadow-card mb-4">
-        <Skyline height={110} />
+        <Skyline city={city.skyline} dark={isDark} height={110} />
         <div className="bg-surface p-4">
-          <h1 className="title">🗺️ {t('journey.title')}</h1>
+          <h1 className="title">{city.flag} {t('journey.title')}</h1>
           <p className="text-soft">{t('journey.intro')}</p>
         </div>
       </div>
 
+      <div className="mb-4"><PartnerStrip compact /></div>
       <ol className="relative">
         {/* the road */}
         <div className="absolute top-6 bottom-6 start-1/2 w-3 -translate-x-1/2 rtl:translate-x-1/2 rounded-full bg-[#C9D3DC]" aria-hidden>
           <div className="absolute inset-y-0 start-1/2 border-s-2 border-dashed border-white" />
         </div>
-        {stops.map(({ meta, status, stars }, i) => {
+        {stops.map(({ meta: base, status, stars }, i) => {
+          const stop = city.stops[base.id];
+          const meta = { ...base, location: stop?.location || base.location, landmark: stop?.landmark || base.landmark, color: base.sponsored ? bank.colors.primary : base.color };
           const open = status === 'open' || status === 'complete';
           const here = i === currentIdx && status === 'open';
           const left = i % 2 === 0;

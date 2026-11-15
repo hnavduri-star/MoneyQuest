@@ -1,0 +1,2208 @@
+{
+  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing.",
+  "defaultCity": "dubai",
+  "cities": [
+    {
+      "region": "uae",
+      "currency": "AED",
+      "islamicDefault": true,
+      "atm": {
+        "notes": [
+          1000,
+          500,
+          200,
+          100
+        ],
+        "amounts": [
+          100,
+          200,
+          500,
+          1000,
+          3000
+        ],
+        "odd": 150
+      },
+      "vars": {
+        "country": {
+          "en": "the UAE",
+          "ar": "الإمارات"
+        },
+        "currencyName": {
+          "en": "dirham",
+          "ar": "درهم"
+        },
+        "currencyPlural": {
+          "en": "dirhams",
+          "ar": "دراهم"
+        },
+        "cur": {
+          "en": "AED",
+          "ar": "AED"
+        },
+        "smallUnit": {
+          "en": "fils",
+          "ar": "فلس"
+        },
+        "notesList": {
+          "en": "5, 10, 20, 50, 100, 200, 500 and 1000 dirhams",
+          "ar": "٥ و١٠ و٢٠ و٥٠ و١٠٠ و٢٠٠ و٥٠٠ و١٠٠٠ درهم"
+        },
+        "centralBank": {
+          "en": "Central Bank of the UAE",
+          "ar": "مصرف الإمارات العربية المتحدة المركزي"
+        },
+        "atmNetwork": {
+          "en": "UAESWITCH",
+          "ar": "UAESWITCH"
+        },
+        "taxLine": {
+          "en": "The UAE has no income tax on salaries, but there is 5% VAT on most things you buy.",
+          "ar": "لا توجد في الإمارات ضريبة دخل على الرواتب، لكن توجد ضريبة قيمة مضافة ٥٪ على معظم المشتريات."
+        },
+        "payLine": {
+          "en": "In the UAE, companies pay salaries through banks using the Wage Protection System (WPS), which helps make sure workers are paid on time.",
+          "ar": "في الإمارات تدفع الشركات الرواتب عبر البنوك باستخدام نظام حماية الأجور، الذي يساعد على ضمان حصول العاملين على أجورهم في موعدها."
+        },
+        "payFrequency": {
+          "en": "Once a month",
+          "ar": "مرة في الشهر"
+        },
+        "payFrequencyExplain": {
+          "en": "Most salaries in the UAE are paid monthly, so families plan month by month.",
+          "ar": "معظم الرواتب في الإمارات شهرية، لذلك تخطط العائلات شهراً بشهر."
+        },
+        "foreign": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "foreignPlural": {
+          "en": "US dollars",
+          "ar": "دولارات أمريكية"
+        },
+        "fxLine": {
+          "en": "The UAE dirham is 'pegged' (tied) to the US dollar: 1 US dollar is always about 3.67 dirhams.",
+          "ar": "الدرهم الإماراتي 'مربوط' بالدولار الأمريكي: الدولار الواحد يساوي دائماً نحو ٣٫٦٧ درهم."
+        },
+        "pegLine": {
+          "en": "The dirham–dollar rate stays fixed because the Central Bank keeps it pegged.",
+          "ar": "سعر الدرهم مقابل الدولار ثابت لأن المصرف المركزي يحافظ على الربط."
+        },
+        "strongerOne": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "weakerOne": {
+          "en": "dirham",
+          "ar": "درهم"
+        },
+        "wrongCurrency1": {
+          "en": "euro",
+          "ar": "اليورو"
+        },
+        "wrongCurrency2": {
+          "en": "rupee",
+          "ar": "الروبية"
+        },
+        "otherCode1": {
+          "en": "USD",
+          "ar": "USD"
+        },
+        "otherCode2": {
+          "en": "EUR",
+          "ar": "EUR"
+        },
+        "fakeCode1": {
+          "en": "UAD",
+          "ar": "UAD"
+        },
+        "fakeCode2": {
+          "en": "DHM",
+          "ar": "DHM"
+        },
+        "codeExplain": {
+          "en": "AE stands for United Arab Emirates, D for dirham.",
+          "ar": "AE تعني الإمارات العربية المتحدة وD تعني درهم."
+        },
+        "moveForeign": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "moveA": {
+          "en": "4.0",
+          "ar": "٤٫٠"
+        },
+        "moveB": {
+          "en": "4.2",
+          "ar": "٤٫٢"
+        },
+        "rateMythQ": {
+          "en": "The dirham–dollar rate changes wildly every hour!",
+          "ar": "سعر الدرهم مقابل الدولار يتغير بجنون كل ساعة!"
+        },
+        "rateMythRight": {
+          "en": "No, it's pegged at about 3.67",
+          "ar": "لا، إنه مربوط عند نحو ٣٫٦٧"
+        },
+        "rateMythExplain": {
+          "en": "The Central Bank keeps the dirham pegged to the dollar.",
+          "ar": "المصرف المركزي يحافظ على ربط الدرهم بالدولار."
+        },
+        "festival": {
+          "en": "Eid",
+          "ar": "العيد"
+        },
+        "city": {
+          "en": "Dubai",
+          "ar": "دبي"
+        },
+        "airport": {
+          "en": "Dubai International Airport",
+          "ar": "مطار دبي الدولي"
+        },
+        "familyName": {
+          "en": "Al Noor",
+          "ar": "النور"
+        },
+        "utilityBill": {
+          "en": "the electricity and water bill from DEWA",
+          "ar": "فاتورة الكهرباء والماء من ديوا"
+        },
+        "utilityShort": {
+          "en": "DEWA electricity & water",
+          "ar": "كهرباء وماء ديوا"
+        },
+        "transportCost": {
+          "en": "petrol and Salik road tolls",
+          "ar": "البنزين ورسوم سالك"
+        },
+        "transportShort": {
+          "en": "Transport & Salik",
+          "ar": "المواصلات وسالك"
+        },
+        "historyLine": {
+          "en": "Long ago, pearl divers and traders met in the souks by the Creek to swap pearls, dates, fish and spices.",
+          "ar": "قديماً كان الغوّاصون والتجار يلتقون في الأسواق عند الخور لتبادل اللؤلؤ والتمر والسمك والبهارات."
+        }
+      },
+      "nums": {
+        "fxRate": 3.67,
+        "fxRound": 4,
+        "fxRound2": 8,
+        "fxRound3": 12,
+        "fxTen": 36.7,
+        "fxTwenty": 73.4,
+        "fxHundredLocal": 367
+      },
+      "places": {
+        "home": [
+          {
+            "emoji": "🏙️",
+            "text": {
+              "en": "Dubai",
+              "ar": "دبي"
+            }
+          },
+          {
+            "emoji": "🕌",
+            "text": {
+              "en": "Abu Dhabi",
+              "ar": "أبوظبي"
+            }
+          },
+          {
+            "emoji": "📚",
+            "text": {
+              "en": "Sharjah",
+              "ar": "الشارقة"
+            }
+          },
+          {
+            "emoji": "🌴",
+            "text": {
+              "en": "Al Ain",
+              "ar": "العين"
+            }
+          },
+          {
+            "emoji": "⛰️",
+            "text": {
+              "en": "Fujairah",
+              "ar": "الفجيرة"
+            }
+          },
+          {
+            "emoji": "🏔️",
+            "text": {
+              "en": "Ras Al Khaimah",
+              "ar": "رأس الخيمة"
+            }
+          },
+          {
+            "emoji": "⛵",
+            "text": {
+              "en": "Ajman",
+              "ar": "عجمان"
+            }
+          }
+        ],
+        "abroad": [
+          {
+            "emoji": "🕋",
+            "text": {
+              "en": "Riyadh",
+              "ar": "الرياض"
+            }
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Mumbai",
+              "ar": "مومباي"
+            }
+          },
+          {
+            "emoji": "💂",
+            "text": {
+              "en": "London",
+              "ar": "لندن"
+            }
+          },
+          {
+            "emoji": "🗼",
+            "text": {
+              "en": "Paris",
+              "ar": "باريس"
+            }
+          },
+          {
+            "emoji": "🗽",
+            "text": {
+              "en": "New York",
+              "ar": "نيويورك"
+            }
+          },
+          {
+            "emoji": "🏺",
+            "text": {
+              "en": "Cairo",
+              "ar": "القاهرة"
+            }
+          },
+          {
+            "emoji": "🏝️",
+            "text": {
+              "en": "Manila",
+              "ar": "مانيلا"
+            }
+          },
+          {
+            "emoji": "🗾",
+            "text": {
+              "en": "Tokyo",
+              "ar": "طوكيو"
+            }
+          }
+        ]
+      },
+      "id": "dubai",
+      "name": {
+        "en": "Dubai",
+        "ar": "دبي"
+      },
+      "flag": "🇦🇪",
+      "skyline": "dubai",
+      "stops": {
+        "money-basics": {
+          "location": {
+            "en": "Al Fahidi & the Gold Souk",
+            "ar": "الفهيدي وسوق الذهب"
+          },
+          "landmark": "🕌"
+        },
+        "salary-street": {
+          "location": {
+            "en": "Business Bay offices",
+            "ar": "مكاتب الخليج التجاري"
+          },
+          "landmark": "🏢"
+        },
+        "household-budget": {
+          "location": {
+            "en": "a family home in Mirdif",
+            "ar": "بيت عائلة في مردف"
+          },
+          "landmark": "🏡"
+        },
+        "bank-town": {
+          "location": {
+            "en": "DIFC, the financial centre",
+            "ar": "مركز دبي المالي العالمي"
+          },
+          "landmark": "🏦"
+        },
+        "bank-products": {
+          "location": {
+            "en": "a bank branch in Downtown Dubai",
+            "ar": "فرع بنك في وسط دبي"
+          },
+          "landmark": "🏛️"
+        },
+        "cash-cards": {
+          "location": {
+            "en": "Dubai Mall",
+            "ar": "دبي مول"
+          },
+          "landmark": "🛍️"
+        },
+        "currency-bazaar": {
+          "location": {
+            "en": "DXB Airport & Deira exchange",
+            "ar": "مطار دبي وصرافات ديرة"
+          },
+          "landmark": "✈️"
+        },
+        "lemonade-empire": {
+          "location": {
+            "en": "Kite Beach",
+            "ar": "شاطئ كايت"
+          },
+          "landmark": "🏖️"
+        }
+      }
+    },
+    {
+      "region": "uae",
+      "currency": "AED",
+      "islamicDefault": true,
+      "atm": {
+        "notes": [
+          1000,
+          500,
+          200,
+          100
+        ],
+        "amounts": [
+          100,
+          200,
+          500,
+          1000,
+          3000
+        ],
+        "odd": 150
+      },
+      "vars": {
+        "country": {
+          "en": "the UAE",
+          "ar": "الإمارات"
+        },
+        "currencyName": {
+          "en": "dirham",
+          "ar": "درهم"
+        },
+        "currencyPlural": {
+          "en": "dirhams",
+          "ar": "دراهم"
+        },
+        "cur": {
+          "en": "AED",
+          "ar": "AED"
+        },
+        "smallUnit": {
+          "en": "fils",
+          "ar": "فلس"
+        },
+        "notesList": {
+          "en": "5, 10, 20, 50, 100, 200, 500 and 1000 dirhams",
+          "ar": "٥ و١٠ و٢٠ و٥٠ و١٠٠ و٢٠٠ و٥٠٠ و١٠٠٠ درهم"
+        },
+        "centralBank": {
+          "en": "Central Bank of the UAE",
+          "ar": "مصرف الإمارات العربية المتحدة المركزي"
+        },
+        "atmNetwork": {
+          "en": "UAESWITCH",
+          "ar": "UAESWITCH"
+        },
+        "taxLine": {
+          "en": "The UAE has no income tax on salaries, but there is 5% VAT on most things you buy.",
+          "ar": "لا توجد في الإمارات ضريبة دخل على الرواتب، لكن توجد ضريبة قيمة مضافة ٥٪ على معظم المشتريات."
+        },
+        "payLine": {
+          "en": "In the UAE, companies pay salaries through banks using the Wage Protection System (WPS), which helps make sure workers are paid on time.",
+          "ar": "في الإمارات تدفع الشركات الرواتب عبر البنوك باستخدام نظام حماية الأجور، الذي يساعد على ضمان حصول العاملين على أجورهم في موعدها."
+        },
+        "payFrequency": {
+          "en": "Once a month",
+          "ar": "مرة في الشهر"
+        },
+        "payFrequencyExplain": {
+          "en": "Most salaries in the UAE are paid monthly, so families plan month by month.",
+          "ar": "معظم الرواتب في الإمارات شهرية، لذلك تخطط العائلات شهراً بشهر."
+        },
+        "foreign": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "foreignPlural": {
+          "en": "US dollars",
+          "ar": "دولارات أمريكية"
+        },
+        "fxLine": {
+          "en": "The UAE dirham is 'pegged' (tied) to the US dollar: 1 US dollar is always about 3.67 dirhams.",
+          "ar": "الدرهم الإماراتي 'مربوط' بالدولار الأمريكي: الدولار الواحد يساوي دائماً نحو ٣٫٦٧ درهم."
+        },
+        "pegLine": {
+          "en": "The dirham–dollar rate stays fixed because the Central Bank keeps it pegged.",
+          "ar": "سعر الدرهم مقابل الدولار ثابت لأن المصرف المركزي يحافظ على الربط."
+        },
+        "strongerOne": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "weakerOne": {
+          "en": "dirham",
+          "ar": "درهم"
+        },
+        "wrongCurrency1": {
+          "en": "euro",
+          "ar": "اليورو"
+        },
+        "wrongCurrency2": {
+          "en": "rupee",
+          "ar": "الروبية"
+        },
+        "otherCode1": {
+          "en": "USD",
+          "ar": "USD"
+        },
+        "otherCode2": {
+          "en": "EUR",
+          "ar": "EUR"
+        },
+        "fakeCode1": {
+          "en": "UAD",
+          "ar": "UAD"
+        },
+        "fakeCode2": {
+          "en": "DHM",
+          "ar": "DHM"
+        },
+        "codeExplain": {
+          "en": "AE stands for United Arab Emirates, D for dirham.",
+          "ar": "AE تعني الإمارات العربية المتحدة وD تعني درهم."
+        },
+        "moveForeign": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "moveA": {
+          "en": "4.0",
+          "ar": "٤٫٠"
+        },
+        "moveB": {
+          "en": "4.2",
+          "ar": "٤٫٢"
+        },
+        "rateMythQ": {
+          "en": "The dirham–dollar rate changes wildly every hour!",
+          "ar": "سعر الدرهم مقابل الدولار يتغير بجنون كل ساعة!"
+        },
+        "rateMythRight": {
+          "en": "No, it's pegged at about 3.67",
+          "ar": "لا، إنه مربوط عند نحو ٣٫٦٧"
+        },
+        "rateMythExplain": {
+          "en": "The Central Bank keeps the dirham pegged to the dollar.",
+          "ar": "المصرف المركزي يحافظ على ربط الدرهم بالدولار."
+        },
+        "festival": {
+          "en": "Eid",
+          "ar": "العيد"
+        },
+        "city": {
+          "en": "Abu Dhabi",
+          "ar": "أبوظبي"
+        },
+        "airport": {
+          "en": "Zayed International Airport",
+          "ar": "مطار زايد الدولي"
+        },
+        "familyName": {
+          "en": "Al Mansoori",
+          "ar": "المنصوري"
+        },
+        "utilityBill": {
+          "en": "the electricity and water bill",
+          "ar": "فاتورة الكهرباء والماء"
+        },
+        "utilityShort": {
+          "en": "Electricity & water",
+          "ar": "الكهرباء والماء"
+        },
+        "transportCost": {
+          "en": "petrol and Darb road tolls",
+          "ar": "البنزين ورسوم درب"
+        },
+        "transportShort": {
+          "en": "Transport & Darb",
+          "ar": "المواصلات ودرب"
+        },
+        "historyLine": {
+          "en": "Long ago, people here dived for pearls and traded them with merchants for food, cloth and other goods.",
+          "ar": "قديماً كان الناس هنا يغوصون بحثاً عن اللؤلؤ ويبادلونه مع التجار بالطعام والقماش وغيرها."
+        }
+      },
+      "nums": {
+        "fxRate": 3.67,
+        "fxRound": 4,
+        "fxRound2": 8,
+        "fxRound3": 12,
+        "fxTen": 36.7,
+        "fxTwenty": 73.4,
+        "fxHundredLocal": 367
+      },
+      "places": {
+        "home": [
+          {
+            "emoji": "🏙️",
+            "text": {
+              "en": "Dubai",
+              "ar": "دبي"
+            }
+          },
+          {
+            "emoji": "🕌",
+            "text": {
+              "en": "Abu Dhabi",
+              "ar": "أبوظبي"
+            }
+          },
+          {
+            "emoji": "📚",
+            "text": {
+              "en": "Sharjah",
+              "ar": "الشارقة"
+            }
+          },
+          {
+            "emoji": "🌴",
+            "text": {
+              "en": "Al Ain",
+              "ar": "العين"
+            }
+          },
+          {
+            "emoji": "⛰️",
+            "text": {
+              "en": "Fujairah",
+              "ar": "الفجيرة"
+            }
+          },
+          {
+            "emoji": "🏔️",
+            "text": {
+              "en": "Ras Al Khaimah",
+              "ar": "رأس الخيمة"
+            }
+          },
+          {
+            "emoji": "⛵",
+            "text": {
+              "en": "Ajman",
+              "ar": "عجمان"
+            }
+          }
+        ],
+        "abroad": [
+          {
+            "emoji": "🕋",
+            "text": {
+              "en": "Riyadh",
+              "ar": "الرياض"
+            }
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Mumbai",
+              "ar": "مومباي"
+            }
+          },
+          {
+            "emoji": "💂",
+            "text": {
+              "en": "London",
+              "ar": "لندن"
+            }
+          },
+          {
+            "emoji": "🗼",
+            "text": {
+              "en": "Paris",
+              "ar": "باريس"
+            }
+          },
+          {
+            "emoji": "🗽",
+            "text": {
+              "en": "New York",
+              "ar": "نيويورك"
+            }
+          },
+          {
+            "emoji": "🏺",
+            "text": {
+              "en": "Cairo",
+              "ar": "القاهرة"
+            }
+          },
+          {
+            "emoji": "🏝️",
+            "text": {
+              "en": "Manila",
+              "ar": "مانيلا"
+            }
+          },
+          {
+            "emoji": "🗾",
+            "text": {
+              "en": "Tokyo",
+              "ar": "طوكيو"
+            }
+          }
+        ]
+      },
+      "id": "abu-dhabi",
+      "name": {
+        "en": "Abu Dhabi",
+        "ar": "أبوظبي"
+      },
+      "flag": "🇦🇪",
+      "skyline": "abudhabi",
+      "stops": {
+        "money-basics": {
+          "location": {
+            "en": "Qasr Al Hosn",
+            "ar": "قصر الحصن"
+          },
+          "landmark": "🏰"
+        },
+        "salary-street": {
+          "location": {
+            "en": "offices near the Corniche",
+            "ar": "مكاتب قرب الكورنيش"
+          },
+          "landmark": "🏢"
+        },
+        "household-budget": {
+          "location": {
+            "en": "a family home in Khalifa City",
+            "ar": "بيت عائلة في مدينة خليفة"
+          },
+          "landmark": "🏡"
+        },
+        "bank-town": {
+          "location": {
+            "en": "ADGM, Al Maryah Island",
+            "ar": "سوق أبوظبي العالمي، جزيرة الماريه"
+          },
+          "landmark": "🏦"
+        },
+        "bank-products": {
+          "location": {
+            "en": "a bank branch on Al Reem Island",
+            "ar": "فرع بنك في جزيرة الريم"
+          },
+          "landmark": "🏛️"
+        },
+        "cash-cards": {
+          "location": {
+            "en": "Yas Mall",
+            "ar": "ياس مول"
+          },
+          "landmark": "🛍️"
+        },
+        "currency-bazaar": {
+          "location": {
+            "en": "Zayed International Airport",
+            "ar": "مطار زايد الدولي"
+          },
+          "landmark": "✈️"
+        },
+        "lemonade-empire": {
+          "location": {
+            "en": "Corniche Beach",
+            "ar": "شاطئ الكورنيش"
+          },
+          "landmark": "🏖️"
+        }
+      }
+    },
+    {
+      "id": "london",
+      "name": {
+        "en": "London",
+        "ar": "لندن"
+      },
+      "flag": "🇬🇧",
+      "skyline": "london",
+      "region": "uk",
+      "currency": "GBP",
+      "islamicDefault": false,
+      "atm": {
+        "notes": [
+          50,
+          20,
+          10
+        ],
+        "amounts": [
+          10,
+          20,
+          50,
+          100,
+          300
+        ],
+        "odd": 15
+      },
+      "vars": {
+        "city": {
+          "en": "London",
+          "ar": "لندن"
+        },
+        "country": {
+          "en": "the UK",
+          "ar": "المملكة المتحدة"
+        },
+        "currencyName": {
+          "en": "pound",
+          "ar": "جنيه"
+        },
+        "currencyPlural": {
+          "en": "pounds",
+          "ar": "جنيهات"
+        },
+        "cur": {
+          "en": "GBP",
+          "ar": "GBP"
+        },
+        "smallUnit": {
+          "en": "pence",
+          "ar": "بنس"
+        },
+        "notesList": {
+          "en": "£5, £10, £20 and £50",
+          "ar": "٥ و١٠ و٢٠ و٥٠ جنيهاً"
+        },
+        "centralBank": {
+          "en": "Bank of England",
+          "ar": "بنك إنجلترا"
+        },
+        "atmNetwork": {
+          "en": "LINK",
+          "ar": "LINK"
+        },
+        "taxLine": {
+          "en": "In the UK, income tax and National Insurance are taken out of most salaries, and there is 20% VAT on many things you buy.",
+          "ar": "في المملكة المتحدة تُخصم ضريبة الدخل والتأمين الوطني من معظم الرواتب، وتوجد ضريبة قيمة مضافة ٢٠٪ على كثير من المشتريات."
+        },
+        "payLine": {
+          "en": "In the UK, most companies pay salaries straight into a bank account, usually once a month.",
+          "ar": "في المملكة المتحدة تدفع معظم الشركات الرواتب مباشرة إلى الحساب البنكي، عادة مرة في الشهر."
+        },
+        "payFrequency": {
+          "en": "Once a month",
+          "ar": "مرة في الشهر"
+        },
+        "payFrequencyExplain": {
+          "en": "Most UK salaries are paid monthly, so families plan month by month.",
+          "ar": "معظم الرواتب في بريطانيا شهرية، لذلك تخطط العائلات شهراً بشهر."
+        },
+        "foreign": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "foreignPlural": {
+          "en": "euros",
+          "ar": "يوروهات"
+        },
+        "fxLine": {
+          "en": "Today 1 euro is about 0.85 pounds, but the rate moves a little every day.",
+          "ar": "اليوم يساوي اليورو نحو ٠٫٨٥ جنيه، لكن السعر يتغير قليلاً كل يوم."
+        },
+        "pegLine": {
+          "en": "The pound 'floats': buyers and sellers around the world set its price every day.",
+          "ar": "الجنيه 'عائم': يحدد المشترون والبائعون حول العالم سعره كل يوم."
+        },
+        "strongerOne": {
+          "en": "pound",
+          "ar": "جنيه"
+        },
+        "weakerOne": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "wrongCurrency1": {
+          "en": "euro",
+          "ar": "اليورو"
+        },
+        "wrongCurrency2": {
+          "en": "dollar",
+          "ar": "الدولار"
+        },
+        "otherCode1": {
+          "en": "EUR",
+          "ar": "EUR"
+        },
+        "otherCode2": {
+          "en": "USD",
+          "ar": "USD"
+        },
+        "fakeCode1": {
+          "en": "UKP",
+          "ar": "UKP"
+        },
+        "fakeCode2": {
+          "en": "PND",
+          "ar": "PND"
+        },
+        "codeExplain": {
+          "en": "GB stands for Great Britain, P for pound.",
+          "ar": "GB تعني بريطانيا العظمى وP تعني جنيه."
+        },
+        "moveForeign": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "moveA": {
+          "en": "0.79",
+          "ar": "٠٫٧٩"
+        },
+        "moveB": {
+          "en": "0.83",
+          "ar": "٠٫٨٣"
+        },
+        "rateMythQ": {
+          "en": "Exchange rates never, ever change!",
+          "ar": "أسعار الصرف لا تتغير أبداً!"
+        },
+        "rateMythRight": {
+          "en": "No, the pound's rate moves a little every day",
+          "ar": "لا، سعر الجنيه يتغير قليلاً كل يوم"
+        },
+        "rateMythExplain": {
+          "en": "The pound floats, so its rate changes with demand.",
+          "ar": "الجنيه عائم، لذا يتغير سعره مع الطلب."
+        },
+        "festival": {
+          "en": "the holidays",
+          "ar": "العطلات"
+        },
+        "airport": {
+          "en": "Heathrow Airport",
+          "ar": "مطار هيثرو"
+        },
+        "familyName": {
+          "en": "Carter",
+          "ar": "كارتر"
+        },
+        "utilityBill": {
+          "en": "the gas and electricity bill",
+          "ar": "فاتورة الغاز والكهرباء"
+        },
+        "utilityShort": {
+          "en": "Gas & electricity",
+          "ar": "الغاز والكهرباء"
+        },
+        "transportCost": {
+          "en": "bus and Tube fares",
+          "ar": "أجرة الحافلات والمترو"
+        },
+        "transportShort": {
+          "en": "Bus & Tube",
+          "ar": "الحافلات والمترو"
+        },
+        "historyLine": {
+          "en": "For hundreds of years, coins were made right here at the Tower of London, at the Royal Mint.",
+          "ar": "لمئات السنين كانت العملات تُسك هنا في برج لندن، في دار سك العملة الملكية."
+        }
+      },
+      "nums": {
+        "fxRate": 0.85,
+        "fxRound": 1,
+        "fxRound2": 2,
+        "fxRound3": 3,
+        "fxTen": 8.5,
+        "fxTwenty": 17,
+        "fxHundredLocal": 85
+      },
+      "stops": {
+        "money-basics": {
+          "location": {
+            "en": "the Tower of London",
+            "ar": "برج لندن"
+          },
+          "landmark": "🏰"
+        },
+        "salary-street": {
+          "location": {
+            "en": "Canary Wharf offices",
+            "ar": "مكاتب كناري وارف"
+          },
+          "landmark": "🏢"
+        },
+        "household-budget": {
+          "location": {
+            "en": "a family home in Croydon",
+            "ar": "بيت عائلة في كرويدون"
+          },
+          "landmark": "🏡"
+        },
+        "bank-town": {
+          "location": {
+            "en": "the City of London",
+            "ar": "حي المال في لندن"
+          },
+          "landmark": "🏦"
+        },
+        "bank-products": {
+          "location": {
+            "en": "a bank branch on Oxford Street",
+            "ar": "فرع بنك في شارع أكسفورد"
+          },
+          "landmark": "🏛️"
+        },
+        "cash-cards": {
+          "location": {
+            "en": "Westfield shopping centre",
+            "ar": "مركز ويستفيلد التجاري"
+          },
+          "landmark": "🛍️"
+        },
+        "currency-bazaar": {
+          "location": {
+            "en": "Heathrow Airport",
+            "ar": "مطار هيثرو"
+          },
+          "landmark": "✈️"
+        },
+        "lemonade-empire": {
+          "location": {
+            "en": "a Southbank market stall",
+            "ar": "كشك في سوق ساوث بانك"
+          },
+          "landmark": "🎪"
+        }
+      },
+      "places": {
+        "home": [
+          {
+            "emoji": "🎡",
+            "text": {
+              "en": "London",
+              "ar": "لندن"
+            }
+          },
+          {
+            "emoji": "⚽",
+            "text": {
+              "en": "Manchester",
+              "ar": "مانشستر"
+            }
+          },
+          {
+            "emoji": "🏰",
+            "text": {
+              "en": "Edinburgh",
+              "ar": "إدنبرة"
+            }
+          },
+          {
+            "emoji": "🐉",
+            "text": {
+              "en": "Cardiff",
+              "ar": "كارديف"
+            }
+          },
+          {
+            "emoji": "🚢",
+            "text": {
+              "en": "Belfast",
+              "ar": "بلفاست"
+            }
+          },
+          {
+            "emoji": "🎸",
+            "text": {
+              "en": "Liverpool",
+              "ar": "ليفربول"
+            }
+          },
+          {
+            "emoji": "🏭",
+            "text": {
+              "en": "Birmingham",
+              "ar": "برمنغهام"
+            }
+          }
+        ],
+        "abroad": [
+          {
+            "emoji": "🗼",
+            "text": {
+              "en": "Paris",
+              "ar": "باريس"
+            }
+          },
+          {
+            "emoji": "🏙️",
+            "text": {
+              "en": "Dubai",
+              "ar": "دبي"
+            }
+          },
+          {
+            "emoji": "🗽",
+            "text": {
+              "en": "New York",
+              "ar": "نيويورك"
+            }
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Mumbai",
+              "ar": "مومباي"
+            }
+          },
+          {
+            "emoji": "🗾",
+            "text": {
+              "en": "Tokyo",
+              "ar": "طوكيو"
+            }
+          },
+          {
+            "emoji": "🍀",
+            "text": {
+              "en": "Dublin",
+              "ar": "دبلن"
+            }
+          },
+          {
+            "emoji": "🦘",
+            "text": {
+              "en": "Sydney",
+              "ar": "سيدني"
+            }
+          },
+          {
+            "emoji": "🏺",
+            "text": {
+              "en": "Cairo",
+              "ar": "القاهرة"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "paris",
+      "name": {
+        "en": "Paris",
+        "ar": "باريس"
+      },
+      "flag": "🇫🇷",
+      "skyline": "paris",
+      "region": "eu",
+      "currency": "EUR",
+      "islamicDefault": false,
+      "atm": {
+        "notes": [
+          50,
+          20,
+          10
+        ],
+        "amounts": [
+          20,
+          50,
+          100,
+          200,
+          500
+        ],
+        "odd": 15
+      },
+      "vars": {
+        "city": {
+          "en": "Paris",
+          "ar": "باريس"
+        },
+        "country": {
+          "en": "France",
+          "ar": "فرنسا"
+        },
+        "currencyName": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "currencyPlural": {
+          "en": "euros",
+          "ar": "يوروهات"
+        },
+        "cur": {
+          "en": "EUR",
+          "ar": "EUR"
+        },
+        "smallUnit": {
+          "en": "cents",
+          "ar": "سنت"
+        },
+        "notesList": {
+          "en": "€5, €10, €20, €50, €100 and €200",
+          "ar": "٥ و١٠ و٢٠ و٥٠ و١٠٠ و٢٠٠ يورو"
+        },
+        "centralBank": {
+          "en": "European Central Bank, working with the Banque de France",
+          "ar": "البنك المركزي الأوروبي بالتعاون مع بنك فرنسا"
+        },
+        "atmNetwork": {
+          "en": "CB (Cartes Bancaires)",
+          "ar": "CB (البطاقات المصرفية)"
+        },
+        "taxLine": {
+          "en": "In France, income tax and social contributions are taken from salaries, and there is 20% VAT (TVA) on many things you buy.",
+          "ar": "في فرنسا تُقتطع ضريبة الدخل والمساهمات الاجتماعية من الرواتب، وتوجد ضريبة قيمة مضافة ٢٠٪ على كثير من المشتريات."
+        },
+        "payLine": {
+          "en": "In France, most companies pay salaries straight into a bank account once a month.",
+          "ar": "في فرنسا تدفع معظم الشركات الرواتب مباشرة إلى الحساب البنكي مرة في الشهر."
+        },
+        "payFrequency": {
+          "en": "Once a month",
+          "ar": "مرة في الشهر"
+        },
+        "payFrequencyExplain": {
+          "en": "Most French salaries are paid monthly, so families plan month by month.",
+          "ar": "معظم الرواتب في فرنسا شهرية، لذلك تخطط العائلات شهراً بشهر."
+        },
+        "foreign": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "foreignPlural": {
+          "en": "US dollars",
+          "ar": "دولارات أمريكية"
+        },
+        "fxLine": {
+          "en": "Today 1 US dollar is about 0.92 euros, but the rate moves a little every day.",
+          "ar": "اليوم يساوي الدولار نحو ٠٫٩٢ يورو، لكن السعر يتغير قليلاً كل يوم."
+        },
+        "pegLine": {
+          "en": "The euro 'floats': buyers and sellers around the world set its price every day.",
+          "ar": "اليورو 'عائم': يحدد المشترون والبائعون حول العالم سعره كل يوم."
+        },
+        "strongerOne": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "weakerOne": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "wrongCurrency1": {
+          "en": "pound",
+          "ar": "الجنيه"
+        },
+        "wrongCurrency2": {
+          "en": "dollar",
+          "ar": "الدولار"
+        },
+        "otherCode1": {
+          "en": "USD",
+          "ar": "USD"
+        },
+        "otherCode2": {
+          "en": "GBP",
+          "ar": "GBP"
+        },
+        "fakeCode1": {
+          "en": "EUO",
+          "ar": "EUO"
+        },
+        "fakeCode2": {
+          "en": "ERO",
+          "ar": "ERO"
+        },
+        "codeExplain": {
+          "en": "EU stands for European Union, R for euro.",
+          "ar": "EU تعني الاتحاد الأوروبي وR من كلمة يورو."
+        },
+        "moveForeign": {
+          "en": "pound",
+          "ar": "جنيه"
+        },
+        "moveA": {
+          "en": "1.17",
+          "ar": "١٫١٧"
+        },
+        "moveB": {
+          "en": "1.23",
+          "ar": "١٫٢٣"
+        },
+        "rateMythQ": {
+          "en": "Exchange rates never, ever change!",
+          "ar": "أسعار الصرف لا تتغير أبداً!"
+        },
+        "rateMythRight": {
+          "en": "No, the euro's rate moves a little every day",
+          "ar": "لا، سعر اليورو يتغير قليلاً كل يوم"
+        },
+        "rateMythExplain": {
+          "en": "The euro floats, so its rate changes with demand.",
+          "ar": "اليورو عائم، لذا يتغير سعره مع الطلب."
+        },
+        "festival": {
+          "en": "the holidays",
+          "ar": "العطلات"
+        },
+        "airport": {
+          "en": "Charles de Gaulle Airport",
+          "ar": "مطار شارل ديغول"
+        },
+        "familyName": {
+          "en": "Martin",
+          "ar": "مارتن"
+        },
+        "utilityBill": {
+          "en": "the electricity and gas bill",
+          "ar": "فاتورة الكهرباء والغاز"
+        },
+        "utilityShort": {
+          "en": "Electricity & gas",
+          "ar": "الكهرباء والغاز"
+        },
+        "transportCost": {
+          "en": "Metro passes",
+          "ar": "اشتراكات المترو"
+        },
+        "transportShort": {
+          "en": "Metro & bus",
+          "ar": "المترو والحافلات"
+        },
+        "historyLine": {
+          "en": "For centuries, farmers and traders brought food to the great market of Les Halles to swap and sell.",
+          "ar": "لقرون كان المزارعون والتجار يجلبون الطعام إلى سوق لي هال الكبير للمبادلة والبيع."
+        }
+      },
+      "nums": {
+        "fxRate": 0.92,
+        "fxRound": 1,
+        "fxRound2": 2,
+        "fxRound3": 3,
+        "fxTen": 9.2,
+        "fxTwenty": 18.4,
+        "fxHundredLocal": 92
+      },
+      "stops": {
+        "money-basics": {
+          "location": {
+            "en": "the old market of Les Halles",
+            "ar": "سوق لي هال القديم"
+          },
+          "landmark": "🧺"
+        },
+        "salary-street": {
+          "location": {
+            "en": "La Défense offices",
+            "ar": "مكاتب لا ديفانس"
+          },
+          "landmark": "🏢"
+        },
+        "household-budget": {
+          "location": {
+            "en": "a family flat in Montmartre",
+            "ar": "شقة عائلة في مونمارتر"
+          },
+          "landmark": "🏡"
+        },
+        "bank-town": {
+          "location": {
+            "en": "the Opéra banking district",
+            "ar": "حي البنوك قرب الأوبرا"
+          },
+          "landmark": "🏦"
+        },
+        "bank-products": {
+          "location": {
+            "en": "a bank branch on the Champs-Élysées",
+            "ar": "فرع بنك في الشانزليزيه"
+          },
+          "landmark": "🏛️"
+        },
+        "cash-cards": {
+          "location": {
+            "en": "Galeries Lafayette",
+            "ar": "غاليري لافاييت"
+          },
+          "landmark": "🛍️"
+        },
+        "currency-bazaar": {
+          "location": {
+            "en": "Charles de Gaulle Airport",
+            "ar": "مطار شارل ديغول"
+          },
+          "landmark": "✈️"
+        },
+        "lemonade-empire": {
+          "location": {
+            "en": "Paris Plages by the Seine",
+            "ar": "شواطئ باريس على نهر السين"
+          },
+          "landmark": "🏖️"
+        }
+      },
+      "places": {
+        "home": [
+          {
+            "emoji": "🗼",
+            "text": {
+              "en": "Paris",
+              "ar": "باريس"
+            }
+          },
+          {
+            "emoji": "🦁",
+            "text": {
+              "en": "Lyon",
+              "ar": "ليون"
+            }
+          },
+          {
+            "emoji": "⚓",
+            "text": {
+              "en": "Marseille",
+              "ar": "مرسيليا"
+            }
+          },
+          {
+            "emoji": "🐻",
+            "text": {
+              "en": "Berlin",
+              "ar": "برلين"
+            }
+          },
+          {
+            "emoji": "🏛️",
+            "text": {
+              "en": "Rome",
+              "ar": "روما"
+            }
+          },
+          {
+            "emoji": "💃",
+            "text": {
+              "en": "Madrid",
+              "ar": "مدريد"
+            }
+          },
+          {
+            "emoji": "🌷",
+            "text": {
+              "en": "Amsterdam",
+              "ar": "أمستردام"
+            }
+          }
+        ],
+        "abroad": [
+          {
+            "emoji": "💂",
+            "text": {
+              "en": "London",
+              "ar": "لندن"
+            }
+          },
+          {
+            "emoji": "🏙️",
+            "text": {
+              "en": "Dubai",
+              "ar": "دبي"
+            }
+          },
+          {
+            "emoji": "🗽",
+            "text": {
+              "en": "New York",
+              "ar": "نيويورك"
+            }
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Mumbai",
+              "ar": "مومباي"
+            }
+          },
+          {
+            "emoji": "🗾",
+            "text": {
+              "en": "Tokyo",
+              "ar": "طوكيو"
+            }
+          },
+          {
+            "emoji": "🏔️",
+            "text": {
+              "en": "Zurich",
+              "ar": "زيورخ"
+            }
+          },
+          {
+            "emoji": "🦘",
+            "text": {
+              "en": "Sydney",
+              "ar": "سيدني"
+            }
+          },
+          {
+            "emoji": "🏺",
+            "text": {
+              "en": "Cairo",
+              "ar": "القاهرة"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "mumbai",
+      "name": {
+        "en": "Mumbai",
+        "ar": "مومباي"
+      },
+      "flag": "🇮🇳",
+      "skyline": "mumbai",
+      "region": "in",
+      "currency": "INR",
+      "islamicDefault": false,
+      "atm": {
+        "notes": [
+          500,
+          200,
+          100
+        ],
+        "amounts": [
+          100,
+          500,
+          1000,
+          2000,
+          5000
+        ],
+        "odd": 150
+      },
+      "vars": {
+        "city": {
+          "en": "Mumbai",
+          "ar": "مومباي"
+        },
+        "country": {
+          "en": "India",
+          "ar": "الهند"
+        },
+        "currencyName": {
+          "en": "rupee",
+          "ar": "روبية"
+        },
+        "currencyPlural": {
+          "en": "rupees",
+          "ar": "روبيات"
+        },
+        "cur": {
+          "en": "INR",
+          "ar": "INR"
+        },
+        "smallUnit": {
+          "en": "paise",
+          "ar": "بيسة"
+        },
+        "notesList": {
+          "en": "₹10, ₹20, ₹50, ₹100, ₹200 and ₹500",
+          "ar": "١٠ و٢٠ و٥٠ و١٠٠ و٢٠٠ و٥٠٠ روبية"
+        },
+        "centralBank": {
+          "en": "Reserve Bank of India",
+          "ar": "بنك الاحتياطي الهندي"
+        },
+        "atmNetwork": {
+          "en": "NFS (National Financial Switch)",
+          "ar": "NFS (الشبكة المالية الوطنية)"
+        },
+        "taxLine": {
+          "en": "In India, income tax is taken out of salaries that are high enough (called TDS), and GST is added to many things you buy.",
+          "ar": "في الهند تُخصم ضريبة الدخل من الرواتب المرتفعة بما يكفي، وتُضاف ضريبة السلع والخدمات إلى كثير من المشتريات."
+        },
+        "payLine": {
+          "en": "In India, most companies pay salaries straight into a bank account once a month.",
+          "ar": "في الهند تدفع معظم الشركات الرواتب مباشرة إلى الحساب البنكي مرة في الشهر."
+        },
+        "payFrequency": {
+          "en": "Once a month",
+          "ar": "مرة في الشهر"
+        },
+        "payFrequencyExplain": {
+          "en": "Most salaries in India are paid monthly, so families plan month by month.",
+          "ar": "معظم الرواتب في الهند شهرية، لذلك تخطط العائلات شهراً بشهر."
+        },
+        "foreign": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "foreignPlural": {
+          "en": "US dollars",
+          "ar": "دولارات أمريكية"
+        },
+        "fxLine": {
+          "en": "Today 1 US dollar is about 85 rupees, but the rate moves a little every day.",
+          "ar": "اليوم يساوي الدولار نحو ٨٥ روبية، لكن السعر يتغير قليلاً كل يوم."
+        },
+        "pegLine": {
+          "en": "The rupee's rate is set in the market every day, and the Reserve Bank of India can step in to calm big swings.",
+          "ar": "يتحدد سعر الروبية في السوق يومياً، ويمكن لبنك الاحتياطي الهندي التدخل لتهدئة التقلبات الكبيرة."
+        },
+        "strongerOne": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "weakerOne": {
+          "en": "rupee",
+          "ar": "روبية"
+        },
+        "wrongCurrency1": {
+          "en": "dirham",
+          "ar": "الدرهم"
+        },
+        "wrongCurrency2": {
+          "en": "euro",
+          "ar": "اليورو"
+        },
+        "otherCode1": {
+          "en": "USD",
+          "ar": "USD"
+        },
+        "otherCode2": {
+          "en": "AED",
+          "ar": "AED"
+        },
+        "fakeCode1": {
+          "en": "IND",
+          "ar": "IND"
+        },
+        "fakeCode2": {
+          "en": "RUP",
+          "ar": "RUP"
+        },
+        "codeExplain": {
+          "en": "IN stands for India, R for rupee.",
+          "ar": "IN تعني الهند وR تعني روبية."
+        },
+        "moveForeign": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "moveA": {
+          "en": "90",
+          "ar": "٩٠"
+        },
+        "moveB": {
+          "en": "95",
+          "ar": "٩٥"
+        },
+        "rateMythQ": {
+          "en": "Exchange rates never, ever change!",
+          "ar": "أسعار الصرف لا تتغير أبداً!"
+        },
+        "rateMythRight": {
+          "en": "No, the rupee's rate moves every day",
+          "ar": "لا، سعر الروبية يتغير كل يوم"
+        },
+        "rateMythExplain": {
+          "en": "The rupee's rate changes with demand in the market.",
+          "ar": "سعر الروبية يتغير مع الطلب في السوق."
+        },
+        "festival": {
+          "en": "Diwali",
+          "ar": "ديوالي"
+        },
+        "airport": {
+          "en": "Mumbai's international airport",
+          "ar": "مطار مومباي الدولي"
+        },
+        "familyName": {
+          "en": "Sharma",
+          "ar": "شارما"
+        },
+        "utilityBill": {
+          "en": "the electricity bill",
+          "ar": "فاتورة الكهرباء"
+        },
+        "utilityShort": {
+          "en": "Electricity",
+          "ar": "الكهرباء"
+        },
+        "transportCost": {
+          "en": "local train passes and fuel",
+          "ar": "اشتراكات القطارات المحلية والوقود"
+        },
+        "transportShort": {
+          "en": "Trains & fuel",
+          "ar": "القطارات والوقود"
+        },
+        "historyLine": {
+          "en": "Mumbai grew as a busy port where merchants traded cotton, spices and cloth with the whole world.",
+          "ar": "نمت مومباي كميناء مزدحم يتاجر فيه التجار بالقطن والبهارات والقماش مع العالم كله."
+        }
+      },
+      "nums": {
+        "fxRate": 85,
+        "fxRound": 80,
+        "fxRound2": 160,
+        "fxRound3": 240,
+        "fxTen": 850,
+        "fxTwenty": 1700,
+        "fxHundredLocal": 8500
+      },
+      "stops": {
+        "money-basics": {
+          "location": {
+            "en": "Crawford Market",
+            "ar": "سوق كروفورد"
+          },
+          "landmark": "🧺"
+        },
+        "salary-street": {
+          "location": {
+            "en": "Nariman Point offices",
+            "ar": "مكاتب ناريمان بوينت"
+          },
+          "landmark": "🏢"
+        },
+        "household-budget": {
+          "location": {
+            "en": "a family flat in Andheri",
+            "ar": "شقة عائلة في أنديري"
+          },
+          "landmark": "🏡"
+        },
+        "bank-town": {
+          "location": {
+            "en": "Bandra Kurla Complex (BKC)",
+            "ar": "مجمع باندرا كورلا"
+          },
+          "landmark": "🏦"
+        },
+        "bank-products": {
+          "location": {
+            "en": "a bank branch in Fort",
+            "ar": "فرع بنك في حي فورت"
+          },
+          "landmark": "🏛️"
+        },
+        "cash-cards": {
+          "location": {
+            "en": "Phoenix Palladium mall",
+            "ar": "مول فينكس بالاديوم"
+          },
+          "landmark": "🛍️"
+        },
+        "currency-bazaar": {
+          "location": {
+            "en": "Mumbai's international airport",
+            "ar": "مطار مومباي الدولي"
+          },
+          "landmark": "✈️"
+        },
+        "lemonade-empire": {
+          "location": {
+            "en": "Juhu Beach",
+            "ar": "شاطئ جوهو"
+          },
+          "landmark": "🏖️"
+        }
+      },
+      "places": {
+        "home": [
+          {
+            "emoji": "🏛️",
+            "text": {
+              "en": "Delhi",
+              "ar": "دلهي"
+            }
+          },
+          {
+            "emoji": "🌊",
+            "text": {
+              "en": "Chennai",
+              "ar": "تشيناي"
+            }
+          },
+          {
+            "emoji": "🌉",
+            "text": {
+              "en": "Kolkata",
+              "ar": "كولكاتا"
+            }
+          },
+          {
+            "emoji": "💻",
+            "text": {
+              "en": "Bengaluru",
+              "ar": "بنغالورو"
+            }
+          },
+          {
+            "emoji": "🏰",
+            "text": {
+              "en": "Jaipur",
+              "ar": "جايبور"
+            }
+          },
+          {
+            "emoji": "🎓",
+            "text": {
+              "en": "Pune",
+              "ar": "بونه"
+            }
+          },
+          {
+            "emoji": "🏝️",
+            "text": {
+              "en": "Goa",
+              "ar": "غوا"
+            }
+          }
+        ],
+        "abroad": [
+          {
+            "emoji": "🏙️",
+            "text": {
+              "en": "Dubai",
+              "ar": "دبي"
+            }
+          },
+          {
+            "emoji": "💂",
+            "text": {
+              "en": "London",
+              "ar": "لندن"
+            }
+          },
+          {
+            "emoji": "🗼",
+            "text": {
+              "en": "Paris",
+              "ar": "باريس"
+            }
+          },
+          {
+            "emoji": "🗽",
+            "text": {
+              "en": "New York",
+              "ar": "نيويورك"
+            }
+          },
+          {
+            "emoji": "🗾",
+            "text": {
+              "en": "Tokyo",
+              "ar": "طوكيو"
+            }
+          },
+          {
+            "emoji": "🦁",
+            "text": {
+              "en": "Singapore",
+              "ar": "سنغافورة"
+            }
+          },
+          {
+            "emoji": "🦘",
+            "text": {
+              "en": "Sydney",
+              "ar": "سيدني"
+            }
+          },
+          {
+            "emoji": "🕋",
+            "text": {
+              "en": "Riyadh",
+              "ar": "الرياض"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "new-york",
+      "name": {
+        "en": "New York",
+        "ar": "نيويورك"
+      },
+      "flag": "🇺🇸",
+      "skyline": "newyork",
+      "region": "us",
+      "currency": "USD",
+      "islamicDefault": false,
+      "atm": {
+        "notes": [
+          20
+        ],
+        "amounts": [
+          20,
+          40,
+          60,
+          100,
+          200
+        ],
+        "odd": 15
+      },
+      "vars": {
+        "city": {
+          "en": "New York",
+          "ar": "نيويورك"
+        },
+        "country": {
+          "en": "the USA",
+          "ar": "الولايات المتحدة"
+        },
+        "currencyName": {
+          "en": "dollar",
+          "ar": "دولار"
+        },
+        "currencyPlural": {
+          "en": "dollars",
+          "ar": "دولارات"
+        },
+        "cur": {
+          "en": "USD",
+          "ar": "USD"
+        },
+        "smallUnit": {
+          "en": "cents",
+          "ar": "سنت"
+        },
+        "notesList": {
+          "en": "$1, $2, $5, $10, $20, $50 and $100",
+          "ar": "١ و٢ و٥ و١٠ و٢٠ و٥٠ و١٠٠ دولار"
+        },
+        "centralBank": {
+          "en": "Federal Reserve",
+          "ar": "الاحتياطي الفيدرالي"
+        },
+        "atmNetwork": {
+          "en": "an ATM network such as NYCE",
+          "ar": "شبكة صرّافات مثل NYCE"
+        },
+        "taxLine": {
+          "en": "In the USA, federal, state and city income taxes are taken out of salaries, and sales tax is added to many things you buy.",
+          "ar": "في الولايات المتحدة تُخصم ضرائب الدخل الفيدرالية وضرائب الولاية والمدينة من الرواتب، وتُضاف ضريبة المبيعات إلى كثير من المشتريات."
+        },
+        "payLine": {
+          "en": "In the USA, many companies pay every two weeks, straight into a bank account (called direct deposit).",
+          "ar": "في الولايات المتحدة تدفع كثير من الشركات كل أسبوعين مباشرة إلى الحساب البنكي (الإيداع المباشر)."
+        },
+        "payFrequency": {
+          "en": "Every two weeks",
+          "ar": "كل أسبوعين"
+        },
+        "payFrequencyExplain": {
+          "en": "Many US salaries are paid every two weeks, so families plan from paycheck to paycheck.",
+          "ar": "كثير من الرواتب الأمريكية تُدفع كل أسبوعين، فتخطط العائلات من راتب إلى راتب."
+        },
+        "foreign": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "foreignPlural": {
+          "en": "euros",
+          "ar": "يوروهات"
+        },
+        "fxLine": {
+          "en": "Today 1 euro is about 1.10 US dollars, but the rate moves a little every day.",
+          "ar": "اليوم يساوي اليورو نحو ١٫١٠ دولار، لكن السعر يتغير قليلاً كل يوم."
+        },
+        "pegLine": {
+          "en": "The dollar 'floats': buyers and sellers around the world set its price every day. Many other currencies, like the UAE dirham, are pegged to it.",
+          "ar": "الدولار 'عائم': يحدد المشترون والبائعون حول العالم سعره كل يوم. وعملات كثيرة مثل الدرهم الإماراتي مربوطة به."
+        },
+        "strongerOne": {
+          "en": "euro",
+          "ar": "يورو"
+        },
+        "weakerOne": {
+          "en": "US dollar",
+          "ar": "دولار أمريكي"
+        },
+        "wrongCurrency1": {
+          "en": "euro",
+          "ar": "اليورو"
+        },
+        "wrongCurrency2": {
+          "en": "pound",
+          "ar": "الجنيه"
+        },
+        "otherCode1": {
+          "en": "EUR",
+          "ar": "EUR"
+        },
+        "otherCode2": {
+          "en": "GBP",
+          "ar": "GBP"
+        },
+        "fakeCode1": {
+          "en": "USA",
+          "ar": "USA"
+        },
+        "fakeCode2": {
+          "en": "DLR",
+          "ar": "DLR"
+        },
+        "codeExplain": {
+          "en": "US stands for United States, D for dollar.",
+          "ar": "US تعني الولايات المتحدة وD تعني دولار."
+        },
+        "moveForeign": {
+          "en": "pound",
+          "ar": "جنيه"
+        },
+        "moveA": {
+          "en": "1.27",
+          "ar": "١٫٢٧"
+        },
+        "moveB": {
+          "en": "1.33",
+          "ar": "١٫٣٣"
+        },
+        "rateMythQ": {
+          "en": "Exchange rates never, ever change!",
+          "ar": "أسعار الصرف لا تتغير أبداً!"
+        },
+        "rateMythRight": {
+          "en": "No, the dollar's rate moves a little every day",
+          "ar": "لا، سعر الدولار يتغير قليلاً كل يوم"
+        },
+        "rateMythExplain": {
+          "en": "The dollar floats, so its rate changes with demand.",
+          "ar": "الدولار عائم، لذا يتغير سعره مع الطلب."
+        },
+        "festival": {
+          "en": "the holidays",
+          "ar": "العطلات"
+        },
+        "airport": {
+          "en": "JFK Airport",
+          "ar": "مطار جون كينيدي"
+        },
+        "familyName": {
+          "en": "Rivera",
+          "ar": "ريفيرا"
+        },
+        "utilityBill": {
+          "en": "the electricity and gas bill",
+          "ar": "فاتورة الكهرباء والغاز"
+        },
+        "utilityShort": {
+          "en": "Electricity & gas",
+          "ar": "الكهرباء والغاز"
+        },
+        "transportCost": {
+          "en": "subway and bus fares",
+          "ar": "أجرة المترو والحافلات"
+        },
+        "transportShort": {
+          "en": "Subway & bus",
+          "ar": "المترو والحافلات"
+        },
+        "historyLine": {
+          "en": "Long ago, sailing ships crowded the harbour at South Street, and traders bought and sold goods from all over the world.",
+          "ar": "قديماً امتلأ ميناء ساوث ستريت بالسفن الشراعية، وكان التجار يبيعون ويشترون بضائع من كل أنحاء العالم."
+        }
+      },
+      "nums": {
+        "fxRate": 1.1,
+        "fxRound": 1,
+        "fxRound2": 2,
+        "fxRound3": 3,
+        "fxTen": 11,
+        "fxTwenty": 22,
+        "fxHundredLocal": 110
+      },
+      "stops": {
+        "money-basics": {
+          "location": {
+            "en": "South Street Seaport",
+            "ar": "ميناء ساوث ستريت"
+          },
+          "landmark": "⚓"
+        },
+        "salary-street": {
+          "location": {
+            "en": "Midtown offices",
+            "ar": "مكاتب ميدتاون"
+          },
+          "landmark": "🏢"
+        },
+        "household-budget": {
+          "location": {
+            "en": "a family apartment in Queens",
+            "ar": "شقة عائلة في كوينز"
+          },
+          "landmark": "🏡"
+        },
+        "bank-town": {
+          "location": {
+            "en": "Wall Street",
+            "ar": "وول ستريت"
+          },
+          "landmark": "🏦"
+        },
+        "bank-products": {
+          "location": {
+            "en": "a bank branch in Brooklyn",
+            "ar": "فرع بنك في بروكلين"
+          },
+          "landmark": "🏛️"
+        },
+        "cash-cards": {
+          "location": {
+            "en": "Hudson Yards shops",
+            "ar": "متاجر هدسون ياردز"
+          },
+          "landmark": "🛍️"
+        },
+        "currency-bazaar": {
+          "location": {
+            "en": "JFK Airport",
+            "ar": "مطار جون كينيدي"
+          },
+          "landmark": "✈️"
+        },
+        "lemonade-empire": {
+          "location": {
+            "en": "the Coney Island boardwalk",
+            "ar": "ممشى كوني آيلاند"
+          },
+          "landmark": "🎡"
+        }
+      },
+      "places": {
+        "home": [
+          {
+            "emoji": "🗽",
+            "text": {
+              "en": "New York",
+              "ar": "نيويورك"
+            }
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Los Angeles",
+              "ar": "لوس أنجلوس"
+            }
+          },
+          {
+            "emoji": "🌬️",
+            "text": {
+              "en": "Chicago",
+              "ar": "شيكاغو"
+            }
+          },
+          {
+            "emoji": "🌴",
+            "text": {
+              "en": "Miami",
+              "ar": "ميامي"
+            }
+          },
+          {
+            "emoji": "🦞",
+            "text": {
+              "en": "Boston",
+              "ar": "بوسطن"
+            }
+          },
+          {
+            "emoji": "🌉",
+            "text": {
+              "en": "San Francisco",
+              "ar": "سان فرانسيسكو"
+            }
+          },
+          {
+            "emoji": "🌺",
+            "text": {
+              "en": "Honolulu",
+              "ar": "هونولولو"
+            }
+          }
+        ],
+        "abroad": [
+          {
+            "emoji": "🍁",
+            "text": {
+              "en": "Toronto",
+              "ar": "تورونتو"
+            }
+          },
+          {
+            "emoji": "🌮",
+            "text": {
+              "en": "Mexico City",
+              "ar": "مكسيكو سيتي"
+            }
+          },
+          {
+            "emoji": "💂",
+            "text": {
+              "en": "London",
+              "ar": "لندن"
+            }
+          },
+          {
+            "emoji": "🗼",
+            "text": {
+              "en": "Paris",
+              "ar": "باريس"
+            }
+          },
+          {
+            "emoji": "🗾",
+            "text": {
+              "en": "Tokyo",
+              "ar": "طوكيو"
+            }
+          },
+          {
+            "emoji": "🏙️",
+            "text": {
+              "en": "Dubai",
+              "ar": "دبي"
+            }
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Mumbai",
+              "ar": "مومباي"
+            }
+          },
+          {
+            "emoji": "🦘",
+            "text": {
+              "en": "Sydney",
+              "ar": "سيدني"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

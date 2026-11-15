@@ -60,8 +60,8 @@
           "art": "office",
           "mascot": "excited",
           "text": {
-            "en": "Welcome to Business Bay, where the tall office towers are! Meet Aunt Mariam. She works as an engineer, and every month her company pays her a SALARY: money for the work she does.",
-            "ar": "أهلاً بك في الخليج التجاري حيث أبراج المكاتب العالية! تعرّف على العمة مريم. تعمل مهندسة، وكل شهر تدفع لها شركتها راتباً: مالاً مقابل العمل الذي تقوم به."
+            "en": "Welcome to {stop} in {city}, where lots of people go to work! Meet Aunt Mariam. She works as an engineer, and every month her company pays her a SALARY: money for the work she does.",
+            "ar": "أهلاً بك في {stop} في {city} حيث يذهب كثيرون إلى العمل! تعرّف على العمة مريم. تعمل مهندسة، وكل شهر تدفع لها شركتها راتباً: مالاً مقابل العمل الذي تقوم به."
           }
         },
         {
@@ -229,8 +229,8 @@
           "art": "payday",
           "mascot": "thinking",
           "text": {
-            "en": "On payday, Mariam's company doesn't hand her a bag of cash. It sends her salary straight into her BANK ACCOUNT. In the UAE, companies pay salaries through banks using the Wage Protection System (WPS), which helps make sure workers are paid on time.",
-            "ar": "في يوم الراتب لا تعطي الشركة مريم كيساً من النقود، بل ترسل راتبها مباشرة إلى حسابها البنكي. في الإمارات تدفع الشركات الرواتب عبر البنوك باستخدام نظام حماية الأجور، الذي يساعد على ضمان حصول العاملين على أجورهم في موعدها."
+            "en": "On payday, Mariam's company doesn't hand her a bag of cash. It sends her salary straight into her BANK ACCOUNT. {payLine}",
+            "ar": "في يوم الراتب لا تعطي الشركة مريم كيساً من النقود، بل ترسل راتبها مباشرة إلى حسابها البنكي. {payLine}"
           }
         },
         {
@@ -282,14 +282,14 @@
           "type": "choice",
           "concept": "payday",
           "prompt": {
-            "en": "How often are most salaries in the UAE paid?",
-            "ar": "كم مرة تُدفع معظم الرواتب في الإمارات؟"
+            "en": "How often are most salaries in {city} paid?",
+            "ar": "كم مرة تُدفع معظم الرواتب في {city}؟"
           },
           "options": [
             {
               "text": {
-                "en": "Once a month",
-                "ar": "مرة في الشهر"
+                "en": "{payFrequency}",
+                "ar": "{payFrequency}"
               },
               "correct": true
             },
@@ -307,8 +307,8 @@
             }
           ],
           "explain": {
-            "en": "Most salaries are monthly, so families plan their spending month by month.",
-            "ar": "معظم الرواتب شهرية، لذلك تخطط العائلات إنفاقها شهراً بشهر."
+            "en": "{payFrequencyExplain}",
+            "ar": "{payFrequencyExplain}"
           }
         },
         {
@@ -373,8 +373,8 @@
           "art": "office",
           "mascot": "happy",
           "text": {
-            "en": "Deductions can include pension savings for later in life, or loan repayments. In many countries income tax is taken out too. The UAE has no income tax on salaries, but there is 5% VAT on most things you buy.",
-            "ar": "قد تشمل الخصومات مدخرات التقاعد أو أقساط القروض. وفي كثير من الدول تُخصم ضريبة الدخل أيضاً. لا توجد في الإمارات ضريبة دخل على الرواتب، لكن توجد ضريبة قيمة مضافة ٥٪ على معظم المشتريات."
+            "en": "Deductions can include pension savings for later in life, or loan repayments. {taxLine}",
+            "ar": "قد تشمل الخصومات مدخرات التقاعد أو أقساط القروض. {taxLine}"
           }
         },
         {
@@ -784,8 +784,8 @@
           "type": "choice",
           "concept": "payday",
           "prompt": {
-            "en": "In the UAE, salaries usually arrive…",
-            "ar": "في الإمارات تصل الرواتب عادة…"
+            "en": "Salaries usually arrive…",
+            "ar": "تصل الرواتب عادة…"
           },
           "options": [
             {
@@ -803,8 +803,8 @@
             }
           ],
           "explain": {
-            "en": "Companies pay through banks (the Wage Protection System).",
-            "ar": "تدفع الشركات عبر البنوك (نظام حماية الأجور)."
+            "en": "Companies pay salaries through banks, straight into workers' accounts.",
+            "ar": "تدفع الشركات الرواتب عبر البنوك مباشرة إلى حسابات العاملين."
           }
         },
         {

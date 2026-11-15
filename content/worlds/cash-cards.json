@@ -29,8 +29,8 @@
   },
   "concepts": {
     "uae-cash": {
-      "en": "UAE notes and coins",
-      "ar": "العملات الإماراتية"
+      "en": "Notes and coins",
+      "ar": "العملات الورقية والمعدنية"
     },
     "atm": {
       "en": "How ATMs work",
@@ -51,8 +51,8 @@
       "kind": "lesson",
       "icon": "💵",
       "title": {
-        "en": "Notes and coins of the UAE",
-        "ar": "العملات الورقية والمعدنية في الإمارات"
+        "en": "Notes and coins of {country}",
+        "ar": "عملات {country} الورقية والمعدنية"
       },
       "steps": [
         {
@@ -60,8 +60,8 @@
           "art": "notes",
           "mascot": "excited",
           "text": {
-            "en": "Welcome to Dubai Mall! Before we shop, let's look at our money. The UAE dirham (AED) is issued by the Central Bank of the UAE. Notes come in 5, 10, 20, 50, 100, 200, 500 and 1000 dirhams.",
-            "ar": "أهلاً بك في دبي مول! قبل أن نتسوق لننظر إلى مالنا. الدرهم الإماراتي يصدره مصرف الإمارات العربية المتحدة المركزي. الأوراق النقدية فئات ٥ و١٠ و٢٠ و٥٠ و١٠٠ و٢٠٠ و٥٠٠ و١٠٠٠ درهم."
+            "en": "Welcome to {stop}! Before we shop, let's look at our money. The {currencyName} ({cur}) is issued by the {centralBank}. Notes come in {notesList}.",
+            "ar": "أهلاً بك في {stop}! قبل أن نتسوق لننظر إلى مالنا. يصدر {centralBank} عملة {currencyName} ({cur}). الأوراق النقدية فئات {notesList}."
           }
         },
         {
@@ -69,16 +69,16 @@
           "art": "coins",
           "mascot": "happy",
           "text": {
-            "en": "Small change uses coins called fils. 100 fils make 1 dirham, so a 50 fils coin is half a dirham and a 25 fils coin is a quarter of a dirham.",
-            "ar": "الفكّة عملات معدنية تسمى الفلوس. ١٠٠ فلس تساوي درهماً واحداً، فعملة الخمسين فلساً نصف درهم وعملة الخمسة والعشرين فلساً ربع درهم."
+            "en": "Small change uses coins. 100 {smallUnit} make 1 {currencyName}, so a 50 {smallUnit} coin is half a {currencyName}.",
+            "ar": "الفكّة عملات معدنية. ١٠٠ {smallUnit} تساوي {currencyName} واحداً، فعملة الخمسين {smallUnit} نصف {currencyName}."
           }
         },
         {
           "type": "choice",
           "concept": "uae-cash",
           "prompt": {
-            "en": "How many fils make 1 dirham?",
-            "ar": "كم فلساً في الدرهم الواحد؟"
+            "en": "How many {smallUnit} make 1 {currencyName}?",
+            "ar": "كم {smallUnit} في {currencyName} واحد؟"
           },
           "options": [
             {
@@ -102,8 +102,8 @@
             }
           ],
           "explain": {
-            "en": "100 fils = 1 dirham, just like 100 cents = 1 dollar.",
-            "ar": "١٠٠ فلس = درهم واحد، مثل ١٠٠ سنت = دولار واحد."
+            "en": "100 {smallUnit} = 1 {currencyName}. Most currencies split into 100 small parts.",
+            "ar": "١٠٠ {smallUnit} = {currencyName} واحد. معظم العملات تنقسم إلى ١٠٠ جزء صغير."
           }
         },
         {
@@ -111,12 +111,12 @@
           "concept": "uae-cash",
           "prompt": {
             "7-9": {
-              "en": "You have one AED 10 note and one AED 5 note. How many dirhams?",
-              "ar": "معك ورقة ١٠ دراهم وورقة ٥ دراهم. كم درهماً معك؟"
+              "en": "You have a 10 note and a 5 note. How much is that?",
+              "ar": "معك ورقة ١٠ وورقة ٥. كم المجموع؟"
             },
             "default": {
-              "en": "You have two AED 50 notes and one AED 20 note. How many dirhams is that?",
-              "ar": "معك ورقتان من فئة ٥٠ درهماً وورقة من فئة ٢٠. كم درهماً؟"
+              "en": "You have two 50 notes and one 20 note. How much is that?",
+              "ar": "معك ورقتان من فئة ٥٠ وورقة من فئة ٢٠. كم المجموع؟"
             }
           },
           "answer": {
@@ -128,22 +128,22 @@
             "ar": "اجمع قيمة كل ورقة."
           },
           "unitText": {
-            "en": "AED",
-            "ar": "درهم"
+            "en": "{cur}",
+            "ar": "{cur}"
           }
         },
         {
           "type": "choice",
           "concept": "uae-cash",
           "prompt": {
-            "en": "Who makes the UAE's notes and coins?",
-            "ar": "من يصدر العملات الإماراتية؟"
+            "en": "Who issues the money of {country}?",
+            "ar": "من يصدر عملة {country}؟"
           },
           "options": [
             {
               "text": {
-                "en": "The Central Bank of the UAE",
-                "ar": "مصرف الإمارات المركزي"
+                "en": "The {centralBank}",
+                "ar": "{centralBank}"
               },
               "correct": true,
               "emoji": "🏛️"
@@ -164,8 +164,8 @@
             }
           ],
           "explain": {
-            "en": "Only the central bank can issue dirhams. That keeps money trusted, and copying money is a crime.",
-            "ar": "المصرف المركزي وحده يصدر الدراهم، وهذا يحافظ على الثقة بالمال، وتزوير العملة جريمة."
+            "en": "Only the {centralBank} can issue {currencyPlural}. That keeps money trusted, and copying money is a crime.",
+            "ar": "وحده {centralBank} يصدر {currencyPlural}، وهذا يحافظ على الثقة بالمال، وتزوير العملة جريمة."
           }
         }
       ]
@@ -193,8 +193,8 @@
           "art": "atm",
           "mascot": "excited",
           "text": {
-            "en": "Here's what happens in a few seconds: 1) you insert your card, 2) you type your secret PIN, 3) the ATM sends a message through the ATM network (in the UAE it's called UAESWITCH) to your bank, 4) your bank checks your balance, 5) if there's enough, it says YES, the ATM counts the notes, and your balance goes down.",
-            "ar": "إليك ما يحدث في ثوانٍ: ١) تُدخل بطاقتك، ٢) تكتب رقمك السري، ٣) يرسل الصرّاف رسالة عبر شبكة الصرّافات (في الإمارات اسمها UAESWITCH) إلى بنكك، ٤) يتحقق بنكك من رصيدك، ٥) إذا كان كافياً يوافق، فيعدّ الصرّاف الأوراق وينقص رصيدك."
+            "en": "Here's what happens in a few seconds: 1) you insert your card, 2) you type your secret PIN, 3) the ATM sends a message through the ATM network ({atmNetwork}) to your bank, 4) your bank checks your balance, 5) if there's enough, it says YES, the ATM counts the notes, and your balance goes down.",
+            "ar": "إليك ما يحدث في ثوانٍ: ١) تُدخل بطاقتك، ٢) تكتب رقمك السري، ٣) يرسل الصرّاف رسالة عبر شبكة الصرّافات ({atmNetwork}) إلى بنكك، ٤) يتحقق بنكك من رصيدك، ٥) إذا كان كافياً يوافق، فيعدّ الصرّاف الأوراق وينقص رصيدك."
           }
         },
         {
@@ -212,8 +212,8 @@
           "type": "choice",
           "concept": "atm",
           "prompt": {
-            "en": "Your account has AED 300. You ask the ATM for AED 500. What happens?",
-            "ar": "في حسابك ٣٠٠ درهم. طلبت من الصرّاف ٥٠٠ درهم. ماذا يحدث؟"
+            "en": "Your account has [[300]]. You ask the ATM for [[500]]. What happens?",
+            "ar": "في حسابك [[300]]. طلبت من الصرّاف [[500]]. ماذا يحدث؟"
           },
           "options": [
             {
@@ -245,18 +245,15 @@
           "type": "number",
           "concept": "atm",
           "prompt": {
-            "en": "Your balance is AED 1000. You withdraw AED 300. What is your balance now?",
-            "ar": "رصيدك ١٠٠٠ درهم. سحبت ٣٠٠ درهم. كم رصيدك الآن؟"
+            "en": "Your balance is [[1000]]. You withdraw [[300]]. What is your balance now?",
+            "ar": "رصيدك [[1000]]. سحبت [[300]]. كم رصيدك الآن؟"
           },
           "answer": 700,
           "explain": {
             "en": "1000 − 300 = 700. Cash in your hand, less in the account.",
             "ar": "١٠٠٠ − ٣٠٠ = ٧٠٠. نقود في يدك وأقل في الحساب."
           },
-          "unitText": {
-            "en": "AED",
-            "ar": "درهم"
-          }
+          "money": true
         },
         {
           "type": "choice",
@@ -694,33 +691,33 @@
           "type": "choice",
           "concept": "uae-cash",
           "prompt": {
-            "en": "The UAE currency's code is…",
-            "ar": "رمز عملة الإمارات هو…"
+            "en": "The currency code of {country} is…",
+            "ar": "رمز عملة {country} هو…"
           },
           "options": [
             {
               "text": {
-                "en": "AED",
-                "ar": "AED"
+                "en": "{cur}",
+                "ar": "{cur}"
               },
               "correct": true
             },
             {
               "text": {
-                "en": "USD",
-                "ar": "USD"
+                "en": "{otherCode1}",
+                "ar": "{otherCode1}"
               }
             },
             {
               "text": {
-                "en": "EUR",
-                "ar": "EUR"
+                "en": "{otherCode2}",
+                "ar": "{otherCode2}"
               }
             }
           ],
           "explain": {
-            "en": "AED = UAE dirham. USD is the US dollar, EUR the euro.",
-            "ar": "AED = الدرهم الإماراتي. USD الدولار الأمريكي وEUR اليورو."
+            "en": "{cur} is the {currencyName}. {codeExplain}",
+            "ar": "{cur} هو {currencyName}. {codeExplain}"
           }
         },
         {
@@ -754,18 +751,15 @@
           "type": "number",
           "concept": "atm",
           "prompt": {
-            "en": "Balance AED 800, withdraw AED 200. New balance?",
-            "ar": "الرصيد ٨٠٠ درهم، سحبت ٢٠٠. الرصيد الجديد؟"
+            "en": "Balance [[800]], withdraw [[200]]. New balance?",
+            "ar": "الرصيد [[800]]، سحبت [[200]]. الرصيد الجديد؟"
           },
           "answer": 600,
           "explain": {
             "en": "800 − 200 = 600.",
             "ar": "٨٠٠ − ٢٠٠ = ٦٠٠."
           },
-          "unitText": {
-            "en": "AED",
-            "ar": "درهم"
-          }
+          "money": true
         },
         {
           "type": "choice",
@@ -910,17 +904,17 @@
           "type": "number",
           "concept": "uae-cash",
           "prompt": {
-            "en": "Skimmer swapped your notes! You should have one AED 100 and two AED 20 notes. How many dirhams is that?",
-            "ar": "المحتال بدّل أوراقك! يجب أن يكون معك ورقة ١٠٠ درهم وورقتان من ٢٠. كم درهماً؟"
+            "en": "Skimmer swapped your notes! You should have one 50 note and two 20 notes. How much is that?",
+            "ar": "المحتال بدّل أوراقك! يجب أن يكون معك ورقة ٥٠ وورقتان من ٢٠. كم المجموع؟"
           },
-          "answer": 140,
+          "answer": 90,
           "explain": {
-            "en": "100 + 20 + 20 = 140.",
-            "ar": "١٠٠ + ٢٠ + ٢٠ = ١٤٠."
+            "en": "50 + 20 + 20 = 90.",
+            "ar": "٥٠ + ٢٠ + ٢٠ = ٩٠."
           },
           "unitText": {
-            "en": "AED",
-            "ar": "درهم"
+            "en": "{cur}",
+            "ar": "{cur}"
           }
         },
         {

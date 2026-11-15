@@ -1,5 +1,5 @@
 {
-  "$comment": "Every world in display order. 'available: false' shows it as coming soon. A world becomes playable when available is true AND worlds/<id>.json exists. 'requires' lists worlds to finish first; 'ages' limits which age tiers see it. The order is the Dubai Money Journey: each stop has a 'location' and 'landmark' shown on the journey map.",
+  "$comment": "Every world in display order. 'available: false' shows it as coming soon. A world becomes playable when available is true AND worlds/<id>.json exists. 'requires' lists worlds to finish first; 'ages' limits which age tiers see it. The order is the Dubai Money Journey: each stop has a 'location' and 'landmark' shown on the journey map. Location names come from content/cities.json for the chosen city; these are fallbacks.",
   "worlds": [
     {
       "id": "money-basics",
@@ -79,6 +79,27 @@
       "landmark": "🏦"
     },
     {
+      "id": "bank-products",
+      "phase": 2,
+      "available": true,
+      "requires": [
+        "bank-town"
+      ],
+      "icon": "💳",
+      "color": "#0B3D91",
+      "building": "bank-branch",
+      "sponsored": true,
+      "name": {
+        "en": "{bank} Junior Club",
+        "ar": "نادي {bank} للصغار"
+      },
+      "location": {
+        "en": "a bank branch",
+        "ar": "فرع بنك"
+      },
+      "landmark": "🏛️"
+    },
+    {
       "id": "cash-cards",
       "icon": "🏧",
       "color": "#56B4E9",
@@ -90,7 +111,7 @@
       "available": true,
       "phase": 2,
       "requires": [
-        "bank-town"
+        "bank-products"
       ],
       "location": {
         "en": "Dubai Mall",

@@ -15,7 +15,7 @@ export function sumRewards(effects) {
 }
 
 export default function Results({ world, node, stars, effects, extra, onReplay, bonus }) {
-  const { t } = useT();
+  const { t } = useT(world.id);
   const { state, age } = useGame();
   const nav = useNavigate();
   const nodes = useVisibleNodes(world);

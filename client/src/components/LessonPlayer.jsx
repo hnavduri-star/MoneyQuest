@@ -25,10 +25,10 @@ const PRAISE = ['lesson.correct', 'lesson.correct2', 'lesson.correct3'];
  * the child gets a hint and tries again; mistakes only lower the star rating.
  */
 export default function LessonPlayer({ world, node }) {
-  const { age, dispatch, content, state } = useGame();
-  const { t, tx, money } = useT();
+  const { age, dispatch, content, state, cityCtx } = useGame();
+  const { t, tx, money } = useT(world.id);
   const [run, setRun] = useState(0);
-  const steps = useMemo(() => stepsForAge(node, age), [node, age]);
+  const steps = useMemo(() => stepsForAge(node, age, cityCtx), [node, age, cityCtx]);
   const questions = steps.filter((s) => QUESTION.has(s.type)).length;
   const boss = node.kind === 'boss' ? node.boss : null;
   const [started, setStarted] = useState(!boss);

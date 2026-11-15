@@ -61,7 +61,7 @@ function Art({ type, tier, color, icon, night }) {
       return (
         <g>
           <rect x="22" y="52" width="76" height="50" fill="#F2E7D5" stroke="#1E2A3A" strokeOpacity="0.2" strokeWidth="2" />
-          <path d="M18 54 L60 30 L102 54 Z" fill="#9AA0A6" />
+          <path d="M18 54 L60 30 L102 54 Z" fill={color === '#0072B2' ? '#9AA0A6' : color} />
           <circle cx="60" cy="44" r="7" fill="#FFF" stroke="#5B6B7F" strokeWidth="2" />
           <path d="M60 44 V40 M60 44 H63" stroke="#1E2A3A" strokeWidth="1.5" />
           {[30, 46, 66, 82].map((x) => <rect key={x} x={x} y="60" width="8" height="34" rx="2" fill="#FFF" />)}
@@ -87,6 +87,7 @@ function Art({ type, tier, color, icon, night }) {
         </g>
       );
     case 'bank':
+    case 'bank-branch':
       return (
         <g>
           {t >= 2 && <rect x="30" y="30" width="60" height="18" fill="#E6EEF5" stroke="#1E2A3A" strokeOpacity="0.2" />}
@@ -112,7 +113,7 @@ function Art({ type, tier, color, icon, night }) {
   }
 }
 
-function Building({ type, tier, color = '#0072B2', icon = '🏠', size = 110, label, night = false }) {
+function Building({ type, tier, color = '#0072B2', icon = '🏠', size = 110, label, night = false, sign }) {
   return (
     <Night.Provider value={night}>
     <svg viewBox="0 0 120 120" width={size} height={size} role="img" aria-label={label} className="overflow-visible">
@@ -146,6 +147,12 @@ function Building({ type, tier, color = '#0072B2', icon = '🏠', size = 110, la
           {tier >= 3 && <ellipse cx="60" cy="66" rx="56" ry="48" fill="#F7C95C" opacity="0.25" />}
           <Art type={type} tier={tier} color={color} icon={icon} />
           {tier >= 3 && <Sparkles />}
+        </g>
+      )}
+      {sign && (typeof tier !== 'number' || tier > 0) && (
+        <g>
+          <rect x="24" y="56" width="72" height="14" rx="4" fill="#FFFFFF" stroke={color} strokeWidth="2" />
+          <text x="60" y="66.5" textAnchor="middle" fontSize="9" fontWeight="800" fontFamily="Arial, sans-serif" fill={color}>{sign.length > 16 ? sign.slice(0, 15) + '…' : sign}</text>
         </g>
       )}
     </svg>

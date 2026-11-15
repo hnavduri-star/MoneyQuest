@@ -12,6 +12,9 @@ import { isNodeUnlocked, worldStatus, stepsForAge, visibleNodes } from '../progr
 import { pickDailyQuests } from '../quests.js';
 import { addDays, daysBetween, weekKey } from '../dates.js';
 import { starsFromMistakes, comboMultiplier } from '../scoring.js';
+import { contentVars, cityContext, editionCities, getEdition } from '../city.js';
+import { minigameConfig } from '../progress.js';
+import { fill, tr as trText } from '../text.js';
 
 const content = loadContent();
 const DAY = '2026-11-15';
@@ -66,6 +69,41 @@ describe('text helpers', () => {
     expect(young.answer).toBe(10);
     expect(old.answer).toBe(60);
     expect(young.prompt.en).toMatch(/2 cars/);
+  });
+});
+
+describe('cities and partner editions', () => {
+  const er = content.worlds['currency-bazaar'].nodes.find((n) => n.id === 'exchange-rate');
+  it('every city localises answers: 10 foreign units in local money', () => {
+    const want = { dubai: 36.7, 'abu-dhabi': 36.7, london: 8.5, paris: 9.2, mumbai: 850, 'new-york': 11 };
+    for (const [id, v] of Object.entries(want)) {
+      const step = stepsForAge(er, '10-12', cityContext(content, id)).find((s) => s.type === 'number');
+      expect(step.answer).toBe(v);
+    }
+  });
+  it('lesson text is filled with city facts in both languages', () => {
+    const story = content.worlds['cash-cards'].nodes[0].steps[0].text;
+    const london = fill(trText(story, 'en'), contentVars(content, { cityId: 'london', lang: 'en', worldId: 'cash-cards' }));
+    expect(london).toContain('Bank of England');
+    expect(london).toContain('Westfield');
+    expect(london).not.toMatch(/\{\w+\}/);
+    const mumbaiAr = fill(trText(story, 'ar'), contentVars(content, { cityId: 'mumbai', lang: 'ar', worldId: 'cash-cards' }));
+    expect(mumbaiAr).toContain('بنك الاحتياطي الهندي');
+  });
+  it('the currency mini-game sorts the chosen city\'s own places', () => {
+    const node = content.worlds['currency-bazaar'].nodes.find((n) => n.kind === 'minigame');
+    const cfg = minigameConfig(node, cityContext(content, 'paris'));
+    expect(cfg.items.find((i) => i.text.en === 'Berlin').bin).toBe('home');
+    expect(cfg.items.find((i) => i.text.en === 'London').bin).toBe('abroad');
+  });
+  it('a sponsor bank edition names its products and limits its cities', () => {
+    const v = contentVars(content, { cityId: 'dubai', editionId: 'abc-bank', lang: 'en' });
+    expect(v.bank).toBe('ABC Bank');
+    expect(v.kidsAccount).toBe('ABC Junior Saver account');
+    expect(editionCities(content, getEdition(content, 'abc-bank')).map((c) => c.id)).toEqual(['dubai', 'abu-dhabi']);
+    const std = contentVars(content, { cityId: 'london', editionId: 'standard', lang: 'en' });
+    expect(std.bank).toBe('Town Bank');
+    expect(contentVars(content, { editionId: 'sunrise-school', lang: 'en' }).school).toBe('Sunrise International School');
   });
 });
 
@@ -192,7 +230,7 @@ describe('reward engine', () => {
   });
   it('the Dubai journey is a chain, and a started world never re-locks', () => {
     const journey = content.worldIndex.filter((w) => w.playable);
-    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'cash-cards', 'currency-bazaar', 'lemonade-empire']);
+    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'bank-products', 'cash-cards', 'currency-bazaar', 'lemonade-empire']);
     journey.slice(1).forEach((w, i) => expect(w.requires).toEqual([journey[i].id]));
     journey.forEach((w) => expect(w.location?.en).toBeTruthy());
     const bank = content.worldIndex.find((w) => w.id === 'bank-town');

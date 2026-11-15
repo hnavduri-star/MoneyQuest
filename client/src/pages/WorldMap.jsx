@@ -1,17 +1,23 @@
+import { useState } from 'react';
 import { useNavigate, useParams, Navigate } from 'react-router-dom';
+import { BrandMark } from '../components/Brand.jsx';
+import PinPad from '../components/PinPad.jsx';
 import { motion } from 'framer-motion';
 import { useGame } from '../store.jsx';
 import { useT } from '../lib/i18n.js';
 import { useVisibleNodes } from '../lib/hooks.js';
 import { isNodeUnlocked, nodeProgress, worldStatus } from '@engine/progress.js';
-import { Stars, Header } from '../components/ui.jsx';
+import { Stars, Header, Modal } from '../components/ui.jsx';
 import Building from '../components/Building.jsx';
 import { play } from '../lib/sound.js';
 
 export default function WorldMap() {
   const { worldId } = useParams();
-  const { content, state, age } = useGame();
-  const { t, tx } = useT();
+  const { content, state, age, city, bank, checkPin } = useGame();
+  const { worldId: wid } = useParams();
+  const { t, tx } = useT(wid);
+  const [gate, setGate] = useState(null);
+  const [pinErr, setPinErr] = useState('');
   const nav = useNavigate();
   const world = content.worlds[worldId];
   const meta = content.worldIndex.find((w) => w.id === worldId);
@@ -25,9 +31,9 @@ export default function WorldMap() {
     <div>
       <Header title={tx(world.name)} onBack={() => nav('/worlds')} />
       <div className="card p-3 flex items-center gap-3 mb-5" style={{ borderColor: meta.color }}>
-        <Building type={meta.building} tier={tier} color={meta.color} icon={meta.icon} size={84} />
+        <Building type={meta.building} tier={tier} color={meta.sponsored ? bank.colors.primary : meta.color} icon={meta.icon} size={84} sign={meta.sponsored ? tx(bank.short) : undefined} />
         <div className="flex-1">
-          {meta.location && <p className="text-xs font-bold uppercase text-soft">📍 {tx(meta.location)}</p>}
+          <p className="text-xs font-bold uppercase text-soft">📍 {tx(city.stops[worldId]?.location || meta.location)}, {tx(city.name)}</p>
           <p className="text-soft">{tx(world.tagline)}</p>
         </div>
       </div>
@@ -64,6 +70,39 @@ export default function WorldMap() {
           );
         })}
       </ol>
+
+      {meta.sponsored && bank.sponsor && (
+        <div className="card p-4 mt-6">
+          <div className="flex items-center gap-3">
+            <BrandMark brand={bank} size={44} />
+            <div className="flex-1">
+              <p className="text-xs font-bold uppercase text-soft">{t('partner.forGrownUps')}</p>
+              <p className="font-extrabold">{t('partner.learnMore')}</p>
+            </div>
+            <button className="btn-ghost min-h-[44px] text-base" onClick={() => setGate('pin')}>🔒</button>
+          </div>
+          <p className="text-xs text-soft mt-2">{t('partner.note')}</p>
+        </div>
+      )}
+      <Modal open={!!gate} onClose={() => { setGate(null); setPinErr(''); }} label={t('partner.forGrownUps')}>
+        {gate === 'pin' ? (
+          <div className="flex flex-col items-center gap-3">
+            <p className="font-bold">{t('parent.enterPin')}</p>
+            <PinPad error={pinErr} onDone={async (pin) => ((await checkPin(pin)) ? setGate('info') : setPinErr(t('parent.pinWrong')))} />
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <div className="flex items-center gap-3"><BrandMark brand={bank} size={48} /><h2 className="title">{tx(bank.name)}</h2></div>
+            <p>{tx(bank.parentInfo)}</p>
+            {bank.website && (
+              <p className="text-sm">
+                {t('partner.website')}: <a className="underline font-bold break-all" href={bank.website} target="_blank" rel="noopener noreferrer">{bank.website}</a>
+              </p>
+            )}
+            <button className="btn-primary w-full" onClick={() => setGate(null)}>{t('common.close')}</button>
+          </div>
+        )}
+      </Modal>
 
       {world.realLife && (
         <div className="card p-4 mt-6 bg-leaf-pale">

@@ -5,6 +5,7 @@ import { useGame } from '../store.jsx';
 import { sims as S } from '@engine/index.js';
 import { pickAge } from '@engine/text.js';
 import Slider from './Slider.jsx';
+import { BrandMark } from '../components/Brand.jsx';
 
 /** Interactive explainers, referenced from lesson JSON by `"sim": "<id>"`. All maths comes from engine/sims. */
 const L = {
@@ -48,9 +49,9 @@ const L = {
   income: { en: 'Family income', ar: 'دخل العائلة' },
   rent: { en: '🏠 Rent', ar: '🏠 الإيجار' },
   food: { en: '🛒 Groceries', ar: '🛒 البقالة' },
-  bills: { en: '💡 DEWA & phone bills', ar: '💡 فواتير ديوا والهاتف' },
+  bills: { en: '💡 {utilityShort} & phone', ar: '💡 {utilityShort} والهاتف' },
   school: { en: '🎒 School', ar: '🎒 المدرسة' },
-  transport: { en: '🚗 Transport & Salik', ar: '🚗 المواصلات وسالك' },
+  transport: { en: '🚗 {transportShort}', ar: '🚗 {transportShort}' },
   emergency: { en: '☔ Emergency fund', ar: '☔ صندوق الطوارئ' },
   savings: { en: '🐷 Savings', ar: '🐷 الادخار' },
   fun: { en: '🎉 Fun', ar: '🎉 الترفيه' },
@@ -71,15 +72,25 @@ const L = {
   declined: { en: 'Declined', ar: 'مرفوض' },
   insufficient: { en: 'Not enough money in your account', ar: 'لا يوجد مال كافٍ في حسابك' },
   overLimit: { en: 'Over your daily limit', ar: 'تجاوز حدك اليومي' },
-  notMultiple: { en: 'This ATM only gives AED 100 notes and up', ar: 'هذا الصرّاف يصرف أوراق ١٠٠ درهم فأكثر' },
+  notMultiple: { en: 'This ATM only gives notes of {min} and up', ar: 'هذا الصرّاف يصرف أوراقاً من فئة {min} فأكثر' },
   balance: { en: 'Balance', ar: 'الرصيد' },
   again: { en: 'Start again', ar: 'ابدأ من جديد' },
-  change: { en: 'Dirhams to change', ar: 'الدراهم المراد صرفها' },
+  change: { en: 'Money to change', ar: 'المال المراد صرفه' },
   to: { en: 'Change into', ar: 'حوّل إلى' },
   fair: { en: 'Fair value', ar: 'القيمة العادلة' },
   get: { en: 'You receive', ar: 'تستلم' },
   margin: { en: 'Exchange house keeps', ar: 'يحتفظ محل الصرافة بـ' },
-  rateNote: { en: 'Example rates. Real rates change daily (USD is pegged).', ar: 'أسعار للتوضيح. الأسعار الحقيقية تتغير يومياً (الدولار مربوط).' },
+  rateNote: { en: 'Example rates. Real rates change every day.', ar: 'أسعار للتوضيح. الأسعار الحقيقية تتغير كل يوم.' },
+  chequeTitle: { en: 'Practice cheque', ar: 'شيك تدريبي' },
+  date: { en: 'Date', ar: 'التاريخ' },
+  today: { en: 'Tap for today', ar: 'اضغط لتاريخ اليوم' },
+  payTo: { en: 'Pay to', ar: 'ادفعوا لأمر' },
+  amountFig: { en: 'Amount in numbers', ar: 'المبلغ بالأرقام' },
+  amountWords: { en: 'Amount in words', ar: 'المبلغ بالحروف' },
+  signHere: { en: 'Tap to sign', ar: 'اضغط للتوقيع' },
+  chequeOk: { en: 'Valid cheque! {bank} will pay {payee} when it clears.', ar: 'شيك صالح! سيدفع {bank} لـ{payee} عند صرفه.' },
+  chequeMismatch: { en: 'The words and numbers don’t match. The bank would refuse this cheque.', ar: 'الحروف والأرقام غير متطابقة. سيرفض البنك هذا الشيك.' },
+  chequeMissing: { en: 'Fill in every part, then sign.', ar: 'املأ كل جزء ثم وقّع.' },
   price: { en: 'Price per cup', ar: 'سعر الكوب' },
   customers: { en: 'Customers', ar: 'الزبائن' },
   revenue: { en: 'Revenue', ar: 'الإيرادات' },
@@ -314,18 +325,20 @@ function Budget({ params }) {
   );
 }
 
-const ATM_AMOUNTS = [100, 200, 500, 1000, 3000];
-function Atm({ params }) {
+function Atm() {
   const { tx, lang } = useT();
-  const aed = (n) => (lang === 'ar' ? `${n} درهم` : `AED ${n}`);
-  const [balance, setBalance] = useState(params.balance ?? 2000);
+  const { city } = useGame();
+  const { notes, amounts, odd } = city.atm;
+  const limit = Math.round(amounts[amounts.length - 1] * 0.8);
+  const aed = (n) => (lang === 'ar' ? `${n} ${city.currency}` : `${city.currency} ${n}`);
+  const [balance, setBalance] = useState(amounts[3] * 2);
   const [stage, setStage] = useState('insert');
   const [pin, setPin] = useState('');
   const [pinErr, setPinErr] = useState(false);
   const [result, setResult] = useState(null);
   const [step, setStep] = useState(0);
   const go = (amount) => {
-    const r = S.withdraw({ balance, amount, dailyLimit: 2500 });
+    const r = S.withdraw({ balance, amount, dailyLimit: limit, notes });
     setResult({ ...r, amount });
     setStage('processing');
     setStep(0);
@@ -362,8 +375,8 @@ function Atm({ params }) {
           <>
             <p className="font-bold">{tx(L.chooseAmount)}</p>
             <div className="grid grid-cols-3 gap-2">
-              {ATM_AMOUNTS.map((a) => <button key={a} onClick={() => go(a)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-[#1E2A3A] font-extrabold">{aed(a)}</button>)}
-              <button onClick={() => go(150)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-[#1E2A3A] font-extrabold">{aed(150)}</button>
+              {amounts.map((a) => <button key={a} onClick={() => go(a)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-[#1E2A3A] font-extrabold">{aed(a)}</button>)}
+              <button onClick={() => go(odd)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-[#1E2A3A] font-extrabold">{aed(odd)}</button>
             </div>
           </>
         )}
@@ -382,28 +395,37 @@ function Atm({ params }) {
             <p className="font-bold">{tx(L.takeCash)}</p>
           </>
         )}
-        {stage === 'declined' && <p className="font-bold text-sun">⛔ {tx(L.declined)}: {tx(L[result.reason])}</p>}
+        {stage === 'declined' && <p className="font-bold text-sun">⛔ {tx(L.declined)}: {tx(L[result.reason], { min: aed(Math.min(...notes)) })}</p>}
       </div>
       {(stage === 'cash' || stage === 'declined') && <button className="btn-ghost w-full text-ink" onClick={() => { setStage('insert'); setResult(null); }}>↻ {tx(L.again)}</button>}
     </div>
   );
 }
 
-const FX = [['USD', '🇺🇸'], ['EUR', '🇪🇺'], ['GBP', '🇬🇧'], ['SAR', '🇸🇦'], ['INR', '🇮🇳'], ['PKR', '🇵🇰'], ['PHP', '🇵🇭']];
-function Currency({ params }) {
+const FX = [['AED', '🇦🇪'], ['USD', '🇺🇸'], ['EUR', '🇪🇺'], ['GBP', '🇬🇧'], ['SAR', '🇸🇦'], ['INR', '🇮🇳'], ['PKR', '🇵🇰'], ['PHP', '🇵🇭']];
+const nice = (n) => {
+  const p = Math.pow(10, Math.floor(Math.log10(n)));
+  return Math.max(1, Math.round(n / p) * p);
+};
+function Currency() {
   const { tx } = useT();
-  const [amount, setAmount] = useState(params.amount || 1000);
-  const [to, setTo] = useState('USD');
-  const q = S.exchangeQuote(amount, 'AED', to, { marginPct: 2 });
+  const { city } = useGame();
+  const base = city.currency;
+  const per = 1 / S.EXAMPLE_RATES[base];
+  const [min, max, step] = [nice(100 * per), nice(10000 * per), nice(100 * per)];
+  const [amount, setAmount] = useState(nice(1000 * per));
+  const choices = FX.filter(([c]) => c !== base);
+  const [to, setTo] = useState(choices.find(([c]) => c === (base === 'USD' ? 'EUR' : 'USD'))[0]);
+  const q = S.exchangeQuote(amount, base, to, { marginPct: 2 });
   const fmt = (n, c) => new Intl.NumberFormat('en', { style: 'currency', currency: c, maximumFractionDigits: 2 }).format(n);
   return (
     <div className="space-y-3">
-      <Slider label={`🇦🇪 ${tx(L.change)}`} value={amount} min={100} max={10000} step={100} onChange={setAmount} format={(v) => fmt(v, 'AED')} />
+      <Slider label={`${city.flag} ${tx(L.change)}`} value={amount} min={min} max={max} step={step} onChange={setAmount} format={(v) => fmt(v, base)} />
       <p className="font-bold">{tx(L.to)}</p>
       <div className="flex flex-wrap gap-2">
-        {FX.map(([c, f]) => <button key={c} onClick={() => setTo(c)} aria-pressed={to === c} className={`min-h-[44px] px-3 rounded-xl border-2 font-bold ${to === c ? 'border-ink bg-ink text-cream' : 'border-line bg-surface'}`}>{f} {c}</button>)}
+        {choices.map(([c, f]) => <button key={c} onClick={() => setTo(c)} aria-pressed={to === c} className={`min-h-[44px] px-3 rounded-xl border-2 font-bold ${to === c ? 'border-ink bg-ink text-cream' : 'border-line bg-surface'}`}>{f} {c}</button>)}
       </div>
-      <p className="text-sm font-bold text-center" dir="ltr">1 {to} = {S.EXAMPLE_RATES[to]} AED</p>
+      <p className="text-sm font-bold text-center" dir="ltr">1 {to} ≈ {S.convert(1, to, base)} {base}</p>
       <div className="grid grid-cols-3 gap-2">
         <Stat label={tx(L.fair)} value={fmt(q.fair, to)} />
         <Stat label={tx(L.get)} value={fmt(q.received, to)} tone="bg-leaf-pale" />
@@ -439,4 +461,57 @@ function Stand({ params }) {
   );
 }
 
-export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare, payslip: Payslip, budget: Budget, atm: Atm, currency: Currency, stand: Stand };
+const CHEQUE_PAYEES = [
+  { id: 'bakery', en: "Sara's Bakery", ar: 'مخبز سارة' },
+  { id: 'school', en: 'Book Fair', ar: 'معرض الكتاب' },
+  { id: 'gym', en: 'Football Club', ar: 'نادي كرة القدم' },
+];
+const CHEQUE_AMOUNTS = [
+  { n: 250, en: 'Two hundred and fifty only', ar: 'مئتان وخمسون فقط' },
+  { n: 25, en: 'Twenty-five only', ar: 'خمسة وعشرون فقط' },
+  { n: 2500, en: 'Two thousand five hundred only', ar: 'ألفان وخمسمئة فقط' },
+];
+function Cheque() {
+  const { tx, money, lang } = useT();
+  const { bank } = useGame();
+  const [date, setDate] = useState('');
+  const [payee, setPayee] = useState(null);
+  const [fig, setFig] = useState(null);
+  const [words, setWords] = useState(null);
+  const [signed, setSigned] = useState(false);
+  const complete = date && payee && fig && words && signed;
+  const match = fig && words && fig === words;
+  const chip = (on) => `min-h-[40px] px-3 rounded-xl border-2 text-sm font-bold ${on ? 'border-ink bg-ink text-cream' : 'border-line bg-surface'}`;
+  return (
+    <div className="space-y-3">
+      <div className="rounded-xl border-2 border-dashed border-line p-3 space-y-2 text-sm" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent 0 22px, rgb(var(--c-line) / .5) 22px 23px)' }}>
+        <div className="flex items-center justify-between gap-2">
+          <span className="flex items-center gap-2 font-extrabold"><BrandMark brand={bank} size={26} /> {tx(bank.name)}</span>
+          <button type="button" className={chip(!!date)} onClick={() => setDate(new Date().toLocaleDateString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB'))}>📅 {date || tx(L.today)}</button>
+        </div>
+        <div>
+          <p className="font-bold">{tx(L.payTo)}</p>
+          <div className="flex flex-wrap gap-1">{CHEQUE_PAYEES.map((p) => <button type="button" key={p.id} className={chip(payee?.id === p.id)} onClick={() => setPayee(p)}>{p[lang] || p.en}</button>)}</div>
+        </div>
+        <div>
+          <p className="font-bold">{tx(L.amountFig)}</p>
+          <div className="flex flex-wrap gap-1">{CHEQUE_AMOUNTS.map((a) => <button type="button" key={a.n} className={chip(fig === a.n)} onClick={() => setFig(a.n)}>{money(a.n)}</button>)}</div>
+        </div>
+        <div>
+          <p className="font-bold">{tx(L.amountWords)}</p>
+          <div className="flex flex-wrap gap-1">{CHEQUE_AMOUNTS.map((a) => <button type="button" key={a.n} className={chip(words === a.n)} onClick={() => setWords(a.n)}>{a[lang] || a.en}</button>)}</div>
+        </div>
+        <div className="flex justify-end">
+          <button type="button" onClick={() => setSigned(true)} className="min-h-[44px] px-4 border-b-2 border-ink font-bold" aria-label={tx(L.signHere)}>
+            {signed ? <span className="font-display text-xl italic">✍️ ~〰️~</span> : tx(L.signHere)}
+          </button>
+        </div>
+      </div>
+      <p className={`rounded-2xl p-3 font-bold ${complete && match ? 'bg-leaf-pale' : complete ? 'bg-ember-pale' : 'bg-sun-pale'}`} role="status">
+        {complete ? (match ? `✅ ${tx(L.chequeOk, { payee: payee[lang] || payee.en })}` : `⚠️ ${tx(L.chequeMismatch)}`) : `✍️ ${tx(L.chequeMissing)}`}
+      </p>
+    </div>
+  );
+}
+
+export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare, payslip: Payslip, budget: Budget, atm: Atm, currency: Currency, stand: Stand, cheque: Cheque };

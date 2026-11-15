@@ -11,8 +11,8 @@ export default function PlayFrame({ world, progress, children, footer, color }) 
   const { t } = useT();
   const nav = useNavigate();
   const [quit, setQuit] = useState(false);
-  const { active, state, content } = useGame();
-  const theme = content.characters.themes.find((x) => x.id === active?.meta?.theme)?.color;
+  const { active, state, content, themeColor } = useGame();
+  const theme = themeColor(active?.meta?.theme);
   return (
     <div className="min-h-full max-w-app mx-auto flex flex-col">
       <div className="sticky top-0 z-20 bg-cream/95 backdrop-blur px-4 pt-3 pb-2 flex items-center gap-3">

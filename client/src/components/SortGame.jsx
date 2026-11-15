@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useGame } from '../store.jsx';
 import { useT } from '../lib/i18n.js';
 import { pickAge } from '@engine/text.js';
+import { minigameConfig } from '@engine/progress.js';
 import { starsFromScore, comboMultiplier } from '@engine/scoring.js';
 import { play, buzz } from '../lib/sound.js';
 import PlayFrame from './PlayFrame.jsx';
@@ -14,9 +15,9 @@ const shuffle = (a) => [...a].sort(() => Math.random() - 0.5);
 
 /** Timed sorting mini-game: combos, power-ups (paid with earned coins) and no penalties for mistakes. */
 export default function SortGame({ world, node }) {
-  const { age, dispatch, content, state } = useGame();
-  const { t, tx } = useT();
-  const cfg = node.config;
+  const { age, dispatch, content, state, cityCtx } = useGame();
+  const { t, tx } = useT(world.id);
+  const cfg = useMemo(() => minigameConfig(node, cityCtx), [node, cityCtx]);
   const total = pickAge(cfg.seconds, age) || 40;
   const [phase, setPhase] = useState('ready');
   const [time, setTime] = useState(total);

@@ -8,7 +8,7 @@ import PinPad from '../components/PinPad.jsx';
 import { Modal } from '../components/ui.jsx';
 
 export default function Profiles() {
-  const { profiles, switchProfile, family, content, deleteProfile } = useGame();
+  const { profiles, switchProfile, family, content, deleteProfile, themeColor } = useGame();
   const { t } = useT();
   const nav = useNavigate();
   const [removing, setRemoving] = useState(null);
@@ -27,7 +27,7 @@ export default function Profiles() {
                 nav('/town');
               }}
             >
-              <Avatar avatar={p.meta.avatar} level={p.state.level} equipped={p.state.inventory.equipped} size={92} theme={content.characters.themes.find((x) => x.id === p.meta.theme)?.color} />
+              <Avatar avatar={p.meta.avatar} level={p.state.level} equipped={p.state.inventory.equipped} size={92} theme={themeColor(p.meta.theme)} />
               <span className="font-extrabold text-lg mt-1">{p.nickname}</span>
               <span className="text-sm text-soft">
                 {t('common.level')} {p.state.level}

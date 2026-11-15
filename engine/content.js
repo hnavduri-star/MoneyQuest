@@ -68,11 +68,19 @@ export function buildContent(raw) {
     for (const n of w.nodes)
       for (const st of n.steps || [])
         if (st.concept && ['choice', 'number'].includes(st.type)) (conceptQuestions[st.concept] ||= []).push({ ...st, worldId: w.id });
+  const cities = raw.cities || { defaultCity: 'dubai', cities: [] };
+  const editions = raw.editions || { defaultEdition: 'standard', banks: {}, schools: {}, editions: [] };
+  const cityMap = Object.fromEntries(cities.cities.map((c) => [c.id, c]));
+  const editionMap = Object.fromEntries(editions.editions.map((e) => [e.id, e]));
   const conceptIndex = {};
   for (const w of Object.values(worlds)) for (const id of w.allConcepts) conceptIndex[id] = { id, worldId: w.id, name: w.conceptNames[id] || { en: id } };
   return {
     ...raw,
     conceptIndex,
+    cities,
+    editions,
+    cityMap,
+    editionMap,
     worlds,
     worldIndex,
     badges,

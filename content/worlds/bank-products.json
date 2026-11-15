@@ -1,0 +1,1156 @@
+{
+  "id": "bank-products",
+  "icon": "💳",
+  "color": "#0B3D91",
+  "name": {
+    "en": "{bank} Junior Club",
+    "ar": "نادي {bank} للصغار"
+  },
+  "tagline": {
+    "en": "Kids' accounts, debit cards, cheques, credit cards and savings products",
+    "ar": "حسابات الصغار وبطاقات الخصم والشيكات وبطاقات الائتمان ومنتجات الادخار"
+  },
+  "badge": {
+    "id": "world-bank-products",
+    "icon": "💳",
+    "rarity": "rare",
+    "name": {
+      "en": "Junior Banker",
+      "ar": "المصرفي الصغير"
+    },
+    "desc": {
+      "en": "Finish the {bank} Junior Club",
+      "ar": "أكمل نادي {bank} للصغار"
+    }
+  },
+  "realLife": {
+    "en": "Grown-ups: sit together with your child and look at a real bank statement or banking app. Find the balance, one deposit and one payment.",
+    "ar": "أيها الكبار: اجلسوا مع طفلكم وانظروا إلى كشف حساب أو تطبيق بنك حقيقي. ابحثوا عن الرصيد وعن إيداع ودفعة."
+  },
+  "concepts": {
+    "kids-account": {
+      "en": "Kids' bank accounts",
+      "ar": "حسابات الصغار البنكية"
+    },
+    "debit-card": {
+      "en": "Debit cards",
+      "ar": "بطاقات الخصم"
+    },
+    "cheques": {
+      "en": "Cheques",
+      "ar": "الشيكات"
+    },
+    "credit-card": {
+      "en": "Credit cards",
+      "ar": "بطاقات الائتمان"
+    },
+    "saving-products": {
+      "en": "Saving products",
+      "ar": "منتجات الادخار"
+    }
+  },
+  "nodes": [
+    {
+      "id": "kids-account",
+      "kind": "lesson",
+      "icon": "🧒",
+      "title": {
+        "en": "Your first bank account",
+        "ar": "حسابك البنكي الأول"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "bank",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to {stop}! This is {bank}. Banks like {bank} have accounts made for children, such as the {kidsAccount}. A parent or guardian opens it with you and helps you look after it.",
+            "ar": "أهلاً بك في {stop}! هذا {bank}. البنوك مثل {bank} تقدّم حسابات مخصصة للأطفال، مثل {kidsAccount}. يفتحه معك أحد والديك أو الوصي ويساعدك على إدارته."
+          }
+        },
+        {
+          "type": "story",
+          "art": "bank",
+          "mascot": "thinking",
+          "text": {
+            "en": "Every account has an ACCOUNT NUMBER, like your money's home address. A STATEMENT lists every deposit and withdrawal and shows your BALANCE. You can check it together in the {bankApp}.",
+            "ar": "لكل حساب رقم حساب، مثل عنوان بيت مالك. كشف الحساب يعرض كل إيداع وسحب ويُظهر رصيدك. يمكنكم مراجعته معاً في {bankApp}."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "kids-account",
+          "prompt": {
+            "en": "Who opens a kids' bank account with you?",
+            "ar": "من يفتح معك حساب الصغار البنكي؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A parent or guardian, together with you",
+                "ar": "أحد والديك أو الوصي، معك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A friend from school",
+                "ar": "صديق من المدرسة"
+              }
+            },
+            {
+              "text": {
+                "en": "You alone, in secret",
+                "ar": "أنت وحدك، سراً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Kids' accounts are opened with a parent or guardian, who helps manage them until you're older.",
+            "ar": "تُفتح حسابات الصغار مع أحد الوالدين أو الوصي، الذي يساعد في إدارتها حتى تكبر."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "kids-account",
+          "prompt": {
+            "en": "What does a bank STATEMENT show?",
+            "ar": "ماذا يُظهر كشف الحساب؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Every deposit and withdrawal, and your balance",
+                "ar": "كل إيداع وسحب، ورصيدك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Your school marks",
+                "ar": "درجاتك المدرسية"
+              }
+            },
+            {
+              "text": {
+                "en": "The weather",
+                "ar": "الطقس"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A statement is the full story of your money: what came in, what went out, and what's left.",
+            "ar": "كشف الحساب هو القصة الكاملة لمالك: ما دخل وما خرج وما تبقى."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "kids-account",
+          "prompt": {
+            "7-9": {
+              "en": "You have [[20]] in your account. Grandma deposits [[10]] for {festival}. What's your balance now?",
+              "ar": "في حسابك [[20]]. أودعت الجدة [[10]] بمناسبة {festival}. كم رصيدك الآن؟"
+            },
+            "default": {
+              "en": "Your balance is [[250]]. You deposit [[100]] of gift money, then spend [[40]] with your card. What's your new balance?",
+              "ar": "رصيدك [[250]]. أودعت [[100]] من مال الهدايا ثم أنفقت [[40]] ببطاقتك. ما رصيدك الجديد؟"
+            }
+          },
+          "answer": {
+            "7-9": 30,
+            "default": 310
+          },
+          "explain": {
+            "en": "Deposits add to your balance; spending takes away.",
+            "ar": "الإيداعات تزيد رصيدك والإنفاق ينقصه."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "kids-account",
+          "prompt": {
+            "en": "Why is a bank account safer than a piggy bank at home?",
+            "ar": "لماذا الحساب البنكي أكثر أماناً من الحصّالة في البيت؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It's protected by the bank and can earn interest or profit",
+                "ar": "يحميه البنك ويمكن أن يكسب فائدة أو ربحاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Piggy banks earn more",
+                "ar": "الحصّالات تكسب أكثر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Money in the bank can't be lost or stolen like cash at home, and it can grow.",
+            "ar": "المال في البنك لا يضيع ولا يُسرق مثل النقود في البيت، ويمكن أن ينمو."
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "debit-card",
+      "kind": "lesson",
+      "icon": "💳",
+      "title": {
+        "en": "Your debit card",
+        "ar": "بطاقة الخصم الخاصة بك"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "atm",
+          "mascot": "happy",
+          "text": {
+            "en": "With the {kidsCard} you can pay in shops and take cash from ATMs. A DEBIT card spends money that is already in YOUR account, so you can't spend more than you have.",
+            "ar": "باستخدام {kidsCard} يمكنك الدفع في المتاجر وسحب النقود من الصرّافات. بطاقة الخصم تنفق مالاً موجوداً أصلاً في حسابك، فلا يمكنك إنفاق أكثر مما لديك."
+          }
+        },
+        {
+          "type": "story",
+          "art": "shield",
+          "mascot": "thinking",
+          "text": {
+            "en": "Kids' cards usually come with grown-up controls: a daily spending limit, an alert for every payment, and a button in the {bankApp} to freeze the card if it goes missing.",
+            "ar": "بطاقات الصغار تأتي عادة مع أدوات تحكم للكبار: حد إنفاق يومي، وتنبيه لكل دفعة، وزر في {bankApp} لإيقاف البطاقة إذا ضاعت."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debit-card",
+          "prompt": {
+            "en": "You have [[50]] in your account. Can your debit card buy a [[70]] game?",
+            "ar": "في حسابك [[50]]. هل تستطيع بطاقة الخصم شراء لعبة بـ[[70]]؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, a debit card only spends what's in the account",
+                "ar": "لا، بطاقة الخصم تنفق فقط ما في الحساب"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, the bank adds the rest",
+                "ar": "نعم، البنك يضيف الباقي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Debit means 'take from my account'. If the money isn't there, the payment is declined.",
+            "ar": "الخصم يعني 'خذ من حسابي'. إذا لم يكن المال موجوداً تُرفض الدفعة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debit-card",
+          "prompt": {
+            "en": "Your grown-up set a daily limit of [[30]]. Why is a limit helpful?",
+            "ar": "حدد أحد الكبار حداً يومياً قدره [[30]]. لماذا الحد مفيد؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It helps you stick to your plan and limits losses if the card is lost",
+                "ar": "يساعدك على الالتزام بخطتك ويحد الخسارة إذا ضاعت البطاقة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It's a punishment",
+                "ar": "إنه عقاب"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Limits are a safety net: they keep spending on track and protect your money.",
+            "ar": "الحدود شبكة أمان: تُبقي الإنفاق على المسار وتحمي مالك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debit-card",
+          "prompt": {
+            "en": "Your card is missing! What's the fastest fix?",
+            "ar": "بطاقتك مفقودة! ما أسرع حل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Freeze it in the app with a grown-up, then tell the bank",
+                "ar": "أوقفها في التطبيق مع أحد الكبار ثم أبلغ البنك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Wait until next week",
+                "ar": "انتظر حتى الأسبوع القادم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Freezing stops anyone else using the card straight away. You can unfreeze it if you find it.",
+            "ar": "الإيقاف يمنع أي شخص آخر من استخدامها فوراً، ويمكنك إعادة تفعيلها إذا وجدتها."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cheques",
+      "kind": "lesson",
+      "icon": "🧾",
+      "title": {
+        "en": "Cheques and cheque books",
+        "ar": "الشيكات ودفتر الشيكات"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "bank",
+          "mascot": "thinking",
+          "text": {
+            "en": "A CHEQUE is a written instruction telling your bank to pay someone from your account. Grown-ups with a current account at {bank} can get a {chequeBook}. People still use cheques for things like rent.",
+            "ar": "الشيك أمر مكتوب يطلب من بنكك أن يدفع لشخص ما من حسابك. يستطيع الكبار الذين لديهم حساب جارٍ في {bank} الحصول على {chequeBook}. ما زال الناس يستخدمون الشيكات لأشياء مثل الإيجار."
+          }
+        },
+        {
+          "type": "story",
+          "art": "bills",
+          "mascot": "happy",
+          "text": {
+            "en": "To write a cheque you fill in the DATE, the PAYEE (who gets paid), the AMOUNT in numbers AND in words, and your SIGNATURE. The money only moves when the bank 'clears' the cheque, which can take a day or two.",
+            "ar": "لكتابة شيك تملأ التاريخ واسم المستفيد (من سيُدفع له) والمبلغ بالأرقام وبالحروف وتوقيعك. لا ينتقل المال إلا عندما 'يصرف' البنك الشيك، وقد يستغرق ذلك يوماً أو يومين."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "cheque",
+          "params": {
+            "payee": "bakery",
+            "amount": 250
+          },
+          "text": {
+            "en": "Write a practice cheque! Fill in every part, then sign it.",
+            "ar": "اكتب شيكاً تدريبياً! املأ كل جزء ثم وقّعه."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "cheques",
+          "prompt": {
+            "en": "What goes on a cheque?",
+            "ar": "ماذا يُكتب على الشيك؟"
+          },
+          "bins": [
+            {
+              "id": "yes",
+              "emoji": "✍️",
+              "label": {
+                "en": "Goes on the cheque",
+                "ar": "يُكتب على الشيك"
+              }
+            },
+            {
+              "id": "no",
+              "emoji": "🚫",
+              "label": {
+                "en": "Never on a cheque",
+                "ar": "لا يُكتب أبداً"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "📅",
+              "text": {
+                "en": "Date",
+                "ar": "التاريخ"
+              },
+              "bin": "yes"
+            },
+            {
+              "emoji": "🙋",
+              "text": {
+                "en": "Payee's name",
+                "ar": "اسم المستفيد"
+              },
+              "bin": "yes"
+            },
+            {
+              "emoji": "🔢",
+              "text": {
+                "en": "Amount in numbers",
+                "ar": "المبلغ بالأرقام"
+              },
+              "bin": "yes"
+            },
+            {
+              "emoji": "🔤",
+              "text": {
+                "en": "Amount in words",
+                "ar": "المبلغ بالحروف"
+              },
+              "bin": "yes"
+            },
+            {
+              "emoji": "✒️",
+              "text": {
+                "en": "Signature",
+                "ar": "التوقيع"
+              },
+              "bin": "yes"
+            },
+            {
+              "emoji": "🔐",
+              "text": {
+                "en": "Your card PIN",
+                "ar": "رقمك السري"
+              },
+              "bin": "no"
+            },
+            {
+              "emoji": "🔑",
+              "text": {
+                "en": "Your app password",
+                "ar": "كلمة مرور التطبيق"
+              },
+              "bin": "no"
+            },
+            {
+              "emoji": "🎨",
+              "text": {
+                "en": "A doodle",
+                "ar": "رسمة"
+              },
+              "bin": "no"
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "cheques",
+          "prompt": {
+            "en": "Why write the amount in words AND in numbers?",
+            "ar": "لماذا نكتب المبلغ بالحروف وبالأرقام معاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "So nobody can easily change the amount",
+                "ar": "كي لا يستطيع أحد تغيير المبلغ بسهولة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "To practise spelling",
+                "ar": "للتدرب على الإملاء"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Changing '100' to '900' is easy; changing 'one hundred' too is much harder. The bank checks both match.",
+            "ar": "تغيير '١٠٠' إلى '٩٠٠' سهل، أما تغيير 'مئة' أيضاً فأصعب بكثير. البنك يتحقق من تطابقهما."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "cheques",
+          "prompt": {
+            "en": "What happens if a cheque is written for more than is in the account?",
+            "ar": "ماذا يحدث إذا كُتب شيك بمبلغ أكبر مما في الحساب؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It 'bounces': the bank refuses it, and there can be fees and serious trouble",
+                "ar": "'يرتد': يرفضه البنك وقد توجد رسوم ومشكلات خطيرة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The bank pays anyway",
+                "ar": "البنك يدفع على أي حال"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A bounced cheque breaks a promise to pay. Only write cheques you can cover.",
+            "ar": "الشيك المرتد إخلال بوعد الدفع. اكتب فقط شيكات تستطيع تغطيتها."
+          }
+        }
+      ]
+    },
+    {
+      "id": "credit-card",
+      "kind": "lesson",
+      "icon": "🏦",
+      "title": {
+        "en": "Credit cards: borrowing with plastic",
+        "ar": "بطاقات الائتمان: اقتراض بالبطاقة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "loan",
+          "mascot": "thinking",
+          "text": {
+            "en": "A CREDIT card, like the {creditCard}, is for grown-ups. It lets you BORROW from the bank to pay now and pay back later. Every month there's a statement with a DUE DATE.",
+            "ar": "بطاقة الائتمان، مثل {creditCard}، للكبار. تتيح لك الاقتراض من البنك لتدفع الآن وتسدد لاحقاً. كل شهر يصدر كشف بتاريخ استحقاق."
+          }
+        },
+        {
+          "type": "story",
+          "art": "storm",
+          "mascot": "thinking",
+          "text": {
+            "en": "Pay the FULL amount by the due date and you usually pay no interest. Pay only the small 'minimum payment', and interest is charged on the rest. That's how credit card debt grows!",
+            "ar": "إذا سددت المبلغ كاملاً قبل تاريخ الاستحقاق فلا تدفع عادة أي فائدة. وإذا دفعت 'الحد الأدنى' فقط تُحسب الفائدة على الباقي. هكذا تكبر ديون البطاقات!"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-card",
+          "prompt": {
+            "en": "Who can get a credit card?",
+            "ar": "من يستطيع الحصول على بطاقة ائتمان؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Adults with a regular income",
+                "ar": "البالغون الذين لديهم دخل منتظم"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Any child who asks",
+                "ar": "أي طفل يطلبها"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Banks only lend to adults who can show they can pay back.",
+            "ar": "البنوك تقرض فقط البالغين القادرين على إثبات قدرتهم على السداد."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-card",
+          "prompt": {
+            "en": "Mum spends [[1000]] on her credit card this month. What's the smartest way to pay?",
+            "ar": "أنفقت الأم [[1000]] ببطاقتها الائتمانية هذا الشهر. ما أذكى طريقة للسداد؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Pay the full [[1000]] by the due date",
+                "ar": "سداد [[1000]] كاملة قبل تاريخ الاستحقاق"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Pay only the minimum, every month",
+                "ar": "دفع الحد الأدنى فقط كل شهر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Paying in full means no interest. Paying the minimum lets interest pile up month after month.",
+            "ar": "السداد الكامل يعني عدم دفع فائدة، أما الحد الأدنى فيترك الفائدة تتراكم شهراً بعد شهر."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "credit-card",
+          "prompt": {
+            "en": "A credit card charges 3% interest a month. You leave [[1000]] unpaid for one month. How much interest is added?",
+            "ar": "بطاقة ائتمان تأخذ فائدة ٣٪ شهرياً. تركت [[1000]] دون سداد لشهر. كم الفائدة المضافة؟"
+          },
+          "answer": 30,
+          "explain": {
+            "en": "3% of 1000 = 1000 × 3 ÷ 100 = 30. In a year that could be over 400!",
+            "ar": "٣٪ من ١٠٠٠ = ١٠٠٠ × ٣ ÷ ١٠٠ = ٣٠. وفي سنة قد تتجاوز ٤٠٠!"
+          },
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "credit-card",
+          "prompt": {
+            "en": "Debit or credit: which spends your OWN money?",
+            "ar": "الخصم أم الائتمان: أيهما ينفق مالك أنت؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Debit card",
+                "ar": "بطاقة الخصم"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Credit card",
+                "ar": "بطاقة الائتمان"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Debit takes money you have; credit borrows money you must pay back.",
+            "ar": "الخصم يأخذ مالاً لديك، والائتمان يقترض مالاً يجب أن تسدده."
+          }
+        }
+      ]
+    },
+    {
+      "id": "saving-products",
+      "kind": "lesson",
+      "icon": "🌱",
+      "title": {
+        "en": "Growing your savings",
+        "ar": "تنمية مدخراتك"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "grow",
+          "mascot": "excited",
+          "text": {
+            "en": "Banks offer products to help savings grow. A SAVINGS ACCOUNT pays a little interest or profit. A FIXED DEPOSIT pays more if you agree to leave your money for a set time. Some banks offer Islamic accounts, like the {islamicAccount}, that share profit instead of paying interest.",
+            "ar": "تقدّم البنوك منتجات لتنمية المدخرات. حساب التوفير يدفع فائدة أو ربحاً قليلاً. الوديعة الثابتة تدفع أكثر إذا وافقت على ترك مالك لمدة محددة. وبعض البنوك تقدم حسابات إسلامية مثل {islamicAccount} تشارك الأرباح بدلاً من دفع الفائدة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "saving-products",
+          "prompt": {
+            "en": "With a fixed deposit you promise not to touch your money for a year. Why does it pay more?",
+            "ar": "في الوديعة الثابتة تتعهد بعدم لمس مالك لمدة سنة. لماذا تدفع أكثر؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The bank can use the money for longer, so it rewards you",
+                "ar": "يستطيع البنك استخدام المال مدة أطول، فيكافئك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Because it's lucky",
+                "ar": "لأنها محظوظة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The longer the bank can count on your money, the more it can lend, so it pays you more.",
+            "ar": "كلما طالت المدة التي يعتمد فيها البنك على مالك زاد ما يقرضه، فيدفع لك أكثر."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "saving-products",
+          "prompt": {
+            "en": "Your {kidsAccount} pays 2% a year. You keep [[500]] in it for a year. How much do you earn?",
+            "ar": "{kidsAccount} يدفع ٢٪ سنوياً. أبقيت فيه [[500]] لسنة. كم تكسب؟"
+          },
+          "answer": 10,
+          "explain": {
+            "en": "2% of 500 = 500 × 2 ÷ 100 = 10.",
+            "ar": "٢٪ من ٥٠٠ = ٥٠٠ × ٢ ÷ ١٠٠ = ١٠."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "saving-products",
+          "prompt": {
+            "en": "Before choosing any bank product, what should a family do?",
+            "ar": "قبل اختيار أي منتج بنكي، ماذا يجب أن تفعل العائلة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Read the terms, fees and rates, and ask questions",
+                "ar": "قراءة الشروط والرسوم والأسعار وطرح الأسئلة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Pick the one with the coolest picture",
+                "ar": "اختيار صاحب أجمل صورة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Smart customers compare fees, rates and rules, and ask the bank to explain anything unclear.",
+            "ar": "العملاء الأذكياء يقارنون الرسوم والأسعار والشروط ويطلبون من البنك شرح أي شيء غير واضح."
+          }
+        }
+      ]
+    },
+    {
+      "id": "debit-or-credit",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "debit-card",
+        "credit-card"
+      ],
+      "title": {
+        "en": "Own Money or Borrowed?",
+        "ar": "مالي أم مقترض؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "own",
+            "emoji": "👛",
+            "label": {
+              "en": "My own money",
+              "ar": "مالي أنا"
+            }
+          },
+          {
+            "id": "borrowed",
+            "emoji": "🏦",
+            "label": {
+              "en": "Borrowed money",
+              "ar": "مال مقترض"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "💳",
+            "text": {
+              "en": "Paying with a debit card",
+              "ar": "الدفع ببطاقة الخصم"
+            },
+            "bin": "own"
+          },
+          {
+            "emoji": "🏧",
+            "text": {
+              "en": "Taking cash from my account",
+              "ar": "سحب نقود من حسابي"
+            },
+            "bin": "own"
+          },
+          {
+            "emoji": "🐷",
+            "text": {
+              "en": "Spending my savings",
+              "ar": "إنفاق مدخراتي"
+            },
+            "bin": "own"
+          },
+          {
+            "emoji": "🧾",
+            "text": {
+              "en": "A cheque from my current account",
+              "ar": "شيك من حسابي الجاري"
+            },
+            "bin": "own"
+          },
+          {
+            "emoji": "🍎",
+            "text": {
+              "en": "Kids' card at the school canteen",
+              "ar": "بطاقة الصغار في مقصف المدرسة"
+            },
+            "bin": "own"
+          },
+          {
+            "emoji": "📱",
+            "text": {
+              "en": "Paying from my app balance",
+              "ar": "الدفع من رصيد التطبيق"
+            },
+            "bin": "own"
+          },
+          {
+            "emoji": "💎",
+            "text": {
+              "en": "Paying with a credit card",
+              "ar": "الدفع ببطاقة الائتمان"
+            },
+            "bin": "borrowed"
+          },
+          {
+            "emoji": "🛍️",
+            "text": {
+              "en": "Buy now, pay later",
+              "ar": "اشترِ الآن وادفع لاحقاً"
+            },
+            "bin": "borrowed"
+          },
+          {
+            "emoji": "🚗",
+            "text": {
+              "en": "A car loan",
+              "ar": "قرض سيارة"
+            },
+            "bin": "borrowed"
+          },
+          {
+            "emoji": "📉",
+            "text": {
+              "en": "An overdraft",
+              "ar": "السحب على المكشوف"
+            },
+            "bin": "borrowed"
+          },
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "A home loan",
+              "ar": "قرض منزل"
+            },
+            "bin": "borrowed"
+          },
+          {
+            "emoji": "🤝",
+            "text": {
+              "en": "Borrowing from the bank",
+              "ar": "الاقتراض من البنك"
+            },
+            "bin": "borrowed"
+          }
+        ],
+        "prompt": {
+          "en": "Is it your own money, or borrowed?",
+          "ar": "هل هو مالك أم مال مقترض؟"
+        }
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "{bank} Junior Club quiz",
+        "ar": "اختبار نادي {bank} للصغار"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "kids-account",
+          "prompt": {
+            "en": "A kids' account is opened…",
+            "ar": "حساب الصغار يُفتح…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "With a parent or guardian",
+                "ar": "مع أحد الوالدين أو الوصي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "By the child alone",
+                "ar": "من الطفل وحده"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Grown-ups open and look after kids' accounts with the child.",
+            "ar": "يفتح الكبار حسابات الصغار ويديرونها مع الطفل."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debit-card",
+          "prompt": {
+            "en": "A debit card spends…",
+            "ar": "بطاقة الخصم تنفق…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Money already in your account",
+                "ar": "مالاً موجوداً في حسابك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Money borrowed from the bank",
+                "ar": "مالاً مقترضاً من البنك"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Debit = your own money.",
+            "ar": "الخصم = مالك أنت."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "cheques",
+          "prompt": {
+            "en": "Which of these must be on a cheque?",
+            "ar": "أيّ هذه يجب أن يكون على الشيك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Your signature",
+                "ar": "توقيعك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Your PIN",
+                "ar": "رقمك السري"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Sign cheques, but never write your PIN anywhere.",
+            "ar": "وقّع الشيكات، لكن لا تكتب رقمك السري أبداً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-card",
+          "prompt": {
+            "en": "To avoid credit card interest, pay…",
+            "ar": "لتجنب فائدة بطاقة الائتمان، ادفع…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The full amount by the due date",
+                "ar": "المبلغ كاملاً قبل تاريخ الاستحقاق"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Only the minimum",
+                "ar": "الحد الأدنى فقط"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Full payment on time usually means zero interest.",
+            "ar": "السداد الكامل في الموعد يعني عادة صفر فائدة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "saving-products",
+          "prompt": {
+            "en": "Savings pay 5% a year. You save [[200]]. Interest after one year?",
+            "ar": "المدخرات تكسب ٥٪ سنوياً. ادخرت [[200]]. الفائدة بعد سنة؟"
+          },
+          "answer": 10,
+          "explain": {
+            "en": "5% of 200 = 10.",
+            "ar": "٥٪ من ٢٠٠ = ١٠."
+          },
+          "money": true
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "👻",
+      "title": {
+        "en": "Boss: the Fee Phantom",
+        "ar": "الزعيم: شبح الرسوم"
+      },
+      "boss": {
+        "id": "the-fee-phantom",
+        "name": {
+          "en": "The Fee Phantom",
+          "ar": "شبح الرسوم"
+        },
+        "color": "#0B3D91",
+        "intro": {
+          "en": "Whooo! I'm the Fee Phantom. I hide in the small print, add sneaky fees and tempt people to pay only the minimum. Can you outsmart me?",
+          "ar": "هووو! أنا شبح الرسوم. أختبئ في التفاصيل الصغيرة وأضيف رسوماً خفية وأغري الناس بدفع الحد الأدنى فقط. هل تستطيع التغلب علي؟"
+        },
+        "taunt": {
+          "en": "Whooo, you missed my trick! Look again.",
+          "ar": "هووو، فاتتك حيلتي! انظر مجدداً."
+        },
+        "defeat": {
+          "en": "Nooo! You read the small print!",
+          "ar": "لا! لقد قرأت التفاصيل الصغيرة!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "credit-card",
+          "prompt": {
+            "en": "Phantom: 'Just pay the minimum, it's fine forever!' Is it?",
+            "ar": "الشبح: 'ادفع الحد الأدنى فقط، لا بأس للأبد!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, interest keeps growing on what's left",
+                "ar": "لا، الفائدة تستمر بالنمو على الباقي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, no problem",
+                "ar": "نعم، لا مشكلة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Minimum payments keep debt alive for a long time.",
+            "ar": "الحد الأدنى يُبقي الدين قائماً لفترة طويلة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "saving-products",
+          "prompt": {
+            "en": "Phantom: 'Never read the terms, just sign!' Smart?",
+            "ar": "الشبح: 'لا تقرأ الشروط، فقط وقّع!' هل هذا ذكي؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, always read the fees and rules first",
+                "ar": "لا، اقرأ دائماً الرسوم والشروط أولاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, reading is boring",
+                "ar": "نعم، القراءة مملة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The small print tells you what a product really costs.",
+            "ar": "التفاصيل الصغيرة تخبرك بالتكلفة الحقيقية للمنتج."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "kids-account",
+          "prompt": {
+            "7-9": {
+              "en": "Phantom hid your balance! You had [[40]], then spent [[15]]. What's left?",
+              "ar": "الشبح أخفى رصيدك! كان معك [[40]] ثم أنفقت [[15]]. كم تبقى؟"
+            },
+            "default": {
+              "en": "Phantom hid your balance! You had [[600]], deposited [[150]], then paid [[275]]. What's left?",
+              "ar": "الشبح أخفى رصيدك! كان معك [[600]] وأودعت [[150]] ثم دفعت [[275]]. كم تبقى؟"
+            }
+          },
+          "answer": {
+            "7-9": 25,
+            "default": 475
+          },
+          "explain": {
+            "en": "Add deposits, subtract payments.",
+            "ar": "أضف الإيداعات واطرح المدفوعات."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "cheques",
+          "prompt": {
+            "en": "Phantom: 'Write a cheque for more than you have, nobody checks!' True?",
+            "ar": "الشبح: 'اكتب شيكاً بأكثر مما لديك، لا أحد يتحقق!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, it bounces and can cause fees and trouble",
+                "ar": "لا، سيرتد وقد يسبب رسوماً ومشكلات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, nobody checks",
+                "ar": "نعم، لا أحد يتحقق"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Banks always check the balance before paying a cheque.",
+            "ar": "البنوك تتحقق دائماً من الرصيد قبل صرف الشيك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debit-card",
+          "prompt": {
+            "en": "Phantom: 'Tell me your card PIN and I'll lower your fees!' You…",
+            "ar": "الشبح: 'أخبرني برقمك السري وسأخفض رسومك!' أنت…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Never share it, and tell a grown-up",
+                "ar": "لا أشاركه أبداً وأخبر أحد الكبار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Share it",
+                "ar": "أشاركه"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Nobody honest ever needs your PIN.",
+            "ar": "لا أحد أمين يحتاج رقمك السري أبداً."
+          }
+        }
+      ]
+    }
+  ]
+}

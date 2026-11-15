@@ -15,15 +15,15 @@ import { Progress, RewardRow } from '../components/ui.jsx';
 
 /** Spaced-repetition review: one question for each skill that's due (max 5). */
 export default function Review() {
-  const { content, age, dispatch } = useGame();
+  const { content, age, dispatch, cityCtx } = useGame();
   const { t, tx } = useT();
   const nav = useNavigate();
   const due = useDueReviews();
   const [questions] = useState(() =>
     due.slice(0, 5).map((concept) => {
-      const pool = (content.conceptQuestions[concept] || []).filter((q) => !q.ages || q.ages.includes(age));
+      const pool = (content.conceptQuestions[concept] || []).filter((q) => (!q.ages || q.ages.includes(age)) && (!q.regions || q.regions.includes(cityCtx.region)));
       const q = pool[hash(`${concept}|${dayKey()}`) % Math.max(1, pool.length)];
-      return q ? stepsForAge({ steps: [q] }, age)[0] : null;
+      return q ? { ...stepsForAge({ steps: [q] }, age, cityCtx)[0], worldId: q.worldId } : null;
     }).filter(Boolean),
   );
   const [idx, setIdx] = useState(0);

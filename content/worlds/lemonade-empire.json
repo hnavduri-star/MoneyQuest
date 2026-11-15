@@ -60,8 +60,8 @@
           "art": "stand",
           "mascot": "excited",
           "text": {
-            "en": "Welcome to Kite Beach! It's hot, and people want cold mint lemonade. You decide to open a stand. A BUSINESS sells PRODUCTS (things) or SERVICES (help) that people want and will pay for.",
-            "ar": "أهلاً بك في شاطئ كايت! الجو حار والناس يريدون ليمونادة بالنعناع باردة. قررت أن تفتح كشكاً. المشروع التجاري يبيع منتجات (أشياء) أو خدمات (مساعدة) يريدها الناس ويدفعون ثمنها."
+            "en": "Welcome to {stop} in {city}! It's a sunny day, and people want cold mint lemonade. You decide to open a stand. A BUSINESS sells PRODUCTS (things) or SERVICES (help) that people want and will pay for.",
+            "ar": "أهلاً بك في {stop} في {city}! يوم مشمس والناس يريدون ليمونادة بالنعناع باردة. قررت أن تفتح كشكاً. المشروع التجاري يبيع منتجات (أشياء) أو خدمات (مساعدة) يريدها الناس ويدفعون ثمنها."
           }
         },
         {
