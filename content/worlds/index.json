@@ -1,0 +1,25 @@
+{
+  "$comment": "Every world in display order. 'available: false' shows it as coming soon. A world becomes playable when available is true AND worlds/<id>.json exists. 'requires' lists worlds to finish first; 'ages' limits which age tiers see it.",
+  "worlds": [
+    { "id": "money-basics", "phase": 1, "available": true, "icon": "🐷", "color": "#E69F00", "building": "piggy-house", "name": { "en": "Money Basics", "ar": "أساسيات المال" } },
+    { "id": "bank-town", "phase": 1, "available": true, "requires": ["money-basics"], "icon": "🏦", "color": "#0072B2", "building": "bank", "name": { "en": "Bank Town", "ar": "مدينة البنوك" } },
+    { "id": "salary-street", "phase": 2, "available": false, "icon": "💼", "color": "#009E73", "building": "office", "name": { "en": "Salary Street", "ar": "شارع الراتب" } },
+    { "id": "household-budget", "phase": 2, "available": false, "icon": "🏠", "color": "#CC79A7", "building": "home", "name": { "en": "Household Budget", "ar": "ميزانية البيت" } },
+    { "id": "pl-factory", "phase": 2, "available": false, "icon": "🏭", "color": "#D55E00", "building": "factory", "name": { "en": "P&L Factory", "ar": "مصنع الأرباح" } },
+    { "id": "lemonade-empire", "phase": 3, "available": false, "icon": "🍋", "color": "#E69F00", "building": "shop", "name": { "en": "Lemonade to Empire", "ar": "من الليمونادة إلى الإمبراطورية" } },
+    { "id": "currency-bazaar", "phase": 3, "available": false, "icon": "💱", "color": "#56B4E9", "building": "bazaar", "name": { "en": "Currency Bazaar", "ar": "سوق العملات" } },
+    { "id": "supply-demand", "phase": 3, "available": false, "icon": "🍎", "color": "#009E73", "building": "market", "name": { "en": "Supply & Demand Market", "ar": "سوق العرض والطلب" } },
+    { "id": "giving-garden", "phase": 3, "available": false, "icon": "🌻", "color": "#009E73", "building": "garden", "name": { "en": "Giving Garden", "ar": "حديقة العطاء" } },
+    { "id": "investment-island", "phase": 4, "available": false, "icon": "📈", "color": "#0072B2", "building": "exchange", "name": { "en": "Investment Island", "ar": "جزيرة الاستثمار" } },
+    { "id": "debt-dungeon", "phase": 4, "available": false, "icon": "🐉", "color": "#D55E00", "building": "dungeon", "name": { "en": "Debt Dungeon", "ar": "زنزانة الديون" } },
+    { "id": "insurance-shield", "phase": 4, "available": false, "icon": "🛡️", "color": "#56B4E9", "building": "shield", "name": { "en": "Insurance Shield", "ar": "درع التأمين" } },
+    { "id": "inflation-lab", "phase": 4, "available": false, "icon": "🧪", "color": "#CC79A7", "building": "lab", "name": { "en": "Inflation Lab", "ar": "مختبر التضخم" } },
+    { "id": "startup-lab", "phase": 5, "available": false, "icon": "🚀", "color": "#D55E00", "building": "startup", "name": { "en": "Startup Lab", "ar": "مختبر الشركات الناشئة" } },
+    { "id": "scam-shield", "phase": 5, "available": false, "icon": "🕵️", "color": "#0072B2", "building": "tower", "name": { "en": "Scam Shield", "ar": "درع الاحتيال" } },
+    { "id": "government-city", "phase": 5, "available": false, "icon": "🏛️", "color": "#9AA0A6", "building": "hall", "name": { "en": "Government & Economy City", "ar": "مدينة الحكومة والاقتصاد" } },
+    { "id": "career-compass", "phase": 5, "available": false, "icon": "🧭", "color": "#009E73", "building": "school", "name": { "en": "Career Compass", "ar": "بوصلة المهن" } },
+    { "id": "smart-shopper", "phase": 5, "available": false, "icon": "🛒", "color": "#E69F00", "building": "mall", "name": { "en": "Smart Shopper", "ar": "المتسوّق الذكي" } },
+    { "id": "big-goals", "phase": 5, "available": false, "icon": "🎯", "color": "#CC79A7", "building": "tower", "name": { "en": "Big Goals Quest", "ar": "رحلة الأهداف الكبيرة" } },
+    { "id": "money-master", "phase": 6, "available": false, "icon": "👑", "color": "#E69F00", "building": "palace", "name": { "en": "Money Master", "ar": "سيّد المال" } }
+  ]
+}

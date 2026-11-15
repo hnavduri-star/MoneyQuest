@@ -1,0 +1,179 @@
+# MoneyQuest
+
+A mobile-first, installable PWA that teaches children aged 7–15 how money works through a virtual town that grows as they learn.
+
+**Status: Phase 1 (MVP) complete.** It includes the character creator, the town hub, the full gamification engine, Money Basics and Bank Town. Phases 2–6 are listed at the end.
+
+Child-safe by design: no ads, no third-party scripts, fonts or trackers, no real money, no open chat, nicknames only. Strict Content-Security-Policy (`'self'` only).
+
+## Quick start
+
+Requires **Node 22.13+**. SQLite is Node's built-in `node:sqlite`, so there is nothing native to compile.
+
+```bash
+cd moneyquest
+npm install
+npm run dev          # API on :4100, app on http://localhost:5180 (proxies /api)
+npm test             # engine + API tests (vitest)
+npm run content:check  # validates every JSON content file
+```
+
+Production (one service: Express serves the built app):
+
+```bash
+npm run build        # content check + client build (PWA, service worker)
+npm start            # http://localhost:4100   (PORT, DB_FILE env vars optional)
+```
+
+The SQLite file defaults to `moneyquest/data/moneyquest.db`. On hosts with ephemeral disks, point `DB_FILE` at a persistent volume.
+
+## What's in Phase 1
+
+| Area | What you get |
+|---|---|
+| First run | A grown-up sets a 4-digit parent PIN (it can also link a second device with the family code + PIN). Works offline: the family links to the server later. |
+| Character creator | Language (English / Arabic, full RTL) and currency (AED, SAR, USD, EUR, INR or pretend “Gems ✦”), age tier, nickname (checked for real names, emails and phone numbers), 16 presets in 6 groups (Arab incl. thobe, ghutra, abaya and hijab; Indian; African; East Asian; European; fantasy robot, fox and astronaut) or a full custom builder, 6 companion guides, colour theme. |
+| Evolution | The avatar and companion change at levels 10, 18, 34 and 43: star pin, cape, golden glow, crown and sparkles. |
+| Town hub | SVG town: home with the avatar and pet, a building per world (empty plot → construction → tiers 1–3 as mastery grows, golden and sparkling at tier 3), shop decorations, and traffic that gets busier as the town grows. Future districts are shown as coming soon. |
+| Gamification | XP and levels 1–50 with ranks (Saver, Builder, Trader, Banker, Tycoon, Money Master), coins and gems, daily streak with freeze tokens, 7-day login chest (every reward shown in advance, no randomness), 3 daily quests, weekly challenge, 143 badges in 4 rarities, trophy room, 1–3 stars per level, family leaderboard (top this week and most improved), timed mini-games with combos and power-ups, hints that cost coins (free after a wrong try, or when the child can't afford one), boss battles, mastery meters (Learning → Practising → Mastered) with spaced-repetition reviews that pay bonus coins. |
+| Worlds | **Money Basics**: 5 lessons, Needs vs Wants Rush, quiz, and the Impulse Imp boss. **Bank Town**: 5 lessons plus an optional Islamic banking lesson (profit-sharing), Bank Rush, quiz, and the Lenny the Loan Shark boss. |
+| Simulations | Savings goal, Save/Spend/Give jars, simple vs compound growth, loan calculator, bank spread (animated coin flow), profit-sharing (mudarabah). |
+| Mascot | Speech bubbles, moods, read aloud with the device's own speech engine (opt-in), sounds made with Web Audio (no audio files), haptics, confetti. Failure is always gentle: a hint and another try, nothing lost. |
+| Wellbeing | Break reminder (15/20/30/45 min) that never locks the child out, no loot boxes, no pay-to-win, no streak shaming (a missed day simply starts a new streak, and freezes cover gaps automatically). |
+| Accessibility | 48px+ tap targets, colour-blind-safe Okabe–Ito palette, state never shown by colour alone, reduced motion (also follows the OS setting), sound, voice and haptics toggles, OpenDyslexic font option, 3 text sizes, screen-reader labels. |
+| Offline + sync | All content is bundled and precached (~0.9 MB). Progress autosaves per profile on the device, then syncs to the family account. Last write wins. |
+| Profiles | Several children per family. Removing a profile or changing an age tier needs the parent PIN. |
+
+## Project layout
+
+```
+moneyquest/
+  content/                 ← all game content (JSON). Edit this to add lessons, badges, items…
+    worlds/index.json        every world in order (phase, availability, prerequisites, building)
+    worlds/<world-id>.json   a world's levels and steps
+    badges.json              one-off badges + tiered badge series
+    rewards.json             reward rules: XP/coins per event, level curve, chest calendar, power-ups
+    quests.json              daily quest pool + weekly challenges
+    shop.json                collectibles (outfits, hats, pets, decorations, guide looks)
+    characters.json          avatar parts, presets, companions, colour themes
+    ranks.json               rank names per level range
+    i18n/en.json, ar.json    UI strings
+  engine/                  ← pure JS, shared by app and tests (no React, no DOM)
+    rewards.js               event-driven reward engine: processEvent(state, event) → { state, effects }
+    levels.js streaks.js mastery.js quests.js badges.js town.js progress.js scoring.js text.js
+    sims/                    interest.js, loans.js, bank.js, savings.js (unit-tested maths)
+    validate.js registry.js  content checks
+    test/                    vitest suites
+  server/                  ← Express + SQLite (families, devices, profiles, leaderboard)
+  client/                  ← React + Vite + Tailwind + Framer Motion PWA
+  scripts/                 dev runner, content checker
+```
+
+### How the reward engine works
+
+Every action is an **event**, for example `{ type: 'level.completed', worldId, nodeId, stars, mistakes, answers }`. `processEvent` is pure. It:
+
+1. handles the event (updates progress, mastery and the streak, or checks a purchase),
+2. applies the matching rules in `rewards.json` (variants, bonuses and stat counters),
+3. advances the quests in `quests.json` whose `event`/`where` match,
+4. settles level-ups, town buildings and badges until nothing new happens,
+5. returns the new state and a list of **effects** (`reward`, `levelUp`, `badge`, `buildingUnlocked`, `questDone`, `streak`, …), which the UI turns into celebrations.
+
+A new mission type plugs in by emitting an event. Rewards, quests and badges that react to it are data, so no engine code changes.
+
+## Adding content
+
+Run `npm run content:check` after any edit. It reports problems with the file and step, for example an unknown bin, a missing correct option, a missing Arabic key or a real-money price.
+
+### Text, languages and age tiers
+
+Any text can be a string, `{ "en": "…", "ar": "…" }`, or age-tiered: `{ "7-9": { "en": … }, "default": { "en": … } }`. Numbers can be age-tiered the same way (`"answer": { "7-9": 4, "default": 6 }`). Write money as `[[120]]` and it shows in the child's chosen currency. Add `"ages": ["10-12", "13-15"]` to a step or level to hide it from younger children.
+
+To add a language: create `content/i18n/<code>.json` with every key from `en.json`, add `<code>` text to content, and add it to `LANGUAGES` in `client/src/content.js` (with `dir: 'rtl'` if needed).
+
+### A new lesson (or a whole world)
+
+Add a node to `content/worlds/<world>.json` → `nodes`:
+
+```json
+{
+  "id": "my-lesson", "kind": "lesson", "icon": "💡",
+  "title": { "en": "My lesson", "ar": "درسي" },
+  "steps": [
+    { "type": "story", "art": "coins", "mascot": "happy", "text": { "en": "…", "ar": "…" } },
+    { "type": "choice", "concept": "needs-wants", "prompt": { "en": "…" },
+      "options": [{ "text": { "en": "Right" }, "correct": true }, { "text": { "en": "Wrong" } }],
+      "hint": { "en": "…" }, "explain": { "en": "…" } },
+    { "type": "number", "concept": "savings-goal", "money": true, "prompt": { "en": "… [[20]] …" }, "answer": 4, "tolerance": 0 },
+    { "type": "sort", "concept": "needs-wants", "prompt": { "en": "…" },
+      "bins": [{ "id": "need", "emoji": "🏠", "label": { "en": "Need" } }, { "id": "want", "emoji": "🎈", "label": { "en": "Want" } }],
+      "items": [{ "emoji": "💧", "text": { "en": "Water" }, "bin": "need" }] },
+    { "type": "sim", "sim": "compound", "params": { "principal": 100, "rate": 6, "years": 20 }, "text": { "en": "…" } }
+  ]
+}
+```
+
+- `kind`: `lesson`, `quiz`, `boss` (add a `boss` object with `name`, `intro`, `taunt`, `color`) or `minigame` (`"game": "sort"` with `config.bins`, `config.items`, `config.seconds` and `config.stars` thresholds).
+- Every question needs a `concept`, named in the world's `"concepts"` map. That drives mastery meters, spaced review and building upgrades.
+- `"optional": true` lets a level never block completion (as with the Islamic banking lesson, `"module": "islamic-banking"`, which parents can hide in Settings).
+- Levels unlock in order. A world's building is built when its required levels are done, reaches tier 2 at 60% average mastery and tier 3 when every concept is mastered.
+
+**New world:** create `content/worlds/<id>.json`, then set `"available": true` for it in `worlds/index.json`. The app picks up every JSON file in that folder automatically. The world gets 3 automatic badges (finish, all stars, master). A `building` type without its own art uses a generic building with the world icon.
+
+New **step art**, **sims** or **mini-game types** are React components. Register them in `client/src/components/Illustration.jsx`, `client/src/sims/index.jsx` or `client/src/pages/Play.jsx`, and add the id to `engine/registry.js` so the content checker knows about them.
+
+### A new badge
+
+One-off, in `badges.json` → `badges`:
+
+```json
+{ "id": "night-owl", "icon": "🦉", "rarity": "rare", "category": "special",
+  "name": { "en": "Review Hero", "ar": "بطل المراجعة" }, "desc": { "en": "Do 3 reviews", "ar": "…" },
+  "criteria": { "stat": "reviewsDone", "gte": 3 } }
+```
+
+Or a tiered series (one badge per tier, `{n}` and `"$n"` are replaced):
+
+```json
+{ "id": "hints", "icon": "💡", "category": "skill", "criteria": { "stat": "hintsUsed", "gte": "$n" },
+  "name": { "en": "Hint Taker {n}" }, "desc": { "en": "Use {n} hints" },
+  "tiers": [{ "n": 5, "rarity": "common" }, { "n": 25, "rarity": "rare" }] }
+```
+
+Criteria types: `stat` (any counter in `rewards.json` `stats`), `level`, `streak`, `badges`, `owned` (+ `type`), `mastered`, `nodeDone`, `worldComplete`, `worldPerfect`, `masteredWorld`, `allOf`, `anyOf`. Rarity rewards are set in `rewards.json` → `badgeRewards`.
+
+### A new character, outfit or companion
+
+- **Preset:** add to `characters.json` → `presets`, combining existing part ids (`species`, `skin` index, `hair`, `hairColor` index, `outfit`, `headwear`, `accessory`, `outfitColor`, `headwearColor`).
+- **New part** (for example a hairstyle): add `{ id, name }` to its list in `characters.json`, then draw it in `client/src/components/Avatar.jsx` (each part is a small SVG case).
+- **Companion:** add to `characters.json` → `companions` (name, colour, voice pitch and rate) and a `case` in `client/src/components/Companion.jsx`.
+- **Collectible:** add to `shop.json` with a coin or gem `price`, and optionally `unlock: { level }` or `unlock: { badge }`. Pets and decorations use an emoji `art`. Outfits, hats and guide looks map to SVG in `Avatar.jsx` and `Companion.jsx`.
+
+### Quests and rewards
+
+`quests.json` entries count matching events: `{ "event": "level.completed", "where": { "kind": "minigame" }, "target": 1 }`, or sum a field with `"measure": "stars"`. Quests that share a `group` never appear on the same day. All XP, coin and gem amounts live in `rewards.json`.
+
+## API (all first-party, under `/api`)
+
+| Method | Path | Notes |
+|---|---|---|
+| POST | `/families` | `{ pin }` → `{ familyId, code, token }` |
+| POST | `/families/join` | `{ code, pin }` → device token (rate-limited) |
+| GET | `/family` | profiles for this family |
+| PUT | `/profiles/:id` | upsert `{ nickname, ageTier, meta, state, summary, updatedAt }`; `409` returns the newer server copy |
+| DELETE | `/profiles/:id` | header `x-parent-pin` |
+| GET | `/leaderboard` | family only: nickname, avatar look, weekly XP, improvement |
+
+Tokens are stored hashed (SHA-256), PINs with scrypt. Profile state is capped at 400 KB.
+
+## Tests
+
+`npm test` runs 60 tests. The engine suites cover the interest, loan, bank and savings maths, the XP curve and ranks, streaks and freezes, mastery and spacing, quests, the shop, hints, badges, town tiers, world unlocking, age tiers and content validation. The API suite covers auth, sync conflicts, family isolation, nickname rules, PIN rate limiting, the leaderboard and size limits.
+
+## Roadmap (each phase waits for go-ahead)
+
+- **Phase 2:** Household Budget, Salary Street, P&L Factory, Parent Mode dashboard (with budget and P&L engines).
+- **Phase 3:** Lemonade to Empire, Currency Bazaar, Supply & Demand, Giving Garden (with exchange-rate engine).
+- **Phase 4:** Investment Island, Debt Dungeon, Insurance Shield, Inflation Lab (with stock-market, inflation and insurance-event engines).
+- **Phase 5:** Startup Lab, Scam Shield, Government City, Career Compass, Smart Shopper, Big Goals Quest.
+- **Phase 6:** Story Mode (state already records `choices`), Multiplayer Market Day, Teacher Mode, Money Master capstone, seasonal events.

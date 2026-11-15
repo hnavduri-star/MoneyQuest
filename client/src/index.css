@@ -1,0 +1,68 @@
+@import '@fontsource/baloo-2/latin-500.css';
+@import '@fontsource/baloo-2/latin-700.css';
+@import '@fontsource/baloo-2/latin-800.css';
+@import '@fontsource/baloo-bhaijaan-2/arabic-500.css';
+@import '@fontsource/baloo-bhaijaan-2/arabic-700.css';
+@import '@fontsource/baloo-bhaijaan-2/arabic-800.css';
+@import '@fontsource/opendyslexic/latin-400.css';
+@import '@fontsource/opendyslexic/latin-700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme: #0072b2;
+  --font-body: 'Baloo 2';
+  --font-display: 'Baloo 2';
+  font-size: 17px;
+  color-scheme: light;
+}
+:root[lang='ar'] {
+  --font-body: 'Baloo Bhaijaan 2';
+  --font-display: 'Baloo Bhaijaan 2';
+}
+:root.dyslexic {
+  --font-body: 'OpenDyslexic';
+  --font-display: 'OpenDyslexic';
+  letter-spacing: 0.02em;
+  word-spacing: 0.08em;
+}
+:root.text-large { font-size: 19px; }
+:root.text-xl { font-size: 21px; }
+
+html, body, #root { height: 100%; }
+body {
+  @apply bg-cream text-ink font-sans antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+  line-height: 1.45;
+}
+button { touch-action: manipulation; }
+:focus-visible { outline: 3px solid #1e2a3a; outline-offset: 3px; border-radius: 12px; }
+
+@layer components {
+  .card { @apply bg-white rounded-blob shadow-card border border-line; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 min-h-[52px] px-5 rounded-2xl font-display font-extrabold text-lg
+      transition active:translate-y-[2px] disabled:opacity-50 disabled:pointer-events-none select-none;
+  }
+  .btn-primary { @apply btn text-white shadow-pop; background: var(--theme); }
+  .btn-sun { @apply btn bg-sun text-ink shadow-pop; }
+  .btn-leaf { @apply btn bg-leaf text-white shadow-pop; }
+  .btn-ghost { @apply btn bg-white text-ink border-2 border-line; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-bold; }
+  .title { @apply font-display font-extrabold text-2xl leading-tight; }
+  .tap { @apply min-h-[48px] min-w-[48px]; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+:root.reduce-motion *, :root.reduce-motion *::before, :root.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+}
+.pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 0.5rem); }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }

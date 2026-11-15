@@ -1,0 +1,1139 @@
+{
+  "id": "bank-town",
+  "icon": "🏦",
+  "color": "#0072B2",
+  "name": {
+    "en": "Bank Town",
+    "ar": "مدينة البنوك"
+  },
+  "tagline": {
+    "en": "Deposits, interest, loans and how banks earn",
+    "ar": "الودائع والفائدة والقروض وكيف تربح البنوك"
+  },
+  "badge": {
+    "id": "world-bank-town",
+    "icon": "🏦",
+    "rarity": "rare",
+    "name": {
+      "en": "Bank Town Graduate",
+      "ar": "خريج مدينة البنوك"
+    },
+    "desc": {
+      "en": "Finish Bank Town",
+      "ar": "أكمل مدينة البنوك"
+    }
+  },
+  "realLife": {
+    "en": "Look at a real savings account rate together and work out what [[100]] would earn in a year.",
+    "ar": "انظروا معاً إلى نسبة ربح حساب توفير حقيقي واحسبوا كم ستكسب [[100]] في سنة."
+  },
+  "concepts": {
+    "bank-deposit": {
+      "en": "Deposits & withdrawals",
+      "ar": "الإيداع والسحب"
+    },
+    "interest-simple": {
+      "en": "Interest",
+      "ar": "الفائدة"
+    },
+    "interest-compound": {
+      "en": "Compound interest",
+      "ar": "الفائدة المركبة"
+    },
+    "loans": {
+      "en": "Loans",
+      "ar": "القروض"
+    },
+    "bank-spread": {
+      "en": "How banks earn",
+      "ar": "كيف تربح البنوك"
+    },
+    "islamic-banking": {
+      "en": "Profit-sharing",
+      "ar": "المشاركة في الربح"
+    }
+  },
+  "nodes": [
+    {
+      "id": "what-is-a-bank",
+      "kind": "lesson",
+      "icon": "🏦",
+      "title": {
+        "en": "What does a bank do?",
+        "ar": "ماذا يفعل البنك؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "bank",
+          "mascot": "happy",
+          "text": {
+            "en": "A bank is a safe place to keep money. When you put money in, it's called a DEPOSIT. When you take it out, it's a WITHDRAWAL.",
+            "ar": "البنك مكان آمن لحفظ المال. عندما تضع المال فيه يسمى ذلك إيداعاً، وعندما تأخذه يسمى سحباً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "bank-deposit",
+          "prompt": {
+            "en": "Why keep money in a bank instead of under your bed?",
+            "ar": "لماذا تحفظ المال في البنك بدلاً من تحت سريرك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It's safer, and it can earn a little extra",
+                "ar": "أكثر أماناً ويمكن أن يكسب قليلاً إضافياً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The bank spends it for you",
+                "ar": "البنك ينفقه نيابة عنك"
+              }
+            },
+            {
+              "text": {
+                "en": "Money under the bed grows",
+                "ar": "المال تحت السرير ينمو"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Banks keep money safe from loss and theft, and often pay you for keeping it there.",
+            "ar": "البنوك تحمي المال من الضياع والسرقة، وغالباً تدفع لك مقابل إبقائه لديها."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "bank-deposit",
+          "prompt": {
+            "en": "Deposit or withdrawal?",
+            "ar": "إيداع أم سحب؟"
+          },
+          "bins": [
+            {
+              "id": "in",
+              "emoji": "📥",
+              "label": {
+                "en": "Deposit",
+                "ar": "إيداع"
+              }
+            },
+            {
+              "id": "out",
+              "emoji": "📤",
+              "label": {
+                "en": "Withdrawal",
+                "ar": "سحب"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "🎁",
+              "text": {
+                "en": "Putting your Eid money in the bank",
+                "ar": "وضع عيديتك في البنك"
+              },
+              "bin": "in"
+            },
+            {
+              "emoji": "🏧",
+              "text": {
+                "en": "Taking cash from the machine",
+                "ar": "سحب نقود من الصراف"
+              },
+              "bin": "out"
+            },
+            {
+              "emoji": "💰",
+              "text": {
+                "en": "Saving your birthday money",
+                "ar": "ادخار مال عيد ميلادك"
+              },
+              "bin": "in"
+            },
+            {
+              "emoji": "🛒",
+              "text": {
+                "en": "Taking money out to buy a bike",
+                "ar": "سحب المال لشراء دراجة"
+              },
+              "bin": "out"
+            }
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "bank-deposit",
+          "money": true,
+          "prompt": {
+            "en": "You have [[50]] in the bank. You deposit [[30]], then withdraw [[20]]. How much is left?",
+            "ar": "لديك [[50]] في البنك. أودعت [[30]] ثم سحبت [[20]]. كم بقي؟"
+          },
+          "answer": 60,
+          "hint": {
+            "en": "50 + 30 − 20",
+            "ar": "٥٠ + ٣٠ − ٢٠"
+          }
+        }
+      ]
+    },
+    {
+      "id": "interest",
+      "kind": "lesson",
+      "icon": "🌱",
+      "title": {
+        "en": "Interest: money that grows",
+        "ar": "الفائدة: مال ينمو"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "grow",
+          "mascot": "excited",
+          "text": {
+            "en": "Banks use your deposit to lend to others. To say thank you, they pay you extra money called INTEREST. It's shown as a percent, like 5% a year.",
+            "ar": "البنوك تستخدم وديعتك لإقراض الآخرين. وكشكر لك تدفع لك مالاً إضافياً يسمى الفائدة، ويُكتب كنسبة مئوية مثل ٥٪ سنوياً."
+          }
+        },
+        {
+          "type": "story",
+          "art": "percent",
+          "mascot": "thinking",
+          "text": {
+            "en": "5% means 5 out of every 100. So [[100]] at 5% earns [[5]] in a year.",
+            "ar": "٥٪ تعني ٥ من كل ١٠٠. إذن [[100]] بنسبة ٥٪ تكسب [[5]] في السنة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "interest-simple",
+          "money": true,
+          "prompt": {
+            "7-9": {
+              "en": "The bank gives [[1]] for every [[10]] you keep for a year. You keep [[30]]. How much extra do you get?",
+              "ar": "البنك يعطيك [[1]] عن كل [[10]] تحتفظ بها لمدة سنة. احتفظت بـ[[30]]. كم تحصل إضافياً؟"
+            },
+            "default": {
+              "en": "You deposit [[200]] at 5% a year. How much interest after 1 year?",
+              "ar": "أودعت [[200]] بنسبة ٥٪ سنوياً. كم الفائدة بعد سنة؟"
+            }
+          },
+          "answer": {
+            "7-9": 3,
+            "default": 10
+          },
+          "hint": {
+            "7-9": {
+              "en": "How many tens are in 30?",
+              "ar": "كم عشرة في ٣٠؟"
+            },
+            "default": {
+              "en": "5% of 200 = 200 × 5 ÷ 100",
+              "ar": "٥٪ من ٢٠٠ = ٢٠٠ × ٥ ÷ ١٠٠"
+            }
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "interest-simple",
+          "prompt": {
+            "en": "Which account helps your savings grow most?",
+            "ar": "أيّ حساب ينمّي مدخراتك أكثر؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "One that pays 4% a year",
+                "ar": "حساب يعطي ٤٪ سنوياً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "One that pays 1% a year",
+                "ar": "حساب يعطي ١٪ سنوياً"
+              }
+            },
+            {
+              "text": {
+                "en": "A money box (0%)",
+                "ar": "صندوق نقود (٠٪)"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A higher interest rate on savings means more money for you.",
+            "ar": "نسبة الفائدة الأعلى على المدخرات تعني مالاً أكثر لك."
+          }
+        }
+      ]
+    },
+    {
+      "id": "compound",
+      "kind": "lesson",
+      "icon": "☃️",
+      "title": {
+        "en": "The compound snowball",
+        "ar": "كرة الثلج المركّبة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "snowball",
+          "mascot": "excited",
+          "text": {
+            "en": "Here's the magic: next year you earn interest on your money AND on last year's interest. Like a snowball rolling downhill, it gets bigger faster. This is COMPOUND interest.",
+            "ar": "إليك السحر: في السنة التالية تكسب فائدة على مالك وعلى فائدة السنة الماضية أيضاً. مثل كرة ثلج تتدحرج فتكبر بسرعة. هذه هي الفائدة المركبة."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "compound",
+          "params": {
+            "principal": 100,
+            "rate": {
+              "7-9": 10,
+              "default": 6
+            },
+            "years": {
+              "7-9": 5,
+              "default": 20
+            }
+          },
+          "text": {
+            "en": "Slide the years and rate. Watch the snowball grow!",
+            "ar": "حرّك السنوات والنسبة وشاهد كرة الثلج تكبر!"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "interest-compound",
+          "money": true,
+          "prompt": {
+            "7-9": {
+              "en": "You have [[100]]. Each year it grows by [[10]] for every [[100]]. After year 1 you have [[110]]. After year 2, about how much? (It grows on [[110]] now!)",
+              "ar": "لديك [[100]] وتنمو كل سنة [[10]] عن كل [[100]]. بعد السنة الأولى معك [[110]]. بعد السنة الثانية كم تقريباً؟ (النمو الآن على [[110]]!)"
+            },
+            "default": {
+              "en": "[[1000]] at 10% compound interest. How much after 2 years?",
+              "ar": "[[1000]] بفائدة مركبة ١٠٪. كم بعد سنتين؟"
+            }
+          },
+          "answer": {
+            "7-9": 121,
+            "default": 1210
+          },
+          "tolerance": {
+            "7-9": 1,
+            "default": 0
+          },
+          "hint": {
+            "7-9": {
+              "en": "110 + 11 = ?",
+              "ar": "١١٠ + ١١ = ؟"
+            },
+            "default": {
+              "en": "Year 1: 1000 + 100 = 1100. Year 2: 1100 + 10% of 1100.",
+              "ar": "السنة ١: ١٠٠٠ + ١٠٠ = ١١٠٠. السنة ٢: ١١٠٠ + ١٠٪ من ١١٠٠."
+            }
+          },
+          "explain": {
+            "en": "The second year earns more because interest is earned on interest.",
+            "ar": "السنة الثانية تكسب أكثر لأن الفائدة تُحسب على الفائدة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "interest-compound",
+          "prompt": {
+            "en": "What makes the snowball biggest?",
+            "ar": "ما الذي يجعل كرة الثلج أكبر؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Starting early and leaving it to grow",
+                "ar": "البدء مبكراً وتركها تنمو"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Taking the interest out every year",
+                "ar": "سحب الفائدة كل سنة"
+              }
+            },
+            {
+              "text": {
+                "en": "Waiting until you're older to start",
+                "ar": "الانتظار حتى تكبر لتبدأ"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Time is the snowball's best friend. The earlier you start, the bigger it gets.",
+            "ar": "الوقت أفضل صديق لكرة الثلج. كلما بدأت مبكراً كبرت أكثر."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "interest-compound",
+          "ages": [
+            "13-15"
+          ],
+          "prompt": {
+            "en": "The 'Rule of 72': divide 72 by the interest rate to estimate years to double. At 8%, money doubles in about…",
+            "ar": "'قاعدة ٧٢': اقسم ٧٢ على نسبة الفائدة لتقدير سنوات المضاعفة. بنسبة ٨٪ يتضاعف المال في حوالي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "9 years",
+                "ar": "٩ سنوات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "8 years",
+                "ar": "٨ سنوات"
+              }
+            },
+            {
+              "text": {
+                "en": "72 years",
+                "ar": "٧٢ سنة"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loans",
+      "kind": "lesson",
+      "icon": "🤝",
+      "title": {
+        "en": "Borrowing and loans",
+        "ar": "الاقتراض والقروض"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "loan",
+          "mascot": "thinking",
+          "text": {
+            "en": "A LOAN is money you borrow and must pay back. Banks usually charge interest on loans, so you pay back MORE than you borrowed.",
+            "ar": "القرض مال تقترضه ويجب أن تعيده. البنوك عادة تفرض فائدة على القروض، فتعيد أكثر مما اقترضت."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "loans",
+          "money": true,
+          "prompt": {
+            "7-9": {
+              "en": "You borrow [[10]] from the bank. You must pay back [[1]] extra. How much do you pay back in total?",
+              "ar": "اقترضت [[10]] من البنك ويجب أن تعيد [[1]] إضافياً. كم تعيد إجمالاً؟"
+            },
+            "default": {
+              "en": "You borrow [[500]] at 10% interest for 1 year. How much do you pay back in total?",
+              "ar": "اقترضت [[500]] بفائدة ١٠٪ لمدة سنة. كم تعيد إجمالاً؟"
+            }
+          },
+          "answer": {
+            "7-9": 11,
+            "default": 550
+          },
+          "hint": {
+            "default": {
+              "en": "Loan + 10% of the loan",
+              "ar": "القرض + ١٠٪ من القرض"
+            },
+            "7-9": {
+              "en": "10 + 1",
+              "ar": "١٠ + ١"
+            }
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "loan",
+          "ages": [
+            "10-12",
+            "13-15"
+          ],
+          "params": {
+            "amount": 1200,
+            "rate": 12,
+            "months": 12
+          },
+          "text": {
+            "en": "Try a loan: see how the monthly payment and total interest change with time and rate.",
+            "ar": "جرّب قرضاً: شاهد كيف يتغير القسط الشهري وإجمالي الفائدة مع المدة والنسبة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "loans",
+          "prompt": {
+            "en": "Which loan costs LESS in total?",
+            "ar": "أيّ قرض يكلف أقل إجمالاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Paying it back faster",
+                "ar": "سداده بسرعة أكبر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Taking many more months to pay",
+                "ar": "أخذ أشهر أكثر بكثير للسداد"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The longer you owe money, the more interest you pay.",
+            "ar": "كلما طالت مدة الدين، زادت الفائدة التي تدفعها."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "loans",
+          "prompt": {
+            "en": "Before borrowing, a smart question is…",
+            "ar": "قبل الاقتراض، السؤال الذكي هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Can I afford the repayments?",
+                "ar": "هل أستطيع تحمّل الأقساط؟"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "How fast can I spend it?",
+                "ar": "كم بسرعة أستطيع إنفاقه؟"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spread",
+      "kind": "lesson",
+      "icon": "🔁",
+      "title": {
+        "en": "How banks earn: the spread",
+        "ar": "كيف تربح البنوك: الهامش"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "bank",
+          "mascot": "excited",
+          "text": {
+            "en": "Here's the bank's secret: it pays savers a SMALL interest rate and charges borrowers a BIGGER one. The difference is called the SPREAD, and it's how the bank earns money.",
+            "ar": "إليك سر البنك: يدفع للمدخرين نسبة فائدة صغيرة ويأخذ من المقترضين نسبة أكبر. الفرق يسمى الهامش، وهكذا يربح البنك."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "bankSpread",
+          "params": {
+            "deposits": 1000,
+            "depositRate": 2,
+            "loanRate": 8,
+            "reserve": 10
+          },
+          "text": {
+            "en": "Watch coins flow through the bank. Change the rates and see the bank's profit.",
+            "ar": "شاهد العملات تتدفق عبر البنك. غيّر النسب وانظر إلى ربح البنك."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "bank-spread",
+          "unit": "percent",
+          "prompt": {
+            "en": "A bank pays savers 3% and charges borrowers 9%. What is the spread (in %)?",
+            "ar": "بنك يدفع للمدخرين ٣٪ ويأخذ من المقترضين ٩٪. ما الهامش (بالنسبة المئوية)؟"
+          },
+          "answer": 6,
+          "hint": {
+            "en": "9 − 3",
+            "ar": "٩ − ٣"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "bank-spread",
+          "prompt": {
+            "en": "Why does a bank keep some money and not lend it all?",
+            "ar": "لماذا يحتفظ البنك ببعض المال ولا يقرضه كله؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "So savers can withdraw when they need to",
+                "ar": "ليتمكن المدخرون من السحب عند الحاجة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "To hide it",
+                "ar": "لإخفائه"
+              }
+            }
+          ],
+          "explain": {
+            "en": "That kept money is called a reserve. It keeps the bank safe and trusted.",
+            "ar": "هذا المال المحتفظ به يسمى الاحتياطي، ويحافظ على أمان البنك والثقة به."
+          }
+        }
+      ]
+    },
+    {
+      "id": "profit-sharing",
+      "kind": "lesson",
+      "optional": true,
+      "module": "islamic-banking",
+      "icon": "🕌",
+      "title": {
+        "en": "Islamic banking: sharing profit",
+        "ar": "المصرفية الإسلامية: المشاركة في الربح"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "partners",
+          "mascot": "happy",
+          "text": {
+            "en": "Islamic banks avoid charging or paying fixed interest (riba). Instead, the bank and the saver become PARTNERS: the bank invests the money in real business, and they share the profit.",
+            "ar": "البنوك الإسلامية تتجنب أخذ أو دفع الفائدة الثابتة (الربا). بدلاً من ذلك يصبح البنك والمدخر شريكين: يستثمر البنك المال في تجارة حقيقية ويتقاسمان الربح."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "profitShare",
+          "params": {
+            "capital": 1000,
+            "returnPct": 10,
+            "sharePct": 60
+          },
+          "text": {
+            "en": "Try it: the business makes a profit, and you split it by an agreed share. What if the business has a bad year?",
+            "ar": "جرّبها: التجارة تحقق ربحاً وتقسمانه بنسبة متفق عليها. ماذا لو كانت سنة سيئة؟"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "islamic-banking",
+          "money": true,
+          "prompt": {
+            "en": "A business makes [[200]] profit. You agreed to share 60% for you and 40% for the bank. How much is yours?",
+            "ar": "حققت تجارة [[200]] ربحاً. اتفقتما على ٦٠٪ لك و٤٠٪ للبنك. كم نصيبك؟"
+          },
+          "answer": 120,
+          "hint": {
+            "en": "60% of 200 = 200 × 60 ÷ 100",
+            "ar": "٦٠٪ من ٢٠٠ = ٢٠٠ × ٦٠ ÷ ١٠٠"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "islamic-banking",
+          "prompt": {
+            "en": "What's the big difference between interest and profit-sharing?",
+            "ar": "ما الفرق الكبير بين الفائدة والمشاركة في الربح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Interest is fixed; profit-sharing depends on how the real business does",
+                "ar": "الفائدة ثابتة، أما المشاركة فتعتمد على أداء التجارة الحقيقية"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "There is no difference",
+                "ar": "لا يوجد فرق"
+              }
+            }
+          ],
+          "explain": {
+            "en": "In profit-sharing, partners share the results, good or bad, of a real business.",
+            "ar": "في المشاركة، يتقاسم الشركاء نتائج التجارة الحقيقية، جيدة كانت أو سيئة."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bank-rush",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "loans",
+        "interest-simple"
+      ],
+      "title": {
+        "en": "Bank Rush",
+        "ar": "سباق البنك"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "prompt": {
+          "en": "Does this EARN you interest or COST you interest?",
+          "ar": "هل هذا يكسبك فائدة أم يكلفك فائدة؟"
+        },
+        "bins": [
+          {
+            "id": "earn",
+            "emoji": "🌱",
+            "label": {
+              "en": "Earns me money",
+              "ar": "يكسبني مالاً"
+            }
+          },
+          {
+            "id": "cost",
+            "emoji": "💸",
+            "label": {
+              "en": "Costs me money",
+              "ar": "يكلفني مالاً"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🐖",
+            "text": {
+              "en": "Savings account",
+              "ar": "حساب توفير"
+            },
+            "bin": "earn"
+          },
+          {
+            "emoji": "💳",
+            "text": {
+              "en": "Unpaid credit card",
+              "ar": "بطاقة ائتمان غير مسددة"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "Home loan",
+              "ar": "قرض منزل"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "📈",
+            "text": {
+              "en": "Fixed deposit",
+              "ar": "وديعة ثابتة"
+            },
+            "bin": "earn"
+          },
+          {
+            "emoji": "🚗",
+            "text": {
+              "en": "Car loan",
+              "ar": "قرض سيارة"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "☃️",
+            "text": {
+              "en": "Compound savings",
+              "ar": "مدخرات مركبة"
+            },
+            "bin": "earn"
+          },
+          {
+            "emoji": "🧾",
+            "text": {
+              "en": "Late payment",
+              "ar": "دفعة متأخرة"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🏦",
+            "text": {
+              "en": "Money deposited in a bank",
+              "ar": "مال مودع في البنك"
+            },
+            "bin": "earn"
+          },
+          {
+            "emoji": "🛍️",
+            "text": {
+              "en": "Buy now, pay later (late)",
+              "ar": "اشترِ الآن وادفع لاحقاً (متأخر)"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🎓",
+            "text": {
+              "en": "Savings for university",
+              "ar": "مدخرات للجامعة"
+            },
+            "bin": "earn"
+          },
+          {
+            "emoji": "🤝",
+            "text": {
+              "en": "Borrowing from a bank",
+              "ar": "الاقتراض من بنك"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🌱",
+            "text": {
+              "en": "Interest on savings",
+              "ar": "فائدة على المدخرات"
+            },
+            "bin": "earn"
+          },
+          {
+            "emoji": "📉",
+            "text": {
+              "en": "Overdraft",
+              "ar": "سحب على المكشوف"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🕌",
+            "text": {
+              "en": "Profit-share account",
+              "ar": "حساب مشاركة في الربح"
+            },
+            "bin": "earn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Bank Town quiz",
+        "ar": "اختبار مدينة البنوك"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "bank-deposit",
+          "prompt": {
+            "en": "Putting money into the bank is a…",
+            "ar": "وضع المال في البنك هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Deposit",
+                "ar": "إيداع"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Withdrawal",
+                "ar": "سحب"
+              }
+            },
+            {
+              "text": {
+                "en": "Loan",
+                "ar": "قرض"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "interest-simple",
+          "prompt": {
+            "en": "Interest on SAVINGS is money that…",
+            "ar": "الفائدة على المدخرات مال…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The bank pays you",
+                "ar": "يدفعه البنك لك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "You pay the bank",
+                "ar": "تدفعه أنت للبنك"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "interest-compound",
+          "prompt": {
+            "en": "Compound interest is interest on…",
+            "ar": "الفائدة المركبة هي فائدة على…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Your money AND past interest",
+                "ar": "مالك وعلى الفائدة السابقة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Only your first deposit",
+                "ar": "إيداعك الأول فقط"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "loans",
+          "prompt": {
+            "en": "When you borrow with interest you pay back…",
+            "ar": "عندما تقترض بفائدة تعيد…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "More than you borrowed",
+                "ar": "أكثر مما اقترضت"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Exactly what you borrowed",
+                "ar": "ما اقترضته بالضبط"
+              }
+            },
+            {
+              "text": {
+                "en": "Less than you borrowed",
+                "ar": "أقل مما اقترضت"
+              }
+            }
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "bank-spread",
+          "unit": "percent",
+          "prompt": {
+            "en": "Savers get 2%, borrowers pay 7%. Spread in %?",
+            "ar": "المدخرون يحصلون على ٢٪ والمقترضون يدفعون ٧٪. الهامش بالنسبة المئوية؟"
+          },
+          "answer": 5,
+          "hint": {
+            "en": "7 − 2",
+            "ar": "٧ − ٢"
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "🦈",
+      "title": {
+        "en": "Boss: Lenny the Loan Shark",
+        "ar": "الزعيم: ليني قرش القروض"
+      },
+      "boss": {
+        "id": "loan-shark",
+        "name": {
+          "en": "Lenny the Loan Shark",
+          "ar": "ليني قرش القروض"
+        },
+        "color": "#56B4E9",
+        "intro": {
+          "en": "Chomp chomp! I'm Lenny. I offer loans with HUGE interest and tricky words. Can you see through my deals?",
+          "ar": "قضم قضم! أنا ليني. أقدّم قروضاً بفوائد ضخمة وكلمات مخادعة. هل تستطيع كشف صفقاتي؟"
+        },
+        "taunt": {
+          "en": "Glub! Close, but my deal is still tricky. Try again!",
+          "ar": "غلب! قريب، لكن صفقتي ما زالت مخادعة. حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Bubbles! You understand banks too well. I'm swimming away!",
+          "ar": "فقاعات! أنت تفهم البنوك جيداً. سأسبح بعيداً!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "loans",
+          "prompt": {
+            "en": "Lenny: 'Borrow [[100]], pay back just [[200]]!' Is that a good deal?",
+            "ar": "ليني: 'اقترض [[100]] وأعد [[200]] فقط!' هل هذه صفقة جيدة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No! That's 100% interest, way too much",
+                "ar": "لا! هذه فائدة ١٠٠٪، كثيرة جداً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, sounds fine",
+                "ar": "نعم، تبدو جيدة"
+              }
+            }
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "interest-simple",
+          "money": true,
+          "prompt": {
+            "7-9": {
+              "en": "Lenny: 'My bank gives [[2]] for every [[10]] saved!' You save [[20]]. How much extra?",
+              "ar": "ليني: 'بنكي يعطي [[2]] عن كل [[10]] مدخرة!' ادخرت [[20]]. كم إضافياً؟"
+            },
+            "default": {
+              "en": "Lenny: 'Saving is pointless!' [[400]] at 5% for 1 year earns how much interest?",
+              "ar": "ليني: 'الادخار بلا فائدة!' [[400]] بنسبة ٥٪ لمدة سنة تكسب كم فائدة؟"
+            }
+          },
+          "answer": {
+            "7-9": 4,
+            "default": 20
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "interest-compound",
+          "prompt": {
+            "en": "Lenny: 'Start saving when you're old, it's the same!' Is it?",
+            "ar": "ليني: 'ابدأ الادخار عندما تكبر، لا فرق!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: starting early gives compound interest more time",
+                "ar": "لا: البدء مبكراً يمنح الفائدة المركبة وقتاً أطول"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, time doesn't matter",
+                "ar": "نعم، الوقت لا يهم"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "bank-spread",
+          "prompt": {
+            "en": "Lenny: 'Banks earn money by magic!' How do they really earn?",
+            "ar": "ليني: 'البنوك تربح بالسحر!' كيف تربح فعلاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Charging borrowers more interest than they pay savers",
+                "ar": "بأخذ فائدة من المقترضين أكثر مما تدفع للمدخرين"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Printing money in the basement",
+                "ar": "بطباعة المال في القبو"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "loans",
+          "prompt": {
+            "en": "Lenny: 'Take 5 years to pay, it's cheaper!' True?",
+            "ar": "ليني: 'خذ ٥ سنوات للسداد، أرخص!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: more time usually means more interest overall",
+                "ar": "لا: وقت أطول يعني غالباً فائدة أكثر إجمالاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, longer is always cheaper",
+                "ar": "نعم، الأطول دائماً أرخص"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "bank-deposit",
+          "prompt": {
+            "en": "Lenny: 'Keep all your money in your sock!' Where is safer?",
+            "ar": "ليني: 'احتفظ بكل مالك في جوربك!' أين الأكثر أماناً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A real bank account",
+                "ar": "حساب بنكي حقيقي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "My sock",
+                "ar": "جوربي"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

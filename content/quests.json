@@ -1,0 +1,20 @@
+{
+  "$comment": "Daily quests: 3 are picked per day (deterministically, never random rewards). A quest counts events of type 'event' that match 'where'; 'measure' sums an event field instead of counting. Quests in the same 'group' never appear together.",
+  "daily": [
+    { "id": "finish-2-levels", "group": "levels", "event": "level.completed", "target": 2, "text": { "en": "Finish 2 levels", "ar": "أكمل مستويين" }, "reward": { "xp": 20, "coins": 20 } },
+    { "id": "finish-3-levels", "group": "levels", "event": "level.completed", "target": 3, "minLevel": 3, "text": { "en": "Finish 3 levels", "ar": "أكمل ٣ مستويات" }, "reward": { "xp": 30, "coins": 30 } },
+    { "id": "earn-5-stars", "group": "stars", "event": "level.completed", "measure": "stars", "target": 5, "text": { "en": "Earn 5 stars", "ar": "اربح ٥ نجوم" }, "reward": { "xp": 25, "coins": 20 } },
+    { "id": "three-star-level", "group": "stars", "event": "level.completed", "where": { "stars": 3 }, "target": 1, "text": { "en": "Get 3 stars on any level", "ar": "احصل على ٣ نجوم في أي مستوى" }, "reward": { "xp": 20, "coins": 25 } },
+    { "id": "play-minigame", "group": "game", "event": "level.completed", "where": { "kind": "minigame" }, "target": 1, "text": { "en": "Play a mini-game", "ar": "العب لعبة مصغرة" }, "reward": { "xp": 15, "coins": 20 } },
+    { "id": "do-review", "group": "review", "event": "review.completed", "target": 1, "text": { "en": "Do a practice review", "ar": "قم بمراجعة تدريبية" }, "reward": { "xp": 20, "coins": 25 } },
+    { "id": "earn-60-coins", "group": "coins", "event": "coins.earned", "measure": "amount", "target": 60, "text": { "en": "Earn 60 coins", "ar": "اربح ٦٠ عملة" }, "reward": { "xp": 20, "coins": 15 } },
+    { "id": "perfect-level", "group": "stars", "event": "level.completed", "where": { "mistakes": 0 }, "target": 1, "text": { "en": "Finish a level with no mistakes", "ar": "أكمل مستوى بدون أخطاء" }, "reward": { "xp": 25, "coins": 20 } },
+    { "id": "quiz-time", "group": "game", "event": "level.completed", "where": { "kind": ["quiz", "boss"] }, "target": 1, "text": { "en": "Finish a quiz or boss", "ar": "أكمل اختباراً أو زعيماً" }, "reward": { "xp": 25, "coins": 25 } }
+  ],
+  "weekly": [
+    { "id": "week-stars", "event": "level.completed", "measure": "stars", "target": 20, "text": { "en": "Earn 20 stars this week", "ar": "اربح ٢٠ نجمة هذا الأسبوع" }, "reward": { "xp": 100, "coins": 100, "gems": 2 } },
+    { "id": "week-reviews", "event": "review.completed", "target": 4, "text": { "en": "Do 4 practice reviews this week", "ar": "قم بـ٤ مراجعات هذا الأسبوع" }, "reward": { "xp": 100, "coins": 80, "gems": 2 } },
+    { "id": "week-games", "event": "level.completed", "where": { "kind": "minigame" }, "target": 5, "text": { "en": "Play 5 mini-games this week", "ar": "العب ٥ ألعاب مصغرة هذا الأسبوع" }, "reward": { "xp": 80, "coins": 100, "gems": 1 } },
+    { "id": "week-coins", "event": "coins.earned", "measure": "amount", "target": 400, "text": { "en": "Earn 400 coins this week", "ar": "اربح ٤٠٠ عملة هذا الأسبوع" }, "reward": { "xp": 100, "coins": 50, "gems": 2 } }
+  ]
+}

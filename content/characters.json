@@ -1,0 +1,96 @@
+{
+  "$comment": "Avatar options, presets and companion guides. Avatars are drawn from these parts by the SVG Avatar component. Add a preset by combining existing part ids; add a part by adding its id here and its drawing in client/src/components/Avatar.jsx.",
+  "skinTones": ["#FDE3CF", "#F6CBA6", "#E8B48A", "#D39A6A", "#B97A4E", "#8D5A36", "#6B4226", "#4A2C1A"],
+  "hairColors": ["#1F1A17", "#4B3020", "#8A5A2B", "#D9A54A", "#B5452B", "#9AA0A6", "#5B6CFF", "#E85D9E"],
+  "species": [
+    { "id": "human", "name": { "en": "Person", "ar": "إنسان" } },
+    { "id": "robot", "name": { "en": "Robot", "ar": "روبوت" } },
+    { "id": "fox", "name": { "en": "Fox", "ar": "ثعلب" } },
+    { "id": "astronaut", "name": { "en": "Astronaut", "ar": "رائد فضاء" } }
+  ],
+  "hairStyles": [
+    { "id": "short", "name": { "en": "Short", "ar": "قصير" } },
+    { "id": "curly", "name": { "en": "Curly", "ar": "مجعد" } },
+    { "id": "long", "name": { "en": "Long", "ar": "طويل" } },
+    { "id": "bun", "name": { "en": "Bun", "ar": "كعكة" } },
+    { "id": "braids", "name": { "en": "Braids", "ar": "ضفائر" } },
+    { "id": "afro", "name": { "en": "Afro", "ar": "أفرو" } },
+    { "id": "spiky", "name": { "en": "Spiky", "ar": "مدبب" } },
+    { "id": "ponytail", "name": { "en": "Ponytail", "ar": "ذيل حصان" } },
+    { "id": "none", "name": { "en": "None", "ar": "بدون" } }
+  ],
+  "outfits": [
+    { "id": "tshirt", "name": { "en": "T-shirt", "ar": "قميص قصير" } },
+    { "id": "hoodie", "name": { "en": "Hoodie", "ar": "سترة بقبعة" } },
+    { "id": "thobe", "name": { "en": "Thobe", "ar": "ثوب" } },
+    { "id": "abaya", "name": { "en": "Abaya", "ar": "عباءة" } },
+    { "id": "kurta", "name": { "en": "Kurta", "ar": "كورتا" } },
+    { "id": "salwar", "name": { "en": "Salwar kameez", "ar": "شلوار قميص" } },
+    { "id": "dashiki", "name": { "en": "Dashiki", "ar": "داشيكي" } },
+    { "id": "hanbok", "name": { "en": "Wrap top", "ar": "قميص ملفوف" } },
+    { "id": "jacket", "name": { "en": "Jacket", "ar": "سترة" } },
+    { "id": "dress", "name": { "en": "Dress", "ar": "فستان" } },
+    { "id": "spacesuit", "name": { "en": "Space suit", "ar": "بدلة فضاء" } },
+    { "id": "plating", "name": { "en": "Robot plating", "ar": "دروع الروبوت" } }
+  ],
+  "headwear": [
+    { "id": "none", "name": { "en": "None", "ar": "بدون" } },
+    { "id": "hijab", "name": { "en": "Hijab", "ar": "حجاب" } },
+    { "id": "ghutra", "name": { "en": "Ghutra & agal", "ar": "غترة وعقال" } },
+    { "id": "kufi", "name": { "en": "Kufi", "ar": "طاقية" } },
+    { "id": "cap", "name": { "en": "Cap", "ar": "قبعة" } },
+    { "id": "beanie", "name": { "en": "Beanie", "ar": "قبعة صوف" } },
+    { "id": "headwrap", "name": { "en": "Head wrap", "ar": "لفة رأس" } },
+    { "id": "patka", "name": { "en": "Patka", "ar": "باتكا" } }
+  ],
+  "accessories": [
+    { "id": "none", "name": { "en": "None", "ar": "بدون" } },
+    { "id": "glasses", "name": { "en": "Glasses", "ar": "نظارات" } },
+    { "id": "headphones", "name": { "en": "Headphones", "ar": "سماعات" } },
+    { "id": "bindi", "name": { "en": "Bindi", "ar": "بيندي" } },
+    { "id": "freckles", "name": { "en": "Freckles", "ar": "نمش" } },
+    { "id": "earrings", "name": { "en": "Earrings", "ar": "أقراط" } }
+  ],
+  "themes": [
+    { "id": "sky", "color": "#0072B2", "name": { "en": "Sky", "ar": "سماء" } },
+    { "id": "sun", "color": "#E69F00", "name": { "en": "Sunshine", "ar": "شمس" } },
+    { "id": "leaf", "color": "#009E73", "name": { "en": "Leaf", "ar": "ورقة" } },
+    { "id": "berry", "color": "#CC79A7", "name": { "en": "Berry", "ar": "توت" } },
+    { "id": "fire", "color": "#D55E00", "name": { "en": "Ember", "ar": "جمرة" } },
+    { "id": "ocean", "color": "#56B4E9", "name": { "en": "Ocean", "ar": "محيط" } }
+  ],
+  "presets": [
+    { "id": "gulf-boy", "group": "arab", "name": { "en": "Gulf style (thobe)", "ar": "خليجي (ثوب)" }, "avatar": { "species": "human", "skin": 2, "hair": "short", "hairColor": 0, "outfit": "thobe", "headwear": "ghutra", "accessory": "none", "outfitColor": "#FFFFFF" } },
+    { "id": "gulf-girl", "group": "arab", "name": { "en": "Gulf style (abaya)", "ar": "خليجية (عباءة)" }, "avatar": { "species": "human", "skin": 2, "hair": "long", "hairColor": 0, "outfit": "abaya", "headwear": "hijab", "accessory": "none", "outfitColor": "#22212B", "headwearColor": "#3A3550" } },
+    { "id": "levant-girl", "group": "arab", "name": { "en": "Hijab & hoodie", "ar": "حجاب وسترة" }, "avatar": { "species": "human", "skin": 1, "hair": "long", "hairColor": 1, "outfit": "hoodie", "headwear": "hijab", "accessory": "none", "outfitColor": "#009E73", "headwearColor": "#CC79A7" } },
+    { "id": "arab-casual", "group": "arab", "name": { "en": "Kufi & jacket", "ar": "طاقية وسترة" }, "avatar": { "species": "human", "skin": 3, "hair": "short", "hairColor": 0, "outfit": "jacket", "headwear": "kufi", "accessory": "glasses", "outfitColor": "#0072B2" } },
+    { "id": "indian-girl", "group": "indian", "name": { "en": "Salwar kameez", "ar": "شلوار قميص" }, "avatar": { "species": "human", "skin": 4, "hair": "braids", "hairColor": 0, "outfit": "salwar", "headwear": "none", "accessory": "bindi", "outfitColor": "#D55E00" } },
+    { "id": "indian-boy", "group": "indian", "name": { "en": "Kurta", "ar": "كورتا" }, "avatar": { "species": "human", "skin": 4, "hair": "short", "hairColor": 0, "outfit": "kurta", "headwear": "none", "accessory": "none", "outfitColor": "#E69F00" } },
+    { "id": "sikh-boy", "group": "indian", "name": { "en": "Patka & hoodie", "ar": "باتكا وسترة" }, "avatar": { "species": "human", "skin": 3, "hair": "none", "hairColor": 0, "outfit": "hoodie", "headwear": "patka", "accessory": "none", "outfitColor": "#56B4E9", "headwearColor": "#0072B2" } },
+    { "id": "african-girl", "group": "african", "name": { "en": "Head wrap & dress", "ar": "لفة رأس وفستان" }, "avatar": { "species": "human", "skin": 6, "hair": "none", "hairColor": 0, "outfit": "dress", "headwear": "headwrap", "accessory": "earrings", "outfitColor": "#E69F00", "headwearColor": "#009E73" } },
+    { "id": "african-boy", "group": "african", "name": { "en": "Dashiki", "ar": "داشيكي" }, "avatar": { "species": "human", "skin": 7, "hair": "afro", "hairColor": 0, "outfit": "dashiki", "headwear": "none", "accessory": "none", "outfitColor": "#CC79A7" } },
+    { "id": "east-asian-girl", "group": "eastAsian", "name": { "en": "Bun & wrap top", "ar": "كعكة وقميص ملفوف" }, "avatar": { "species": "human", "skin": 1, "hair": "bun", "hairColor": 0, "outfit": "hanbok", "headwear": "none", "accessory": "none", "outfitColor": "#CC79A7" } },
+    { "id": "east-asian-boy", "group": "eastAsian", "name": { "en": "Spiky & headphones", "ar": "مدبب وسماعات" }, "avatar": { "species": "human", "skin": 1, "hair": "spiky", "hairColor": 0, "outfit": "tshirt", "headwear": "none", "accessory": "headphones", "outfitColor": "#0072B2" } },
+    { "id": "european-girl", "group": "european", "name": { "en": "Ponytail & jacket", "ar": "ذيل حصان وسترة" }, "avatar": { "species": "human", "skin": 0, "hair": "ponytail", "hairColor": 3, "outfit": "jacket", "headwear": "none", "accessory": "freckles", "outfitColor": "#009E73" } },
+    { "id": "european-boy", "group": "european", "name": { "en": "Curly & cap", "ar": "مجعد وقبعة" }, "avatar": { "species": "human", "skin": 0, "hair": "curly", "hairColor": 4, "outfit": "tshirt", "headwear": "cap", "accessory": "none", "outfitColor": "#D55E00" } },
+    { "id": "robot", "group": "fantasy", "name": { "en": "Robot", "ar": "روبوت" }, "avatar": { "species": "robot", "skin": 0, "hair": "none", "hairColor": 0, "outfit": "plating", "headwear": "none", "accessory": "none", "outfitColor": "#56B4E9" } },
+    { "id": "fox", "group": "fantasy", "name": { "en": "Fox", "ar": "ثعلب" }, "avatar": { "species": "fox", "skin": 0, "hair": "none", "hairColor": 0, "outfit": "hoodie", "headwear": "none", "accessory": "none", "outfitColor": "#009E73" } },
+    { "id": "astronaut", "group": "fantasy", "name": { "en": "Astronaut", "ar": "رائد فضاء" }, "avatar": { "species": "astronaut", "skin": 3, "hair": "short", "hairColor": 0, "outfit": "spacesuit", "headwear": "none", "accessory": "none", "outfitColor": "#F2F2F2" } }
+  ],
+  "presetGroups": [
+    { "id": "arab", "name": { "en": "Arab", "ar": "عربي" } },
+    { "id": "indian", "name": { "en": "Indian", "ar": "هندي" } },
+    { "id": "african", "name": { "en": "African", "ar": "أفريقي" } },
+    { "id": "eastAsian", "name": { "en": "East Asian", "ar": "شرق آسيوي" } },
+    { "id": "european", "name": { "en": "European", "ar": "أوروبي" } },
+    { "id": "fantasy", "name": { "en": "Fantasy", "ar": "خيالي" } }
+  ],
+  "companions": [
+    { "id": "owl", "color": "#8A5A2B", "name": { "en": "Penny the Owl", "ar": "بيني البومة" }, "voice": { "pitch": 1.25, "rate": 0.95 }, "tagline": { "en": "Wise with every coin!", "ar": "حكيمة مع كل عملة!" } },
+    { "id": "falcon", "color": "#B97A4E", "name": { "en": "Saqr the Falcon", "ar": "صقر" }, "voice": { "pitch": 1.0, "rate": 1.0 }, "tagline": { "en": "Eyes on the goal!", "ar": "عيني على الهدف!" } },
+    { "id": "camel", "color": "#D9A54A", "name": { "en": "Jamila the Camel", "ar": "جميلة الجمل" }, "voice": { "pitch": 1.1, "rate": 0.9 }, "tagline": { "en": "Slow and steady saves!", "ar": "بالصبر نوفّر!" } },
+    { "id": "robot", "color": "#56B4E9", "name": { "en": "Bolt the Robot", "ar": "بولت الروبوت" }, "voice": { "pitch": 0.9, "rate": 1.05 }, "tagline": { "en": "Calculating awesome!", "ar": "أحسب الروعة!" } },
+    { "id": "dragon", "color": "#009E73", "name": { "en": "Ember the Dragon", "ar": "جمرة التنين" }, "voice": { "pitch": 1.3, "rate": 1.05 }, "tagline": { "en": "I guard treasure... wisely!", "ar": "أحرس الكنز... بحكمة!" } },
+    { "id": "elephant", "color": "#9AA0A6", "name": { "en": "Raja the Elephant", "ar": "راجا الفيل" }, "voice": { "pitch": 0.85, "rate": 0.9 }, "tagline": { "en": "I never forget a good deal!", "ar": "لا أنسى صفقة جيدة!" } }
+  ]
+}

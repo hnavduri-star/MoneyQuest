@@ -1,0 +1,286 @@
+{
+  "$comment": "Reward rules. Every player action is an event; these rules turn events into XP, coins, gems and stats. Amounts are a number or { base, per: { eventField: multiplier } }.",
+  "levelCurve": {
+    "base": 25,
+    "exponent": 1.1
+  },
+  "startingCoins": 50,
+  "hintCost": 5,
+  "dailyQuestCount": 3,
+  "streak": {
+    "freezeEvery": 7,
+    "maxFreezes": 3
+  },
+  "levelUp": {
+    "coins": 10,
+    "gems": 1,
+    "gemEvery": 5
+  },
+  "worldComplete": {
+    "xp": 100,
+    "coins": 40,
+    "gems": 2
+  },
+  "buildingUpgrade": {
+    "coins": 40,
+    "gems": 1
+  },
+  "badgeRewards": {
+    "common": {
+      "coins": 5
+    },
+    "rare": {
+      "coins": 15
+    },
+    "epic": {
+      "coins": 30,
+      "gems": 1
+    },
+    "legendary": {
+      "coins": 60,
+      "gems": 2
+    }
+  },
+  "powerups": {
+    "slowTime": {
+      "cost": 10,
+      "seconds": 8
+    },
+    "doubleCoins": {
+      "cost": 15
+    },
+    "reveal": {
+      "cost": 5
+    }
+  },
+  "chestCalendar": [
+    {
+      "coins": 15
+    },
+    {
+      "coins": 20
+    },
+    {
+      "coins": 25,
+      "xp": 10
+    },
+    {
+      "coins": 30
+    },
+    {
+      "coins": 35,
+      "xp": 15
+    },
+    {
+      "coins": 40
+    },
+    {
+      "coins": 50,
+      "gems": 1,
+      "freezes": 1
+    }
+  ],
+  "events": {
+    "level.completed": {
+      "variants": [
+        {
+          "when": {
+            "firstClear": true
+          },
+          "xp": {
+            "base": 30,
+            "per": {
+              "stars": 10
+            }
+          },
+          "coins": {
+            "base": 8,
+            "per": {
+              "stars": 4
+            }
+          }
+        },
+        {
+          "when": {
+            "improved": true
+          },
+          "xp": {
+            "base": 10,
+            "per": {
+              "starsGained": 10
+            }
+          },
+          "coins": {
+            "base": 5,
+            "per": {
+              "starsGained": 5
+            }
+          }
+        },
+        {
+          "xp": 5,
+          "coins": 2
+        }
+      ],
+      "bonus": [
+        {
+          "when": {
+            "kind": "boss",
+            "firstClear": true
+          },
+          "xp": 50,
+          "coins": 20,
+          "gems": 1,
+          "source": "boss"
+        },
+        {
+          "when": {
+            "perfect": true,
+            "firstClear": true
+          },
+          "coins": 5,
+          "source": "perfect"
+        },
+        {
+          "when": {
+            "kind": "minigame"
+          },
+          "coins": {
+            "per": {
+              "comboBonus": 1
+            }
+          },
+          "source": "combo"
+        }
+      ],
+      "stats": [
+        {
+          "stat": "levelsCompleted",
+          "add": 1,
+          "when": {
+            "firstClear": true
+          }
+        },
+        {
+          "stat": "levelsPlayed",
+          "add": 1
+        },
+        {
+          "stat": "stars",
+          "addField": "starsGained"
+        },
+        {
+          "stat": "perfectLevels",
+          "add": 1,
+          "when": {
+            "perfect": true,
+            "firstClear": true
+          }
+        },
+        {
+          "stat": "threeStars",
+          "add": 1,
+          "when": {
+            "stars": 3,
+            "starsGained": {
+              "gte": 1
+            }
+          }
+        },
+        {
+          "stat": "bossesDefeated",
+          "add": 1,
+          "when": {
+            "kind": "boss",
+            "firstClear": true
+          }
+        },
+        {
+          "stat": "minigamesPlayed",
+          "add": 1,
+          "when": {
+            "kind": "minigame"
+          }
+        },
+        {
+          "stat": "quizzesDone",
+          "add": 1,
+          "when": {
+            "kind": "quiz"
+          }
+        },
+        {
+          "stat": "bestCombo",
+          "maxField": "combo"
+        },
+        {
+          "stat": "tryAgains",
+          "add": 1,
+          "when": {
+            "mistakes": {
+              "gte": 1
+            }
+          }
+        },
+        {
+          "stat": "replays",
+          "add": 1,
+          "when": {
+            "firstClear": false
+          }
+        }
+      ]
+    },
+    "review.completed": {
+      "variants": [
+        {
+          "xp": {
+            "per": {
+              "correct": 5
+            }
+          },
+          "coins": {
+            "base": 5,
+            "per": {
+              "correct": 4
+            }
+          }
+        }
+      ],
+      "stats": [
+        {
+          "stat": "reviewsDone",
+          "add": 1
+        },
+        {
+          "stat": "reviewAnswers",
+          "addField": "correct"
+        }
+      ]
+    },
+    "daily.login": {
+      "variants": [
+        {
+          "xp": 5
+        }
+      ],
+      "stats": [
+        {
+          "stat": "loginDays",
+          "add": 1
+        }
+      ]
+    },
+    "hint.used": {
+      "stats": []
+    },
+    "choice.made": {
+      "stats": [
+        {
+          "stat": "storyChoices",
+          "add": 1
+        }
+      ]
+    }
+  }
+}

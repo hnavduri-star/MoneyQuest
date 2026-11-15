@@ -1,0 +1,335 @@
+{
+  "$comment": "Collectibles. Earned with in-game coins or gems only; real-money prices are rejected by the content check. 'art' is an emoji or a built-in SVG key. 'unlock' can require a level or badge.",
+  "items": [
+    {
+      "id": "outfit-explorer",
+      "type": "outfit",
+      "art": "explorer",
+      "price": {
+        "coins": 95
+      },
+      "name": {
+        "en": "Explorer Vest",
+        "ar": "سترة المستكشف"
+      }
+    },
+    {
+      "id": "outfit-chef",
+      "type": "outfit",
+      "art": "chef",
+      "price": {
+        "coins": 130
+      },
+      "name": {
+        "en": "Chef Jacket",
+        "ar": "سترة الطاهي"
+      }
+    },
+    {
+      "id": "outfit-banker",
+      "type": "outfit",
+      "art": "suit",
+      "price": {
+        "coins": 190
+      },
+      "unlock": {
+        "badge": "world-bank-town"
+      },
+      "name": {
+        "en": "Banker Suit",
+        "ar": "بدلة المصرفي"
+      }
+    },
+    {
+      "id": "outfit-superhero",
+      "type": "outfit",
+      "art": "hero",
+      "price": {
+        "gems": 3
+      },
+      "unlock": {
+        "level": 5
+      },
+      "name": {
+        "en": "Money Hero Suit",
+        "ar": "بدلة بطل المال"
+      }
+    },
+    {
+      "id": "outfit-sport",
+      "type": "outfit",
+      "art": "sport",
+      "price": {
+        "coins": 110
+      },
+      "name": {
+        "en": "Team Jersey",
+        "ar": "قميص الفريق"
+      }
+    },
+    {
+      "id": "hat-crown",
+      "type": "hat",
+      "art": "crown",
+      "price": {
+        "gems": 5
+      },
+      "unlock": {
+        "level": 8
+      },
+      "name": {
+        "en": "Golden Crown",
+        "ar": "تاج ذهبي"
+      }
+    },
+    {
+      "id": "hat-party",
+      "type": "hat",
+      "art": "party",
+      "price": {
+        "coins": 65
+      },
+      "name": {
+        "en": "Party Hat",
+        "ar": "قبعة الحفلة"
+      }
+    },
+    {
+      "id": "hat-grad",
+      "type": "hat",
+      "art": "grad",
+      "price": {
+        "coins": 145
+      },
+      "unlock": {
+        "level": 4
+      },
+      "name": {
+        "en": "Graduation Cap",
+        "ar": "قبعة التخرج"
+      }
+    },
+    {
+      "id": "pet-cat",
+      "type": "pet",
+      "art": "🐱",
+      "price": {
+        "coins": 160
+      },
+      "name": {
+        "en": "Kitty",
+        "ar": "قطة"
+      }
+    },
+    {
+      "id": "pet-dog",
+      "type": "pet",
+      "art": "🐶",
+      "price": {
+        "coins": 160
+      },
+      "name": {
+        "en": "Puppy",
+        "ar": "جرو"
+      }
+    },
+    {
+      "id": "pet-bunny",
+      "type": "pet",
+      "art": "🐰",
+      "price": {
+        "coins": 145
+      },
+      "name": {
+        "en": "Bunny",
+        "ar": "أرنب"
+      }
+    },
+    {
+      "id": "pet-turtle",
+      "type": "pet",
+      "art": "🐢",
+      "price": {
+        "coins": 130
+      },
+      "name": {
+        "en": "Slow-and-Steady Turtle",
+        "ar": "سلحفاة صبورة"
+      }
+    },
+    {
+      "id": "pet-parrot",
+      "type": "pet",
+      "art": "🦜",
+      "price": {
+        "gems": 2
+      },
+      "unlock": {
+        "level": 3
+      },
+      "name": {
+        "en": "Parrot",
+        "ar": "ببغاء"
+      }
+    },
+    {
+      "id": "pet-gazelle",
+      "type": "pet",
+      "art": "🦌",
+      "price": {
+        "gems": 4
+      },
+      "unlock": {
+        "level": 6
+      },
+      "name": {
+        "en": "Gazelle",
+        "ar": "غزال"
+      }
+    },
+    {
+      "id": "deco-tree",
+      "type": "decoration",
+      "art": "🌳",
+      "price": {
+        "coins": 50
+      },
+      "name": {
+        "en": "Shady Tree",
+        "ar": "شجرة ظليلة"
+      }
+    },
+    {
+      "id": "deco-palm",
+      "type": "decoration",
+      "art": "🌴",
+      "price": {
+        "coins": 50
+      },
+      "name": {
+        "en": "Palm Tree",
+        "ar": "نخلة"
+      }
+    },
+    {
+      "id": "deco-fountain",
+      "type": "decoration",
+      "art": "⛲",
+      "price": {
+        "coins": 130
+      },
+      "name": {
+        "en": "Fountain",
+        "ar": "نافورة"
+      }
+    },
+    {
+      "id": "deco-flowers",
+      "type": "decoration",
+      "art": "🌷",
+      "price": {
+        "coins": 30
+      },
+      "name": {
+        "en": "Flower Bed",
+        "ar": "حوض زهور"
+      }
+    },
+    {
+      "id": "deco-lantern",
+      "type": "decoration",
+      "art": "🏮",
+      "price": {
+        "coins": 65
+      },
+      "name": {
+        "en": "Lantern",
+        "ar": "فانوس"
+      }
+    },
+    {
+      "id": "deco-ferris",
+      "type": "decoration",
+      "art": "🎡",
+      "price": {
+        "gems": 4
+      },
+      "unlock": {
+        "level": 7
+      },
+      "name": {
+        "en": "Ferris Wheel",
+        "ar": "عجلة دوّارة"
+      }
+    },
+    {
+      "id": "deco-statue",
+      "type": "decoration",
+      "art": "🗽",
+      "price": {
+        "coins": 240
+      },
+      "unlock": {
+        "badge": "world-money-basics"
+      },
+      "name": {
+        "en": "Saver Statue",
+        "ar": "تمثال المدّخر"
+      }
+    },
+    {
+      "id": "skin-sunglasses",
+      "type": "mascotSkin",
+      "art": "shades",
+      "price": {
+        "coins": 80
+      },
+      "name": {
+        "en": "Cool Shades",
+        "ar": "نظارة شمسية"
+      }
+    },
+    {
+      "id": "skin-bowtie",
+      "type": "mascotSkin",
+      "art": "bowtie",
+      "price": {
+        "coins": 95
+      },
+      "name": {
+        "en": "Smart Bow Tie",
+        "ar": "ربطة عنق أنيقة"
+      }
+    },
+    {
+      "id": "skin-cape",
+      "type": "mascotSkin",
+      "art": "cape",
+      "price": {
+        "gems": 2
+      },
+      "unlock": {
+        "level": 4
+      },
+      "name": {
+        "en": "Hero Cape",
+        "ar": "عباءة البطل"
+      }
+    },
+    {
+      "id": "skin-tophat",
+      "type": "mascotSkin",
+      "art": "tophat",
+      "price": {
+        "coins": 175
+      },
+      "unlock": {
+        "level": 5
+      },
+      "name": {
+        "en": "Top Hat",
+        "ar": "قبعة عالية"
+      }
+    }
+  ]
+}

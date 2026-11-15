@@ -1,0 +1,10 @@
+{
+  "ranks": [
+    { "id": "saver", "from": 1, "to": 9, "icon": "🐷", "name": { "en": "Saver", "ar": "المدّخر" } },
+    { "id": "builder", "from": 10, "to": 17, "icon": "🧱", "name": { "en": "Builder", "ar": "البنّاء" } },
+    { "id": "trader", "from": 18, "to": 25, "icon": "⚖️", "name": { "en": "Trader", "ar": "التاجر" } },
+    { "id": "banker", "from": 26, "to": 33, "icon": "🏦", "name": { "en": "Banker", "ar": "المصرفي" } },
+    { "id": "tycoon", "from": 34, "to": 42, "icon": "🏙️", "name": { "en": "Tycoon", "ar": "رجل الأعمال" } },
+    { "id": "money-master", "from": 43, "to": 50, "icon": "👑", "name": { "en": "Money Master", "ar": "سيّد المال" } }
+  ]
+}

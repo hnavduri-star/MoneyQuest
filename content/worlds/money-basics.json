@@ -1,0 +1,1238 @@
+{
+  "id": "money-basics",
+  "icon": "🐷",
+  "color": "#E69F00",
+  "name": {
+    "en": "Money Basics",
+    "ar": "أساسيات المال"
+  },
+  "tagline": {
+    "en": "What money is, and how to use it wisely",
+    "ar": "ما هو المال وكيف نستخدمه بحكمة"
+  },
+  "badge": {
+    "id": "world-money-basics",
+    "icon": "🐷",
+    "rarity": "rare",
+    "name": {
+      "en": "Money Basics Graduate",
+      "ar": "خريج أساسيات المال"
+    },
+    "desc": {
+      "en": "Finish Money Basics",
+      "ar": "أكمل أساسيات المال"
+    }
+  },
+  "realLife": {
+    "en": "Make a piggy-bank goal together: pick one thing to save for and track it on the fridge.",
+    "ar": "ضعوا معاً هدف ادخار: اختاروا شيئاً تدخرون له وتابعوه على الثلاجة."
+  },
+  "concepts": {
+    "money-purpose": {
+      "en": "What money is for",
+      "ar": "ما فائدة المال"
+    },
+    "needs-wants": {
+      "en": "Needs vs wants",
+      "ar": "الحاجات والرغبات"
+    },
+    "earning": {
+      "en": "Earning money",
+      "ar": "كسب المال"
+    },
+    "save-spend": {
+      "en": "Saving vs spending",
+      "ar": "الادخار والإنفاق"
+    },
+    "savings-goal": {
+      "en": "Savings goals",
+      "ar": "أهداف الادخار"
+    }
+  },
+  "nodes": [
+    {
+      "id": "what-is-money",
+      "kind": "lesson",
+      "icon": "🪙",
+      "title": {
+        "en": "What is money?",
+        "ar": "ما هو المال؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "barter",
+          "mascot": "happy",
+          "text": {
+            "en": "Long ago there was no money. People swapped things: 3 fish for a basket of apples. This is called bartering.",
+            "ar": "قديماً لم يكن هناك مال. كان الناس يتبادلون الأشياء: ٣ أسماك مقابل سلة تفاح. هذا يسمى المقايضة."
+          }
+        },
+        {
+          "type": "story",
+          "art": "coins",
+          "mascot": "thinking",
+          "text": {
+            "en": "But what if the apple farmer did not want fish? Swapping got tricky. So people agreed to use money: something everyone accepts in exchange for things.",
+            "ar": "لكن ماذا لو لم يرغب مزارع التفاح في السمك؟ أصبحت المقايضة صعبة. فاتفق الناس على استخدام المال: شيء يقبله الجميع مقابل الأشياء."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-purpose",
+          "prompt": {
+            "en": "Why did people start using money?",
+            "ar": "لماذا بدأ الناس باستخدام المال؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Because everyone accepts it, so trading is easier",
+                "ar": "لأن الجميع يقبله، فيصبح التبادل أسهل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Because coins are shiny",
+                "ar": "لأن العملات لامعة"
+              }
+            },
+            {
+              "text": {
+                "en": "Because fish ran out",
+                "ar": "لأن السمك نفد"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Think about the farmer who did not want fish.",
+            "ar": "فكّر في المزارع الذي لم يرد السمك."
+          },
+          "explain": {
+            "en": "Money works because everyone agrees to accept it. That makes buying and selling easy.",
+            "ar": "المال ينجح لأن الجميع يتفق على قبوله، وهذا يسهّل البيع والشراء."
+          }
+        },
+        {
+          "type": "story",
+          "art": "cards",
+          "mascot": "excited",
+          "text": {
+            "en": "Today money comes as coins, notes, cards and even numbers on a phone. They are all money, just in different forms!",
+            "ar": "اليوم يأتي المال على شكل عملات معدنية وورقية وبطاقات وحتى أرقام في الهاتف. كلها مال لكن بأشكال مختلفة!"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-purpose",
+          "prompt": {
+            "en": "Which of these is NOT money?",
+            "ar": "أيّ من هذه ليس مالاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A bank card",
+                "ar": "بطاقة بنكية"
+              },
+              "emoji": "💳"
+            },
+            {
+              "text": {
+                "en": "A banknote",
+                "ar": "ورقة نقدية"
+              },
+              "emoji": "💵"
+            },
+            {
+              "text": {
+                "en": "A football",
+                "ar": "كرة قدم"
+              },
+              "emoji": "⚽",
+              "correct": true
+            }
+          ],
+          "hint": {
+            "en": "Which one can you NOT pay with at a shop?",
+            "ar": "أيّها لا يمكنك الدفع به في المتجر؟"
+          },
+          "explain": {
+            "en": "A football is fun, but shops do not accept it as payment.",
+            "ar": "الكرة ممتعة، لكن المتاجر لا تقبلها كوسيلة دفع."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-purpose",
+          "ages": [
+            "10-12",
+            "13-15"
+          ],
+          "prompt": {
+            "en": "Money also lets us compare prices. This is called a 'measure of value'. Which shows that?",
+            "ar": "المال يتيح لنا أيضاً مقارنة الأسعار، ويسمى ذلك 'مقياس القيمة'. أيّ مثال يوضح ذلك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A bike costs [[400]] and a book costs [[20]], so the bike is worth more",
+                "ar": "الدراجة بـ[[400]] والكتاب بـ[[20]]، إذن الدراجة أغلى"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Keeping coins in a jar",
+                "ar": "وضع العملات في برطمان"
+              }
+            },
+            {
+              "text": {
+                "en": "Swapping stickers with a friend",
+                "ar": "تبادل الملصقات مع صديق"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Prices in money let us compare very different things.",
+            "ar": "الأسعار بالمال تتيح مقارنة أشياء مختلفة جداً."
+          }
+        }
+      ]
+    },
+    {
+      "id": "needs-wants",
+      "kind": "lesson",
+      "icon": "🍎",
+      "title": {
+        "en": "Needs vs wants",
+        "ar": "الحاجات والرغبات"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "needs",
+          "mascot": "happy",
+          "text": {
+            "en": "A NEED is something you must have to live and be safe: food, water, a home, clothes. A WANT is something nice to have, but you can live without it.",
+            "ar": "الحاجة شيء لا بد منه لتعيش بأمان: الطعام والماء والمسكن والملابس. الرغبة شيء جميل لكن يمكنك العيش بدونه."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "needs-wants",
+          "prompt": {
+            "en": "Sort each thing into Needs or Wants.",
+            "ar": "صنّف كل شيء إلى حاجات أو رغبات."
+          },
+          "bins": [
+            {
+              "id": "need",
+              "emoji": "🏠",
+              "label": {
+                "en": "Need",
+                "ar": "حاجة"
+              }
+            },
+            {
+              "id": "want",
+              "emoji": "🎈",
+              "label": {
+                "en": "Want",
+                "ar": "رغبة"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "💧",
+              "text": {
+                "en": "Water",
+                "ar": "ماء"
+              },
+              "bin": "need"
+            },
+            {
+              "emoji": "🎮",
+              "text": {
+                "en": "Video game",
+                "ar": "لعبة فيديو"
+              },
+              "bin": "want"
+            },
+            {
+              "emoji": "🥦",
+              "text": {
+                "en": "Healthy food",
+                "ar": "طعام صحي"
+              },
+              "bin": "need"
+            },
+            {
+              "emoji": "🍭",
+              "text": {
+                "en": "Giant lollipop",
+                "ar": "مصاصة عملاقة"
+              },
+              "bin": "want"
+            },
+            {
+              "emoji": "🧥",
+              "text": {
+                "en": "Warm coat",
+                "ar": "معطف دافئ"
+              },
+              "bin": "need"
+            },
+            {
+              "emoji": "🧸",
+              "text": {
+                "en": "Tenth teddy bear",
+                "ar": "الدب العاشر"
+              },
+              "bin": "want"
+            }
+          ],
+          "hint": {
+            "en": "Ask: could I live safely without it?",
+            "ar": "اسأل نفسك: هل أستطيع العيش بأمان بدونه؟"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "needs-wants",
+          "prompt": {
+            "en": "You have [[10]]. You need lunch ([[6]]) and want stickers ([[6]]). What is the wise choice?",
+            "ar": "معك [[10]]. تحتاج غداء ([[6]]) وترغب في ملصقات ([[6]]). ما الخيار الحكيم؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Buy lunch first, save the rest for the stickers later",
+                "ar": "اشترِ الغداء أولاً ووفّر الباقي للملصقات لاحقاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Buy stickers and skip lunch",
+                "ar": "اشترِ الملصقات وتخلَّ عن الغداء"
+              }
+            },
+            {
+              "text": {
+                "en": "Buy both",
+                "ar": "اشترِ الاثنين"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Can [[10]] pay for both? And which one is a need?",
+            "ar": "هل تكفي [[10]] للاثنين؟ وأيّهما حاجة؟"
+          },
+          "explain": {
+            "en": "Needs come first. [[6]] + [[6]] = [[12]], more than you have!",
+            "ar": "الحاجات أولاً. [[6]] + [[6]] = [[12]]، أكثر مما معك!"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "needs-wants",
+          "ages": [
+            "10-12",
+            "13-15"
+          ],
+          "prompt": {
+            "en": "Shoes are a need. Are the most expensive designer shoes a need too?",
+            "ar": "الحذاء حاجة. فهل الحذاء الفاخر الأغلى حاجة أيضاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: shoes are the need, the fancy brand is a want",
+                "ar": "لا: الحذاء حاجة، أما الماركة الفاخرة فرغبة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, all shoes are needs",
+                "ar": "نعم، كل الأحذية حاجات"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A need can have a 'want' version. Smart spenders meet the need without overpaying.",
+            "ar": "قد يكون للحاجة نسخة 'رغبة'. المنفق الذكي يلبي الحاجة دون أن يدفع أكثر من اللازم."
+          }
+        },
+        {
+          "type": "story",
+          "art": "thinking",
+          "mascot": "wink",
+          "text": {
+            "en": "Wants are not bad! Fun matters too. The trick is: needs first, then plan for wants.",
+            "ar": "الرغبات ليست سيئة! المتعة مهمة أيضاً. السر هو: الحاجات أولاً، ثم خطط للرغبات."
+          }
+        }
+      ]
+    },
+    {
+      "id": "earning",
+      "kind": "lesson",
+      "icon": "💪",
+      "title": {
+        "en": "Where money comes from",
+        "ar": "من أين يأتي المال؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "work",
+          "mascot": "happy",
+          "text": {
+            "en": "Money does not grow on trees! Grown-ups earn money by working: helping people, making things or solving problems.",
+            "ar": "المال لا ينمو على الأشجار! الكبار يكسبون المال بالعمل: بمساعدة الناس أو صنع الأشياء أو حل المشكلات."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "earning",
+          "prompt": {
+            "en": "How does a baker earn money?",
+            "ar": "كيف يكسب الخبّاز المال؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "By selling bread people want to buy",
+                "ar": "ببيع الخبز الذي يريد الناس شراءه"
+              },
+              "correct": true,
+              "emoji": "🥖"
+            },
+            {
+              "text": {
+                "en": "By taking money from a machine",
+                "ar": "بأخذ المال من آلة"
+              },
+              "emoji": "🏧"
+            },
+            {
+              "text": {
+                "en": "Money appears at night",
+                "ar": "يظهر المال في الليل"
+              },
+              "emoji": "🌙"
+            }
+          ],
+          "explain": {
+            "en": "The baker works and sells bread. The cash machine only gives out money that is already yours in the bank.",
+            "ar": "الخبّاز يعمل ويبيع الخبز. أما الصراف الآلي فيعطيك فقط مالاً هو لك أصلاً في البنك."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "earning",
+          "prompt": {
+            "en": "Earning or spending?",
+            "ar": "كسب أم إنفاق؟"
+          },
+          "bins": [
+            {
+              "id": "earn",
+              "emoji": "⬆️",
+              "label": {
+                "en": "Money in",
+                "ar": "مال داخل"
+              }
+            },
+            {
+              "id": "spend",
+              "emoji": "⬇️",
+              "label": {
+                "en": "Money out",
+                "ar": "مال خارج"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "🚗",
+              "text": {
+                "en": "Washing the neighbour's car for pay",
+                "ar": "غسل سيارة الجار مقابل أجر"
+              },
+              "bin": "earn"
+            },
+            {
+              "emoji": "🍦",
+              "text": {
+                "en": "Buying ice cream",
+                "ar": "شراء آيس كريم"
+              },
+              "bin": "spend"
+            },
+            {
+              "emoji": "🎂",
+              "text": {
+                "en": "Selling cupcakes at the school fair",
+                "ar": "بيع الكعك في معرض المدرسة"
+              },
+              "bin": "earn"
+            },
+            {
+              "emoji": "🎟️",
+              "text": {
+                "en": "Paying for a cinema ticket",
+                "ar": "دفع ثمن تذكرة السينما"
+              },
+              "bin": "spend"
+            }
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "earning",
+          "money": true,
+          "prompt": {
+            "7-9": {
+              "en": "You earn [[5]] for each car you wash. You wash 2 cars. How much do you earn?",
+              "ar": "تكسب [[5]] عن كل سيارة تغسلها. غسلت سيارتين. كم كسبت؟"
+            },
+            "default": {
+              "en": "You earn [[15]] an hour helping at a shop. You work 4 hours. How much do you earn?",
+              "ar": "تكسب [[15]] في الساعة بمساعدتك في متجر. عملت ٤ ساعات. كم كسبت؟"
+            }
+          },
+          "answer": {
+            "7-9": 10,
+            "default": 60
+          },
+          "hint": {
+            "7-9": {
+              "en": "5 + 5 = ?",
+              "ar": "٥ + ٥ = ؟"
+            },
+            "default": {
+              "en": "Multiply: 15 × 4",
+              "ar": "اضرب: ١٥ × ٤"
+            }
+          },
+          "explain": {
+            "en": "Pay × amount of work = what you earn.",
+            "ar": "الأجر × مقدار العمل = ما تكسبه."
+          }
+        }
+      ]
+    },
+    {
+      "id": "save-or-spend",
+      "kind": "lesson",
+      "icon": "⚖️",
+      "title": {
+        "en": "Saving vs spending",
+        "ar": "الادخار والإنفاق"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "jar",
+          "mascot": "happy",
+          "text": {
+            "en": "When you get money you can SPEND it now, or SAVE it for later. Saving means you can buy bigger things in the future.",
+            "ar": "عندما تحصل على المال يمكنك إنفاقه الآن أو ادخاره لاحقاً. الادخار يعني أنك تستطيع شراء أشياء أكبر في المستقبل."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "save-spend",
+          "prompt": {
+            "en": "Sara gets [[20]] each week. She spends all of it every week. What happens when she wants a [[100]] bike?",
+            "ar": "تحصل سارة على [[20]] كل أسبوع وتنفقها كلها. ماذا يحدث عندما تريد دراجة بـ[[100]]؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "She has nothing saved, so she cannot buy it",
+                "ar": "ليس لديها مدخرات فلا تستطيع شراءها"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "She can buy it straight away",
+                "ar": "تستطيع شراءها فوراً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "If you spend everything, there is nothing left for big goals.",
+            "ar": "إذا أنفقت كل شيء، لن يبقى شيء للأهداف الكبيرة."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "jars",
+          "params": {
+            "amount": 20
+          },
+          "text": {
+            "en": "Try splitting [[20]] between Save, Spend and Give jars. Many families use 50% save, 40% spend, 10% give.",
+            "ar": "جرّب تقسيم [[20]] بين برطمانات الادخار والإنفاق والعطاء. كثير من العائلات تستخدم ٥٠٪ ادخار و٤٠٪ إنفاق و١٠٪ عطاء."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "save-spend",
+          "prompt": {
+            "en": "Which is a smart habit?",
+            "ar": "أيّها عادة ذكية؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Save a little every time you get money",
+                "ar": "ادخر قليلاً في كل مرة تحصل فيها على المال"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Only save when you have lots of money",
+                "ar": "ادخر فقط عندما يكون لديك مال كثير"
+              }
+            },
+            {
+              "text": {
+                "en": "Never spend anything, ever",
+                "ar": "لا تنفق أي شيء أبداً"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Small amounts add up over time.",
+            "ar": "المبالغ الصغيرة تتجمع مع الوقت."
+          },
+          "explain": {
+            "en": "Saving a little, often, is the superpower. Spending some on fun is fine too!",
+            "ar": "الادخار القليل والمتكرر هو القوة الخارقة. والإنفاق قليلاً على المتعة لا بأس به!"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "save-spend",
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ],
+          "prompt": {
+            "en": "You save [[5]] every week for a year (52 weeks). How much do you save?",
+            "ar": "تدخر [[5]] كل أسبوع لمدة سنة (٥٢ أسبوعاً). كم تدخر؟"
+          },
+          "answer": 260,
+          "hint": {
+            "en": "5 × 52",
+            "ar": "٥ × ٥٢"
+          },
+          "explain": {
+            "en": "Small weekly savings become [[260]] in a year!",
+            "ar": "المدخرات الأسبوعية الصغيرة تصبح [[260]] في سنة!"
+          }
+        }
+      ]
+    },
+    {
+      "id": "piggy-goals",
+      "kind": "lesson",
+      "icon": "🎯",
+      "title": {
+        "en": "Piggy bank goals",
+        "ar": "أهداف الحصّالة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "goal",
+          "mascot": "excited",
+          "text": {
+            "en": "A savings GOAL is something you save up for. Pick the goal, the price, and how much you save each week. Then you know how long it takes!",
+            "ar": "هدف الادخار شيء تدخر من أجله. حدّد الهدف والسعر وكم تدخر أسبوعياً، وستعرف كم من الوقت يستغرق!"
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "savingsGoal",
+          "params": {
+            "goal": {
+              "7-9": 30,
+              "default": 120
+            },
+            "perWeek": {
+              "7-9": 5,
+              "default": 10
+            }
+          },
+          "text": {
+            "en": "Move the slider: how fast can you reach your goal?",
+            "ar": "حرّك المؤشر: ما مدى سرعة وصولك إلى هدفك؟"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "savings-goal",
+          "unit": "weeks",
+          "prompt": {
+            "7-9": {
+              "en": "A toy costs [[20]]. You save [[5]] a week. How many weeks until you can buy it?",
+              "ar": "لعبة ثمنها [[20]]. تدخر [[5]] أسبوعياً. كم أسبوعاً حتى تشتريها؟"
+            },
+            "default": {
+              "en": "Headphones cost [[90]]. You already have [[30]] and save [[12]] a week. How many weeks until you can buy them?",
+              "ar": "سماعات ثمنها [[90]]. لديك [[30]] وتدخر [[12]] أسبوعياً. كم أسبوعاً حتى تشتريها؟"
+            }
+          },
+          "answer": {
+            "7-9": 4,
+            "default": 5
+          },
+          "hint": {
+            "7-9": {
+              "en": "Count by fives: 5, 10, 15, 20",
+              "ar": "عدّ بالخمسات: ٥، ١٠، ١٥، ٢٠"
+            },
+            "default": {
+              "en": "First find what is left: 90 − 30. Then divide by 12.",
+              "ar": "أولاً جد الباقي: ٩٠ − ٣٠. ثم اقسم على ١٢."
+            }
+          },
+          "explain": {
+            "en": "Money left to save ÷ savings per week = weeks needed.",
+            "ar": "المبلغ المتبقي ÷ الادخار الأسبوعي = عدد الأسابيع."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "savings-goal",
+          "prompt": {
+            "en": "How can you reach your goal FASTER?",
+            "ar": "كيف تصل إلى هدفك بشكل أسرع؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Save a bit more each week",
+                "ar": "ادخر أكثر قليلاً كل أسبوع"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Take money out of the piggy bank for snacks",
+                "ar": "خذ مالاً من الحصالة للوجبات الخفيفة"
+              }
+            },
+            {
+              "text": {
+                "en": "Stop counting",
+                "ar": "توقف عن العد"
+              }
+            }
+          ],
+          "explain": {
+            "en": "More saved each week = fewer weeks to wait.",
+            "ar": "كلما ادخرت أكثر أسبوعياً قلّت أسابيع الانتظار."
+          }
+        }
+      ]
+    },
+    {
+      "id": "needs-wants-rush",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "needs-wants"
+      ],
+      "title": {
+        "en": "Needs vs Wants Rush",
+        "ar": "سباق الحاجات والرغبات"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "need",
+            "emoji": "🏠",
+            "label": {
+              "en": "Need",
+              "ar": "حاجة"
+            }
+          },
+          {
+            "id": "want",
+            "emoji": "🎈",
+            "label": {
+              "en": "Want",
+              "ar": "رغبة"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🍞",
+            "text": {
+              "en": "Bread",
+              "ar": "خبز"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🎧",
+            "text": {
+              "en": "New headphones",
+              "ar": "سماعات جديدة"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "💊",
+            "text": {
+              "en": "Medicine",
+              "ar": "دواء"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🛹",
+            "text": {
+              "en": "Skateboard",
+              "ar": "لوح تزلج"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "🚰",
+            "text": {
+              "en": "Clean water",
+              "ar": "ماء نظيف"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🍫",
+            "text": {
+              "en": "Chocolate",
+              "ar": "شوكولاتة"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "A home",
+              "ar": "منزل"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🎠",
+            "text": {
+              "en": "Theme park trip",
+              "ar": "رحلة لمدينة الملاهي"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "👟",
+            "text": {
+              "en": "School shoes",
+              "ar": "حذاء المدرسة"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "📱",
+            "text": {
+              "en": "Phone sticker",
+              "ar": "ملصق للهاتف"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "🥕",
+            "text": {
+              "en": "Vegetables",
+              "ar": "خضروات"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🎮",
+            "text": {
+              "en": "Game skin",
+              "ar": "مظهر في لعبة"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "🛏️",
+            "text": {
+              "en": "A bed",
+              "ar": "سرير"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🪀",
+            "text": {
+              "en": "Yo-yo",
+              "ar": "يويو"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "🧼",
+            "text": {
+              "en": "Soap",
+              "ar": "صابون"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🎁",
+            "text": {
+              "en": "Surprise toy",
+              "ar": "لعبة مفاجأة"
+            },
+            "bin": "want"
+          },
+          {
+            "emoji": "🧤",
+            "text": {
+              "en": "Gloves in winter",
+              "ar": "قفازات في الشتاء"
+            },
+            "bin": "need"
+          },
+          {
+            "emoji": "🥤",
+            "text": {
+              "en": "Fizzy drink",
+              "ar": "مشروب غازي"
+            },
+            "bin": "want"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Money Basics quiz",
+        "ar": "اختبار أساسيات المال"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "money-purpose",
+          "prompt": {
+            "en": "Swapping things without money is called…",
+            "ar": "تبادل الأشياء بدون مال يسمى…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Bartering",
+                "ar": "مقايضة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Banking",
+                "ar": "مصرفية"
+              }
+            },
+            {
+              "text": {
+                "en": "Borrowing",
+                "ar": "اقتراض"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "needs-wants",
+          "prompt": {
+            "en": "Which is a NEED?",
+            "ar": "أيّها حاجة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A toothbrush",
+                "ar": "فرشاة أسنان"
+              },
+              "emoji": "🪥",
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A toy car",
+                "ar": "سيارة لعبة"
+              },
+              "emoji": "🚙"
+            },
+            {
+              "text": {
+                "en": "Cinema popcorn",
+                "ar": "فشار السينما"
+              },
+              "emoji": "🍿"
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "earning",
+          "prompt": {
+            "en": "Which is a way to EARN money?",
+            "ar": "أيّها طريقة لكسب المال؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Doing a job",
+                "ar": "القيام بعمل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Buying a snack",
+                "ar": "شراء وجبة خفيفة"
+              }
+            },
+            {
+              "text": {
+                "en": "Losing a coin",
+                "ar": "إضاعة عملة"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "save-spend",
+          "prompt": {
+            "en": "Saving money means…",
+            "ar": "ادخار المال يعني…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Keeping it to use later",
+                "ar": "الاحتفاظ به لاستخدامه لاحقاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Spending it all today",
+                "ar": "إنفاقه كله اليوم"
+              }
+            }
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "savings-goal",
+          "unit": "weeks",
+          "prompt": {
+            "7-9": {
+              "en": "A ball costs [[12]]. You save [[3]] a week. How many weeks?",
+              "ar": "كرة ثمنها [[12]]. تدخر [[3]] أسبوعياً. كم أسبوعاً؟"
+            },
+            "default": {
+              "en": "A game costs [[150]]. You save [[25]] a week. How many weeks?",
+              "ar": "لعبة ثمنها [[150]]. تدخر [[25]] أسبوعياً. كم أسبوعاً؟"
+            }
+          },
+          "answer": {
+            "7-9": 4,
+            "default": 6
+          },
+          "hint": {
+            "en": "Price ÷ savings per week",
+            "ar": "السعر ÷ الادخار الأسبوعي"
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "😈",
+      "title": {
+        "en": "Boss: the Impulse Imp",
+        "ar": "الزعيم: عفريت الاندفاع"
+      },
+      "boss": {
+        "id": "impulse-imp",
+        "name": {
+          "en": "Impulse Imp",
+          "ar": "عفريت الاندفاع"
+        },
+        "color": "#CC79A7",
+        "intro": {
+          "en": "Hee hee! I'm the Impulse Imp. I make people spend ALL their money on things they don't need! Answer my tricks to beat me.",
+          "ar": "هيهي! أنا عفريت الاندفاع. أجعل الناس ينفقون كل أموالهم على أشياء لا يحتاجونها! أجب عن حيلي لتهزمني."
+        },
+        "taunt": {
+          "en": "Ha! Nearly got you. Try again!",
+          "ar": "ها! كدت أوقعك. حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Nooo! You're too smart with money!",
+          "ar": "لا! أنت ذكي جداً مع المال!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "needs-wants",
+          "prompt": {
+            "en": "Imp: 'Buy the shiny gadget now, you NEED it!' Is it really a need?",
+            "ar": "العفريت: 'اشترِ الجهاز اللامع الآن، أنت تحتاجه!' هل هو حاجة حقاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, it's a want. I can wait and think.",
+                "ar": "لا، إنه رغبة. أستطيع الانتظار والتفكير."
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes! Buy it now!",
+                "ar": "نعم! اشترِه الآن!"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Wait a day before buying a want. The urge often fades.",
+            "ar": "انتظر يوماً قبل شراء رغبة. غالباً ما يخفت الاندفاع."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "save-spend",
+          "prompt": {
+            "en": "Imp: 'Spend all your allowance today, you can save tomorrow!' What do you do?",
+            "ar": "العفريت: 'أنفق مصروفك كله اليوم، ادخر غداً!' ماذا تفعل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Save some first, then spend the rest",
+                "ar": "أدخر جزءاً أولاً ثم أنفق الباقي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Spend it all now",
+                "ar": "أنفقه كله الآن"
+              }
+            }
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "savings-goal",
+          "unit": "weeks",
+          "prompt": {
+            "7-9": {
+              "en": "Imp: 'Your [[15]] goal will take forever!' You save [[5]] a week. How many weeks is it really?",
+              "ar": "العفريت: 'هدفك [[15]] سيستغرق للأبد!' تدخر [[5]] أسبوعياً. كم أسبوعاً فعلاً؟"
+            },
+            "default": {
+              "en": "Imp: 'Your [[200]] goal will take forever!' You save [[40]] a week. How many weeks is it really?",
+              "ar": "العفريت: 'هدفك [[200]] سيستغرق للأبد!' تدخر [[40]] أسبوعياً. كم أسبوعاً فعلاً؟"
+            }
+          },
+          "answer": {
+            "7-9": 3,
+            "default": 5
+          },
+          "hint": {
+            "en": "Goal ÷ weekly savings",
+            "ar": "الهدف ÷ الادخار الأسبوعي"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-purpose",
+          "prompt": {
+            "en": "Imp: 'Money is just paper, it means nothing!' Why does money work?",
+            "ar": "العفريت: 'المال مجرد ورق لا قيمة له!' لماذا ينجح المال؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Because everyone agrees to accept it",
+                "ar": "لأن الجميع يتفق على قبوله"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Because paper is rare",
+                "ar": "لأن الورق نادر"
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "earning",
+          "prompt": {
+            "en": "Imp: 'Grown-ups get money for free from the cash machine!' True?",
+            "ar": "العفريت: 'الكبار يأخذون المال مجاناً من الصراف!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "False: it's money they earned and kept in the bank",
+                "ar": "خطأ: إنه مال كسبوه واحتفظوا به في البنك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "True: it's free money",
+                "ar": "صحيح: إنه مال مجاني"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
