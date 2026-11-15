@@ -1,0 +1,983 @@
+{
+  "id": "cash-cards",
+  "icon": "🏧",
+  "color": "#56B4E9",
+  "name": {
+    "en": "Cash, Cards & ATMs",
+    "ar": "النقود والبطاقات والصرّاف"
+  },
+  "tagline": {
+    "en": "UAE notes and coins, how ATMs work, PIN safety and paying by card",
+    "ar": "العملات الإماراتية وكيف يعمل الصرّاف وأمان الرقم السري والدفع بالبطاقة"
+  },
+  "badge": {
+    "id": "world-cash-cards",
+    "icon": "🏧",
+    "rarity": "rare",
+    "name": {
+      "en": "ATM Expert",
+      "ar": "خبير الصرّاف"
+    },
+    "desc": {
+      "en": "Finish Cash, Cards & ATMs",
+      "ar": "أكمل النقود والبطاقات والصرّاف"
+    }
+  },
+  "realLife": {
+    "en": "Next time you're at an ATM with a grown-up, watch the steps: card, PIN (cover it!), amount, cash, card back, receipt.",
+    "ar": "في المرة القادمة عند الصرّاف مع أحد الكبار، راقب الخطوات: البطاقة، الرقم السري (غطّه!)، المبلغ، النقود، استرجاع البطاقة، الإيصال."
+  },
+  "concepts": {
+    "uae-cash": {
+      "en": "UAE notes and coins",
+      "ar": "العملات الإماراتية"
+    },
+    "atm": {
+      "en": "How ATMs work",
+      "ar": "كيف يعمل الصرّاف"
+    },
+    "card-safety": {
+      "en": "Card & PIN safety",
+      "ar": "أمان البطاقة والرقم السري"
+    },
+    "digital-pay": {
+      "en": "Paying by card and phone",
+      "ar": "الدفع بالبطاقة والهاتف"
+    }
+  },
+  "nodes": [
+    {
+      "id": "uae-cash",
+      "kind": "lesson",
+      "icon": "💵",
+      "title": {
+        "en": "Notes and coins of the UAE",
+        "ar": "العملات الورقية والمعدنية في الإمارات"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "notes",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to Dubai Mall! Before we shop, let's look at our money. The UAE dirham (AED) is issued by the Central Bank of the UAE. Notes come in 5, 10, 20, 50, 100, 200, 500 and 1000 dirhams.",
+            "ar": "أهلاً بك في دبي مول! قبل أن نتسوق لننظر إلى مالنا. الدرهم الإماراتي يصدره مصرف الإمارات العربية المتحدة المركزي. الأوراق النقدية فئات ٥ و١٠ و٢٠ و٥٠ و١٠٠ و٢٠٠ و٥٠٠ و١٠٠٠ درهم."
+          }
+        },
+        {
+          "type": "story",
+          "art": "coins",
+          "mascot": "happy",
+          "text": {
+            "en": "Small change uses coins called fils. 100 fils make 1 dirham, so a 50 fils coin is half a dirham and a 25 fils coin is a quarter of a dirham.",
+            "ar": "الفكّة عملات معدنية تسمى الفلوس. ١٠٠ فلس تساوي درهماً واحداً، فعملة الخمسين فلساً نصف درهم وعملة الخمسة والعشرين فلساً ربع درهم."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "uae-cash",
+          "prompt": {
+            "en": "How many fils make 1 dirham?",
+            "ar": "كم فلساً في الدرهم الواحد؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "100",
+                "ar": "١٠٠"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "10",
+                "ar": "١٠"
+              }
+            },
+            {
+              "text": {
+                "en": "1000",
+                "ar": "١٠٠٠"
+              }
+            }
+          ],
+          "explain": {
+            "en": "100 fils = 1 dirham, just like 100 cents = 1 dollar.",
+            "ar": "١٠٠ فلس = درهم واحد، مثل ١٠٠ سنت = دولار واحد."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "uae-cash",
+          "prompt": {
+            "7-9": {
+              "en": "You have one AED 10 note and one AED 5 note. How many dirhams?",
+              "ar": "معك ورقة ١٠ دراهم وورقة ٥ دراهم. كم درهماً معك؟"
+            },
+            "default": {
+              "en": "You have two AED 50 notes and one AED 20 note. How many dirhams is that?",
+              "ar": "معك ورقتان من فئة ٥٠ درهماً وورقة من فئة ٢٠. كم درهماً؟"
+            }
+          },
+          "answer": {
+            "7-9": 15,
+            "default": 120
+          },
+          "explain": {
+            "en": "Add up the value of each note.",
+            "ar": "اجمع قيمة كل ورقة."
+          },
+          "unitText": {
+            "en": "AED",
+            "ar": "درهم"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "uae-cash",
+          "prompt": {
+            "en": "Who makes the UAE's notes and coins?",
+            "ar": "من يصدر العملات الإماراتية؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The Central Bank of the UAE",
+                "ar": "مصرف الإمارات المركزي"
+              },
+              "correct": true,
+              "emoji": "🏛️"
+            },
+            {
+              "text": {
+                "en": "Any shop",
+                "ar": "أي متجر"
+              },
+              "emoji": "🏪"
+            },
+            {
+              "text": {
+                "en": "The ATM",
+                "ar": "الصرّاف الآلي"
+              },
+              "emoji": "🏧"
+            }
+          ],
+          "explain": {
+            "en": "Only the central bank can issue dirhams. That keeps money trusted, and copying money is a crime.",
+            "ar": "المصرف المركزي وحده يصدر الدراهم، وهذا يحافظ على الثقة بالمال، وتزوير العملة جريمة."
+          }
+        }
+      ]
+    },
+    {
+      "id": "atm",
+      "kind": "lesson",
+      "icon": "🏧",
+      "title": {
+        "en": "How does an ATM work?",
+        "ar": "كيف يعمل الصرّاف الآلي؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "atm",
+          "mascot": "thinking",
+          "text": {
+            "en": "An ATM (cash machine) lets you take out cash from YOUR bank account. It's not a money tree: it can only give you money that's already yours.",
+            "ar": "الصرّاف الآلي يتيح لك سحب النقود من حسابك البنكي أنت. ليس شجرة مال: يعطيك فقط مالاً هو لك أصلاً."
+          }
+        },
+        {
+          "type": "story",
+          "art": "atm",
+          "mascot": "excited",
+          "text": {
+            "en": "Here's what happens in a few seconds: 1) you insert your card, 2) you type your secret PIN, 3) the ATM sends a message through the ATM network (in the UAE it's called UAESWITCH) to your bank, 4) your bank checks your balance, 5) if there's enough, it says YES, the ATM counts the notes, and your balance goes down.",
+            "ar": "إليك ما يحدث في ثوانٍ: ١) تُدخل بطاقتك، ٢) تكتب رقمك السري، ٣) يرسل الصرّاف رسالة عبر شبكة الصرّافات (في الإمارات اسمها UAESWITCH) إلى بنكك، ٤) يتحقق بنكك من رصيدك، ٥) إذا كان كافياً يوافق، فيعدّ الصرّاف الأوراق وينقص رصيدك."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "atm",
+          "params": {
+            "balance": 2000
+          },
+          "text": {
+            "en": "Try the ATM! Your pretend PIN is 1234.",
+            "ar": "جرّب الصرّاف! رقمك السري التجريبي ١٢٣٤."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "atm",
+          "prompt": {
+            "en": "Your account has AED 300. You ask the ATM for AED 500. What happens?",
+            "ar": "في حسابك ٣٠٠ درهم. طلبت من الصرّاف ٥٠٠ درهم. ماذا يحدث؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The bank says no: not enough money in the account",
+                "ar": "يرفض البنك: لا يوجد مال كافٍ في الحساب"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The ATM gives it anyway",
+                "ar": "يعطيك الصرّاف المبلغ على أي حال"
+              }
+            },
+            {
+              "text": {
+                "en": "The ATM prints new money",
+                "ar": "يطبع الصرّاف مالاً جديداً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Your bank only approves what your balance can pay. The ATM can't create money.",
+            "ar": "يوافق بنكك فقط على ما يغطيه رصيدك. الصرّاف لا يصنع المال."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "atm",
+          "prompt": {
+            "en": "Your balance is AED 1000. You withdraw AED 300. What is your balance now?",
+            "ar": "رصيدك ١٠٠٠ درهم. سحبت ٣٠٠ درهم. كم رصيدك الآن؟"
+          },
+          "answer": 700,
+          "explain": {
+            "en": "1000 − 300 = 700. Cash in your hand, less in the account.",
+            "ar": "١٠٠٠ − ٣٠٠ = ٧٠٠. نقود في يدك وأقل في الحساب."
+          },
+          "unitText": {
+            "en": "AED",
+            "ar": "درهم"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "atm",
+          "prompt": {
+            "en": "Who checks if you have enough money?",
+            "ar": "من يتحقق من أن لديك مالاً كافياً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Your bank",
+                "ar": "بنكك"
+              },
+              "correct": true,
+              "emoji": "🏦"
+            },
+            {
+              "text": {
+                "en": "The shop next door",
+                "ar": "المتجر المجاور"
+              },
+              "emoji": "🏪"
+            },
+            {
+              "text": {
+                "en": "Nobody",
+                "ar": "لا أحد"
+              },
+              "emoji": "🤷"
+            }
+          ],
+          "explain": {
+            "en": "The ATM asks your bank through the network. Your bank keeps your balance and says yes or no.",
+            "ar": "يسأل الصرّاف بنكك عبر الشبكة. بنكك يحتفظ برصيدك ويقرر الموافقة أو الرفض."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "atm",
+          "prompt": {
+            "en": "Using another bank's ATM can sometimes…",
+            "ar": "استخدام صرّاف بنك آخر قد…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Cost a small fee",
+                "ar": "يكلف رسوماً صغيرة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Give you extra money",
+                "ar": "يعطيك مالاً إضافياً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Some banks charge a fee when you use another bank's machine. Check before you withdraw.",
+            "ar": "بعض البنوك تفرض رسوماً عند استخدام صرّاف بنك آخر. تحقّق قبل السحب."
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "card-safety",
+      "kind": "lesson",
+      "icon": "🛡️",
+      "title": {
+        "en": "Card and PIN safety",
+        "ar": "أمان البطاقة والرقم السري"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "shield",
+          "mascot": "thinking",
+          "text": {
+            "en": "Your PIN is a secret 4-digit code that proves the card is yours. Rule 1: never tell anyone your PIN, not even friends. Rule 2: cover the keypad. Rule 3: always take your card, your cash and your receipt.",
+            "ar": "رقمك السري رمز من ٤ أرقام يثبت أن البطاقة لك. القاعدة ١: لا تخبر أحداً برقمك السري ولو كان صديقاً. القاعدة ٢: غطِّ لوحة الأرقام. القاعدة ٣: خذ دائماً بطاقتك ونقودك وإيصالك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "card-safety",
+          "prompt": {
+            "en": "Someone calls saying they're from the bank and asks for your PIN. What do you do?",
+            "ar": "اتصل شخص يقول إنه من البنك وطلب رقمك السري. ماذا تفعل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Never share it. Hang up and tell a grown-up",
+                "ar": "لا أشاركه أبداً. أغلق الخط وأخبر أحد الكبار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Tell them, they're from the bank",
+                "ar": "أخبره، فهو من البنك"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Real banks NEVER ask for your PIN or one-time code by phone, message or email. Anyone asking is a scammer.",
+            "ar": "البنوك الحقيقية لا تطلب أبداً رقمك السري أو رمز التحقق عبر الهاتف أو الرسائل أو البريد. من يطلبه محتال."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "card-safety",
+          "prompt": {
+            "en": "What should you do while typing your PIN?",
+            "ar": "ماذا تفعل أثناء كتابة رقمك السري؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Cover the keypad with your hand",
+                "ar": "أغطي لوحة الأرقام بيدي"
+              },
+              "correct": true,
+              "emoji": "✋"
+            },
+            {
+              "text": {
+                "en": "Say it out loud",
+                "ar": "أقوله بصوت عالٍ"
+              },
+              "emoji": "📢"
+            }
+          ],
+          "explain": {
+            "en": "Covering the keypad stops people (and hidden cameras) from seeing your PIN.",
+            "ar": "تغطية اللوحة تمنع الناس (والكاميرات المخفية) من رؤية رقمك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "card-safety",
+          "prompt": {
+            "en": "You lost your card. What should happen first?",
+            "ar": "أضعت بطاقتك. ماذا يجب أن يحدث أولاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A grown-up calls the bank or uses the app to block it",
+                "ar": "يتصل أحد الكبار بالبنك أو يستخدم التطبيق لإيقافها"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Wait a week and see",
+                "ar": "ننتظر أسبوعاً ونرى"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Blocking the card straight away stops anyone else from using it.",
+            "ar": "إيقاف البطاقة فوراً يمنع أي شخص آخر من استخدامها."
+          }
+        }
+      ]
+    },
+    {
+      "id": "digital-pay",
+      "kind": "lesson",
+      "icon": "📱",
+      "title": {
+        "en": "Cards, phones and tap-to-pay",
+        "ar": "البطاقات والهواتف والدفع باللمس"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "phone",
+          "mascot": "happy",
+          "text": {
+            "en": "In the mall, lots of people pay by tapping a card or phone. A DEBIT card takes money straight from your bank account. Tapping feels easy, but it's still real money leaving your account!",
+            "ar": "في المول يدفع كثيرون بلمس البطاقة أو الهاتف. بطاقة الخصم تأخذ المال مباشرة من حسابك البنكي. اللمس سهل، لكنه مال حقيقي يخرج من حسابك!"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "digital-pay",
+          "prompt": {
+            "en": "You tap your debit card to pay [[30]]. Where does the money come from?",
+            "ar": "دفعت [[30]] بلمس بطاقة الخصم. من أين يأتي المال؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "From your bank account, straight away",
+                "ar": "من حسابك البنكي فوراً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It's free",
+                "ar": "إنه مجاني"
+              }
+            },
+            {
+              "text": {
+                "en": "From the shop",
+                "ar": "من المتجر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Every tap moves real money from your account to the shop's account.",
+            "ar": "كل لمسة تنقل مالاً حقيقياً من حسابك إلى حساب المتجر."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "digital-pay",
+          "prompt": {
+            "en": "A CREDIT card is different. When you pay with a credit card…",
+            "ar": "بطاقة الائتمان مختلفة. عندما تدفع بها…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "You borrow from the bank and must pay it back, maybe with interest",
+                "ar": "تقترض من البنك ويجب أن تسدد، وربما بفائدة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The bank gives you a gift",
+                "ar": "يعطيك البنك هدية"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Credit cards are short-term loans. Paying the full bill on time avoids interest.",
+            "ar": "بطاقات الائتمان قروض قصيرة الأجل. سداد الفاتورة كاملة في موعدها يجنّبك الفائدة."
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "digital-pay",
+          "prompt": {
+            "en": "Why can paying by phone or card be tricky?",
+            "ar": "لماذا قد يكون الدفع بالهاتف أو البطاقة خادعاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "You don't see the cash leave, so it's easy to overspend",
+                "ar": "لا ترى النقود تخرج، فيسهل الإفراط في الإنفاق"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It costs nothing",
+                "ar": "لا يكلف شيئاً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Check your balance often and decide your limit before you shop.",
+            "ar": "تحقق من رصيدك كثيراً وحدد حدك قبل التسوق."
+          }
+        }
+      ]
+    },
+    {
+      "id": "safe-or-not",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "card-safety"
+      ],
+      "title": {
+        "en": "Safe or Unsafe?",
+        "ar": "آمن أم غير آمن؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "safe",
+            "emoji": "✅",
+            "label": {
+              "en": "Safe",
+              "ar": "آمن"
+            }
+          },
+          {
+            "id": "unsafe",
+            "emoji": "⚠️",
+            "label": {
+              "en": "Unsafe",
+              "ar": "غير آمن"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "✋",
+            "text": {
+              "en": "Cover the keypad",
+              "ar": "تغطية لوحة الأرقام"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "🗣️",
+            "text": {
+              "en": "Tell a friend your PIN",
+              "ar": "إخبار صديق برقمك السري"
+            },
+            "bin": "unsafe"
+          },
+          {
+            "emoji": "💳",
+            "text": {
+              "en": "Take your card after the ATM",
+              "ar": "أخذ بطاقتك بعد الصرّاف"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "✍️",
+            "text": {
+              "en": "Write the PIN on the card",
+              "ar": "كتابة الرقم السري على البطاقة"
+            },
+            "bin": "unsafe"
+          },
+          {
+            "emoji": "📊",
+            "text": {
+              "en": "Check your balance in the app",
+              "ar": "التحقق من رصيدك في التطبيق"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "🎁",
+            "text": {
+              "en": "Type card details into a 'free prize' pop-up",
+              "ar": "كتابة بيانات البطاقة في نافذة 'جائزة مجانية'"
+            },
+            "bin": "unsafe"
+          },
+          {
+            "emoji": "🏦",
+            "text": {
+              "en": "Use an ATM inside a bank or mall",
+              "ar": "استخدام صرّاف داخل بنك أو مول"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "📞",
+            "text": {
+              "en": "Share a one-time code with a caller",
+              "ar": "مشاركة رمز التحقق مع متصل"
+            },
+            "bin": "unsafe"
+          },
+          {
+            "emoji": "🙋",
+            "text": {
+              "en": "Ask a grown-up before buying online",
+              "ar": "سؤال أحد الكبار قبل الشراء عبر الإنترنت"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "🔗",
+            "text": {
+              "en": "Click 'You won a phone!' links",
+              "ar": "الضغط على روابط 'ربحت هاتفاً!'"
+            },
+            "bin": "unsafe"
+          },
+          {
+            "emoji": "🔒",
+            "text": {
+              "en": "Lock your phone with a code",
+              "ar": "قفل الهاتف برمز"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "🧾",
+            "text": {
+              "en": "Leave your card in the ATM",
+              "ar": "ترك بطاقتك في الصرّاف"
+            },
+            "bin": "unsafe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Cash & Cards quiz",
+        "ar": "اختبار النقود والبطاقات"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "uae-cash",
+          "prompt": {
+            "en": "The UAE currency's code is…",
+            "ar": "رمز عملة الإمارات هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "AED",
+                "ar": "AED"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "USD",
+                "ar": "USD"
+              }
+            },
+            {
+              "text": {
+                "en": "EUR",
+                "ar": "EUR"
+              }
+            }
+          ],
+          "explain": {
+            "en": "AED = UAE dirham. USD is the US dollar, EUR the euro.",
+            "ar": "AED = الدرهم الإماراتي. USD الدولار الأمريكي وEUR اليورو."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "atm",
+          "prompt": {
+            "en": "An ATM gives you…",
+            "ar": "الصرّاف الآلي يعطيك…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Money from your own account",
+                "ar": "مالاً من حسابك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Free money",
+                "ar": "مالاً مجانياً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "ATMs pay out your money and reduce your balance.",
+            "ar": "الصرّافات تصرف مالك وتنقص رصيدك."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "atm",
+          "prompt": {
+            "en": "Balance AED 800, withdraw AED 200. New balance?",
+            "ar": "الرصيد ٨٠٠ درهم، سحبت ٢٠٠. الرصيد الجديد؟"
+          },
+          "answer": 600,
+          "explain": {
+            "en": "800 − 200 = 600.",
+            "ar": "٨٠٠ − ٢٠٠ = ٦٠٠."
+          },
+          "unitText": {
+            "en": "AED",
+            "ar": "درهم"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "card-safety",
+          "prompt": {
+            "en": "Who should know your PIN?",
+            "ar": "من يجب أن يعرف رقمك السري؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Only you (and maybe a parent)",
+                "ar": "أنت فقط (وربما أحد والديك)"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Your whole class",
+                "ar": "صفّك كله"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Your PIN is a secret key to your money.",
+            "ar": "رقمك السري مفتاح سري لمالك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "digital-pay",
+          "prompt": {
+            "en": "Tapping a debit card spends…",
+            "ar": "اللمس ببطاقة الخصم ينفق…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Real money from your account",
+                "ar": "مالاً حقيقياً من حسابك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Pretend money",
+                "ar": "مالاً وهمياً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Digital money is real money.",
+            "ar": "المال الرقمي مال حقيقي."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "🦹",
+      "title": {
+        "en": "Boss: the Sneaky Skimmer",
+        "ar": "الزعيم: المحتال الماكر"
+      },
+      "boss": {
+        "id": "the-sneaky-skimmer",
+        "name": {
+          "en": "The Sneaky Skimmer",
+          "ar": "المحتال الماكر"
+        },
+        "color": "#0072B2",
+        "intro": {
+          "en": "Psst! I'm the Sneaky Skimmer. I try to trick kids into giving me their card details and PINs. Can you spot my tricks?",
+          "ar": "بسس! أنا المحتال الماكر. أحاول خداع الأطفال ليعطوني بيانات بطاقاتهم وأرقامهم السرية. هل تكشف حيلي؟"
+        },
+        "taunt": {
+          "en": "Heh, almost got you! Think again.",
+          "ar": "هه، كدت أخدعك! فكّر مجدداً."
+        },
+        "defeat": {
+          "en": "Curses! You're too card-smart!",
+          "ar": "تبّاً! أنت ذكي جداً مع البطاقات!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "card-safety",
+          "prompt": {
+            "en": "Skimmer: 'I'm from your bank. What's your PIN?' You say…",
+            "ar": "المحتال: 'أنا من بنكك. ما رقمك السري؟' تقول…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Banks never ask for PINs. Goodbye!",
+                "ar": "البنوك لا تطلب الأرقام السرية. وداعاً!"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It's 1234",
+                "ar": "إنه ١٢٣٤"
+              }
+            }
+          ],
+          "explain": {
+            "en": "No real bank asks for your PIN. Hang up and tell a grown-up.",
+            "ar": "لا يوجد بنك حقيقي يطلب رقمك السري. أغلق وأخبر أحد الكبار."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "atm",
+          "prompt": {
+            "en": "Skimmer: 'ATMs make free money!' True?",
+            "ar": "المحتال: 'الصرّافات تصنع مالاً مجانياً!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, they pay out money from your account",
+                "ar": "لا، تصرف مالاً من حسابك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, free money!",
+                "ar": "نعم، مال مجاني!"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Every withdrawal reduces your balance.",
+            "ar": "كل سحب ينقص رصيدك."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "uae-cash",
+          "prompt": {
+            "en": "Skimmer swapped your notes! You should have one AED 100 and two AED 20 notes. How many dirhams is that?",
+            "ar": "المحتال بدّل أوراقك! يجب أن يكون معك ورقة ١٠٠ درهم وورقتان من ٢٠. كم درهماً؟"
+          },
+          "answer": 140,
+          "explain": {
+            "en": "100 + 20 + 20 = 140.",
+            "ar": "١٠٠ + ٢٠ + ٢٠ = ١٤٠."
+          },
+          "unitText": {
+            "en": "AED",
+            "ar": "درهم"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "digital-pay",
+          "prompt": {
+            "en": "Skimmer: 'Tap your card a hundred times, it's not real money!' Is it?",
+            "ar": "المحتال: 'المس بطاقتك مئة مرة، ليس مالاً حقيقياً!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It IS real money from your account",
+                "ar": "إنه مال حقيقي من حسابك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It's pretend",
+                "ar": "إنه وهمي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Taps add up. Each one spends real money.",
+            "ar": "اللمسات تتراكم وكل واحدة تنفق مالاً حقيقياً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "card-safety",
+          "prompt": {
+            "en": "Skimmer leaves a 'You won!' link. What do you do?",
+            "ar": "ترك المحتال رابط 'لقد ربحت!'. ماذا تفعل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Don't click. Show a grown-up",
+                "ar": "لا أضغط وأريه لأحد الكبار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Click and enter card details",
+                "ar": "أضغط وأدخل بيانات البطاقة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Surprise prizes that ask for card details are scams.",
+            "ar": "الجوائز المفاجئة التي تطلب بيانات البطاقة احتيال."
+          }
+        }
+      ]
+    }
+  ]
+}

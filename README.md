@@ -2,7 +2,19 @@
 
 A mobile-first, installable PWA that teaches children aged 7–15 how money works through a virtual town that grows as they learn.
 
-**Status: Phase 1 (MVP) complete.** It includes the character creator, the town hub, the full gamification engine, Money Basics and Bank Town. Phases 2–6 are listed at the end.
+**Status: Phase 1 complete, plus the Dubai Money Journey.** The child picks a character and travels across Dubai. At every stop the guide explains a concept, and the child answers questions to move on:
+
+| Stop | Place | World | What it teaches |
+|---|---|---|---|
+| 1 | Al Fahidi & the Gold Souk | Money Basics | what money is, needs vs wants, earning, saving, goals |
+| 2 | Business Bay offices | Salary Street | what a salary is, payday via the bank (WPS), gross vs net, pay yourself first, zakat |
+| 3 | A family home in Mirdif | Family Budget | family income, fixed vs variable expenses (rent, DEWA, school), budgets, emergency fund |
+| 4 | DIFC | Bank Town | deposits, interest, compound growth, loans, how banks earn the spread, Islamic profit-sharing |
+| 5 | Dubai Mall | Cash, Cards & ATMs | AED notes and fils, how an ATM talks to your bank, PIN safety, debit vs credit, tap-to-pay |
+| 6 | DXB Airport & Deira exchange | Currency Bazaar | currencies, exchange rates, the dirham's dollar peg, money changers, remittances, why rates move |
+| 7 | Kite Beach | Lemonade to Empire | revenue, fixed and variable costs, profit and loss, pricing, break-even |
+
+Each stop has 4–6 lessons, a timed mini-game, a quiz and a boss. Every lesson starts with an explanation, and every question explains its answer. After two wrong tries the guide shows the answer and explains it, so no child gets stuck. Answering earns participation XP and coins, keeps an answer-streak going, and counts toward the *Curious Learner* badges and the daily "answer 10 questions" quest. Banks in the lessons are fictional; places are real Dubai landmarks.
 
 Child-safe by design: no ads, no third-party scripts, fonts or trackers, no real money, no open chat, nicknames only. Strict Content-Security-Policy (`'self'` only).
 
@@ -27,6 +39,30 @@ npm start            # http://localhost:4100   (PORT, DB_FILE env vars optional)
 
 The SQLite file defaults to `moneyquest/data/moneyquest.db`. On hosts with ephemeral disks, point `DB_FILE` at a persistent volume.
 
+## Deploy to Render
+
+MoneyQuest is one Node web service: Express serves the API and the built app.
+
+1. Push the code to GitHub.
+2. In the Render dashboard, choose **New → Web Service**, connect GitHub, and pick the repository and branch.
+3. Fill in:
+
+   | Setting | Value |
+   |---|---|
+   | Root Directory | `moneyquest` (leave empty if MoneyQuest is the root of its own repository) |
+   | Runtime | Node |
+   | Build Command | `npm ci --include=dev && npm run build` |
+   | Start Command | `npm start` |
+   | Health Check Path | `/api/health` |
+   | Environment variable | `NODE_VERSION` = `22` |
+
+4. Click **Create Web Service**. The app is live at `https://<name>.onrender.com`. Open it on a phone and use **Add to Home Screen** to install it.
+
+**Where progress is saved.** Children's progress always lives on their own device first. The server holds the family backup, the device links and the leaderboard in a SQLite file:
+
+- **Free plan:** the disk is wiped on every deploy or restart. Devices keep playing, but family backups and device links are lost.
+- **Keep backups:** use a paid instance, add a **Disk** (for example mount path `/var/data`, 1 GB), and set `DB_FILE` = `/var/data/moneyquest.db`.
+
 ## What's in Phase 1
 
 | Area | What you get |
@@ -36,8 +72,8 @@ The SQLite file defaults to `moneyquest/data/moneyquest.db`. On hosts with ephem
 | Evolution | The avatar and companion change at levels 10, 18, 34 and 43: star pin, cape, golden glow, crown and sparkles. |
 | Town hub | SVG town: home with the avatar and pet, a building per world (empty plot → construction → tiers 1–3 as mastery grows, golden and sparkling at tier 3), shop decorations, and traffic that gets busier as the town grows. Future districts are shown as coming soon. |
 | Gamification | XP and levels 1–50 with ranks (Saver, Builder, Trader, Banker, Tycoon, Money Master), coins and gems, daily streak with freeze tokens, 7-day login chest (every reward shown in advance, no randomness), 3 daily quests, weekly challenge, 143 badges in 4 rarities, trophy room, 1–3 stars per level, family leaderboard (top this week and most improved), timed mini-games with combos and power-ups, hints that cost coins (free after a wrong try, or when the child can't afford one), boss battles, mastery meters (Learning → Practising → Mastered) with spaced-repetition reviews that pay bonus coins. |
-| Worlds | **Money Basics**: 5 lessons, Needs vs Wants Rush, quiz, and the Impulse Imp boss. **Bank Town**: 5 lessons plus an optional Islamic banking lesson (profit-sharing), Bank Rush, quiz, and the Lenny the Loan Shark boss. |
-| Simulations | Savings goal, Save/Spend/Give jars, simple vs compound growth, loan calculator, bank spread (animated coin flow), profit-sharing (mudarabah). |
+| Worlds | See the journey table above. Original Phase 1 worlds: **Money Basics**: 5 lessons, Needs vs Wants Rush, quiz, and the Impulse Imp boss. **Bank Town**: 5 lessons plus an optional Islamic banking lesson (profit-sharing), Bank Rush, quiz, and the Lenny the Loan Shark boss. |
+| Simulations | Savings goal, Save/Spend/Give jars, simple vs compound growth, loan calculator, bank spread (animated coin flow), profit-sharing (mudarabah), payslip builder, family budget with surprise bills, a working pretend ATM (card → PIN → network → bank check → notes), currency exchange with margins, and a lemonade stand P&L with demand and break-even. |
 | Mascot | Speech bubbles, moods, read aloud with the device's own speech engine (opt-in), sounds made with Web Audio (no audio files), haptics, confetti. Failure is always gentle: a hint and another try, nothing lost. |
 | Wellbeing | Break reminder (15/20/30/45 min) that never locks the child out, no loot boxes, no pay-to-win, no streak shaming (a missed day simply starts a new streak, and freezes cover gaps automatically). |
 | Accessibility | 48px+ tap targets, colour-blind-safe Okabe–Ito palette, state never shown by colour alone, reduced motion (also follows the OS setting), sound, voice and haptics toggles, OpenDyslexic font option, 3 text sizes, screen-reader labels. |
@@ -61,7 +97,7 @@ moneyquest/
   engine/                  ← pure JS, shared by app and tests (no React, no DOM)
     rewards.js               event-driven reward engine: processEvent(state, event) → { state, effects }
     levels.js streaks.js mastery.js quests.js badges.js town.js progress.js scoring.js text.js
-    sims/                    interest.js, loans.js, bank.js, savings.js (unit-tested maths)
+    sims/                    interest, loans, bank, savings, salary, budget, atm, fx, business (unit-tested maths)
     validate.js registry.js  content checks
     test/                    vitest suites
   server/                  ← Express + SQLite (families, devices, profiles, leaderboard)
@@ -114,11 +150,12 @@ Add a node to `content/worlds/<world>.json` → `nodes`:
 ```
 
 - `kind`: `lesson`, `quiz`, `boss` (add a `boss` object with `name`, `intro`, `taunt`, `color`) or `minigame` (`"game": "sort"` with `config.bins`, `config.items`, `config.seconds` and `config.stars` thresholds).
+- A lesson must start with a `story` step (the explanation), and every `choice` and `number` question needs an `explain`. The content checker enforces both. Number answers can show a fixed unit with `"unitText": { "en": "AED", "ar": "درهم" }`.
 - Every question needs a `concept`, named in the world's `"concepts"` map. That drives mastery meters, spaced review and building upgrades.
 - `"optional": true` lets a level never block completion (as with the Islamic banking lesson, `"module": "islamic-banking"`, which parents can hide in Settings).
 - Levels unlock in order. A world's building is built when its required levels are done, reaches tier 2 at 60% average mastery and tier 3 when every concept is mastered.
 
-**New world:** create `content/worlds/<id>.json`, then set `"available": true` for it in `worlds/index.json`. The app picks up every JSON file in that folder automatically. The world gets 3 automatic badges (finish, all stars, master). A `building` type without its own art uses a generic building with the world icon.
+**New world:** create `content/worlds/<id>.json`, then set `"available": true` for it in `worlds/index.json` (with a `location`, a `landmark` emoji and `requires` to place it on the journey). The app picks up every JSON file in that folder automatically. The world gets 3 automatic badges (finish, all stars, master). A `building` type without its own art uses a generic building with the world icon.
 
 New **step art**, **sims** or **mini-game types** are React components. Register them in `client/src/components/Illustration.jsx`, `client/src/sims/index.jsx` or `client/src/pages/Play.jsx`, and add the id to `engine/registry.js` so the content checker knows about them.
 
@@ -168,12 +205,12 @@ Tokens are stored hashed (SHA-256), PINs with scrypt. Profile state is capped at
 
 ## Tests
 
-`npm test` runs 60 tests. The engine suites cover the interest, loan, bank and savings maths, the XP curve and ranks, streaks and freezes, mastery and spacing, quests, the shop, hints, badges, town tiers, world unlocking, age tiers and content validation. The API suite covers auth, sync conflicts, family isolation, nickname rules, PIN rate limiting, the leaderboard and size limits.
+`npm test` runs the full suite (engine + API). The engine suites cover the interest, loan, bank and savings maths, the XP curve and ranks, streaks and freezes, mastery and spacing, quests, the shop, hints, badges, town tiers, world unlocking, age tiers and content validation. The API suite covers auth, sync conflicts, family isolation, nickname rules, PIN rate limiting, the leaderboard and size limits.
 
 ## Roadmap (each phase waits for go-ahead)
 
-- **Phase 2:** Household Budget, Salary Street, P&L Factory, Parent Mode dashboard (with budget and P&L engines).
-- **Phase 3:** Lemonade to Empire, Currency Bazaar, Supply & Demand, Giving Garden (with exchange-rate engine).
+- **Phase 2 (remaining):** P&L Factory, Parent Mode dashboard. (Salary Street and Family Budget are in the journey.)
+- **Phase 3 (remaining):** deeper Lemonade to Empire (stock, staff, demand shifts), moving exchange rates in Currency Bazaar, Supply & Demand, Giving Garden.
 - **Phase 4:** Investment Island, Debt Dungeon, Insurance Shield, Inflation Lab (with stock-market, inflation and insurance-event engines).
 - **Phase 5:** Startup Lab, Scam Shield, Government City, Career Compass, Smart Shopper, Big Goals Quest.
 - **Phase 6:** Story Mode (state already records `choices`), Multiplayer Market Day, Teacher Mode, Money Master capstone, seasonal events.

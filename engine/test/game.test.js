@@ -180,7 +180,7 @@ describe('reward engine', () => {
   });
   it('finishing a world unlocks its building, world badge and the next world', () => {
     const s0 = fresh();
-    const meta = content.worldIndex.find((w) => w.id === 'bank-town');
+    const meta = content.worldIndex.find((w) => w.id === 'salary-street');
     expect(worldStatus(s0, meta, content, '10-12')).toBe('locked');
     const { state, effects } = clearWorld(s0, 'money-basics');
     expect(state.town.buildings['money-basics']).toBe(1);
@@ -189,6 +189,32 @@ describe('reward engine', () => {
     expect(state.badges['stars-money-basics']).toBeTruthy();
     expect(state.badges['first-boss']).toBeTruthy();
     expect(worldStatus(state, meta, content, '10-12')).toBe('open');
+  });
+  it('the Dubai journey is a chain, and a started world never re-locks', () => {
+    const journey = content.worldIndex.filter((w) => w.playable);
+    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'cash-cards', 'currency-bazaar', 'lemonade-empire']);
+    journey.slice(1).forEach((w, i) => expect(w.requires).toEqual([journey[i].id]));
+    journey.forEach((w) => expect(w.location?.en).toBeTruthy());
+    const bank = content.worldIndex.find((w) => w.id === 'bank-town');
+    const s = processEvent(fresh(), { type: 'level.completed', worldId: 'bank-town', nodeId: 'what-is-a-bank', stars: 3 }, content, opts).state;
+    expect(worldStatus(s, bank, content, '10-12')).toBe('open');
+    expect(worldStatus(fresh(), bank, content, '10-12')).toBe('locked');
+  });
+  it('every playable world has lessons, a mini-game, a quiz and a boss, and every lesson starts by explaining', () => {
+    for (const w of Object.values(content.worlds)) {
+      const kinds = w.nodes.map((n) => n.kind);
+      expect(kinds.filter((k) => k === 'lesson').length).toBeGreaterThanOrEqual(4);
+      expect(kinds).toContain('minigame');
+      expect(kinds).toContain('quiz');
+      expect(kinds.at(-1)).toBe('boss');
+      for (const n of w.nodes.filter((x) => x.kind === 'lesson')) expect(n.steps[0].type).toBe('story');
+    }
+  });
+  it('participation: answering questions earns XP and coins and counts toward badges', () => {
+    const r = processEvent(fresh(), { type: 'level.completed', worldId: 'money-basics', nodeId: 'what-is-money', stars: 1, mistakes: 3, answered: 10 }, content, opts);
+    expect(r.effects.some((e) => e.type === 'reward' && e.source === 'participation' && e.xp === 20 && e.coins === 10)).toBe(true);
+    expect(r.state.stats.questionsAnswered).toBe(10);
+    expect(r.state.badges['answers-10']).toBeTruthy();
   });
   it('the optional Islamic banking lesson never blocks completion', () => {
     let { state } = clearWorld(fresh(), 'money-basics');

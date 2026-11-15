@@ -65,6 +65,15 @@
       "steps": [
         {
           "type": "story",
+          "art": "difc",
+          "mascot": "excited",
+          "text": {
+            "en": "Next stop: DIFC, Dubai's financial centre, full of banks! Let's find out what banks really do with money.",
+            "ar": "المحطة التالية: مركز دبي المالي العالمي، المليء بالبنوك! لنكتشف ماذا تفعل البنوك بالمال فعلاً."
+          }
+        },
+        {
+          "type": "story",
           "art": "bank",
           "mascot": "happy",
           "text": {
@@ -177,6 +186,10 @@
           "hint": {
             "en": "50 + 30 − 20",
             "ar": "٥٠ + ٣٠ − ٢٠"
+          },
+          "explain": {
+            "en": "Deposits add to your balance and withdrawals take away: 50 + 30 − 20 = 60.",
+            "ar": "الإيداع يزيد رصيدك والسحب ينقصه: ٥٠ + ٣٠ − ٢٠ = ٦٠."
           }
         }
       ]
@@ -235,6 +248,10 @@
               "en": "5% of 200 = 200 × 5 ÷ 100",
               "ar": "٥٪ من ٢٠٠ = ٢٠٠ × ٥ ÷ ١٠٠"
             }
+          },
+          "explain": {
+            "en": "Interest is a percent of what you keep in the bank. The more you keep, the more you earn.",
+            "ar": "الفائدة نسبة مما تحتفظ به في البنك. كلما احتفظت بأكثر كسبت أكثر."
           }
         },
         {
@@ -409,7 +426,11 @@
                 "ar": "٧٢ سنة"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "72 ÷ 8 = 9. The Rule of 72 is a quick way to guess how fast money doubles.",
+            "ar": "٧٢ ÷ ٨ = ٩. قاعدة ٧٢ طريقة سريعة لتقدير سرعة تضاعف المال."
+          }
         }
       ]
     },
@@ -458,6 +479,10 @@
               "en": "10 + 1",
               "ar": "١٠ + ١"
             }
+          },
+          "explain": {
+            "en": "Interest is the price of borrowing, so you pay back the loan plus the interest.",
+            "ar": "الفائدة هي ثمن الاقتراض، لذلك تعيد القرض مع الفائدة."
           }
         },
         {
@@ -525,7 +550,11 @@
                 "ar": "كم بسرعة أستطيع إنفاقه؟"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Only borrow what you can repay every month, with money left for your needs.",
+            "ar": "اقترض فقط ما تستطيع سداده كل شهر مع بقاء مال لحاجاتك."
+          }
         }
       ]
     },
@@ -573,6 +602,10 @@
           "hint": {
             "en": "9 − 3",
             "ar": "٩ − ٣"
+          },
+          "explain": {
+            "en": "The spread is the gap between the two rates: 9% − 3% = 6%. That gap pays for the bank's staff, buildings and profit.",
+            "ar": "الهامش هو الفرق بين النسبتين: ٩٪ − ٣٪ = ٦٪. هذا الفرق يدفع رواتب موظفي البنك ومبانيه وأرباحه."
           }
         },
         {
@@ -649,6 +682,10 @@
           "hint": {
             "en": "60% of 200 = 200 × 60 ÷ 100",
             "ar": "٦٠٪ من ٢٠٠ = ٢٠٠ × ٦٠ ÷ ١٠٠"
+          },
+          "explain": {
+            "en": "200 × 60 ÷ 100 = 120. The other 80 goes to the bank for running the business.",
+            "ar": "٢٠٠ × ٦٠ ÷ ١٠٠ = ١٢٠. والـ٨٠ الباقية للبنك مقابل إدارة التجارة."
           }
         },
         {
@@ -877,7 +914,11 @@
                 "ar": "قرض"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "A deposit puts money IN. A withdrawal takes money OUT. A loan is borrowed money.",
+            "ar": "الإيداع يُدخل المال، والسحب يُخرجه، والقرض مال مقترض."
+          }
         },
         {
           "type": "choice",
@@ -900,7 +941,11 @@
                 "ar": "تدفعه أنت للبنك"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "On savings, the bank pays you. On loans, you pay the bank.",
+            "ar": "على المدخرات يدفع لك البنك، وعلى القروض تدفع أنت للبنك."
+          }
         },
         {
           "type": "choice",
@@ -923,7 +968,11 @@
                 "ar": "إيداعك الأول فقط"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Compound interest grows on your money plus the interest you already earned, like a snowball.",
+            "ar": "الفائدة المركبة تنمو على مالك وعلى الفائدة التي كسبتها من قبل، مثل كرة الثلج."
+          }
         },
         {
           "type": "choice",
@@ -952,7 +1001,11 @@
                 "ar": "أقل مما اقترضت"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Borrowing costs money: you repay the loan plus interest.",
+            "ar": "الاقتراض له تكلفة: تعيد القرض مع الفائدة."
+          }
         },
         {
           "type": "number",
@@ -966,6 +1019,10 @@
           "hint": {
             "en": "7 − 2",
             "ar": "٧ − ٢"
+          },
+          "explain": {
+            "en": "7% − 2% = 5%. That's the bank's spread.",
+            "ar": "٧٪ − ٢٪ = ٥٪. هذا هو هامش البنك."
           }
         }
       ]
@@ -1020,7 +1077,11 @@
                 "ar": "نعم، تبدو جيدة"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Paying back double means 100% interest. Fair loans charge much, much less.",
+            "ar": "إعادة الضعف تعني فائدة ١٠٠٪. القروض العادلة تأخذ أقل بكثير."
+          }
         },
         {
           "type": "number",
@@ -1039,6 +1100,10 @@
           "answer": {
             "7-9": 4,
             "default": 20
+          },
+          "explain": {
+            "en": "Savings really do grow: interest is the bank paying you for keeping money with it.",
+            "ar": "المدخرات تنمو فعلاً: الفائدة هي ما يدفعه البنك لك مقابل إبقاء مالك لديه."
           }
         },
         {
@@ -1062,7 +1127,11 @@
                 "ar": "نعم، الوقت لا يهم"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Every year counts in a snowball. Starting early gives compound interest more years to grow.",
+            "ar": "كل سنة مهمة لكرة الثلج. البدء مبكراً يمنح الفائدة المركبة سنوات أكثر لتنمو."
+          }
         },
         {
           "type": "choice",
@@ -1085,7 +1154,11 @@
                 "ar": "بطباعة المال في القبو"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Banks lend savers' money to borrowers at a higher rate than they pay savers.",
+            "ar": "البنوك تقرض أموال المدخرين للمقترضين بنسبة أعلى مما تدفع للمدخرين."
+          }
         },
         {
           "type": "choice",
@@ -1108,7 +1181,11 @@
                 "ar": "نعم، الأطول دائماً أرخص"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Interest is charged every month you owe money, so a longer loan usually costs more in total.",
+            "ar": "الفائدة تُحسب كل شهر تكون فيه مديناً، لذلك القرض الأطول يكلّف غالباً أكثر."
+          }
         },
         {
           "type": "choice",
@@ -1131,7 +1208,11 @@
                 "ar": "جوربي"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Bank accounts are protected and supervised by the Central Bank. Cash at home can be lost or stolen.",
+            "ar": "الحسابات البنكية محمية ويراقبها المصرف المركزي، أما النقود في البيت فقد تضيع أو تُسرق."
+          }
         }
       ]
     }

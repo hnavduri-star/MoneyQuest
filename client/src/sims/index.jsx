@@ -37,6 +37,56 @@ const L = {
   share: { en: 'Your share of profit', ar: 'نصيبك من الربح' },
   you: { en: 'You get', ar: 'تحصل على' },
   bank: { en: 'Bank gets', ar: 'البنك يحصل على' },
+  basic: { en: 'Basic salary', ar: 'الراتب الأساسي' },
+  allowances: { en: 'Allowances (housing, transport)', ar: 'البدلات (سكن، مواصلات)' },
+  pension: { en: 'Pension contribution', ar: 'اشتراك التقاعد' },
+  tax: { en: 'Income tax (in some countries)', ar: 'ضريبة الدخل (في بعض الدول)' },
+  gross: { en: 'Gross pay', ar: 'الراتب الإجمالي' },
+  deductions: { en: 'Deductions', ar: 'الخصومات' },
+  net: { en: 'Net pay (arrives in the bank)', ar: 'الراتب الصافي (يصل للبنك)' },
+  uaeNote: { en: 'UAE: no income tax on salaries', ar: 'الإمارات: لا ضريبة دخل على الرواتب' },
+  income: { en: 'Family income', ar: 'دخل العائلة' },
+  rent: { en: '🏠 Rent', ar: '🏠 الإيجار' },
+  food: { en: '🛒 Groceries', ar: '🛒 البقالة' },
+  bills: { en: '💡 DEWA & phone bills', ar: '💡 فواتير ديوا والهاتف' },
+  school: { en: '🎒 School', ar: '🎒 المدرسة' },
+  transport: { en: '🚗 Transport & Salik', ar: '🚗 المواصلات وسالك' },
+  emergency: { en: '☔ Emergency fund', ar: '☔ صندوق الطوارئ' },
+  savings: { en: '🐷 Savings', ar: '🐷 الادخار' },
+  fun: { en: '🎉 Fun', ar: '🎉 الترفيه' },
+  left: { en: 'Left over', ar: 'المتبقي' },
+  balanced: { en: 'Balanced budget ✓', ar: 'ميزانية متوازنة ✓' },
+  over: { en: 'Over budget! ✗ Cut something', ar: 'تجاوزت الميزانية! ✗ قلّل شيئاً' },
+  surprise: { en: 'Surprise! Car repair', ar: 'مفاجأة! إصلاح السيارة' },
+  covered: { en: 'Covered without borrowing 🎉', ar: 'تمت التغطية دون اقتراض 🎉' },
+  short: { en: 'Short by', ar: 'نقص بمقدار' },
+  insert: { en: 'Insert card', ar: 'أدخل البطاقة' },
+  enterPin: { en: 'Enter PIN (pretend: 1234)', ar: 'أدخل الرقم السري (تجريبي: ١٢٣٤)' },
+  wrongPin: { en: 'Wrong PIN. Try again', ar: 'رقم سري خاطئ. حاول مجدداً' },
+  chooseAmount: { en: 'Choose an amount', ar: 'اختر المبلغ' },
+  network: { en: 'Sending request through the ATM network…', ar: 'إرسال الطلب عبر شبكة الصرّافات…' },
+  bankCheck: { en: 'Your bank checks your balance…', ar: 'بنكك يتحقق من رصيدك…' },
+  approved: { en: 'Approved! Counting notes…', ar: 'تمت الموافقة! عدّ الأوراق…' },
+  takeCash: { en: 'Take your cash and your card', ar: 'خذ نقودك وبطاقتك' },
+  declined: { en: 'Declined', ar: 'مرفوض' },
+  insufficient: { en: 'Not enough money in your account', ar: 'لا يوجد مال كافٍ في حسابك' },
+  overLimit: { en: 'Over your daily limit', ar: 'تجاوز حدك اليومي' },
+  notMultiple: { en: 'This ATM only gives AED 100 notes and up', ar: 'هذا الصرّاف يصرف أوراق ١٠٠ درهم فأكثر' },
+  balance: { en: 'Balance', ar: 'الرصيد' },
+  again: { en: 'Start again', ar: 'ابدأ من جديد' },
+  change: { en: 'Dirhams to change', ar: 'الدراهم المراد صرفها' },
+  to: { en: 'Change into', ar: 'حوّل إلى' },
+  fair: { en: 'Fair value', ar: 'القيمة العادلة' },
+  get: { en: 'You receive', ar: 'تستلم' },
+  margin: { en: 'Exchange house keeps', ar: 'يحتفظ محل الصرافة بـ' },
+  rateNote: { en: 'Example rates. Real rates change daily (USD is pegged).', ar: 'أسعار للتوضيح. الأسعار الحقيقية تتغير يومياً (الدولار مربوط).' },
+  price: { en: 'Price per cup', ar: 'سعر الكوب' },
+  customers: { en: 'Customers', ar: 'الزبائن' },
+  revenue: { en: 'Revenue', ar: 'الإيرادات' },
+  costsL: { en: 'Costs', ar: 'التكاليف' },
+  profitL: { en: 'Profit', ar: 'الربح' },
+  breakEven: { en: 'Break-even', ar: 'نقطة التعادل' },
+  cups: { en: 'cups', ar: 'كوب' },
   lossNote: { en: 'In a loss year, the money provider shares the loss, and the bank earns nothing for its work.', ar: 'في سنة الخسارة يتحمل صاحب المال الخسارة، ولا يكسب البنك شيئاً مقابل عمله.' },
 };
 
@@ -209,4 +259,184 @@ function ProfitShare({ params }) {
   );
 }
 
-export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare };
+
+function Payslip({ params }) {
+  const { tx, money } = useT();
+  const [basic, setBasic] = useState(params.basic || 12000);
+  const [allow, setAllow] = useState(params.allowances || 3000);
+  const [pension, setPension] = useState(0);
+  const [tax, setTax] = useState(0);
+  const r = S.payslip({ basic, allowances: allow, pensionPct: pension, taxPct: tax });
+  return (
+    <div className="space-y-3">
+      <Slider label={tx(L.basic)} value={basic} min={1000} max={40000} step={500} onChange={setBasic} format={money} />
+      <Slider label={tx(L.allowances)} value={allow} min={0} max={15000} step={500} onChange={setAllow} format={money} />
+      <Slider label={tx(L.pension)} value={pension} min={0} max={15} step={0.5} onChange={setPension} format={(v) => `${v}%`} />
+      <Slider label={tx(L.tax)} value={tax} min={0} max={40} onChange={setTax} format={(v) => (v ? `${v}%` : `0% · ${tx(L.uaeNote)}`)} />
+      <div className="rounded-2xl border-2 border-dashed border-line bg-white p-3 font-bold text-sm space-y-1">
+        <div className="flex justify-between"><span>{tx(L.gross)}</span><span>{money(r.gross)}</span></div>
+        {r.pension > 0 && <div className="flex justify-between text-ember"><span>− {tx(L.pension)}</span><span>{money(r.pension)}</span></div>}
+        {r.tax > 0 && <div className="flex justify-between text-ember"><span>− {tx(L.tax)}</span><span>{money(r.tax)}</span></div>}
+      </div>
+      <Stat label={`🏦 ${tx(L.net)}`} value={money(r.net)} tone="bg-leaf-pale" />
+    </div>
+  );
+}
+
+const BUDGET_KEYS = ['rent', 'food', 'bills', 'school', 'transport', 'emergency', 'savings', 'fun'];
+const BUDGET_SHARE = { rent: 0.35, food: 0.15, bills: 0.07, school: 0.15, transport: 0.08, emergency: 0.05, savings: 0.05, fun: 0.08 };
+function Budget({ params }) {
+  const { tx, money } = useT();
+  const { age } = useGame();
+  const income = pickAge(params.income, age) || 16000;
+  const step = income >= 5000 ? 250 : 5;
+  const [alloc, setAlloc] = useState(() => Object.fromEntries(BUDGET_KEYS.map((k) => [k, Math.round((income * BUDGET_SHARE[k]) / step) * step])));
+  const [surprise, setSurprise] = useState(null);
+  const sum = S.budgetSummary(income, alloc);
+  return (
+    <div className="space-y-2">
+      <Stat label={tx(L.income)} value={money(income)} />
+      {BUDGET_KEYS.map((k) => (
+        <Slider key={k} label={tx(L[k])} value={alloc[k]} min={0} max={Math.round(income * 0.6)} step={step} onChange={(v) => { setSurprise(null); setAlloc((a) => ({ ...a, [k]: v })); }} format={money} />
+      ))}
+      <div className={`rounded-2xl p-3 text-center font-extrabold ${sum.balanced ? 'bg-leaf-pale' : 'bg-ember-pale'}`} role="status">
+        {sum.balanced ? tx(L.balanced) : tx(L.over)} · {tx(L.left)}: {money(sum.left)}
+      </div>
+      <button type="button" className="btn-ghost w-full" onClick={() => setSurprise(S.coverSurprise({ emergency: alloc.emergency, savings: alloc.savings }, Math.round(income * 0.08)))}>
+        🚗💥 {tx(L.surprise)} ({money(Math.round(income * 0.08))})
+      </button>
+      {surprise && (
+        <p className={`rounded-2xl p-3 font-bold ${surprise.covered ? 'bg-leaf-pale' : 'bg-sun-pale'}`} role="status">
+          {surprise.covered ? tx(L.covered) : `${tx(L.short)} ${money(surprise.shortfall)} 😬`}
+        </p>
+      )}
+    </div>
+  );
+}
+
+const ATM_AMOUNTS = [100, 200, 500, 1000, 3000];
+function Atm({ params }) {
+  const { tx, lang } = useT();
+  const aed = (n) => (lang === 'ar' ? `${n} درهم` : `AED ${n}`);
+  const [balance, setBalance] = useState(params.balance ?? 2000);
+  const [stage, setStage] = useState('insert');
+  const [pin, setPin] = useState('');
+  const [pinErr, setPinErr] = useState(false);
+  const [result, setResult] = useState(null);
+  const [step, setStep] = useState(0);
+  const go = (amount) => {
+    const r = S.withdraw({ balance, amount, dailyLimit: 2500 });
+    setResult({ ...r, amount });
+    setStage('processing');
+    setStep(0);
+    [1, 2, 3].forEach((i) => setTimeout(() => setStep(i), i * 700));
+    setTimeout(() => {
+      setStage(r.ok ? 'cash' : 'declined');
+      if (r.ok) setBalance(r.balance);
+    }, 2400);
+  };
+  const press = (d) => {
+    const p = (pin + d).slice(0, 4);
+    setPin(p);
+    if (p.length === 4) {
+      if (p === '1234') { setStage('amount'); setPinErr(false); } else setPinErr(true);
+      setTimeout(() => setPin(''), 200);
+    }
+  };
+  return (
+    <div className="rounded-2xl bg-ink text-white p-4 space-y-3" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="flex justify-between text-sm font-bold"><span>🏧 ATM</span><span>{tx(L.balance)}: {aed(balance)}</span></div>
+      <div className="rounded-xl bg-[#1d4f6e] p-3 min-h-[150px] flex flex-col items-center justify-center text-center gap-2" aria-live="polite">
+        {stage === 'insert' && <button className="btn-sun" onClick={() => setStage('pin')}>💳 {tx(L.insert)}</button>}
+        {stage === 'pin' && (
+          <>
+            <p className="font-bold">{tx(L.enterPin)}</p>
+            <p className="text-2xl tracking-[0.5em]" dir="ltr">{'•'.repeat(pin.length).padEnd(4, '○')}</p>
+            {pinErr && <p className="text-sun font-bold">{tx(L.wrongPin)}</p>}
+            <div className="grid grid-cols-5 gap-1" dir="ltr">
+              {['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].map((d) => <button key={d} onClick={() => press(d)} className="w-11 h-11 rounded-lg bg-white/90 text-ink font-extrabold">{d}</button>)}
+            </div>
+          </>
+        )}
+        {stage === 'amount' && (
+          <>
+            <p className="font-bold">{tx(L.chooseAmount)}</p>
+            <div className="grid grid-cols-3 gap-2">
+              {ATM_AMOUNTS.map((a) => <button key={a} onClick={() => go(a)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-ink font-extrabold">{aed(a)}</button>)}
+              <button onClick={() => go(150)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-ink font-extrabold">{aed(150)}</button>
+            </div>
+          </>
+        )}
+        {stage === 'processing' && (
+          <ol className="text-start space-y-1 font-bold">
+            {[L.network, L.bankCheck, result?.ok ? L.approved : L.declined].map((l, i) => (
+              <li key={i} className={step > i ? 'opacity-100' : 'opacity-30'}>{step > i ? '✅' : '⏳'} {tx(l)}</li>
+            ))}
+          </ol>
+        )}
+        {stage === 'cash' && (
+          <>
+            <motion.div className="flex gap-1 flex-wrap justify-center" initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
+              {Object.entries(result.notes).flatMap(([n, k]) => Array.from({ length: k }, (_, i) => <span key={n + i} className="rounded bg-leaf px-2 py-1 font-extrabold text-sm">💵 {n}</span>))}
+            </motion.div>
+            <p className="font-bold">{tx(L.takeCash)}</p>
+          </>
+        )}
+        {stage === 'declined' && <p className="font-bold text-sun">⛔ {tx(L.declined)}: {tx(L[result.reason])}</p>}
+      </div>
+      {(stage === 'cash' || stage === 'declined') && <button className="btn-ghost w-full text-ink" onClick={() => { setStage('insert'); setResult(null); }}>↻ {tx(L.again)}</button>}
+    </div>
+  );
+}
+
+const FX = [['USD', '🇺🇸'], ['EUR', '🇪🇺'], ['GBP', '🇬🇧'], ['SAR', '🇸🇦'], ['INR', '🇮🇳'], ['PKR', '🇵🇰'], ['PHP', '🇵🇭']];
+function Currency({ params }) {
+  const { tx } = useT();
+  const [amount, setAmount] = useState(params.amount || 1000);
+  const [to, setTo] = useState('USD');
+  const q = S.exchangeQuote(amount, 'AED', to, { marginPct: 2 });
+  const fmt = (n, c) => new Intl.NumberFormat('en', { style: 'currency', currency: c, maximumFractionDigits: 2 }).format(n);
+  return (
+    <div className="space-y-3">
+      <Slider label={`🇦🇪 ${tx(L.change)}`} value={amount} min={100} max={10000} step={100} onChange={setAmount} format={(v) => fmt(v, 'AED')} />
+      <p className="font-bold">{tx(L.to)}</p>
+      <div className="flex flex-wrap gap-2">
+        {FX.map(([c, f]) => <button key={c} onClick={() => setTo(c)} aria-pressed={to === c} className={`min-h-[44px] px-3 rounded-xl border-2 font-bold ${to === c ? 'border-ink bg-ink text-white' : 'border-line bg-white'}`}>{f} {c}</button>)}
+      </div>
+      <p className="text-sm font-bold text-center" dir="ltr">1 {to} = {S.EXAMPLE_RATES[to]} AED</p>
+      <div className="grid grid-cols-3 gap-2">
+        <Stat label={tx(L.fair)} value={fmt(q.fair, to)} />
+        <Stat label={tx(L.get)} value={fmt(q.received, to)} tone="bg-leaf-pale" />
+        <Stat label={tx(L.margin)} value={fmt(q.cost, to)} tone="bg-sun-pale" />
+      </div>
+      <p className="text-xs text-soft">ℹ️ {tx(L.rateNote)}</p>
+    </div>
+  );
+}
+
+function Stand({ params }) {
+  const { tx, money } = useT();
+  const unitCost = params.unitCost ?? 2;
+  const fixedCosts = params.fixedCosts ?? 50;
+  const [price, setPrice] = useState(5);
+  const sold = S.demand({ price, base: 100, sensitivity: 8 });
+  const r = S.pnl({ price, unitCost, unitsSold: sold, fixedCosts });
+  const be = S.breakEvenUnits(price, unitCost, fixedCosts);
+  return (
+    <div className="space-y-3">
+      <Slider label={`🍋 ${tx(L.price)}`} value={price} min={0.5} max={12} step={0.5} onChange={setPrice} format={money} />
+      <div className="rounded-2xl bg-sky-pale p-2 text-center" aria-label={`${sold} ${tx(L.customers)}`}>
+        <div className="text-xs font-bold">{tx(L.customers)}: {sold}</div>
+        <div className="text-lg leading-tight break-all" aria-hidden>{'🧍'.repeat(Math.ceil(sold / 5))}</div>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        <Stat label={tx(L.revenue)} value={money(r.revenue)} />
+        <Stat label={tx(L.costsL)} value={money(r.variableCosts + r.fixedCosts)} />
+        <Stat label={tx(L.profitL)} value={`${r.profit >= 0 ? '▲' : '▼'} ${money(r.profit)}`} tone={r.profit >= 0 ? 'bg-leaf-pale' : 'bg-ember-pale'} />
+      </div>
+      <p className="text-sm font-bold">⚖️ {tx(L.breakEven)}: {Number.isFinite(be) ? `${be} ${tx(L.cups)}` : '∞'}</p>
+    </div>
+  );
+}
+
+export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare, payslip: Payslip, budget: Budget, atm: Atm, currency: Currency, stand: Stand };

@@ -151,6 +151,22 @@
             }
           },
           "source": "combo"
+        },
+        {
+          "when": {
+            "firstClear": true
+          },
+          "xp": {
+            "per": {
+              "answered": 2
+            }
+          },
+          "coins": {
+            "per": {
+              "answered": 1
+            }
+          },
+          "source": "participation"
         }
       ],
       "stats": [
@@ -228,6 +244,10 @@
           "when": {
             "firstClear": false
           }
+        },
+        {
+          "stat": "questionsAnswered",
+          "addField": "answered"
         }
       ]
     },
@@ -255,6 +275,10 @@
         {
           "stat": "reviewAnswers",
           "addField": "correct"
+        },
+        {
+          "stat": "questionsAnswered",
+          "addField": "total"
         }
       ]
     },

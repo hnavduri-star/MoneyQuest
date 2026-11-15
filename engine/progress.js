@@ -35,10 +35,13 @@ export function isNodeUnlocked(state, world, nodeId, age) {
 export function worldStatus(state, meta, content, age) {
   if (!meta.playable) return 'coming-soon';
   if (meta.ages && !meta.ages.includes(age)) return 'age-locked';
+  const world = content.worlds[meta.id];
+  const started = world.nodes.some((n) => nodeProgress(state, meta.id, n.id));
   const req = (meta.requires || []).filter((id) => content.worlds[id]);
   const reqDone = req.every((id) => isWorldComplete(state, content.worlds[id], age));
-  if (!reqDone) return 'locked';
-  return isWorldComplete(state, content.worlds[meta.id], age) ? 'complete' : 'open';
+  // A world the child has already started never re-locks (e.g. if the journey order changes).
+  if (!reqDone && !started) return 'locked';
+  return isWorldComplete(state, world, age) ? 'complete' : 'open';
 }
 
 /** Steps of a node visible to this age tier, with age-tiered values resolved. */

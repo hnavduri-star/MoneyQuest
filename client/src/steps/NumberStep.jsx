@@ -9,7 +9,7 @@ export default function NumberStep({ step, solved, onCorrect, onWrong }) {
   const { t, tx, lang } = useT();
   const { currency } = useGame();
   const [val, setVal] = useState('');
-  const unit = step.money ? currencySymbol(currency, lang) : step.unit === 'percent' ? '%' : step.unit === 'weeks' ? t('common.weeks') : '';
+  const unit = step.unitText ? tx(step.unitText) : step.money ? currencySymbol(currency, lang) : step.unit === 'percent' ? '%' : step.unit === 'weeks' ? t('common.weeks') : '';
   const check = () => {
     const n = parseNumber(val);
     if (Number.isNaN(n)) return;

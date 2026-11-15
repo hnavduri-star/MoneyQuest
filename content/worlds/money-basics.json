@@ -61,6 +61,15 @@
       "steps": [
         {
           "type": "story",
+          "art": "souk",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to Al Fahidi in old Dubai! Your journey starts here, by the Creek. Long ago, pearl divers and traders met in the souks to swap pearls, dates, fish and spices.",
+            "ar": "أهلاً بك في الفهيدي في دبي القديمة! رحلتك تبدأ هنا عند الخور. قديماً كان الغوّاصون والتجار يلتقون في الأسواق لتبادل اللؤلؤ والتمر والسمك والبهارات."
+          }
+        },
+        {
+          "type": "story",
           "art": "barter",
           "mascot": "happy",
           "text": {
@@ -973,7 +982,11 @@
                 "ar": "اقتراض"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Bartering means swapping goods directly, like fish for apples, without money.",
+            "ar": "المقايضة تعني تبادل السلع مباشرة، مثل السمك مقابل التفاح، بدون مال."
+          }
         },
         {
           "type": "choice",
@@ -1005,7 +1018,11 @@
               },
               "emoji": "🍿"
             }
-          ]
+          ],
+          "explain": {
+            "en": "You need a toothbrush to stay healthy. Toys and popcorn are fun wants.",
+            "ar": "تحتاج فرشاة الأسنان لتبقى بصحة جيدة، أما الألعاب والفشار فرغبات ممتعة."
+          }
         },
         {
           "type": "choice",
@@ -1034,7 +1051,11 @@
                 "ar": "إضاعة عملة"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Doing a job brings money in. Buying and losing take money out.",
+            "ar": "العمل يُدخل المال، والشراء والضياع يُخرجانه."
+          }
         },
         {
           "type": "choice",
@@ -1057,7 +1078,11 @@
                 "ar": "إنفاقه كله اليوم"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Saving means keeping money now so you can use it later for something bigger.",
+            "ar": "الادخار يعني الاحتفاظ بالمال الآن لاستخدامه لاحقاً في شيء أكبر."
+          }
         },
         {
           "type": "number",
@@ -1080,6 +1105,10 @@
           "hint": {
             "en": "Price ÷ savings per week",
             "ar": "السعر ÷ الادخار الأسبوعي"
+          },
+          "explain": {
+            "en": "Price ÷ savings per week = number of weeks.",
+            "ar": "السعر ÷ الادخار الأسبوعي = عدد الأسابيع."
           }
         }
       ]
@@ -1161,7 +1190,11 @@
                 "ar": "أنفقه كله الآن"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Pay yourself first: put savings aside as soon as you get money, then spend what's left.",
+            "ar": "ادفع لنفسك أولاً: ضع المدخرات جانباً فور حصولك على المال، ثم أنفق الباقي."
+          }
         },
         {
           "type": "number",
@@ -1184,6 +1217,10 @@
           "hint": {
             "en": "Goal ÷ weekly savings",
             "ar": "الهدف ÷ الادخار الأسبوعي"
+          },
+          "explain": {
+            "en": "Goal ÷ weekly savings tells you exactly how many weeks. It's not forever!",
+            "ar": "الهدف ÷ الادخار الأسبوعي يخبرك بعدد الأسابيع بالضبط. ليس للأبد!"
           }
         },
         {
@@ -1207,7 +1244,11 @@
                 "ar": "لأن الورق نادر"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "Money works because everyone trusts it and agrees to accept it.",
+            "ar": "المال ينجح لأن الجميع يثق به ويتفق على قبوله."
+          }
         },
         {
           "type": "choice",
@@ -1230,7 +1271,11 @@
                 "ar": "صحيح: إنه مال مجاني"
               }
             }
-          ]
+          ],
+          "explain": {
+            "en": "A cash machine only gives you money that's already in your own bank account.",
+            "ar": "الصراف الآلي يعطيك فقط مالاً موجوداً أصلاً في حسابك البنكي."
+          }
         }
       ]
     }

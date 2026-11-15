@@ -8,7 +8,7 @@ import { RewardRow } from './ui.jsx';
 import Confetti from './Confetti.jsx';
 import Mascot from './Mascot.jsx';
 
-const LEVEL_SOURCES = new Set(['level.completed', 'boss', 'perfect', 'combo']);
+const LEVEL_SOURCES = new Set(['level.completed', 'boss', 'perfect', 'combo', 'participation']);
 
 export function sumRewards(effects) {
   return effects.filter((e) => e.type === 'reward' && LEVEL_SOURCES.has(e.source)).reduce((a, e) => ({ xp: a.xp + e.xp, coins: a.coins + e.coins, gems: a.gems + e.gems }), { xp: 0, coins: 0, gems: 0 });

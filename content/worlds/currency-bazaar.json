@@ -1,0 +1,990 @@
+{
+  "id": "currency-bazaar",
+  "icon": "💱",
+  "color": "#56B4E9",
+  "name": {
+    "en": "Currency Bazaar",
+    "ar": "سوق العملات"
+  },
+  "tagline": {
+    "en": "Currencies, exchange rates, money changers and why rates move",
+    "ar": "العملات وأسعار الصرف والصرّافون ولماذا تتغير الأسعار"
+  },
+  "badge": {
+    "id": "world-currency-bazaar",
+    "icon": "💱",
+    "rarity": "rare",
+    "name": {
+      "en": "World Money Traveller",
+      "ar": "رحّالة العملات"
+    },
+    "desc": {
+      "en": "Finish Currency Bazaar",
+      "ar": "أكمل سوق العملات"
+    }
+  },
+  "realLife": {
+    "en": "Before your next trip, look up the exchange rate together and work out what a meal or a souvenir costs in dirhams.",
+    "ar": "قبل رحلتكم القادمة ابحثوا معاً عن سعر الصرف واحسبوا كم تكلف وجبة أو تذكار بالدرهم."
+  },
+  "concepts": {
+    "currency-basics": {
+      "en": "What a currency is",
+      "ar": "ما هي العملة"
+    },
+    "exchange-rate": {
+      "en": "Exchange rates",
+      "ar": "أسعار الصرف"
+    },
+    "money-changer": {
+      "en": "Changing money",
+      "ar": "صرف العملات"
+    },
+    "rates-move": {
+      "en": "Why rates change",
+      "ar": "لماذا تتغير الأسعار"
+    }
+  },
+  "nodes": [
+    {
+      "id": "currency-basics",
+      "kind": "lesson",
+      "icon": "🌍",
+      "title": {
+        "en": "Every country has its own money",
+        "ar": "لكل دولة عملتها"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "flags",
+          "mascot": "excited",
+          "text": {
+            "en": "You're at Dubai International Airport, one of the busiest airports in the world! Travellers bring money from everywhere. Each country uses its own CURRENCY: the UAE uses the dirham (AED), Saudi Arabia the riyal (SAR), India the rupee (INR), the USA the dollar (USD), and much of Europe the euro (EUR).",
+            "ar": "أنت في مطار دبي الدولي، أحد أكثر مطارات العالم ازدحاماً! يأتي المسافرون بأموال من كل مكان. لكل دولة عملتها: الإمارات الدرهم، والسعودية الريال، والهند الروبية، وأمريكا الدولار، ومعظم أوروبا اليورو."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "currency-basics",
+          "prompt": {
+            "en": "Which currency does the UAE use?",
+            "ar": "ما عملة الإمارات؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The dirham",
+                "ar": "الدرهم"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The euro",
+                "ar": "اليورو"
+              }
+            },
+            {
+              "text": {
+                "en": "The rupee",
+                "ar": "الروبية"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The UAE dirham (AED) is our currency, issued by the Central Bank of the UAE.",
+            "ar": "الدرهم الإماراتي عملتنا، ويصدره مصرف الإمارات المركزي."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "currency-basics",
+          "prompt": {
+            "en": "You fly to India. What money do shops there want?",
+            "ar": "سافرت إلى الهند. ما المال الذي تريده المتاجر هناك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Indian rupees",
+                "ar": "الروبية الهندية"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "UAE dirhams",
+                "ar": "الدرهم الإماراتي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Shops usually want their own country's currency, so travellers change money or pay by card.",
+            "ar": "المتاجر تريد عادة عملة بلدها، لذلك يصرف المسافرون المال أو يدفعون بالبطاقة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "currency-basics",
+          "prompt": {
+            "en": "Each currency has a 3-letter code. What is the UAE dirham's code?",
+            "ar": "لكل عملة رمز من ٣ أحرف. ما رمز الدرهم الإماراتي؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "AED",
+                "ar": "AED"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "UAD",
+                "ar": "UAD"
+              }
+            },
+            {
+              "text": {
+                "en": "DHM",
+                "ar": "DHM"
+              }
+            }
+          ],
+          "explain": {
+            "en": "AE stands for United Arab Emirates, D for dirham.",
+            "ar": "AE تعني الإمارات العربية المتحدة وD تعني درهم."
+          }
+        }
+      ]
+    },
+    {
+      "id": "exchange-rate",
+      "kind": "lesson",
+      "icon": "💱",
+      "title": {
+        "en": "Exchange rates",
+        "ar": "أسعار الصرف"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "exchange",
+          "mascot": "thinking",
+          "text": {
+            "en": "An EXCHANGE RATE tells you how much one currency is worth in another. The UAE dirham is 'pegged' (tied) to the US dollar: 1 US dollar is always about 3.67 dirhams.",
+            "ar": "سعر الصرف يخبرك بقيمة عملة مقابل عملة أخرى. الدرهم الإماراتي 'مربوط' بالدولار الأمريكي: الدولار الواحد يساوي دائماً نحو ٣٫٦٧ درهم."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "exchange-rate",
+          "prompt": {
+            "7-9": {
+              "en": "Let's round: 1 dollar is about 4 dirhams. A toy costs 2 dollars. About how many dirhams?",
+              "ar": "لنقرّب: الدولار نحو ٤ دراهم. لعبة ثمنها دولاران. كم درهماً تقريباً؟"
+            },
+            "default": {
+              "en": "1 US dollar = 3.67 dirhams. How many dirhams is 10 dollars?",
+              "ar": "الدولار الواحد = ٣٫٦٧ درهم. كم درهماً تساوي ١٠ دولارات؟"
+            }
+          },
+          "answer": {
+            "7-9": 8,
+            "default": 36.7
+          },
+          "explain": {
+            "7-9": {
+              "en": "2 × 4 = 8. Rounding makes quick estimates easy!",
+              "ar": "٢ × ٤ = ٨. التقريب يسهّل التقدير السريع!"
+            },
+            "default": {
+              "en": "Multiply: 10 × 3.67 = 36.7 dirhams.",
+              "ar": "اضرب: ١٠ × ٣٫٦٧ = ٣٦٫٧ درهم."
+            }
+          },
+          "unitText": {
+            "en": "AED",
+            "ar": "درهم"
+          },
+          "tolerance": {
+            "7-9": 0,
+            "default": 0.1
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "exchange-rate",
+          "prompt": {
+            "en": "1 euro is about 4 dirhams. Which is worth more: 1 euro or 1 dirham?",
+            "ar": "اليورو نحو ٤ دراهم. أيهما أكبر قيمة: يورو واحد أم درهم واحد؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "1 euro",
+                "ar": "يورو واحد"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "1 dirham",
+                "ar": "درهم واحد"
+              }
+            },
+            {
+              "text": {
+                "en": "They're the same",
+                "ar": "متساويان"
+              }
+            }
+          ],
+          "explain": {
+            "en": "If 1 euro buys 4 dirhams, one euro is worth more than one dirham.",
+            "ar": "إذا كان اليورو يشتري ٤ دراهم، فاليورو أكبر قيمة من الدرهم."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "exchange-rate",
+          "prompt": {
+            "en": "You have AED 367. How many US dollars is that? (1 USD = 3.67 AED)",
+            "ar": "معك ٣٦٧ درهماً. كم دولاراً أمريكياً؟ (الدولار = ٣٫٦٧ درهم)"
+          },
+          "answer": 100,
+          "explain": {
+            "en": "Going from dirhams to dollars, divide: 367 ÷ 3.67 = 100.",
+            "ar": "من الدرهم إلى الدولار نقسم: ٣٦٧ ÷ ٣٫٦٧ = ١٠٠."
+          },
+          "unitText": {
+            "en": "USD",
+            "ar": "دولار"
+          },
+          "ages": [
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "money-changer",
+      "kind": "lesson",
+      "icon": "🏪",
+      "title": {
+        "en": "At the exchange house",
+        "ar": "عند محل الصرافة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "exchange",
+          "mascot": "thinking",
+          "text": {
+            "en": "In Deira and at the airport you'll see exchange houses. They BUY currency from you at one rate and SELL it at a slightly higher rate. That small gap, the margin, is how they earn money.",
+            "ar": "في ديرة والمطار سترى محلات الصرافة. تشتري العملة منك بسعر وتبيعها بسعر أعلى قليلاً. هذا الفرق الصغير، الهامش، هو ما تكسب منه."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "currency",
+          "params": {
+            "amount": 1000
+          },
+          "text": {
+            "en": "Change some dirhams. Compare the fair rate with what you actually get.",
+            "ar": "اصرف بعض الدراهم. قارن السعر العادل بما تحصل عليه فعلاً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-changer",
+          "prompt": {
+            "en": "Why do you get a bit less than the 'fair' rate?",
+            "ar": "لماذا تحصل على أقل قليلاً من السعر 'العادل'؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The exchange house keeps a small margin for its service",
+                "ar": "محل الصرافة يحتفظ بهامش صغير مقابل خدمته"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It's a mistake",
+                "ar": "إنه خطأ"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Like any shop, an exchange house earns a small amount on each deal.",
+            "ar": "مثل أي متجر، يكسب محل الصرافة مبلغاً صغيراً من كل عملية."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-changer",
+          "prompt": {
+            "en": "You change dirhams to euros and straight back. Do you get all your money back?",
+            "ar": "صرفت دراهم إلى يورو ثم أعدتها فوراً. هل تسترد كل مالك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, you lose a little each time",
+                "ar": "لا، تخسر قليلاً في كل مرة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, exactly the same",
+                "ar": "نعم، المبلغ نفسه تماماً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "You pay the margin twice, so only change what you need.",
+            "ar": "تدفع الهامش مرتين، لذا اصرف فقط ما تحتاجه."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-changer",
+          "prompt": {
+            "en": "Many families in the UAE send money to relatives in other countries. This is called…",
+            "ar": "كثير من العائلات في الإمارات ترسل المال لأقاربها في دول أخرى. يسمى ذلك…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A remittance",
+                "ar": "حوالة مالية"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A refund",
+                "ar": "استرداد"
+              }
+            },
+            {
+              "text": {
+                "en": "A rebate",
+                "ar": "خصم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Exchange houses and banks send remittances abroad. They charge a fee and use an exchange rate.",
+            "ar": "محلات الصرافة والبنوك ترسل الحوالات للخارج مقابل رسوم وبسعر صرف."
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rates-move",
+      "kind": "lesson",
+      "icon": "📈",
+      "title": {
+        "en": "Why exchange rates change",
+        "ar": "لماذا تتغير أسعار الصرف؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "chart",
+          "mascot": "thinking",
+          "text": {
+            "en": "Most exchange rates change every day, like prices in a market. When lots of people want a currency, it becomes more valuable (stronger). When fewer people want it, it gets weaker. The dirham-dollar rate stays fixed because the Central Bank keeps it pegged.",
+            "ar": "معظم أسعار الصرف تتغير كل يوم مثل الأسعار في السوق. عندما يريد كثيرون عملة ما ترتفع قيمتها (تقوى)، وعندما يقل الطلب عليها تضعف. أما سعر الدرهم مقابل الدولار فثابت لأن المصرف المركزي يحافظ على الربط."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "rates-move",
+          "prompt": {
+            "en": "Yesterday 1 euro = AED 4.0. Today 1 euro = AED 4.2. The euro got…",
+            "ar": "أمس اليورو = ٤٫٠ درهم. اليوم اليورو = ٤٫٢ درهم. اليورو أصبح…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Stronger",
+                "ar": "أقوى"
+              },
+              "correct": true,
+              "emoji": "💪"
+            },
+            {
+              "text": {
+                "en": "Weaker",
+                "ar": "أضعف"
+              },
+              "emoji": "🥀"
+            }
+          ],
+          "explain": {
+            "en": "One euro now buys more dirhams, so the euro is stronger.",
+            "ar": "اليورو الواحد يشتري الآن دراهم أكثر، إذن اليورو أقوى."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "rates-move",
+          "prompt": {
+            "en": "Your dirhams now buy MORE euros than before. Is that good for a holiday in Paris?",
+            "ar": "دراهمك الآن تشتري يورو أكثر من قبل. هل هذا جيد لعطلة في باريس؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Yes, the trip got cheaper for you",
+                "ar": "نعم، أصبحت الرحلة أرخص عليك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "No, more expensive",
+                "ar": "لا، أغلى"
+              }
+            }
+          ],
+          "explain": {
+            "en": "More euros for the same dirhams means everything in Paris costs you less.",
+            "ar": "يورو أكثر بالدراهم نفسها يعني أن كل شيء في باريس يكلفك أقل."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "rates-move",
+          "prompt": {
+            "en": "Why might a country peg its currency to the dollar?",
+            "ar": "لماذا قد تربط دولة عملتها بالدولار؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "To keep prices and trade steady and predictable",
+                "ar": "للحفاظ على استقرار الأسعار والتجارة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "To make money free",
+                "ar": "لجعل المال مجانياً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A peg means businesses and families know what the dirham is worth, which helps trade and planning. Oil, for example, is mostly priced in dollars.",
+            "ar": "الربط يعني أن الشركات والعائلات تعرف قيمة الدرهم، ما يساعد التجارة والتخطيط. فالنفط مثلاً يُسعّر غالباً بالدولار."
+          },
+          "ages": [
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "currency-dash",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "currency-basics"
+      ],
+      "title": {
+        "en": "Currency Dash",
+        "ar": "سباق العملات"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "aed",
+            "emoji": "🇦🇪",
+            "label": {
+              "en": "Pays in dirhams",
+              "ar": "يدفع بالدرهم"
+            }
+          },
+          {
+            "id": "other",
+            "emoji": "🌍",
+            "label": {
+              "en": "Other currency",
+              "ar": "عملة أخرى"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🏙️",
+            "text": {
+              "en": "Dubai",
+              "ar": "دبي"
+            },
+            "bin": "aed"
+          },
+          {
+            "emoji": "🕌",
+            "text": {
+              "en": "Abu Dhabi",
+              "ar": "أبوظبي"
+            },
+            "bin": "aed"
+          },
+          {
+            "emoji": "📚",
+            "text": {
+              "en": "Sharjah",
+              "ar": "الشارقة"
+            },
+            "bin": "aed"
+          },
+          {
+            "emoji": "🌴",
+            "text": {
+              "en": "Al Ain",
+              "ar": "العين"
+            },
+            "bin": "aed"
+          },
+          {
+            "emoji": "⛰️",
+            "text": {
+              "en": "Fujairah",
+              "ar": "الفجيرة"
+            },
+            "bin": "aed"
+          },
+          {
+            "emoji": "🏔️",
+            "text": {
+              "en": "Ras Al Khaimah",
+              "ar": "رأس الخيمة"
+            },
+            "bin": "aed"
+          },
+          {
+            "emoji": "⛵",
+            "text": {
+              "en": "Ajman",
+              "ar": "عجمان"
+            },
+            "bin": "aed"
+          },
+          {
+            "emoji": "🕋",
+            "text": {
+              "en": "Riyadh",
+              "ar": "الرياض"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Mumbai",
+              "ar": "مومباي"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "💂",
+            "text": {
+              "en": "London",
+              "ar": "لندن"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "🗼",
+            "text": {
+              "en": "Paris",
+              "ar": "باريس"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "🗽",
+            "text": {
+              "en": "New York",
+              "ar": "نيويورك"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "🏺",
+            "text": {
+              "en": "Cairo",
+              "ar": "القاهرة"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "🌊",
+            "text": {
+              "en": "Karachi",
+              "ar": "كراتشي"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "🏝️",
+            "text": {
+              "en": "Manila",
+              "ar": "مانيلا"
+            },
+            "bin": "other"
+          },
+          {
+            "emoji": "🗾",
+            "text": {
+              "en": "Tokyo",
+              "ar": "طوكيو"
+            },
+            "bin": "other"
+          }
+        ],
+        "prompt": {
+          "en": "Which places use the UAE dirham?",
+          "ar": "أيّ الأماكن تستخدم الدرهم الإماراتي؟"
+        }
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Currency Bazaar quiz",
+        "ar": "اختبار سوق العملات"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "currency-basics",
+          "prompt": {
+            "en": "A currency is…",
+            "ar": "العملة هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The money a country uses",
+                "ar": "المال الذي تستخدمه دولة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A type of bank",
+                "ar": "نوع من البنوك"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Each country (or group, like the euro zone) has its own currency.",
+            "ar": "لكل دولة (أو مجموعة مثل منطقة اليورو) عملتها."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "exchange-rate",
+          "prompt": {
+            "en": "An exchange rate tells you…",
+            "ar": "سعر الصرف يخبرك…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "How much one currency is worth in another",
+                "ar": "بقيمة عملة مقابل أخرى"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "How fast a bank opens",
+                "ar": "بسرعة فتح البنك"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Rates let you convert prices between currencies.",
+            "ar": "الأسعار تتيح تحويل الأثمان بين العملات."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "exchange-rate",
+          "prompt": {
+            "7-9": {
+              "en": "1 dollar ≈ 4 dirhams (rounded). How many dirhams for 3 dollars?",
+              "ar": "الدولار ≈ ٤ دراهم (تقريباً). كم درهماً لـ٣ دولارات؟"
+            },
+            "default": {
+              "en": "1 USD = 3.67 AED. How many dirhams for 100 dollars?",
+              "ar": "الدولار = ٣٫٦٧ درهم. كم درهماً لـ١٠٠ دولار؟"
+            }
+          },
+          "answer": {
+            "7-9": 12,
+            "default": 367
+          },
+          "explain": {
+            "en": "Dollars × rate = dirhams.",
+            "ar": "الدولارات × السعر = الدراهم."
+          },
+          "unitText": {
+            "en": "AED",
+            "ar": "درهم"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "money-changer",
+          "prompt": {
+            "en": "Exchange houses earn money from…",
+            "ar": "محلات الصرافة تكسب من…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The margin between buying and selling rates",
+                "ar": "الهامش بين سعري الشراء والبيع"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Printing currency",
+                "ar": "طباعة العملة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "They buy a bit lower and sell a bit higher.",
+            "ar": "تشتري أقل قليلاً وتبيع أعلى قليلاً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "rates-move",
+          "prompt": {
+            "en": "If more people want a currency, it usually gets…",
+            "ar": "إذا أراد كثيرون عملة ما فإنها عادة…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Stronger",
+                "ar": "تقوى"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Weaker",
+                "ar": "تضعف"
+              }
+            }
+          ],
+          "explain": {
+            "en": "High demand raises its value, like any popular product.",
+            "ar": "الطلب المرتفع يرفع قيمتها مثل أي منتج مرغوب."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "🦊",
+      "title": {
+        "en": "Boss: the Rate Trickster",
+        "ar": "الزعيم: مخادع الأسعار"
+      },
+      "boss": {
+        "id": "the-rate-trickster",
+        "name": {
+          "en": "The Rate Trickster",
+          "ar": "مخادع الأسعار"
+        },
+        "color": "#56B4E9",
+        "intro": {
+          "en": "Welcome, traveller! I'm the Rate Trickster. My exchange 'deals' are SO generous... or are they? Prove you can't be fooled!",
+          "ar": "أهلاً أيها المسافر! أنا مخادع الأسعار. 'صفقاتي' كريمة جداً... أم لا؟ أثبت أنه لا يمكن خداعك!"
+        },
+        "taunt": {
+          "en": "Ha! My numbers confused you. Try again!",
+          "ar": "ها! أربكتك أرقامي. حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Rats! You know your rates too well!",
+          "ar": "تبّاً! أنت تعرف الأسعار جيداً!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "money-changer",
+          "prompt": {
+            "en": "Trickster: 'Change money back and forth, you'll get rich!' True?",
+            "ar": "المخادع: 'اصرف ذهاباً وإياباً وستصبح غنياً!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, you lose the margin every time",
+                "ar": "لا، تخسر الهامش في كل مرة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, free money",
+                "ar": "نعم، مال مجاني"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Each exchange costs a little, so round trips lose money.",
+            "ar": "كل عملية صرف تكلف قليلاً، والذهاب والعودة يخسرك المال."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "exchange-rate",
+          "prompt": {
+            "7-9": {
+              "en": "Trickster: '2 dollars = 2 dirhams!' Using 1 dollar ≈ 4 dirhams, what's 2 dollars really?",
+              "ar": "المخادع: 'دولاران = درهمان!' باستخدام الدولار ≈ ٤ دراهم، كم دولاران فعلاً؟"
+            },
+            "default": {
+              "en": "Trickster: '20 dollars = 20 dirhams!' With 1 USD = 3.67 AED, what's 20 dollars really?",
+              "ar": "المخادع: '٢٠ دولاراً = ٢٠ درهماً!' والدولار = ٣٫٦٧ درهم، كم ٢٠ دولاراً فعلاً؟"
+            }
+          },
+          "answer": {
+            "7-9": 8,
+            "default": 73.4
+          },
+          "explain": {
+            "en": "Multiply by the rate. Currencies are rarely one-to-one!",
+            "ar": "اضرب في السعر. العملات نادراً ما تكون متساوية!"
+          },
+          "unitText": {
+            "en": "AED",
+            "ar": "درهم"
+          },
+          "tolerance": {
+            "7-9": 0,
+            "default": 0.1
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "currency-basics",
+          "prompt": {
+            "en": "Trickster: 'Shops in London want dirhams!' Do they?",
+            "ar": "المخادع: 'متاجر لندن تريد الدراهم!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, they want British pounds",
+                "ar": "لا، تريد الجنيه الإسترليني"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, only dirhams",
+                "ar": "نعم، الدراهم فقط"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The UK uses the pound (GBP).",
+            "ar": "بريطانيا تستخدم الجنيه الإسترليني."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "rates-move",
+          "prompt": {
+            "en": "Trickster: 'The euro went from AED 4.0 to AED 3.8, it got stronger!' Did it?",
+            "ar": "المخادع: 'انتقل اليورو من ٤٫٠ إلى ٣٫٨ درهم، أصبح أقوى!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, it got weaker: it buys fewer dirhams",
+                "ar": "لا، أصبح أضعف: يشتري دراهم أقل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, stronger",
+                "ar": "نعم، أقوى"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Fewer dirhams per euro means the euro is weaker.",
+            "ar": "دراهم أقل لكل يورو تعني أن اليورو أضعف."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "exchange-rate",
+          "prompt": {
+            "en": "Trickster: 'The dirham-dollar rate changes wildly every hour!' Does it?",
+            "ar": "المخادع: 'سعر الدرهم مقابل الدولار يتغير بجنون كل ساعة!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, it's pegged at about 3.67",
+                "ar": "لا، إنه مربوط عند نحو ٣٫٦٧"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, wildly",
+                "ar": "نعم، بجنون"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The Central Bank keeps the dirham pegged to the dollar.",
+            "ar": "المصرف المركزي يحافظ على ربط الدرهم بالدولار."
+          }
+        }
+      ]
+    }
+  ]
+}

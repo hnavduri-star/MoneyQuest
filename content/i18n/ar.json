@@ -234,5 +234,19 @@
   "review.bonus": "التدريب المتباعد يثبّت المهارات. ربحت عملات إضافية!",
   "mascot.tapToHear": "اضغط للاستماع",
   "error.generic": "عذراً! حدث خطأ. تقدّمك محفوظ.",
-  "offline.banner": "تلعب دون اتصال. التقدم محفوظ على هذا الجهاز."
+  "offline.banner": "تلعب دون اتصال. التقدم محفوظ على هذا الجهاز.",
+  "lesson.reveal": "لا بأس! إليك كيف تعمل:",
+  "lesson.answerIs": "الإجابة: {a}",
+  "lesson.gotIt": "فهمت! التالي",
+  "lesson.streak": "{n} على التوالي!",
+  "lesson.onFire": "أنت مشتعل! 🔥",
+  "lesson.you": "أنت",
+  "journey.title": "رحلة المال في دبي",
+  "journey.intro": "تجوّل في دبي! في كل محطة يشرح مرشدك، وتجيب عن الأسئلة لتنتقل للمحطة التالية.",
+  "journey.here": "أنت هنا",
+  "journey.stop": "المحطة {n}",
+  "journey.done": "تمت زيارتها",
+  "journey.next": "ابدأ هذه المحطة",
+  "journey.more": "محطات أخرى قريباً",
+  "results.participation": "مقابل الإجابة عن الأسئلة"
 }

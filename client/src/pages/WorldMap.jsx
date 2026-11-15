@@ -26,7 +26,10 @@ export default function WorldMap() {
       <Header title={tx(world.name)} onBack={() => nav('/worlds')} />
       <div className="card p-3 flex items-center gap-3 mb-5" style={{ borderColor: meta.color }}>
         <Building type={meta.building} tier={tier} color={meta.color} icon={meta.icon} size={84} />
-        <p className="flex-1 text-soft">{tx(world.tagline)}</p>
+        <div className="flex-1">
+          {meta.location && <p className="text-xs font-bold uppercase text-soft">📍 {tx(meta.location)}</p>}
+          <p className="text-soft">{tx(world.tagline)}</p>
+        </div>
       </div>
 
       <ol className="relative flex flex-col gap-3">

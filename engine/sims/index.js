@@ -3,3 +3,8 @@ export * from './interest.js';
 export * from './loans.js';
 export * from './bank.js';
 export * from './savings.js';
+export * from './salary.js';
+export * from './budget.js';
+export * from './atm.js';
+export * from './fx.js';
+export * from './business.js';

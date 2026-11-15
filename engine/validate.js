@@ -32,6 +32,7 @@ export function validateContent(c, { sims = [], games = [] } = {}) {
         for (const it of n.config?.items || []) need((n.config.bins || []).some((b) => b.id === it.bin), `${where}: item "${it.text?.en}" has unknown bin "${it.bin}"`);
       } else {
         need((n.steps || []).length > 0, `${where}: has no steps`);
+        if (n.kind === 'lesson') need(n.steps?.[0]?.type === 'story', `${where}: a lesson must start with an explanation (story step)`);
       }
       (n.steps || []).forEach((st, i) => {
         const sw = `${where} step ${i + 1}`;
@@ -45,6 +46,8 @@ export function validateContent(c, { sims = [], games = [] } = {}) {
         if (st.type === 'number') need(st.answer !== undefined, `${sw}: number step needs "answer"`);
         if (st.type === 'sort') for (const it of st.items || []) need((st.bins || []).some((b) => b.id === it.bin), `${sw}: item has unknown bin "${it.bin}"`);
         if (st.type === 'sim') need(!sims.length || sims.includes(st.sim), `${sw}: unknown sim "${st.sim}"`);
+        // "Everything is explained": every answer comes with a why.
+        if (['choice', 'number'].includes(st.type)) need(!!st.explain, `${sw}: question needs an "explain" (shown after answering)`);
         if (['choice', 'number', 'sort'].includes(st.type)) need(!!st.concept, `${sw}: question needs a "concept" for mastery tracking`);
         if (st.concept) need(!!w.conceptNames?.[st.concept], `${sw}: concept "${st.concept}" has no name in the world's "concepts" map`);
       });

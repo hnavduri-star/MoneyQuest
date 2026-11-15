@@ -25,7 +25,7 @@ const PRAISE = ['lesson.correct', 'lesson.correct2', 'lesson.correct3'];
  */
 export default function LessonPlayer({ world, node }) {
   const { age, dispatch, content, state } = useGame();
-  const { t, tx } = useT();
+  const { t, tx, money } = useT();
   const [run, setRun] = useState(0);
   const steps = useMemo(() => stepsForAge(node, age), [node, age]);
   const questions = steps.filter((s) => QUESTION.has(s.type)).length;
@@ -38,6 +38,9 @@ export default function LessonPlayer({ world, node }) {
   const [mistakes, setMistakes] = useState(0);
   const [firstTry, setFirstTry] = useState({}); // step index -> correct on first try
   const [hits, setHits] = useState(0);
+  const [tries, setTries] = useState(0); // wrong tries on the current step
+  const [streak, setStreak] = useState(0); // first-try correct answers in a row
+  const [pop, setPop] = useState(0); // "+XP" participation pop
   const [result, setResult] = useState(null);
   const step = steps[idx];
   const isQ = step && QUESTION.has(step.type);
@@ -53,6 +56,8 @@ export default function LessonPlayer({ world, node }) {
     setMistakes(0);
     setFirstTry({});
     setHits(0);
+    setTries(0);
+    setStreak(0);
     setResult(null);
   };
 
@@ -60,7 +65,7 @@ export default function LessonPlayer({ world, node }) {
     const stars = starsFromMistakes(finalMistakes, questions);
     const answers = steps.map((s, i) => (QUESTION.has(s.type) && s.concept ? { concept: s.concept, correct: !!finalFirstTry[i] } : null)).filter(Boolean);
     const correct = Object.values(finalFirstTry).filter(Boolean).length;
-    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes: finalMistakes, score: questions ? Math.round((correct / questions) * 100) : 100, answers });
+    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes: finalMistakes, score: questions ? Math.round((correct / questions) * 100) : 100, answers, answered: questions });
     setResult({ stars, effects });
   };
 
@@ -71,6 +76,7 @@ export default function LessonPlayer({ world, node }) {
     setSolved(false);
     setFeedback(null);
     setHintShown(false);
+    setTries(0);
   };
 
   const onCorrect = () => {
@@ -79,8 +85,17 @@ export default function LessonPlayer({ world, node }) {
     const ft = firstTry[idx] === undefined ? { ...firstTry, [idx]: true } : firstTry;
     setFirstTry(ft);
     setSolved(true);
+    setPop((p) => p + 1);
+    const st = firstTry[idx] === undefined ? streak + 1 : 0;
+    setStreak(st);
     if (boss) setHits((h) => h + 1);
-    setFeedback({ ok: true, text: t(PRAISE[(idx + run) % 3]) });
+    setFeedback({ ok: true, text: st >= 3 && st % 2 === 1 ? `${t('lesson.onFire')} ${t('lesson.streak', { n: st })}` : t(PRAISE[(idx + run) % 3]) });
+  };
+  /** After two wrong tries the guide explains the answer, so a child is never stuck. */
+  const revealAndContinue = () => {
+    setSolved(true);
+    if (boss) setHits((h) => h + 1);
+    next();
   };
   const onWrong = ({ quiet } = {}) => {
     play('wrong');
@@ -88,7 +103,10 @@ export default function LessonPlayer({ world, node }) {
       setFirstTry((f) => ({ ...f, [idx]: false }));
       setMistakes((m) => m + 1);
     }
-    if (!quiet) setFeedback({ ok: false });
+    setStreak(0);
+    const n = tries + 1;
+    setTries(n);
+    if (!quiet) setFeedback({ ok: false, reveal: n >= 2 && step.type !== 'sort' });
     setHintShown(true); // after a wrong try, the hint is always free
   };
 
@@ -120,11 +138,25 @@ export default function LessonPlayer({ world, node }) {
   const footer = (
     <AnimatePresence mode="wait">
       {feedback ? (
-        <motion.div key={feedback.ok ? 'ok' : 'no'} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }} className={`rounded-blob p-4 mb-1 border-4 ${feedback.ok ? 'bg-leaf-pale border-leaf' : 'bg-sun-pale border-sun'}`} role="status">
-          <p className="font-extrabold text-xl">{feedback.ok ? `✅ ${feedback.text}` : `💡 ${hint ? t('lesson.tryAgainHint') : t('lesson.tryAgain')}`}</p>
-          {!feedback.ok && hint && <p className="font-semibold mt-1">{tx(hint)}</p>}
-          {feedback.ok && step.explain && <p className="mt-1">{tx(step.explain)}</p>}
-          {feedback.ok ? (
+        <motion.div key={feedback.ok ? 'ok' : feedback.reveal ? 'reveal' : 'no'} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 40, opacity: 0 }} className={`rounded-blob p-4 mb-1 border-4 ${feedback.ok ? 'bg-leaf-pale border-leaf' : feedback.reveal ? 'bg-sky-pale border-sky' : 'bg-sun-pale border-sun'}`} role="status">
+          {feedback.reveal ? (
+            <>
+              <p className="font-extrabold text-xl">💡 {t('lesson.reveal')}</p>
+              <p className="font-bold mt-1">{t('lesson.answerIs', { a: answerText(step, tx, t, money) })}</p>
+              {step.explain && <p className="mt-1">{tx(step.explain)}</p>}
+            </>
+          ) : (
+            <>
+              <p className="font-extrabold text-xl">{feedback.ok ? `✅ ${feedback.text}` : `💡 ${hint ? t('lesson.tryAgainHint') : t('lesson.tryAgain')}`}</p>
+              {!feedback.ok && hint && <p className="font-semibold mt-1">{tx(hint)}</p>}
+              {feedback.ok && step.explain && <p className="mt-1">{tx(step.explain)}</p>}
+            </>
+          )}
+          {feedback.reveal ? (
+            <button className="btn-primary w-full mt-3" onClick={revealAndContinue} autoFocus>
+              {t('lesson.gotIt')} <span className="inline-block rtl:rotate-180">→</span>
+            </button>
+          ) : feedback.ok ? (
             <button className="btn-leaf w-full mt-3" onClick={next} autoFocus>
               {t('common.continue')}
             </button>
@@ -164,6 +196,16 @@ export default function LessonPlayer({ world, node }) {
           </div>
         </div>
       )}
+      <div className="flex items-center justify-between min-h-[28px] mb-1" aria-live="polite">
+        <span>{streak >= 2 && <motion.span key={streak} initial={{ scale: 1.6 }} animate={{ scale: 1 }} className="chip bg-ember-pale">🔥 {t('lesson.streak', { n: streak })}</motion.span>}</span>
+        <AnimatePresence>
+          {pop > 0 && solved && isQ && (
+            <motion.span key={pop} initial={{ y: 10, opacity: 0 }} animate={{ y: -6, opacity: 1 }} exit={{ opacity: 0 }} className="chip bg-leaf-pale text-leaf">
+              +2 {t('common.xp')} 🙋
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </div>
       <AnimatePresence mode="wait">
         <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
           {step.type === 'story' ? (
@@ -178,6 +220,13 @@ export default function LessonPlayer({ world, node }) {
       </AnimatePresence>
     </PlayFrame>
   );
+}
+
+function answerText(step, tx, t, money) {
+  if (step.type === 'choice') return tx(step.options.find((o) => o.correct)?.text);
+  if (step.type === 'number' && step.money) return money(step.answer);
+  if (step.type === 'number') return `${step.answer}${step.unitText ? ' ' + tx(step.unitText) : step.unit === 'percent' ? '%' : step.unit === 'weeks' ? ' ' + t('common.weeks') : ''}`;
+  return '';
 }
 
 function BossArt({ boss, icon, small }) {

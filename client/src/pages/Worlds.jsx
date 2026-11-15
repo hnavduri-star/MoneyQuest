@@ -1,55 +1,101 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useGame } from '../store.jsx';
 import { useT } from '../lib/i18n.js';
 import { useWorlds } from '../lib/hooks.js';
-import { Progress, Header } from '../components/ui.jsx';
+import { Progress } from '../components/ui.jsx';
+import Avatar from '../components/Avatar.jsx';
+import Companion from '../components/Companion.jsx';
+import Skyline from '../components/Skyline.jsx';
 import { play } from '../lib/sound.js';
 
+/**
+ * The Dubai Money Journey: playable worlds are stops along a road. The child's own character stands at
+ * the current stop; finishing a stop's boss unlocks the next one.
+ */
 export default function Worlds() {
   const { t, tx } = useT();
+  const { active, state, content } = useGame();
   const nav = useNavigate();
   const worlds = useWorlds();
+  const stops = worlds.filter((w) => w.meta.playable);
+  const later = worlds.filter((w) => !w.meta.playable);
+  const currentIdx = Math.max(0, stops.findIndex((w) => w.status === 'open'));
+  const theme = content.characters.themes.find((x) => x.id === active.meta.theme)?.color;
+
   return (
     <div>
-      <Header title={t('worlds.title')} />
-      <div className="space-y-3">
-        {worlds.map(({ meta, world, status, stars }, i) => {
+      <div className="rounded-blob overflow-hidden border border-line shadow-card mb-4">
+        <Skyline height={110} />
+        <div className="bg-white p-4">
+          <h1 className="title">🗺️ {t('journey.title')}</h1>
+          <p className="text-soft">{t('journey.intro')}</p>
+        </div>
+      </div>
+
+      <ol className="relative">
+        {/* the road */}
+        <div className="absolute top-6 bottom-6 start-1/2 w-3 -translate-x-1/2 rtl:translate-x-1/2 rounded-full bg-[#C9D3DC]" aria-hidden>
+          <div className="absolute inset-y-0 start-1/2 border-s-2 border-dashed border-white" />
+        </div>
+        {stops.map(({ meta, status, stars }, i) => {
           const open = status === 'open' || status === 'complete';
-          const reqName = (meta.requires || []).map((id) => tx(worlds.find((w) => w.meta.id === id)?.meta.name)).join(', ');
+          const here = i === currentIdx && status === 'open';
+          const left = i % 2 === 0;
           return (
-            <motion.button
-              key={meta.id}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: Math.min(i, 8) * 0.03 }}
-              disabled={!open}
-              onClick={() => {
-                play('tap');
-                nav(`/world/${meta.id}`);
-              }}
-              className={`card w-full p-4 flex items-center gap-4 text-start ${open ? '' : 'opacity-60'}`}
-            >
-              <span className="w-16 h-16 shrink-0 rounded-2xl flex items-center justify-center text-4xl" style={{ background: `${meta.color}22`, border: `3px solid ${meta.color}` }} aria-hidden>
-                {meta.icon}
+            <motion.li key={meta.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className={`relative flex mb-5 ${left ? 'justify-start' : 'justify-end'}`}>
+              {/* stop marker on the road */}
+              <span className={`absolute top-8 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 z-10 w-9 h-9 rounded-full border-4 border-white flex items-center justify-center text-sm font-extrabold text-white shadow`} style={{ background: open ? meta.color : '#9AA0A6' }} aria-hidden>
+                {status === 'complete' ? '✓' : i + 1}
               </span>
-              <span className="flex-1 min-w-0">
-                <span className="font-extrabold text-lg block leading-tight">{tx(meta.name)}</span>
-                {world && <span className="text-sm text-soft block">{tx(world.tagline)}</span>}
+              <button
+                disabled={!open}
+                onClick={() => {
+                  play('tap');
+                  nav(`/world/${meta.id}`);
+                }}
+                className={`relative w-[46%] card p-3 text-start ${open ? '' : 'opacity-60'} ${here ? 'ring-4' : ''}`}
+                style={here ? { '--tw-ring-color': meta.color } : undefined}
+                aria-label={`${t('journey.stop', { n: i + 1 })}: ${tx(meta.location)}, ${tx(meta.name)}`}
+              >
+                <span className="text-4xl block" aria-hidden>{open ? meta.landmark : '🔒'}</span>
+                <span className="text-[11px] font-bold uppercase text-soft block">{t('journey.stop', { n: i + 1 })} · {tx(meta.location)}</span>
+                <span className="font-extrabold leading-tight block">{meta.icon} {tx(meta.name)}</span>
                 {open && (
-                  <span className="flex items-center gap-2 mt-1">
-                    <Progress value={stars.got / (stars.max || 1)} color={meta.color} height={8} />
-                    <span className="text-xs font-bold whitespace-nowrap">⭐ {t('worlds.stars', stars)}</span>
+                  <span className="flex items-center gap-1 mt-1">
+                    <Progress value={stars.got / (stars.max || 1)} color={meta.color} height={6} />
+                    <span className="text-[11px] font-bold whitespace-nowrap">⭐{stars.got}/{stars.max}</span>
                   </span>
                 )}
-                {status === 'locked' && <span className="text-sm font-bold">🔒 {t('worlds.requires', { world: reqName })}</span>}
-                {status === 'age-locked' && <span className="text-sm font-bold">🔒 {t('worlds.ageLocked')}</span>}
-                {status === 'coming-soon' && <span className="text-sm font-bold">🚧 {t('common.comingSoon')} · {t('worlds.phase')}</span>}
-              </span>
-              {status === 'complete' && <span className="text-2xl" aria-label="complete">✅</span>}
-            </motion.button>
+                {status === 'complete' && <span className="chip bg-leaf-pale text-leaf text-xs mt-1">✅ {t('journey.done')}</span>}
+                {here && <span className="btn-primary min-h-[40px] text-sm mt-2 w-full" style={{ background: meta.color }}>▶ {t('journey.next')}</span>}
+              </button>
+              {here && (
+                <motion.div className={`absolute top-0 ${left ? 'end-0' : 'start-0'} w-[46%] flex flex-col items-center`} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.3 }} aria-hidden>
+                  <span className="chip bg-ink text-white text-xs">📍 {t('journey.here')}</span>
+                  <div className="flex items-end">
+                    <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 1.6 }}>
+                      <Avatar avatar={active.meta.avatar} level={state.level} equipped={state.inventory.equipped} size={64} theme={theme} />
+                    </motion.div>
+                    <Companion id={active.meta.companion} level={state.level} skin={state.inventory.equipped.mascotSkin} size={44} />
+                  </div>
+                </motion.div>
+              )}
+            </motion.li>
           );
         })}
-      </div>
+      </ol>
+
+      {later.length > 0 && (
+        <div className="card p-4 mt-2">
+          <p className="font-extrabold">🚧 {t('journey.more')}</p>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {later.map(({ meta }) => (
+              <span key={meta.id} className="chip bg-cream text-xs">{meta.icon} {tx(meta.name)}</span>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

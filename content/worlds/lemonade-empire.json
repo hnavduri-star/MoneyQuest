@@ -1,0 +1,951 @@
+{
+  "id": "lemonade-empire",
+  "icon": "🍋",
+  "color": "#E69F00",
+  "name": {
+    "en": "Lemonade to Empire",
+    "ar": "من الليمونادة إلى الإمبراطورية"
+  },
+  "tagline": {
+    "en": "Run a beach stand: revenue, costs, profit and pricing",
+    "ar": "أدِر كشكاً على الشاطئ: الإيرادات والتكاليف والربح والتسعير"
+  },
+  "badge": {
+    "id": "world-lemonade-empire",
+    "icon": "🍋",
+    "rarity": "rare",
+    "name": {
+      "en": "Young Entrepreneur",
+      "ar": "رائد أعمال صغير"
+    },
+    "desc": {
+      "en": "Finish Lemonade to Empire",
+      "ar": "أكمل من الليمونادة إلى الإمبراطورية"
+    }
+  },
+  "realLife": {
+    "en": "Plan a pretend (or real!) bake sale: list your costs, choose a price, and work out how many you must sell to break even.",
+    "ar": "خططوا لبيع كعك تجريبي (أو حقيقي!): اكتبوا التكاليف واختاروا السعر واحسبوا كم يجب أن تبيعوا لتغطية التكاليف."
+  },
+  "concepts": {
+    "revenue": {
+      "en": "Revenue",
+      "ar": "الإيرادات"
+    },
+    "costs": {
+      "en": "Business costs",
+      "ar": "تكاليف العمل"
+    },
+    "profit": {
+      "en": "Profit and loss",
+      "ar": "الربح والخسارة"
+    },
+    "pricing": {
+      "en": "Setting prices",
+      "ar": "التسعير"
+    }
+  },
+  "nodes": [
+    {
+      "id": "revenue",
+      "kind": "lesson",
+      "icon": "🍋",
+      "title": {
+        "en": "Your first business",
+        "ar": "مشروعك الأول"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "stand",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to Kite Beach! It's hot, and people want cold mint lemonade. You decide to open a stand. A BUSINESS sells PRODUCTS (things) or SERVICES (help) that people want and will pay for.",
+            "ar": "أهلاً بك في شاطئ كايت! الجو حار والناس يريدون ليمونادة بالنعناع باردة. قررت أن تفتح كشكاً. المشروع التجاري يبيع منتجات (أشياء) أو خدمات (مساعدة) يريدها الناس ويدفعون ثمنها."
+          }
+        },
+        {
+          "type": "story",
+          "art": "profit",
+          "mascot": "happy",
+          "text": {
+            "en": "Every cup you sell brings money in. All the money from sales is called REVENUE (or sales).",
+            "ar": "كل كوب تبيعه يُدخل مالاً. كل مال المبيعات يسمى الإيرادات (أو المبيعات)."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "revenue",
+          "prompt": {
+            "7-9": {
+              "en": "You sell 5 cups at [[2]] each. What's your revenue?",
+              "ar": "بعت ٥ أكواب بسعر [[2]] للكوب. ما إيراداتك؟"
+            },
+            "default": {
+              "en": "You sell 40 cups at [[5]] each. What is your revenue?",
+              "ar": "بعت ٤٠ كوباً بسعر [[5]] للكوب. ما إيراداتك؟"
+            }
+          },
+          "answer": {
+            "7-9": 10,
+            "default": 200
+          },
+          "explain": {
+            "en": "Revenue = price × number sold.",
+            "ar": "الإيرادات = السعر × عدد المبيعات."
+          },
+          "money": true,
+          "hint": {
+            "7-9": {
+              "en": "5 × 2",
+              "ar": "٥ × ٢"
+            },
+            "default": {
+              "en": "40 × 5",
+              "ar": "٤٠ × ٥"
+            }
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "revenue",
+          "prompt": {
+            "en": "Which is a SERVICE business?",
+            "ar": "أيّها مشروع خدمات؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Washing cars",
+                "ar": "غسل السيارات"
+              },
+              "correct": true,
+              "emoji": "🚗"
+            },
+            {
+              "text": {
+                "en": "Selling lemonade",
+                "ar": "بيع الليمونادة"
+              },
+              "emoji": "🍋"
+            },
+            {
+              "text": {
+                "en": "Selling toys",
+                "ar": "بيع الألعاب"
+              },
+              "emoji": "🧸"
+            }
+          ],
+          "explain": {
+            "en": "A service is work you do for someone. Products are things you sell.",
+            "ar": "الخدمة عمل تقوم به لأحد، والمنتجات أشياء تبيعها."
+          }
+        }
+      ]
+    },
+    {
+      "id": "costs",
+      "kind": "lesson",
+      "icon": "🧾",
+      "title": {
+        "en": "Business costs",
+        "ar": "تكاليف المشروع"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "ingredients",
+          "mascot": "thinking",
+          "text": {
+            "en": "Running a stand costs money too. Lemons, mint, sugar, ice and cups are needed for EVERY cup: VARIABLE costs. The stall rent costs the same however many cups you sell: a FIXED cost.",
+            "ar": "تشغيل الكشك يكلف مالاً أيضاً. الليمون والنعناع والسكر والثلج والأكواب لازمة لكل كوب: تكاليف متغيرة. أما إيجار الكشك فثابت مهما بعت: تكلفة ثابتة."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "costs",
+          "prompt": {
+            "en": "Sort the stand's costs.",
+            "ar": "صنّف تكاليف الكشك."
+          },
+          "bins": [
+            {
+              "id": "var",
+              "emoji": "🥤",
+              "label": {
+                "en": "Per cup (variable)",
+                "ar": "لكل كوب (متغيرة)"
+              }
+            },
+            {
+              "id": "fixed",
+              "emoji": "📌",
+              "label": {
+                "en": "Fixed",
+                "ar": "ثابتة"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "🍋",
+              "text": {
+                "en": "Lemons",
+                "ar": "الليمون"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "🥤",
+              "text": {
+                "en": "Paper cups",
+                "ar": "الأكواب الورقية"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "🧊",
+              "text": {
+                "en": "Ice",
+                "ar": "الثلج"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "🌿",
+              "text": {
+                "en": "Mint",
+                "ar": "النعناع"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "⛱️",
+              "text": {
+                "en": "Stall rent",
+                "ar": "إيجار الكشك"
+              },
+              "bin": "fixed"
+            },
+            {
+              "emoji": "🪧",
+              "text": {
+                "en": "Shop sign",
+                "ar": "لافتة المحل"
+              },
+              "bin": "fixed"
+            },
+            {
+              "emoji": "📜",
+              "text": {
+                "en": "Licence fee",
+                "ar": "رسوم الترخيص"
+              },
+              "bin": "fixed"
+            }
+          ],
+          "hint": {
+            "en": "Ask: if I sell one more cup, does this cost go up?",
+            "ar": "اسأل: إذا بعت كوباً إضافياً، هل تزيد هذه التكلفة؟"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "costs",
+          "prompt": {
+            "en": "Each cup costs [[2]] to make. You make 30 cups. What do the ingredients cost?",
+            "ar": "كل كوب يكلف [[2]]. صنعت ٣٠ كوباً. كم تكلف المكونات؟"
+          },
+          "answer": 60,
+          "explain": {
+            "en": "Cost per cup × cups = variable cost: 2 × 30 = 60.",
+            "ar": "تكلفة الكوب × الأكواب = التكلفة المتغيرة: ٢ × ٣٠ = ٦٠."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "costs",
+          "prompt": {
+            "en": "If you sell MORE cups, what happens to the stall rent?",
+            "ar": "إذا بعت أكواباً أكثر، ماذا يحدث لإيجار الكشك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It stays the same",
+                "ar": "يبقى كما هو"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It goes up",
+                "ar": "يرتفع"
+              }
+            },
+            {
+              "text": {
+                "en": "It disappears",
+                "ar": "يختفي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Fixed costs don't change with how much you sell.",
+            "ar": "التكاليف الثابتة لا تتغير بحجم المبيعات."
+          }
+        }
+      ]
+    },
+    {
+      "id": "profit",
+      "kind": "lesson",
+      "icon": "💰",
+      "title": {
+        "en": "Profit or loss?",
+        "ar": "ربح أم خسارة؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "profit",
+          "mascot": "thinking",
+          "text": {
+            "en": "PROFIT is what's left after paying ALL the costs: Profit = Revenue − Costs. If the costs are bigger than the revenue, that's a LOSS. Businesses keep a record called a P&L (profit and loss) to check.",
+            "ar": "الربح هو ما يبقى بعد دفع كل التكاليف: الربح = الإيرادات − التكاليف. إذا زادت التكاليف على الإيرادات فهذه خسارة. تحتفظ المشاريع بسجل يسمى قائمة الأرباح والخسائر للتحقق."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "profit",
+          "prompt": {
+            "7-9": {
+              "en": "You took in [[20]] and spent [[12]]. What's your profit?",
+              "ar": "دخلك [[20]] وأنفقت [[12]]. ما ربحك؟"
+            },
+            "default": {
+              "en": "Revenue [[200]]. Ingredients [[80]]. Stall rent [[50]]. What is the profit?",
+              "ar": "الإيرادات [[200]] والمكونات [[80]] وإيجار الكشك [[50]]. ما الربح؟"
+            }
+          },
+          "answer": {
+            "7-9": 8,
+            "default": 70
+          },
+          "explain": {
+            "en": "Profit = revenue − all costs.",
+            "ar": "الربح = الإيرادات − كل التكاليف."
+          },
+          "money": true,
+          "hint": {
+            "7-9": {
+              "en": "20 − 12",
+              "ar": "٢٠ − ١٢"
+            },
+            "default": {
+              "en": "200 − 80 − 50",
+              "ar": "٢٠٠ − ٨٠ − ٥٠"
+            }
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "profit",
+          "prompt": {
+            "en": "Revenue [[100]], costs [[130]]. This business made…",
+            "ar": "الإيرادات [[100]] والتكاليف [[130]]. هذا المشروع حقق…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A loss of [[30]]",
+                "ar": "خسارة [[30]]"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A profit of [[130]]",
+                "ar": "ربح [[130]]"
+              }
+            },
+            {
+              "text": {
+                "en": "A profit of [[30]]",
+                "ar": "ربح [[30]]"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Costs were bigger than revenue: 100 − 130 = −30, a loss.",
+            "ar": "التكاليف أكبر من الإيرادات: ١٠٠ − ١٣٠ = −٣٠، خسارة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "profit",
+          "prompt": {
+            "en": "Which is a good way to grow profit?",
+            "ar": "ما الطريقة الجيدة لزيادة الربح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Sell more, or cut waste so costs go down",
+                "ar": "بع أكثر أو قلّل الهدر لتنخفض التكاليف"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Give everything away free",
+                "ar": "وزّع كل شيء مجاناً"
+              }
+            },
+            {
+              "text": {
+                "en": "Buy more stalls you don't need",
+                "ar": "اشترِ أكشاكاً لا تحتاجها"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Profit grows when revenue goes up or costs go down.",
+            "ar": "الربح يزيد عندما ترتفع الإيرادات أو تنخفض التكاليف."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "kind": "lesson",
+      "icon": "🏷️",
+      "title": {
+        "en": "Picking the right price",
+        "ar": "اختيار السعر المناسب"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "price",
+          "mascot": "thinking",
+          "text": {
+            "en": "Price too high? Few people buy. Price too low? Lots of people buy, but you might not cover your costs. The best price is somewhere in between!",
+            "ar": "السعر مرتفع جداً؟ قليلون يشترون. منخفض جداً؟ كثيرون يشترون لكنك قد لا تغطي تكاليفك. أفضل سعر في مكان ما بينهما!"
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "stand",
+          "params": {
+            "unitCost": 2,
+            "fixedCosts": 50
+          },
+          "text": {
+            "en": "Run the stand: change the price and watch customers, revenue and profit.",
+            "ar": "أدِر الكشك: غيّر السعر وراقب الزبائن والإيرادات والربح."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "pricing",
+          "prompt": {
+            "en": "Each cup costs [[2]] to make. Is selling at [[1]] a good idea?",
+            "ar": "كل كوب يكلف [[2]]. هل البيع بـ[[1]] فكرة جيدة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, you lose [[1]] on every cup",
+                "ar": "لا، تخسر [[1]] في كل كوب"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, more customers is always better",
+                "ar": "نعم، زبائن أكثر أفضل دائماً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Below cost, every sale loses money, so the more you sell the more you lose!",
+            "ar": "تحت التكلفة كل بيعة تخسر، فكلما بعت أكثر خسرت أكثر!"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "pricing",
+          "prompt": {
+            "en": "Each cup costs [[2]], the price is [[5]], and rent is [[60]]. How many cups must you sell to break even (cover the rent)?",
+            "ar": "الكوب يكلف [[2]] والسعر [[5]] والإيجار [[60]]. كم كوباً يجب أن تبيع لتغطية الإيجار (نقطة التعادل)؟"
+          },
+          "answer": 20,
+          "explain": {
+            "en": "Each cup earns 5 − 2 = 3 towards the rent. 60 ÷ 3 = 20 cups. After that, it's profit!",
+            "ar": "كل كوب يساهم بـ٥ − ٢ = ٣ في الإيجار. ٦٠ ÷ ٣ = ٢٠ كوباً. بعدها يبدأ الربح!"
+          },
+          "hint": {
+            "en": "How much does each cup earn after its own cost?",
+            "ar": "كم يكسب كل كوب بعد تكلفته؟"
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ],
+          "unitText": {
+            "en": "cups",
+            "ar": "كوب"
+          }
+        }
+      ]
+    },
+    {
+      "id": "revenue-or-cost",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "revenue",
+        "costs"
+      ],
+      "title": {
+        "en": "Revenue or Cost?",
+        "ar": "إيراد أم تكلفة؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "rev",
+            "emoji": "💰",
+            "label": {
+              "en": "Revenue (money in)",
+              "ar": "إيراد (مال داخل)"
+            }
+          },
+          {
+            "id": "cost",
+            "emoji": "🧾",
+            "label": {
+              "en": "Cost (money out)",
+              "ar": "تكلفة (مال خارج)"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🥤",
+            "text": {
+              "en": "Selling a cup",
+              "ar": "بيع كوب"
+            },
+            "bin": "rev"
+          },
+          {
+            "emoji": "🍋",
+            "text": {
+              "en": "Buying lemons",
+              "ar": "شراء الليمون"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "⛱️",
+            "text": {
+              "en": "Paying stall rent",
+              "ar": "دفع إيجار الكشك"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🎉",
+            "text": {
+              "en": "A party orders 50 cups",
+              "ar": "حفلة تطلب ٥٠ كوباً"
+            },
+            "bin": "rev"
+          },
+          {
+            "emoji": "🥡",
+            "text": {
+              "en": "Buying cups",
+              "ar": "شراء الأكواب"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🍪",
+            "text": {
+              "en": "Selling cookies too",
+              "ar": "بيع الكعك أيضاً"
+            },
+            "bin": "rev"
+          },
+          {
+            "emoji": "🧑‍🍳",
+            "text": {
+              "en": "Paying a helper",
+              "ar": "دفع أجر مساعد"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "📲",
+            "text": {
+              "en": "An online order",
+              "ar": "طلب عبر الإنترنت"
+            },
+            "bin": "rev"
+          },
+          {
+            "emoji": "🔌",
+            "text": {
+              "en": "Power for the fridge",
+              "ar": "كهرباء الثلاجة"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🎁",
+            "text": {
+              "en": "Selling gift boxes",
+              "ar": "بيع علب الهدايا"
+            },
+            "bin": "rev"
+          },
+          {
+            "emoji": "🧊",
+            "text": {
+              "en": "Buying ice",
+              "ar": "شراء الثلج"
+            },
+            "bin": "cost"
+          },
+          {
+            "emoji": "🏆",
+            "text": {
+              "en": "Catering for a sports day",
+              "ar": "تقديم الطعام ليوم رياضي"
+            },
+            "bin": "rev"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Lemonade to Empire quiz",
+        "ar": "اختبار من الليمونادة إلى الإمبراطورية"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "revenue",
+          "prompt": {
+            "en": "Revenue is…",
+            "ar": "الإيرادات هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "All the money from sales",
+                "ar": "كل مال المبيعات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Money left after costs",
+                "ar": "المال المتبقي بعد التكاليف"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Revenue is everything coming in from sales, before costs.",
+            "ar": "الإيرادات كل ما يدخل من المبيعات قبل التكاليف."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "costs",
+          "prompt": {
+            "en": "Which is a VARIABLE cost?",
+            "ar": "أيّها تكلفة متغيرة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Lemons for each cup",
+                "ar": "الليمون لكل كوب"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Monthly stall rent",
+                "ar": "إيجار الكشك الشهري"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Variable costs grow with every cup you make.",
+            "ar": "التكاليف المتغيرة تزيد مع كل كوب."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "profit",
+          "prompt": {
+            "7-9": {
+              "en": "Revenue [[30]], costs [[18]]. Profit?",
+              "ar": "الإيرادات [[30]] والتكاليف [[18]]. الربح؟"
+            },
+            "default": {
+              "en": "Revenue [[500]], costs [[320]]. Profit?",
+              "ar": "الإيرادات [[500]] والتكاليف [[320]]. الربح؟"
+            }
+          },
+          "answer": {
+            "7-9": 12,
+            "default": 180
+          },
+          "explain": {
+            "en": "Revenue − costs.",
+            "ar": "الإيرادات − التكاليف."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "profit",
+          "prompt": {
+            "en": "When costs are bigger than revenue, the business has…",
+            "ar": "عندما تزيد التكاليف على الإيرادات يكون لدى المشروع…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A loss",
+                "ar": "خسارة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A profit",
+                "ar": "ربح"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Spending more than you earn is a loss.",
+            "ar": "إنفاق أكثر مما تكسب خسارة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "pricing",
+          "prompt": {
+            "en": "If you double your price, usually…",
+            "ar": "إذا ضاعفت سعرك فعادةً…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Fewer people buy",
+                "ar": "يشتري عدد أقل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Everyone buys more",
+                "ar": "يشتري الجميع أكثر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Higher prices usually mean fewer customers. That's demand at work.",
+            "ar": "الأسعار الأعلى تعني عادة زبائن أقل. هذا هو الطلب."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "🏴‍☠️",
+      "title": {
+        "en": "Boss: Captain Loss",
+        "ar": "الزعيم: القبطان خسارة"
+      },
+      "boss": {
+        "id": "captain-loss",
+        "name": {
+          "en": "Captain Loss",
+          "ar": "القبطان خسارة"
+        },
+        "color": "#E69F00",
+        "intro": {
+          "en": "Arrr! I'm Captain Loss! I sink businesses with bad prices and wasted costs. Can your stand survive my storm?",
+          "ar": "أرررر! أنا القبطان خسارة! أُغرق المشاريع بالأسعار السيئة والتكاليف المهدرة. هل يصمد كشكك أمام عاصفتي؟"
+        },
+        "taunt": {
+          "en": "Arrr, a hit to your profits! Try again!",
+          "ar": "أرر، ضربة لأرباحك! حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Shiver me timbers! Your business is shipshape!",
+          "ar": "يا للعجب! مشروعك في أحسن حال!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "pricing",
+          "prompt": {
+            "en": "Captain: 'Sell below cost to get rich!' Will you?",
+            "ar": "القبطان: 'بع بأقل من التكلفة لتصبح غنياً!' هل ستفعل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, every sale would lose money",
+                "ar": "لا، كل بيعة ستخسر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, great plan",
+                "ar": "نعم، خطة رائعة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Price must be above the cost per cup to make a profit.",
+            "ar": "يجب أن يكون السعر أعلى من تكلفة الكوب لتحقيق ربح."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "profit",
+          "prompt": {
+            "7-9": {
+              "en": "Captain hid your profit! Revenue [[25]], costs [[10]]. Profit?",
+              "ar": "القبطان أخفى ربحك! الإيرادات [[25]] والتكاليف [[10]]. الربح؟"
+            },
+            "default": {
+              "en": "Captain hid your profit! Revenue [[400]], ingredients [[150]], rent [[100]]. Profit?",
+              "ar": "القبطان أخفى ربحك! الإيرادات [[400]] والمكونات [[150]] والإيجار [[100]]. الربح؟"
+            }
+          },
+          "answer": {
+            "7-9": 15,
+            "default": 150
+          },
+          "explain": {
+            "en": "Revenue minus every cost.",
+            "ar": "الإيرادات ناقص كل التكاليف."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "costs",
+          "prompt": {
+            "en": "Captain: 'Rent goes up every time you sell a cup!' True?",
+            "ar": "القبطان: 'الإيجار يرتفع كلما بعت كوباً!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, rent is a fixed cost",
+                "ar": "لا، الإيجار تكلفة ثابتة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Rent stays the same however much you sell.",
+            "ar": "الإيجار ثابت مهما بعت."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "revenue",
+          "prompt": {
+            "en": "Captain: 'Revenue and profit are the same thing!' Are they?",
+            "ar": "القبطان: 'الإيرادات والربح شيء واحد!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: profit is revenue minus costs",
+                "ar": "لا: الربح هو الإيرادات ناقص التكاليف"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, the same",
+                "ar": "نعم، الشيء نفسه"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A business can have big revenue and still make a loss if costs are bigger.",
+            "ar": "قد تكون إيرادات المشروع كبيرة ويخسر إذا كانت التكاليف أكبر."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "profit",
+          "prompt": {
+            "en": "Captain: 'Throw away leftover lemons every day!' Better idea?",
+            "ar": "القبطان: 'ارمِ الليمون الزائد كل يوم!' فكرة أفضل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Buy only what you need and cut waste",
+                "ar": "اشترِ فقط ما تحتاجه وقلّل الهدر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Throw more away",
+                "ar": "ارمِ أكثر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Less waste means lower costs and more profit.",
+            "ar": "هدر أقل يعني تكاليف أقل وربحاً أكثر."
+          }
+        }
+      ]
+    }
+  ]
+}

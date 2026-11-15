@@ -234,5 +234,19 @@
   "review.bonus": "Spaced practice makes skills stick. Bonus coins earned!",
   "mascot.tapToHear": "Tap to hear",
   "error.generic": "Oops! Something went wrong. Your progress is safe.",
-  "offline.banner": "Playing offline. Progress is saved on this device."
+  "offline.banner": "Playing offline. Progress is saved on this device.",
+  "lesson.reveal": "No problem! Here's how it works:",
+  "lesson.answerIs": "The answer: {a}",
+  "lesson.gotIt": "Got it! Next",
+  "lesson.streak": "{n} in a row!",
+  "lesson.onFire": "You're on fire! 🔥",
+  "lesson.you": "You",
+  "journey.title": "Dubai Money Journey",
+  "journey.intro": "Travel across Dubai! At every stop your guide explains, and you answer questions to move on.",
+  "journey.here": "You are here",
+  "journey.stop": "Stop {n}",
+  "journey.done": "Visited",
+  "journey.next": "Start this stop",
+  "journey.more": "More stops coming soon",
+  "results.participation": "For answering questions"
 }

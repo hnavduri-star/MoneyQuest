@@ -1,0 +1,1043 @@
+{
+  "id": "salary-street",
+  "icon": "💼",
+  "color": "#009E73",
+  "name": {
+    "en": "Salary Street",
+    "ar": "شارع الراتب"
+  },
+  "tagline": {
+    "en": "Jobs, payday, gross vs net pay, and paying yourself first",
+    "ar": "الوظائف ويوم الراتب والراتب الإجمالي والصافي والادخار أولاً"
+  },
+  "badge": {
+    "id": "world-salary-street",
+    "icon": "💼",
+    "rarity": "rare",
+    "name": {
+      "en": "Salary Street Graduate",
+      "ar": "خريج شارع الراتب"
+    },
+    "desc": {
+      "en": "Finish Salary Street",
+      "ar": "أكمل شارع الراتب"
+    }
+  },
+  "realLife": {
+    "en": "Ask a grown-up to show you a (pretend) payslip: find gross pay, deductions and net pay together.",
+    "ar": "اطلب من أحد الكبار أن يريك قسيمة راتب (تجريبية): ابحثوا معاً عن الراتب الإجمالي والخصومات والراتب الصافي."
+  },
+  "concepts": {
+    "salary-basics": {
+      "en": "What a salary is",
+      "ar": "ما هو الراتب"
+    },
+    "payday": {
+      "en": "How salary is paid",
+      "ar": "كيف يُدفع الراتب"
+    },
+    "gross-net": {
+      "en": "Gross vs net pay",
+      "ar": "الراتب الإجمالي والصافي"
+    },
+    "pay-yourself-first": {
+      "en": "Pay yourself first",
+      "ar": "ادفع لنفسك أولاً"
+    }
+  },
+  "nodes": [
+    {
+      "id": "what-is-salary",
+      "kind": "lesson",
+      "icon": "💼",
+      "title": {
+        "en": "What is a salary?",
+        "ar": "ما هو الراتب؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "office",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to Business Bay, where the tall office towers are! Meet Aunt Mariam. She works as an engineer, and every month her company pays her a SALARY: money for the work she does.",
+            "ar": "أهلاً بك في الخليج التجاري حيث أبراج المكاتب العالية! تعرّف على العمة مريم. تعمل مهندسة، وكل شهر تدفع لها شركتها راتباً: مالاً مقابل العمل الذي تقوم به."
+          }
+        },
+        {
+          "type": "story",
+          "art": "office",
+          "mascot": "happy",
+          "text": {
+            "en": "Her job contract says how much she earns each month. In return, she does her job well and on time. Work in, salary out: that's the deal!",
+            "ar": "عقد عملها يحدد كم تكسب كل شهر. وفي المقابل تؤدي عملها جيداً وفي وقته. عمل مقابل راتب: هذا هو الاتفاق!"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "salary-basics",
+          "prompt": {
+            "en": "What is a salary?",
+            "ar": "ما هو الراتب؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Money a person is paid regularly for their work",
+                "ar": "مال يُدفع للشخص بانتظام مقابل عمله"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A present from the bank",
+                "ar": "هدية من البنك"
+              }
+            },
+            {
+              "text": {
+                "en": "Money you borrow",
+                "ar": "مال تقترضه"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A salary is regular pay, usually monthly, for doing a job. The amount is agreed in a contract.",
+            "ar": "الراتب أجر منتظم، عادة شهري، مقابل القيام بعمل. يُتفق على المبلغ في عقد."
+          },
+          "hint": {
+            "en": "Think about what Mariam does every day.",
+            "ar": "فكّر فيما تفعله مريم كل يوم."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "salary-basics",
+          "prompt": {
+            "en": "Why does a company pay salaries?",
+            "ar": "لماذا تدفع الشركة الرواتب؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Workers help the company make or do things it can sell",
+                "ar": "العاملون يساعدون الشركة على صنع أشياء أو تقديم خدمات تبيعها"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Companies have too much money",
+                "ar": "الشركات لديها مال كثير جداً"
+              }
+            },
+            {
+              "text": {
+                "en": "It's the law to give money away",
+                "ar": "القانون يفرض توزيع المال"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Workers create value: they build, sell, teach or fix things. The company shares part of what it earns with them as salaries.",
+            "ar": "العاملون يصنعون قيمة: يبنون ويبيعون ويعلّمون ويصلحون. والشركة تشاركهم جزءاً مما تكسبه كرواتب."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "salary-basics",
+          "prompt": {
+            "7-9": {
+              "en": "Pretend Mariam earns [[1000]] a week. How much in 2 weeks?",
+              "ar": "لنتخيل أن مريم تكسب [[1000]] في الأسبوع. كم تكسب في أسبوعين؟"
+            },
+            "default": {
+              "en": "Mariam earns [[15000]] a month. How much does she earn in a year (12 months)?",
+              "ar": "تكسب مريم [[15000]] شهرياً. كم تكسب في سنة (١٢ شهراً)؟"
+            }
+          },
+          "answer": {
+            "7-9": 2000,
+            "default": 180000
+          },
+          "explain": {
+            "en": "Pay for one period × number of periods = total pay.",
+            "ar": "أجر الفترة الواحدة × عدد الفترات = إجمالي الأجر."
+          },
+          "money": true,
+          "hint": {
+            "7-9": {
+              "en": "1000 + 1000",
+              "ar": "١٠٠٠ + ١٠٠٠"
+            },
+            "default": {
+              "en": "15000 × 12",
+              "ar": "١٥٠٠٠ × ١٢"
+            }
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "salary-basics",
+          "prompt": {
+            "en": "What usually leads to a higher salary?",
+            "ar": "ما الذي يؤدي عادة إلى راتب أعلى؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "More skills, training and experience",
+                "ar": "مهارات وتدريب وخبرة أكثر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Wearing fancier clothes",
+                "ar": "ارتداء ملابس أفخم"
+              }
+            },
+            {
+              "text": {
+                "en": "Arriving late",
+                "ar": "التأخر في الحضور"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Jobs that need rare skills or lots of training usually pay more. Learning is an investment in your future salary!",
+            "ar": "الوظائف التي تحتاج مهارات نادرة أو تدريباً كثيراً تدفع عادة أكثر. التعلّم استثمار في راتبك المستقبلي!"
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "payday",
+      "kind": "lesson",
+      "icon": "📅",
+      "title": {
+        "en": "Payday: where does the salary go?",
+        "ar": "يوم الراتب: أين يذهب الراتب؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "payday",
+          "mascot": "thinking",
+          "text": {
+            "en": "On payday, Mariam's company doesn't hand her a bag of cash. It sends her salary straight into her BANK ACCOUNT. In the UAE, companies pay salaries through banks using the Wage Protection System (WPS), which helps make sure workers are paid on time.",
+            "ar": "في يوم الراتب لا تعطي الشركة مريم كيساً من النقود، بل ترسل راتبها مباشرة إلى حسابها البنكي. في الإمارات تدفع الشركات الرواتب عبر البنوك باستخدام نظام حماية الأجور، الذي يساعد على ضمان حصول العاملين على أجورهم في موعدها."
+          }
+        },
+        {
+          "type": "story",
+          "art": "payday",
+          "mascot": "happy",
+          "text": {
+            "en": "Then Mariam can pay bills from her account, tap her bank card in shops, or take out cash at an ATM. The money travels: company → bank → Mariam's account → the things she pays for.",
+            "ar": "بعدها تستطيع مريم دفع الفواتير من حسابها، أو الدفع ببطاقتها في المتاجر، أو سحب النقود من الصراف الآلي. المال ينتقل: الشركة ← البنك ← حساب مريم ← ما تدفع ثمنه."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "payday",
+          "prompt": {
+            "en": "Where does Mariam's salary go first?",
+            "ar": "إلى أين يذهب راتب مريم أولاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Into her bank account",
+                "ar": "إلى حسابها البنكي"
+              },
+              "correct": true,
+              "emoji": "🏦"
+            },
+            {
+              "text": {
+                "en": "Into a shop",
+                "ar": "إلى متجر"
+              },
+              "emoji": "🏪"
+            },
+            {
+              "text": {
+                "en": "Under her pillow",
+                "ar": "تحت وسادتها"
+              },
+              "emoji": "🛏️"
+            }
+          ],
+          "explain": {
+            "en": "Salaries are paid into bank accounts. It's safe, and there's a record that the worker was paid.",
+            "ar": "تُدفع الرواتب إلى الحسابات البنكية. هذا آمن، ويوجد سجل يثبت أن العامل حصل على أجره."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "payday",
+          "prompt": {
+            "en": "How often are most salaries in the UAE paid?",
+            "ar": "كم مرة تُدفع معظم الرواتب في الإمارات؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Once a month",
+                "ar": "مرة في الشهر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Every hour",
+                "ar": "كل ساعة"
+              }
+            },
+            {
+              "text": {
+                "en": "Once a year",
+                "ar": "مرة في السنة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Most salaries are monthly, so families plan their spending month by month.",
+            "ar": "معظم الرواتب شهرية، لذلك تخطط العائلات إنفاقها شهراً بشهر."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "payday",
+          "prompt": {
+            "en": "Payday is on the 28th. Mariam spends everything by the 10th. What happens next?",
+            "ar": "يوم الراتب في ٢٨ من الشهر. أنفقت مريم كل شيء بحلول يوم ١٠. ماذا يحدث بعد ذلك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "She has no money left for the rest of the month",
+                "ar": "لا يبقى لها مال لبقية الشهر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The bank sends more for free",
+                "ar": "يرسل البنك المزيد مجاناً"
+              }
+            },
+            {
+              "text": {
+                "en": "Nothing, money refills itself",
+                "ar": "لا شيء، المال يعود وحده"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A salary has to last until the next payday. That's why planning, with a budget, matters so much.",
+            "ar": "يجب أن يكفي الراتب حتى يوم الراتب التالي. لهذا التخطيط بالميزانية مهم جداً."
+          },
+          "hint": {
+            "en": "Count the days from the 10th to the 28th.",
+            "ar": "عدّ الأيام من ١٠ إلى ٢٨."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gross-net",
+      "kind": "lesson",
+      "icon": "🧾",
+      "title": {
+        "en": "Gross pay and net pay",
+        "ar": "الراتب الإجمالي والراتب الصافي"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "office",
+          "mascot": "thinking",
+          "text": {
+            "en": "Mariam's payslip shows two important numbers. GROSS pay is the total before anything is taken out. NET pay is what actually lands in her account after DEDUCTIONS.",
+            "ar": "قسيمة راتب مريم تُظهر رقمين مهمين. الراتب الإجمالي هو المجموع قبل أي خصم. والراتب الصافي هو ما يصل فعلاً إلى حسابها بعد الخصومات."
+          }
+        },
+        {
+          "type": "story",
+          "art": "office",
+          "mascot": "happy",
+          "text": {
+            "en": "Deductions can include pension savings for later in life, or loan repayments. In many countries income tax is taken out too. The UAE has no income tax on salaries, but there is 5% VAT on most things you buy.",
+            "ar": "قد تشمل الخصومات مدخرات التقاعد أو أقساط القروض. وفي كثير من الدول تُخصم ضريبة الدخل أيضاً. لا توجد في الإمارات ضريبة دخل على الرواتب، لكن توجد ضريبة قيمة مضافة ٥٪ على معظم المشتريات."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "payslip",
+          "params": {
+            "basic": 12000,
+            "allowances": 3000
+          },
+          "text": {
+            "en": "Build a payslip: change the pay and deductions and watch the net pay.",
+            "ar": "اصنع قسيمة راتب: غيّر الأجر والخصومات وشاهد الراتب الصافي."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "gross-net",
+          "prompt": {
+            "7-9": {
+              "en": "Gross pay is [[100]]. [[10]] is taken out for savings. What is the net pay?",
+              "ar": "الراتب الإجمالي [[100]]. خُصم [[10]] للادخار. ما الراتب الصافي؟"
+            },
+            "default": {
+              "en": "Gross pay is [[10000]]. Deductions are [[500]]. What is the net pay?",
+              "ar": "الراتب الإجمالي [[10000]]. الخصومات [[500]]. ما الراتب الصافي؟"
+            }
+          },
+          "answer": {
+            "7-9": 90,
+            "default": 9500
+          },
+          "explain": {
+            "en": "Net pay = gross pay − deductions.",
+            "ar": "الراتب الصافي = الراتب الإجمالي − الخصومات."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "gross-net",
+          "prompt": {
+            "en": "Which number should Mariam use to plan her spending?",
+            "ar": "أيّ رقم يجب أن تستخدمه مريم لتخطيط إنفاقها؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Net pay: the money she really receives",
+                "ar": "الراتب الصافي: المال الذي تستلمه فعلاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Gross pay",
+                "ar": "الراتب الإجمالي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "You can only spend money that actually arrives, so plan with net pay.",
+            "ar": "لا يمكنك إنفاق إلا المال الذي يصل فعلاً، لذا خطط بالراتب الصافي."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "gross-net",
+          "prompt": {
+            "en": "In a country with 20% income tax, gross pay is [[3000]]. What is the net pay (no other deductions)?",
+            "ar": "في دولة ضريبة الدخل فيها ٢٠٪، الراتب الإجمالي [[3000]]. ما الراتب الصافي (بدون خصومات أخرى)؟"
+          },
+          "answer": 2400,
+          "explain": {
+            "en": "20% of 3000 is 600. 3000 − 600 = 2400.",
+            "ar": "٢٠٪ من ٣٠٠٠ هي ٦٠٠. ٣٠٠٠ − ٦٠٠ = ٢٤٠٠."
+          },
+          "money": true,
+          "hint": {
+            "en": "First find 20% of 3000.",
+            "ar": "أولاً احسب ٢٠٪ من ٣٠٠٠."
+          },
+          "ages": [
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pay-yourself-first",
+      "kind": "lesson",
+      "icon": "🐷",
+      "title": {
+        "en": "Pay yourself first",
+        "ar": "ادفع لنفسك أولاً"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "jar",
+          "mascot": "excited",
+          "text": {
+            "en": "Smart earners do something clever on payday: they PAY THEMSELVES FIRST. Before spending, they move some money into savings, and some into giving, like zakat or sadaqah. Then they spend what's left.",
+            "ar": "الكاسبون الأذكياء يفعلون شيئاً ذكياً في يوم الراتب: يدفعون لأنفسهم أولاً. قبل الإنفاق ينقلون جزءاً إلى الادخار وجزءاً إلى العطاء مثل الزكاة أو الصدقة، ثم ينفقون الباقي."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "jars",
+          "params": {
+            "amount": 1000
+          },
+          "text": {
+            "en": "Split a salary of [[1000]] into Save, Spend and Give jars.",
+            "ar": "قسّم راتباً قدره [[1000]] بين برطمانات الادخار والإنفاق والعطاء."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "pay-yourself-first",
+          "prompt": {
+            "7-9": {
+              "en": "You get [[100]]. You save [[20]] first. How much is left to spend?",
+              "ar": "حصلت على [[100]]. ادخرت [[20]] أولاً. كم بقي للإنفاق؟"
+            },
+            "default": {
+              "en": "Mariam's net salary is [[10000]]. She saves 20% first. How much does she save?",
+              "ar": "راتب مريم الصافي [[10000]]. تدخر ٢٠٪ أولاً. كم تدخر؟"
+            }
+          },
+          "answer": {
+            "7-9": 80,
+            "default": 2000
+          },
+          "explain": {
+            "7-9": {
+              "en": "Take the savings away first: 100 − 20.",
+              "ar": "اطرح المدخرات أولاً: ١٠٠ − ٢٠."
+            },
+            "default": {
+              "en": "20% of 10000 = 10000 × 20 ÷ 100 = 2000.",
+              "ar": "٢٠٪ من ١٠٠٠٠ = ١٠٠٠٠ × ٢٠ ÷ ١٠٠ = ٢٠٠٠."
+            }
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "pay-yourself-first",
+          "prompt": {
+            "en": "Why save FIRST instead of saving whatever is left at the end of the month?",
+            "ar": "لماذا ندخر أولاً بدلاً من ادخار ما يتبقى في آخر الشهر؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Because often nothing is left at the end!",
+                "ar": "لأنه غالباً لا يتبقى شيء في النهاية!"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Because saving is boring",
+                "ar": "لأن الادخار ممل"
+              }
+            },
+            {
+              "text": {
+                "en": "Because banks close at the end of the month",
+                "ar": "لأن البنوك تغلق آخر الشهر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Spending has a way of growing to use up all the money. Saving first makes sure your goals get paid.",
+            "ar": "الإنفاق يميل إلى أن يكبر حتى يستهلك كل المال. الادخار أولاً يضمن تمويل أهدافك."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "pay-yourself-first",
+          "prompt": {
+            "en": "Zakat is 2.5% of savings kept for a whole year (above a minimum called nisab). Savings are [[4000]]. How much is the zakat?",
+            "ar": "الزكاة ٢٫٥٪ من المدخرات التي مرّ عليها عام (فوق حد أدنى يسمى النصاب). المدخرات [[4000]]. كم الزكاة؟"
+          },
+          "answer": 100,
+          "explain": {
+            "en": "2.5% of 4000 = 4000 × 2.5 ÷ 100 = 100.",
+            "ar": "٢٫٥٪ من ٤٠٠٠ = ٤٠٠٠ × ٢٫٥ ÷ ١٠٠ = ١٠٠."
+          },
+          "money": true,
+          "hint": {
+            "en": "2.5% is the same as dividing by 40.",
+            "ar": "٢٫٥٪ تساوي القسمة على ٤٠."
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "payday-sort",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "salary-basics",
+        "pay-yourself-first"
+      ],
+      "title": {
+        "en": "Money In or Money Out?",
+        "ar": "مال داخل أم مال خارج؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "in",
+            "emoji": "⬆️",
+            "label": {
+              "en": "Money in",
+              "ar": "مال داخل"
+            }
+          },
+          {
+            "id": "out",
+            "emoji": "⬇️",
+            "label": {
+              "en": "Money out",
+              "ar": "مال خارج"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "💼",
+            "text": {
+              "en": "Monthly salary",
+              "ar": "الراتب الشهري"
+            },
+            "bin": "in"
+          },
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "Rent",
+              "ar": "الإيجار"
+            },
+            "bin": "out"
+          },
+          {
+            "emoji": "🎉",
+            "text": {
+              "en": "Work bonus",
+              "ar": "مكافأة العمل"
+            },
+            "bin": "in"
+          },
+          {
+            "emoji": "💡",
+            "text": {
+              "en": "Electricity bill",
+              "ar": "فاتورة الكهرباء"
+            },
+            "bin": "out"
+          },
+          {
+            "emoji": "🧸",
+            "text": {
+              "en": "Selling old toys",
+              "ar": "بيع الألعاب القديمة"
+            },
+            "bin": "in"
+          },
+          {
+            "emoji": "🛒",
+            "text": {
+              "en": "Groceries",
+              "ar": "البقالة"
+            },
+            "bin": "out"
+          },
+          {
+            "emoji": "🪙",
+            "text": {
+              "en": "Pocket money",
+              "ar": "المصروف"
+            },
+            "bin": "in"
+          },
+          {
+            "emoji": "🎒",
+            "text": {
+              "en": "School fees",
+              "ar": "الرسوم المدرسية"
+            },
+            "bin": "out"
+          },
+          {
+            "emoji": "🎁",
+            "text": {
+              "en": "Eid money (eidiya)",
+              "ar": "العيدية"
+            },
+            "bin": "in"
+          },
+          {
+            "emoji": "📱",
+            "text": {
+              "en": "Phone bill",
+              "ar": "فاتورة الهاتف"
+            },
+            "bin": "out"
+          },
+          {
+            "emoji": "📚",
+            "text": {
+              "en": "Pay for tutoring",
+              "ar": "أجر الدروس الخصوصية التي تقدّمها"
+            },
+            "bin": "in"
+          },
+          {
+            "emoji": "⛽",
+            "text": {
+              "en": "Petrol",
+              "ar": "البنزين"
+            },
+            "bin": "out"
+          },
+          {
+            "emoji": "🏆",
+            "text": {
+              "en": "Prize money",
+              "ar": "جائزة مالية"
+            },
+            "bin": "in"
+          },
+          {
+            "emoji": "🎬",
+            "text": {
+              "en": "Cinema tickets",
+              "ar": "تذاكر السينما"
+            },
+            "bin": "out"
+          }
+        ],
+        "prompt": {
+          "en": "Is it coming IN or going OUT?",
+          "ar": "هل المال داخل أم خارج؟"
+        }
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Salary Street quiz",
+        "ar": "اختبار شارع الراتب"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "salary-basics",
+          "prompt": {
+            "en": "A salary is paid for…",
+            "ar": "يُدفع الراتب مقابل…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Doing a job",
+                "ar": "القيام بعمل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Opening a bank account",
+                "ar": "فتح حساب بنكي"
+              }
+            },
+            {
+              "text": {
+                "en": "Buying things",
+                "ar": "شراء الأشياء"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Salary is the reward for work, agreed with the employer.",
+            "ar": "الراتب مكافأة العمل، متفق عليها مع صاحب العمل."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "payday",
+          "prompt": {
+            "en": "In the UAE, salaries usually arrive…",
+            "ar": "في الإمارات تصل الرواتب عادة…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "In a bank account",
+                "ar": "في حساب بنكي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "In an envelope at school",
+                "ar": "في ظرف في المدرسة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Companies pay through banks (the Wage Protection System).",
+            "ar": "تدفع الشركات عبر البنوك (نظام حماية الأجور)."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "gross-net",
+          "prompt": {
+            "en": "Net pay is…",
+            "ar": "الراتب الصافي هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Pay after deductions",
+                "ar": "الأجر بعد الخصومات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Pay before deductions",
+                "ar": "الأجر قبل الخصومات"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Net = what's left after deductions. Gross = the total before.",
+            "ar": "الصافي = ما يبقى بعد الخصومات. الإجمالي = المجموع قبلها."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "gross-net",
+          "prompt": {
+            "en": "Gross [[5000]], deductions [[250]]. Net pay?",
+            "ar": "الإجمالي [[5000]] والخصومات [[250]]. الصافي؟"
+          },
+          "answer": 4750,
+          "explain": {
+            "en": "5000 − 250 = 4750.",
+            "ar": "٥٠٠٠ − ٢٥٠ = ٤٧٥٠."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "pay-yourself-first",
+          "prompt": {
+            "en": "'Pay yourself first' means…",
+            "ar": "'ادفع لنفسك أولاً' تعني…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Save before you spend",
+                "ar": "ادخر قبل أن تنفق"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Buy yourself a treat first",
+                "ar": "اشترِ لنفسك هدية أولاً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Move savings aside on payday, then spend the rest.",
+            "ar": "ضع المدخرات جانباً يوم الراتب ثم أنفق الباقي."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "👺",
+      "title": {
+        "en": "Boss: Spendy the Payday Gremlin",
+        "ar": "الزعيم: سبندي عفريت يوم الراتب"
+      },
+      "boss": {
+        "id": "spendy-the-payday-gremlin",
+        "name": {
+          "en": "Spendy the Payday Gremlin",
+          "ar": "سبندي عفريت يوم الراتب"
+        },
+        "color": "#009E73",
+        "intro": {
+          "en": "Mwahaha! It's payday and I want to spend it ALL today! Can you stop me with your salary smarts?",
+          "ar": "هاهاها! إنه يوم الراتب وأريد إنفاقه كله اليوم! هل تستطيع إيقافي بذكائك في الرواتب؟"
+        },
+        "taunt": {
+          "en": "Hee hee, not quite! Try again!",
+          "ar": "هيهي، ليس تماماً! حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Argh! You planned your salary perfectly!",
+          "ar": "آه! خططت لراتبك بإتقان!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "pay-yourself-first",
+          "prompt": {
+            "en": "Spendy: 'Spend the whole salary on day one!' What's smarter?",
+            "ar": "سبندي: 'أنفق الراتب كله في اليوم الأول!' ما الأذكى؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Save and plan so it lasts all month",
+                "ar": "ادخر وخطط ليكفي طوال الشهر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Spend it all today",
+                "ar": "أنفقه كله اليوم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A salary must last until next payday. Save first, then plan the rest.",
+            "ar": "يجب أن يكفي الراتب حتى الراتب التالي. ادخر أولاً ثم خطط للباقي."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "gross-net",
+          "prompt": {
+            "en": "Spendy: 'Plan with your GROSS pay, it's bigger!' Right?",
+            "ar": "سبندي: 'خطط بالراتب الإجمالي، إنه أكبر!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, plan with net pay, the money you really get",
+                "ar": "لا، خطط بالصافي، المال الذي تستلمه فعلاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, bigger is better",
+                "ar": "نعم، الأكبر أفضل"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Deductions come out before the money arrives, so only net pay can be spent.",
+            "ar": "الخصومات تُقتطع قبل وصول المال، لذا لا يُنفق إلا الصافي."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "gross-net",
+          "prompt": {
+            "7-9": {
+              "en": "Spendy hid [[5]] from your [[50]] pay. How much did you get?",
+              "ar": "أخفى سبندي [[5]] من أجرك البالغ [[50]]. كم استلمت؟"
+            },
+            "default": {
+              "en": "Spendy: 'Gross [[8000]], deductions [[400]], you get [[8000]]!' What's the real net pay?",
+              "ar": "سبندي: 'الإجمالي [[8000]] والخصومات [[400]]، تستلم [[8000]]!' ما الصافي الحقيقي؟"
+            }
+          },
+          "answer": {
+            "7-9": 45,
+            "default": 7600
+          },
+          "explain": {
+            "en": "Net = gross − deductions.",
+            "ar": "الصافي = الإجمالي − الخصومات."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "payday",
+          "prompt": {
+            "en": "Spendy: 'Salaries are paid in cash in the street!' Where do they really go?",
+            "ar": "سبندي: 'تُدفع الرواتب نقداً في الشارع!' أين تذهب فعلاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Into the worker's bank account",
+                "ar": "إلى حساب العامل البنكي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Into Spendy's pocket",
+                "ar": "إلى جيب سبندي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Salaries go to bank accounts, which keeps them safe and recorded.",
+            "ar": "تذهب الرواتب إلى الحسابات البنكية، ما يجعلها آمنة ومسجّلة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "salary-basics",
+          "prompt": {
+            "en": "Spendy: 'Learning new skills is useless!' Is it?",
+            "ar": "سبندي: 'تعلّم المهارات بلا فائدة!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, skills can lead to better jobs and pay",
+                "ar": "لا، المهارات قد تؤدي إلى وظائف وأجور أفضل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, totally useless",
+                "ar": "نعم، بلا فائدة تماماً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Skills and experience are what employers pay for.",
+            "ar": "المهارات والخبرة هي ما يدفع أصحاب العمل مقابله."
+          }
+        }
+      ]
+    }
+  ]
+}

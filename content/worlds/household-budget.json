@@ -1,0 +1,1058 @@
+{
+  "id": "household-budget",
+  "icon": "🏡",
+  "color": "#CC79A7",
+  "name": {
+    "en": "Family Budget",
+    "ar": "ميزانية العائلة"
+  },
+  "tagline": {
+    "en": "Family income, expenses, budgets and the emergency fund",
+    "ar": "دخل العائلة ومصاريفها والميزانية وصندوق الطوارئ"
+  },
+  "badge": {
+    "id": "world-household-budget",
+    "icon": "🏡",
+    "rarity": "rare",
+    "name": {
+      "en": "Budget Boss",
+      "ar": "مدير الميزانية"
+    },
+    "desc": {
+      "en": "Finish Family Budget",
+      "ar": "أكمل ميزانية العائلة"
+    }
+  },
+  "realLife": {
+    "en": "Plan this week's grocery shopping together: set a budget, compare prices, and see if you finish under budget.",
+    "ar": "خططوا معاً لتسوّق البقالة هذا الأسبوع: حددوا ميزانية وقارنوا الأسعار وانظروا هل أنهيتم أقل من الميزانية."
+  },
+  "concepts": {
+    "family-income": {
+      "en": "Family income",
+      "ar": "دخل العائلة"
+    },
+    "family-expenses": {
+      "en": "Family expenses",
+      "ar": "مصاريف العائلة"
+    },
+    "budgeting": {
+      "en": "Making a budget",
+      "ar": "إعداد الميزانية"
+    },
+    "emergency-fund": {
+      "en": "Emergency fund",
+      "ar": "صندوق الطوارئ"
+    }
+  },
+  "nodes": [
+    {
+      "id": "family-income",
+      "kind": "lesson",
+      "icon": "🏡",
+      "title": {
+        "en": "Where family money comes from",
+        "ar": "من أين يأتي مال العائلة؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "family",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to the Al Noor family home in Mirdif! Mum works at a hospital and Dad runs a small shop. Their salaries and business earnings are the family's INCOME: all the money coming in each month.",
+            "ar": "أهلاً بك في بيت عائلة النور في مردف! الأم تعمل في مستشفى والأب يدير متجراً صغيراً. رواتبهما وأرباح التجارة هي دخل العائلة: كل المال الذي يدخل كل شهر."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "family-income",
+          "prompt": {
+            "7-9": {
+              "en": "Mum brings home [[50]] and Dad brings [[40]]. How much comes in together?",
+              "ar": "تحضر الأم [[50]] ويحضر الأب [[40]]. كم يدخل معاً؟"
+            },
+            "default": {
+              "en": "Mum earns [[9000]] a month and Dad's shop brings in [[7000]]. What is the family's monthly income?",
+              "ar": "تكسب الأم [[9000]] شهرياً ويجلب متجر الأب [[7000]]. ما دخل العائلة الشهري؟"
+            }
+          },
+          "answer": {
+            "7-9": 90,
+            "default": 16000
+          },
+          "explain": {
+            "en": "Add up all the money coming in: that's total income.",
+            "ar": "اجمع كل المال الداخل: هذا هو إجمالي الدخل."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "family-income",
+          "prompt": {
+            "en": "Which of these is family INCOME?",
+            "ar": "أيّ من هذه دخل للعائلة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Dad's shop earnings",
+                "ar": "أرباح متجر الأب"
+              },
+              "correct": true,
+              "emoji": "🏪"
+            },
+            {
+              "text": {
+                "en": "Paying the rent",
+                "ar": "دفع الإيجار"
+              },
+              "emoji": "🏠"
+            },
+            {
+              "text": {
+                "en": "Buying groceries",
+                "ar": "شراء البقالة"
+              },
+              "emoji": "🛒"
+            }
+          ],
+          "explain": {
+            "en": "Income is money coming IN. Rent and groceries are money going OUT: expenses.",
+            "ar": "الدخل مال داخل. الإيجار والبقالة مال خارج: مصاريف."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "family-income",
+          "prompt": {
+            "en": "Who decides how family money is used?",
+            "ar": "من يقرر كيف يُستخدم مال العائلة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The grown-ups plan together, and kids can share ideas",
+                "ar": "يخطط الكبار معاً ويستطيع الأطفال مشاركة أفكارهم"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Whoever spends first",
+                "ar": "من ينفق أولاً"
+              }
+            },
+            {
+              "text": {
+                "en": "The shop down the road",
+                "ar": "المتجر في آخر الشارع"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Family money is shared. Planning together means everyone's needs are covered.",
+            "ar": "مال العائلة مشترك، والتخطيط معاً يضمن تلبية حاجات الجميع."
+          }
+        }
+      ]
+    },
+    {
+      "id": "family-expenses",
+      "kind": "lesson",
+      "icon": "🧾",
+      "title": {
+        "en": "Family expenses",
+        "ar": "مصاريف العائلة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "bills",
+          "mascot": "thinking",
+          "text": {
+            "en": "EXPENSES are what the family spends money on. Some cost the same every month, like rent and school fees: FIXED costs. Others change, like groceries, the electricity and water bill from DEWA, and petrol: VARIABLE costs.",
+            "ar": "المصاريف هي ما تنفق العائلة المال عليه. بعضها ثابت كل شهر مثل الإيجار والرسوم المدرسية: تكاليف ثابتة. وبعضها يتغير مثل البقالة وفاتورة الكهرباء والماء من ديوا والبنزين: تكاليف متغيرة."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "family-expenses",
+          "prompt": {
+            "en": "Sort the family's costs.",
+            "ar": "صنّف تكاليف العائلة."
+          },
+          "bins": [
+            {
+              "id": "fixed",
+              "emoji": "📌",
+              "label": {
+                "en": "Same each month",
+                "ar": "ثابت كل شهر"
+              }
+            },
+            {
+              "id": "var",
+              "emoji": "🔄",
+              "label": {
+                "en": "Changes each month",
+                "ar": "يتغير كل شهر"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "🏠",
+              "text": {
+                "en": "Rent",
+                "ar": "الإيجار"
+              },
+              "bin": "fixed"
+            },
+            {
+              "emoji": "🎒",
+              "text": {
+                "en": "School fees",
+                "ar": "الرسوم المدرسية"
+              },
+              "bin": "fixed"
+            },
+            {
+              "emoji": "🛒",
+              "text": {
+                "en": "Groceries",
+                "ar": "البقالة"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "💡",
+              "text": {
+                "en": "DEWA electricity & water",
+                "ar": "كهرباء وماء ديوا"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "📶",
+              "text": {
+                "en": "Internet plan",
+                "ar": "باقة الإنترنت"
+              },
+              "bin": "fixed"
+            },
+            {
+              "emoji": "⛽",
+              "text": {
+                "en": "Petrol",
+                "ar": "البنزين"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "🍕",
+              "text": {
+                "en": "Eating out",
+                "ar": "الأكل في المطاعم"
+              },
+              "bin": "var"
+            },
+            {
+              "emoji": "🚗",
+              "text": {
+                "en": "Car loan payment",
+                "ar": "قسط السيارة"
+              },
+              "bin": "fixed"
+            }
+          ],
+          "hint": {
+            "en": "Ask: will this be the same amount next month?",
+            "ar": "اسأل: هل سيكون المبلغ نفسه الشهر القادم؟"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "family-expenses",
+          "prompt": {
+            "en": "Why is it useful to know which costs are fixed?",
+            "ar": "لماذا من المفيد معرفة التكاليف الثابتة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "They must be paid every month, so you plan around them first",
+                "ar": "يجب دفعها كل شهر، لذا تخطط حولها أولاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Fixed costs are free",
+                "ar": "التكاليف الثابتة مجانية"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Fixed costs are promises you have to keep. Put them in the plan first, then share out the rest.",
+            "ar": "التكاليف الثابتة التزامات يجب الوفاء بها. ضعها في الخطة أولاً ثم وزّع الباقي."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "family-expenses",
+          "prompt": {
+            "en": "The family can't change the rent this month. Which cost could they cut to save money?",
+            "ar": "لا تستطيع العائلة تغيير الإيجار هذا الشهر. أيّ تكلفة يمكن تقليلها للتوفير؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Eat out less often",
+                "ar": "الأكل في المطاعم أقل"
+              },
+              "correct": true,
+              "emoji": "🍕"
+            },
+            {
+              "text": {
+                "en": "Stop paying school fees",
+                "ar": "التوقف عن دفع الرسوم المدرسية"
+              },
+              "emoji": "🎒"
+            },
+            {
+              "text": {
+                "en": "Stop paying rent",
+                "ar": "التوقف عن دفع الإيجار"
+              },
+              "emoji": "🏠"
+            }
+          ],
+          "explain": {
+            "en": "Variable 'nice' costs like eating out are the easiest to cut without breaking promises.",
+            "ar": "التكاليف المتغيرة الكمالية مثل الأكل في المطاعم هي الأسهل تقليلاً دون الإخلال بالالتزامات."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "family-expenses",
+          "prompt": {
+            "en": "Rent [[6000]], school [[2500]], groceries [[2000]], bills [[1000]]. What are the total expenses?",
+            "ar": "الإيجار [[6000]] والمدرسة [[2500]] والبقالة [[2000]] والفواتير [[1000]]. ما إجمالي المصاريف؟"
+          },
+          "answer": 11500,
+          "explain": {
+            "en": "6000 + 2500 + 2000 + 1000 = 11500.",
+            "ar": "٦٠٠٠ + ٢٥٠٠ + ٢٠٠٠ + ١٠٠٠ = ١١٥٠٠."
+          },
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "budgeting",
+      "kind": "lesson",
+      "icon": "📊",
+      "title": {
+        "en": "Making a family budget",
+        "ar": "إعداد ميزانية العائلة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "family",
+          "mascot": "happy",
+          "text": {
+            "en": "A BUDGET is a plan for every dirham before the month starts: needs first, then savings, then fun. If the plan spends more than the income, it needs fixing!",
+            "ar": "الميزانية خطة لكل درهم قبل بداية الشهر: الحاجات أولاً ثم الادخار ثم المتعة. إذا كانت الخطة تنفق أكثر من الدخل، فيجب إصلاحها!"
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "budget",
+          "params": {
+            "income": {
+              "7-9": 1000,
+              "default": 16000
+            }
+          },
+          "text": {
+            "en": "Plan the Al Noor family's month. Can you balance it AND save?",
+            "ar": "خطط لشهر عائلة النور. هل تستطيع موازنتها والادخار أيضاً؟"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "budgeting",
+          "prompt": {
+            "7-9": {
+              "en": "Income is [[100]]. The spending plan is [[80]]. How much is left?",
+              "ar": "الدخل [[100]] وخطة الإنفاق [[80]]. كم يبقى؟"
+            },
+            "default": {
+              "en": "Income is [[16000]]. Planned spending is [[14500]]. How much is left over?",
+              "ar": "الدخل [[16000]] والإنفاق المخطط [[14500]]. كم يتبقى؟"
+            }
+          },
+          "answer": {
+            "7-9": 20,
+            "default": 1500
+          },
+          "explain": {
+            "en": "Income − spending = what's left. Below zero means the budget doesn't balance.",
+            "ar": "الدخل − الإنفاق = المتبقي. أقل من صفر يعني أن الميزانية غير متوازنة."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "budgeting",
+          "prompt": {
+            "en": "A budget 'balances' when…",
+            "ar": "تكون الميزانية 'متوازنة' عندما…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Spending is not more than income",
+                "ar": "لا يزيد الإنفاق على الدخل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "You spend more than you earn",
+                "ar": "تنفق أكثر مما تكسب"
+              }
+            },
+            {
+              "text": {
+                "en": "You never write anything down",
+                "ar": "لا تكتب أي شيء"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Balanced means every dirham spent is covered by income, with nothing borrowed.",
+            "ar": "متوازنة تعني أن كل درهم يُنفق يغطيه الدخل دون اقتراض."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "budgeting",
+          "prompt": {
+            "en": "The 50/30/20 rule splits income into 50% needs, 30% wants and 20%…",
+            "ar": "قاعدة ٥٠/٣٠/٢٠ تقسم الدخل إلى ٥٠٪ حاجات و٣٠٪ رغبات و٢٠٪…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "savings",
+                "ar": "ادخار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "shopping",
+                "ar": "تسوّق"
+              }
+            },
+            {
+              "text": {
+                "en": "holidays",
+                "ar": "عطلات"
+              }
+            }
+          ],
+          "explain": {
+            "en": "20% goes to savings and paying off debt. It's a simple starting rule that families adjust to their life.",
+            "ar": "٢٠٪ للادخار وسداد الديون. إنها قاعدة بداية بسيطة تعدّلها العائلات حسب حياتها."
+          },
+          "ages": [
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emergency-fund",
+      "kind": "lesson",
+      "icon": "☔",
+      "title": {
+        "en": "Surprises and the emergency fund",
+        "ar": "المفاجآت وصندوق الطوارئ"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "storm",
+          "mascot": "thinking",
+          "text": {
+            "en": "Life has surprises! The car breaks down, the AC stops in summer, a phone screen cracks. An EMERGENCY FUND is money saved only for surprises, so the family doesn't have to borrow.",
+            "ar": "الحياة مليئة بالمفاجآت! تتعطل السيارة، يتوقف المكيّف في الصيف، تنكسر شاشة الهاتف. صندوق الطوارئ مال مدخر للمفاجآت فقط، كي لا تضطر العائلة للاقتراض."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "emergency-fund",
+          "prompt": {
+            "en": "The car repair costs [[1500]]. The family has [[2000]] in its emergency fund. What's the best plan?",
+            "ar": "إصلاح السيارة يكلف [[1500]]. لدى العائلة [[2000]] في صندوق الطوارئ. ما أفضل خطة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Pay from the emergency fund, then refill it slowly",
+                "ar": "الدفع من صندوق الطوارئ ثم إعادة ملئه تدريجياً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Borrow on a credit card",
+                "ar": "الاقتراض ببطاقة الائتمان"
+              }
+            },
+            {
+              "text": {
+                "en": "Stop buying food",
+                "ar": "التوقف عن شراء الطعام"
+              }
+            }
+          ],
+          "explain": {
+            "en": "That's exactly what the fund is for! Using it avoids debt and interest. Then the family tops it up again.",
+            "ar": "هذا بالضبط ما وُجد الصندوق من أجله! استخدامه يجنّب الدين والفائدة، ثم تعيد العائلة ملأه."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "emergency-fund",
+          "prompt": {
+            "en": "Eid is coming and gifts cost money. Is that an emergency?",
+            "ar": "العيد قادم والهدايا تكلف مالاً. هل هذه حالة طارئة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, it's planned! Save a little each month before Eid",
+                "ar": "لا، إنه متوقع! ادخر قليلاً كل شهر قبل العيد"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, a total surprise",
+                "ar": "نعم، مفاجأة تامة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Things you know are coming, like Eid, birthdays and school trips, belong in the budget, not the emergency fund.",
+            "ar": "الأشياء المعروفة مسبقاً مثل العيد وأعياد الميلاد والرحلات المدرسية مكانها الميزانية، لا صندوق الطوارئ."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "emergency-fund",
+          "prompt": {
+            "en": "The family's needs cost [[10000]] a month. Many experts suggest an emergency fund of 3 months of needs. How big should it be?",
+            "ar": "حاجات العائلة تكلف [[10000]] شهرياً. ينصح كثير من الخبراء بصندوق طوارئ يغطي ٣ أشهر. كم يجب أن يكون؟"
+          },
+          "answer": 30000,
+          "explain": {
+            "en": "3 × 10000 = 30000. That would cover needs for 3 months if income stopped.",
+            "ar": "٣ × ١٠٠٠٠ = ٣٠٠٠٠. هذا يغطي الحاجات ٣ أشهر إذا توقف الدخل."
+          },
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bill-sort",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "family-expenses",
+        "budgeting"
+      ],
+      "title": {
+        "en": "Must Pay or Nice Extra?",
+        "ar": "ضروري أم إضافة جميلة؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "must",
+            "emoji": "🧾",
+            "label": {
+              "en": "Must pay",
+              "ar": "يجب دفعه"
+            }
+          },
+          {
+            "id": "extra",
+            "emoji": "✨",
+            "label": {
+              "en": "Nice extra",
+              "ar": "إضافة جميلة"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "Rent",
+              "ar": "الإيجار"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "💡",
+            "text": {
+              "en": "Electricity bill",
+              "ar": "فاتورة الكهرباء"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "🎒",
+            "text": {
+              "en": "School fees",
+              "ar": "الرسوم المدرسية"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "🥦",
+            "text": {
+              "en": "Groceries",
+              "ar": "البقالة"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "🚰",
+            "text": {
+              "en": "Water bill",
+              "ar": "فاتورة الماء"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "🩺",
+            "text": {
+              "en": "Health insurance",
+              "ar": "التأمين الصحي"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "💊",
+            "text": {
+              "en": "Medicine",
+              "ar": "الدواء"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "🚌",
+            "text": {
+              "en": "School bus",
+              "ar": "حافلة المدرسة"
+            },
+            "bin": "must"
+          },
+          {
+            "emoji": "🛋️",
+            "text": {
+              "en": "New sofa",
+              "ar": "أريكة جديدة"
+            },
+            "bin": "extra"
+          },
+          {
+            "emoji": "🎢",
+            "text": {
+              "en": "Theme park tickets",
+              "ar": "تذاكر مدينة الملاهي"
+            },
+            "bin": "extra"
+          },
+          {
+            "emoji": "👜",
+            "text": {
+              "en": "Designer bag",
+              "ar": "حقيبة فاخرة"
+            },
+            "bin": "extra"
+          },
+          {
+            "emoji": "📺",
+            "text": {
+              "en": "Extra streaming app",
+              "ar": "تطبيق بث إضافي"
+            },
+            "bin": "extra"
+          },
+          {
+            "emoji": "✈️",
+            "text": {
+              "en": "Holiday abroad",
+              "ar": "عطلة في الخارج"
+            },
+            "bin": "extra"
+          },
+          {
+            "emoji": "🍣",
+            "text": {
+              "en": "Fancy dinner out",
+              "ar": "عشاء فاخر في مطعم"
+            },
+            "bin": "extra"
+          },
+          {
+            "emoji": "🎮",
+            "text": {
+              "en": "New games console",
+              "ar": "جهاز ألعاب جديد"
+            },
+            "bin": "extra"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Family Budget quiz",
+        "ar": "اختبار ميزانية العائلة"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "family-income",
+          "prompt": {
+            "en": "Family income is…",
+            "ar": "دخل العائلة هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "All the money coming in",
+                "ar": "كل المال الداخل"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "All the money going out",
+                "ar": "كل المال الخارج"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Income comes in; expenses go out.",
+            "ar": "الدخل يدخل والمصاريف تخرج."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "family-expenses",
+          "prompt": {
+            "en": "Which is a FIXED cost?",
+            "ar": "أيّها تكلفة ثابتة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Rent",
+                "ar": "الإيجار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Eating out",
+                "ar": "الأكل في المطاعم"
+              }
+            },
+            {
+              "text": {
+                "en": "Petrol",
+                "ar": "البنزين"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Rent is the same every month, so it's fixed.",
+            "ar": "الإيجار نفسه كل شهر، لذلك هو ثابت."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "budgeting",
+          "prompt": {
+            "7-9": {
+              "en": "Income [[60]], spending [[45]]. Left over?",
+              "ar": "الدخل [[60]] والإنفاق [[45]]. المتبقي؟"
+            },
+            "default": {
+              "en": "Income [[12000]], spending [[11200]]. Left over?",
+              "ar": "الدخل [[12000]] والإنفاق [[11200]]. المتبقي؟"
+            }
+          },
+          "answer": {
+            "7-9": 15,
+            "default": 800
+          },
+          "explain": {
+            "en": "Income − spending.",
+            "ar": "الدخل − الإنفاق."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "budgeting",
+          "prompt": {
+            "en": "A budget is…",
+            "ar": "الميزانية هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A plan for your money before you spend it",
+                "ar": "خطة لمالك قبل إنفاقه"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A list of things you already bought",
+                "ar": "قائمة بما اشتريته"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Budgets look ahead so money goes where it matters most.",
+            "ar": "الميزانية تنظر للأمام كي يذهب المال إلى الأهم."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "emergency-fund",
+          "prompt": {
+            "en": "An emergency fund is for…",
+            "ar": "صندوق الطوارئ مخصص لـ…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Unexpected costs like repairs",
+                "ar": "التكاليف غير المتوقعة مثل الإصلاحات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Weekly treats",
+                "ar": "الحلويات الأسبوعية"
+              }
+            }
+          ],
+          "explain": {
+            "en": "It protects the family from surprises without borrowing.",
+            "ar": "يحمي العائلة من المفاجآت دون اقتراض."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "👹",
+      "title": {
+        "en": "Boss: Oops the Bill Monster",
+        "ar": "الزعيم: أوبس وحش الفواتير"
+      },
+      "boss": {
+        "id": "oops-the-bill-monster",
+        "name": {
+          "en": "Oops the Bill Monster",
+          "ar": "أوبس وحش الفواتير"
+        },
+        "color": "#CC79A7",
+        "intro": {
+          "en": "ROAR! I'm Oops! I throw surprise bills at families who don't plan. Can your budget survive me?",
+          "ar": "رووار! أنا أوبس! أرمي الفواتير المفاجئة على العائلات التي لا تخطط. هل تصمد ميزانيتك أمامي؟"
+        },
+        "taunt": {
+          "en": "Oops! That one slipped through. Try again!",
+          "ar": "أوبس! هذه أفلتت. حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Nooo! Your budget is monster-proof!",
+          "ar": "لا! ميزانيتك مقاومة للوحوش!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "emergency-fund",
+          "prompt": {
+            "en": "Oops: 'SURPRISE! The AC broke!' How do you pay?",
+            "ar": "أوبس: 'مفاجأة! تعطل المكيّف!' كيف تدفع؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "From the emergency fund",
+                "ar": "من صندوق الطوارئ"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Skip paying rent",
+                "ar": "تأجيل دفع الإيجار"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The emergency fund absorbs surprises so bills still get paid.",
+            "ar": "صندوق الطوارئ يمتص المفاجآت كي تُدفع الفواتير."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "budgeting",
+          "prompt": {
+            "en": "Oops: 'Budgets are for boring people!' Why budget?",
+            "ar": "أوبس: 'الميزانيات للمملين!' لماذا الميزانية؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "So money covers needs, savings AND fun",
+                "ar": "كي يغطي المال الحاجات والادخار والمتعة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "No reason at all",
+                "ar": "بلا سبب"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A budget makes room for everything that matters, fun included!",
+            "ar": "الميزانية تفسح المجال لكل ما يهم، بما فيه المتعة!"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "budgeting",
+          "prompt": {
+            "7-9": {
+              "en": "Oops: 'Income [[50]], spending [[60]]: fine!' How much too much is that?",
+              "ar": "أوبس: 'الدخل [[50]] والإنفاق [[60]]: لا بأس!' كم الزيادة؟"
+            },
+            "default": {
+              "en": "Oops: 'Income [[15000]], spending [[16200]]: fine!' By how much is the budget over?",
+              "ar": "أوبس: 'الدخل [[15000]] والإنفاق [[16200]]: لا بأس!' بكم تتجاوز الميزانية؟"
+            }
+          },
+          "answer": {
+            "7-9": 10,
+            "default": 1200
+          },
+          "explain": {
+            "en": "Spending − income shows how much must be cut.",
+            "ar": "الإنفاق − الدخل يُظهر كم يجب تقليله."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "family-expenses",
+          "prompt": {
+            "en": "Oops: 'Cut the school fees to save!' Better idea?",
+            "ar": "أوبس: 'ألغِ الرسوم المدرسية لتوفّر!' فكرة أفضل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Cut nice extras like eating out",
+                "ar": "قلّل الكماليات مثل الأكل في المطاعم"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Cut school",
+                "ar": "ألغِ المدرسة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Keep needs; trim wants first.",
+            "ar": "حافظ على الحاجات وقلّل الرغبات أولاً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "family-income",
+          "prompt": {
+            "en": "Oops: 'Spend before you know your income!' What first?",
+            "ar": "أوبس: 'أنفق قبل أن تعرف دخلك!' ماذا أولاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Know the income, then plan the spending",
+                "ar": "اعرف الدخل ثم خطط للإنفاق"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Spend first, check later",
+                "ar": "أنفق أولاً وتحقق لاحقاً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "You can't plan spending without knowing what's coming in.",
+            "ar": "لا يمكن تخطيط الإنفاق دون معرفة ما يدخل."
+          }
+        }
+      ]
+    }
+  ]
+}
