@@ -1,0 +1,823 @@
+{
+  "id": "giving-garden",
+  "icon": "🌻",
+  "color": "#009E73",
+  "name": {
+    "en": "Giving Garden",
+    "ar": "حديقة العطاء"
+  },
+  "tagline": {
+    "en": "Why we give, zakat and sadaqah, the Give jar, and making a real impact",
+    "ar": "لماذا نعطي، الزكاة والصدقة، برطمان العطاء، وصنع أثر حقيقي"
+  },
+  "badge": {
+    "id": "world-giving-garden",
+    "icon": "🌻",
+    "rarity": "rare",
+    "name": {
+      "en": "Kind Gardener",
+      "ar": "البستاني الكريم"
+    },
+    "desc": {
+      "en": "Finish the Giving Garden",
+      "ar": "أكمل حديقة العطاء"
+    }
+  },
+  "realLife": {
+    "en": "Choose a cause together as a family and decide how to help: money, time, or both.",
+    "ar": "اختاروا قضية معاً كعائلة وقرروا كيف تساعدون: بالمال أو بالوقت أو بكليهما."
+  },
+  "concepts": {
+    "why-give": {
+      "en": "Why we give",
+      "ar": "لماذا نعطي"
+    },
+    "zakat-sadaqah": {
+      "en": "Zakat, sadaqah & charity",
+      "ar": "الزكاة والصدقة والإحسان"
+    },
+    "give-jar": {
+      "en": "The Give jar",
+      "ar": "برطمان العطاء"
+    },
+    "impact": {
+      "en": "Making an impact",
+      "ar": "صنع الأثر"
+    }
+  },
+  "nodes": [
+    {
+      "id": "why-give",
+      "kind": "lesson",
+      "icon": "💝",
+      "title": {
+        "en": "Why do people give?",
+        "ar": "لماذا يعطي الناس؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "partners",
+          "mascot": "happy",
+          "text": {
+            "en": "Welcome to the Giving Garden in {city}! Many people share part of their money, time or skills to help others: to feed families, support schools, protect animals or help after disasters. Giving makes communities stronger, and it feels good too.",
+            "ar": "أهلاً بك في حديقة العطاء في {city}! كثير من الناس يشاركون جزءاً من مالهم أو وقتهم أو مهاراتهم لمساعدة الآخرين: لإطعام العائلات ودعم المدارس وحماية الحيوانات والمساعدة بعد الكوارث. العطاء يقوّي المجتمعات ويُشعرنا بالسعادة أيضاً."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "why-give",
+          "prompt": {
+            "en": "Giving money or giving time?",
+            "ar": "عطاء بالمال أم بالوقت؟"
+          },
+          "bins": [
+            {
+              "id": "money",
+              "emoji": "🪙",
+              "label": {
+                "en": "Giving money",
+                "ar": "عطاء بالمال"
+              }
+            },
+            {
+              "id": "time",
+              "emoji": "⏰",
+              "label": {
+                "en": "Giving time",
+                "ar": "عطاء بالوقت"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "🥫",
+              "text": {
+                "en": "Donating to a food bank",
+                "ar": "التبرع لبنك الطعام"
+              },
+              "bin": "money"
+            },
+            {
+              "emoji": "🧹",
+              "text": {
+                "en": "Helping clean a beach",
+                "ar": "المساعدة في تنظيف شاطئ"
+              },
+              "bin": "time"
+            },
+            {
+              "emoji": "📚",
+              "text": {
+                "en": "Reading to younger children",
+                "ar": "القراءة للأطفال الأصغر"
+              },
+              "bin": "time"
+            },
+            {
+              "emoji": "🏥",
+              "text": {
+                "en": "Giving to a hospital appeal",
+                "ar": "التبرع لحملة مستشفى"
+              },
+              "bin": "money"
+            },
+            {
+              "emoji": "🐾",
+              "text": {
+                "en": "Volunteering at an animal shelter",
+                "ar": "التطوع في ملجأ حيوانات"
+              },
+              "bin": "time"
+            },
+            {
+              "emoji": "🌳",
+              "text": {
+                "en": "Paying for a tree to be planted",
+                "ar": "دفع ثمن زراعة شجرة"
+              },
+              "bin": "money"
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "why-give",
+          "prompt": {
+            "en": "Which is a way to give without money?",
+            "ar": "أيّها طريقة للعطاء دون مال؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Volunteering your time",
+                "ar": "التطوع بوقتك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Buying a new game",
+                "ar": "شراء لعبة جديدة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Time and kindness are gifts too.",
+            "ar": "الوقت واللطف عطاء أيضاً."
+          }
+        }
+      ]
+    },
+    {
+      "id": "zakat-sadaqah",
+      "kind": "lesson",
+      "icon": "🤲",
+      "title": {
+        "en": "Zakat, sadaqah and giving traditions",
+        "ar": "الزكاة والصدقة وتقاليد العطاء"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "jar",
+          "mascot": "thinking",
+          "text": {
+            "en": "Many faiths and cultures have giving traditions. In Islam, ZAKAT is a required yearly gift of 2.5% of savings above a minimum (nisab) for those who are eligible, and SADAQAH is any voluntary act of charity, even a smile. Other traditions include tithing, daan and dasvandh.",
+            "ar": "لكثير من الأديان والثقافات تقاليد للعطاء. في الإسلام الزكاة فريضة سنوية بنسبة ٢٫٥٪ من المدخرات فوق حد أدنى (النصاب) لمن تجب عليهم، والصدقة أي عمل خيري تطوعي ولو ابتسامة. ومن التقاليد الأخرى العُشر والدان والدسوند."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "zakat-sadaqah",
+          "prompt": {
+            "en": "Savings above the nisab are [[8000]], kept for a full year. Zakat is 2.5%. How much is it?",
+            "ar": "المدخرات فوق النصاب [[8000]] لمدة عام كامل. الزكاة ٢٫٥٪. كم مقدارها؟"
+          },
+          "answer": 200,
+          "explain": {
+            "en": "2.5% of 8000 = 8000 × 2.5 ÷ 100 = 200.",
+            "ar": "٢٫٥٪ من ٨٠٠٠ = ٨٠٠٠ × ٢٫٥ ÷ ١٠٠ = ٢٠٠."
+          },
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "zakat-sadaqah",
+          "prompt": {
+            "en": "Sadaqah means…",
+            "ar": "الصدقة تعني…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Voluntary charity, big or small",
+                "ar": "الإحسان التطوعي كبيراً أو صغيراً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A shop discount",
+                "ar": "خصم في المتجر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Sadaqah is any kind act of giving, whenever you choose.",
+            "ar": "الصدقة أي عمل عطاء طيب متى اخترت."
+          }
+        }
+      ]
+    },
+    {
+      "id": "give-jar",
+      "kind": "lesson",
+      "icon": "🫙",
+      "title": {
+        "en": "Your Give jar",
+        "ar": "برطمان العطاء الخاص بك"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "jar",
+          "mascot": "happy",
+          "text": {
+            "en": "A simple habit: whenever money comes in, split it into SAVE, SPEND and GIVE jars. Even a small Give jar adds up over a year.",
+            "ar": "عادة بسيطة: كلما دخل المال قسّمه بين برطمانات الادخار والإنفاق والعطاء. حتى برطمان عطاء صغير يتراكم خلال سنة."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "jars",
+          "params": {
+            "amount": 20
+          },
+          "text": {
+            "en": "Split [[20]] of pocket money between your jars.",
+            "ar": "قسّم [[20]] من المصروف بين برطماناتك."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "give-jar",
+          "prompt": {
+            "en": "You put [[2]] in your Give jar every week. How much after 10 weeks?",
+            "ar": "تضع [[2]] في برطمان العطاء كل أسبوع. كم بعد ١٠ أسابيع؟"
+          },
+          "answer": 20,
+          "explain": {
+            "en": "2 × 10 = 20. Small gifts add up!",
+            "ar": "٢ × ١٠ = ٢٠. العطاء الصغير يتراكم!"
+          },
+          "money": true
+        }
+      ]
+    },
+    {
+      "id": "impact",
+      "kind": "lesson",
+      "icon": "🌱",
+      "title": {
+        "en": "Making a real impact",
+        "ar": "صنع أثر حقيقي"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "grow",
+          "mascot": "thinking",
+          "text": {
+            "en": "Good givers check that a charity is real and registered, and they think about IMPACT: what will the money actually do? A little research helps your gift do the most good.",
+            "ar": "المعطون الجيدون يتأكدون أن الجمعية الخيرية حقيقية ومسجّلة، ويفكرون في الأثر: ماذا سيفعل المال فعلاً؟ قليل من البحث يجعل عطاءك أكثر نفعاً."
+          }
+        },
+        {
+          "type": "estimate",
+          "concept": "impact",
+          "prompt": {
+            "en": "A food charity says [[5]] provides one meal. Slide to how many meals [[50]] provides.",
+            "ar": "جمعية طعام تقول إن [[5]] توفر وجبة. حرّك المؤشر إلى عدد الوجبات التي توفرها [[50]]."
+          },
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "answer": 10,
+          "tolerance": 0,
+          "explain": {
+            "en": "50 ÷ 5 = 10 meals. Thinking in meals, trees or books shows the real difference your gift makes.",
+            "ar": "٥٠ ÷ ٥ = ١٠ وجبات. التفكير بالوجبات أو الأشجار أو الكتب يُظهر الفرق الحقيقي لعطائك."
+          },
+          "unitText": {
+            "en": "meals",
+            "ar": "وجبات"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "impact",
+          "prompt": {
+            "en": "A stranger online asks for donations with no name or registration. You…",
+            "ar": "غريب على الإنترنت يطلب تبرعات بلا اسم أو تسجيل. أنت…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Ask a grown-up to check it's a real, registered charity",
+                "ar": "أطلب من أحد الكبار التأكد أنها جمعية حقيقية ومسجّلة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Send money right away",
+                "ar": "أرسل المال فوراً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Scammers sometimes pretend to be charities. Check first, then give with confidence.",
+            "ar": "المحتالون يتظاهرون أحياناً بأنهم جمعيات خيرية. تحقق أولاً ثم أعطِ بثقة."
+          }
+        },
+        {
+          "type": "scenario",
+          "key": "giving-choice",
+          "prompt": {
+            "en": "Your class raised [[100]]. What should it go to?",
+            "ar": "جمع صفّك [[100]]. لمن تذهب؟"
+          },
+          "options": [
+            {
+              "emoji": "🥫",
+              "text": {
+                "en": "Meals for families nearby",
+                "ar": "وجبات لعائلات قريبة"
+              },
+              "outcome": {
+                "en": "Twenty families got a warm meal this week. Local giving lets you see the difference.",
+                "ar": "حصلت عشرون عائلة على وجبة دافئة هذا الأسبوع. العطاء المحلي يُريك الفرق."
+              },
+              "wise": true
+            },
+            {
+              "emoji": "🌳",
+              "text": {
+                "en": "Planting trees",
+                "ar": "زراعة الأشجار"
+              },
+              "outcome": {
+                "en": "Your class planted a small grove that will clean the air for years.",
+                "ar": "زرع صفّك بستاناً صغيراً سينقّي الهواء لسنوات."
+              },
+              "wise": true
+            },
+            {
+              "emoji": "📚",
+              "text": {
+                "en": "Books for a school library",
+                "ar": "كتب لمكتبة مدرسة"
+              },
+              "outcome": {
+                "en": "A whole shelf of new books for children who had very few. Reading changes lives!",
+                "ar": "رف كامل من الكتب الجديدة لأطفال كانت كتبهم قليلة جداً. القراءة تغيّر الحياة!"
+              },
+              "wise": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "giving-sort",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "why-give"
+      ],
+      "title": {
+        "en": "Helping Hands",
+        "ar": "أيادٍ معطاءة"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "money",
+            "emoji": "🪙",
+            "label": {
+              "en": "Giving money",
+              "ar": "عطاء بالمال"
+            }
+          },
+          {
+            "id": "time",
+            "emoji": "⏰",
+            "label": {
+              "en": "Giving time or skills",
+              "ar": "عطاء بالوقت أو المهارة"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "💝",
+            "text": {
+              "en": "Zakat or sadaqah",
+              "ar": "الزكاة أو الصدقة"
+            },
+            "bin": "money"
+          },
+          {
+            "emoji": "🥫",
+            "text": {
+              "en": "Food bank donation",
+              "ar": "التبرع لبنك الطعام"
+            },
+            "bin": "money"
+          },
+          {
+            "emoji": "🌳",
+            "text": {
+              "en": "Paying to plant a tree",
+              "ar": "دفع ثمن زراعة شجرة"
+            },
+            "bin": "money"
+          },
+          {
+            "emoji": "🎗️",
+            "text": {
+              "en": "Sponsoring a charity run",
+              "ar": "رعاية سباق خيري"
+            },
+            "bin": "money"
+          },
+          {
+            "emoji": "🏥",
+            "text": {
+              "en": "Hospital appeal",
+              "ar": "حملة مستشفى"
+            },
+            "bin": "money"
+          },
+          {
+            "emoji": "📦",
+            "text": {
+              "en": "Buying school supplies for others",
+              "ar": "شراء أدوات مدرسية للآخرين"
+            },
+            "bin": "money"
+          },
+          {
+            "emoji": "🧹",
+            "text": {
+              "en": "Beach clean-up",
+              "ar": "تنظيف الشاطئ"
+            },
+            "bin": "time"
+          },
+          {
+            "emoji": "📖",
+            "text": {
+              "en": "Reading to little kids",
+              "ar": "القراءة للصغار"
+            },
+            "bin": "time"
+          },
+          {
+            "emoji": "🐶",
+            "text": {
+              "en": "Walking shelter dogs",
+              "ar": "تمشية كلاب الملجأ"
+            },
+            "bin": "time"
+          },
+          {
+            "emoji": "👵",
+            "text": {
+              "en": "Helping an elderly neighbour",
+              "ar": "مساعدة جار مسنّ"
+            },
+            "bin": "time"
+          },
+          {
+            "emoji": "🎨",
+            "text": {
+              "en": "Painting a community mural",
+              "ar": "رسم جدارية للمجتمع"
+            },
+            "bin": "time"
+          },
+          {
+            "emoji": "🍲",
+            "text": {
+              "en": "Serving food at an iftar or soup kitchen",
+              "ar": "تقديم الطعام في إفطار أو مطبخ خيري"
+            },
+            "bin": "time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Giving Garden quiz",
+        "ar": "اختبار حديقة العطاء"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "why-give",
+          "prompt": {
+            "en": "Giving can be…",
+            "ar": "العطاء قد يكون…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Money, time or skills",
+                "ar": "مالاً أو وقتاً أو مهارة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Only money",
+                "ar": "مالاً فقط"
+              }
+            }
+          ],
+          "explain": {
+            "en": "All of these help others.",
+            "ar": "كلها تساعد الآخرين."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "zakat-sadaqah",
+          "prompt": {
+            "en": "Zakat is…",
+            "ar": "الزكاة هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "2.5% of eligible savings, given yearly",
+                "ar": "٢٫٥٪ من المدخرات المستحقة سنوياً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A shop tax",
+                "ar": "ضريبة متجر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "It's an annual duty for eligible Muslims.",
+            "ar": "إنها فريضة سنوية على المسلمين المستحقة عليهم."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "give-jar",
+          "prompt": {
+            "en": "[[3]] a week in the Give jar for 4 weeks. Total?",
+            "ar": "[[3]] أسبوعياً في برطمان العطاء لمدة ٤ أسابيع. المجموع؟"
+          },
+          "answer": 12,
+          "explain": {
+            "en": "3 × 4 = 12.",
+            "ar": "٣ × ٤ = ١٢."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "impact",
+          "prompt": {
+            "en": "Before giving to an unknown charity…",
+            "ar": "قبل العطاء لجمعية غير معروفة…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Check it's real and registered",
+                "ar": "تأكد أنها حقيقية ومسجّلة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Give immediately",
+                "ar": "أعطِ فوراً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Checking protects your gift.",
+            "ar": "التحقق يحمي عطاءك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "impact",
+          "prompt": {
+            "en": "Thinking about 'impact' means asking…",
+            "ar": "التفكير في 'الأثر' يعني أن تسأل…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "What will my gift actually do?",
+                "ar": "ماذا سيفعل عطائي فعلاً؟"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "How fast can I give?",
+                "ar": "كم بسرعة أعطي؟"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Impact is the real good your gift creates.",
+            "ar": "الأثر هو الخير الحقيقي الذي يصنعه عطاؤك."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "🦝",
+      "title": {
+        "en": "Boss: Greedy Gus",
+        "ar": "الزعيم: غاس الطمّاع"
+      },
+      "boss": {
+        "id": "greedy-gus",
+        "name": {
+          "en": "Greedy Gus",
+          "ar": "غاس الطمّاع"
+        },
+        "color": "#009E73",
+        "intro": {
+          "en": "Mine, mine, MINE! I'm Greedy Gus and I never share anything. Can you convince me that giving is worth it?",
+          "ar": "لي، لي، لي! أنا غاس الطمّاع ولا أشارك شيئاً أبداً. هل تقنعني أن العطاء يستحق؟"
+        },
+        "taunt": {
+          "en": "Hmph! Not convinced yet. Try again!",
+          "ar": "همف! لم أقتنع بعد. حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Oh... maybe sharing IS nice. Here, have a cookie!",
+          "ar": "أوه... ربما المشاركة لطيفة فعلاً. خذ، تفضل كعكة!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "why-give",
+          "prompt": {
+            "en": "Gus: 'Giving only helps other people, not me!' True?",
+            "ar": "غاس: 'العطاء يساعد الآخرين فقط، لا أنا!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Giving strengthens communities we all live in, and feels good",
+                "ar": "العطاء يقوّي المجتمعات التي نعيش فيها جميعاً ويُسعدنا"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "True",
+                "ar": "صحيح"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Strong communities help everyone, including the giver.",
+            "ar": "المجتمعات القوية تساعد الجميع بمن فيهم المعطي."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "why-give",
+          "prompt": {
+            "en": "Gus: 'You need lots of money to give!' Do you?",
+            "ar": "غاس: 'تحتاج مالاً كثيراً لتعطي!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: time, skills and small amounts count",
+                "ar": "لا: الوقت والمهارات والمبالغ الصغيرة تُحسب"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Every bit of help counts.",
+            "ar": "كل مساعدة مهما صغرت تُحسب."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "give-jar",
+          "prompt": {
+            "en": "Gus: '[[1]] a week is pointless!' How much is it after 52 weeks?",
+            "ar": "غاس: '[[1]] أسبوعياً بلا فائدة!' كم تصبح بعد ٥٢ أسبوعاً؟"
+          },
+          "answer": 52,
+          "explain": {
+            "en": "1 × 52 = 52. Small gifts add up over a year!",
+            "ar": "١ × ٥٢ = ٥٢. العطاء الصغير يتراكم خلال سنة!"
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "impact",
+          "prompt": {
+            "en": "Gus: 'Just give to anyone who asks online!' Smart?",
+            "ar": "غاس: 'أعطِ أي أحد يطلب عبر الإنترنت!' هل هذا ذكي؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: check it's a real charity first",
+                "ar": "لا: تحقق أولاً أنها جمعية حقيقية"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Checking makes sure your gift reaches people who need it.",
+            "ar": "التحقق يضمن وصول عطائك لمن يحتاجه."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "zakat-sadaqah",
+          "prompt": {
+            "en": "Gus: 'A smile can't be charity!' In Islam, is a smile sadaqah?",
+            "ar": "غاس: 'الابتسامة لا تكون صدقة!' في الإسلام، هل الابتسامة صدقة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Yes, kindness counts as sadaqah",
+                "ar": "نعم، اللطف يُعد صدقة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "No",
+                "ar": "لا"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Sadaqah includes kind acts, not only money.",
+            "ar": "الصدقة تشمل الأعمال الطيبة، لا المال فقط."
+          }
+        }
+      ]
+    }
+  ]
+}

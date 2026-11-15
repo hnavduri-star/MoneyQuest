@@ -1,5 +1,5 @@
 /** Content checks. Returns a list of human-readable problems ([] means OK). */
-const STEP_TYPES = ['story', 'choice', 'sort', 'number', 'sim'];
+const STEP_TYPES = ['story', 'choice', 'sort', 'number', 'sim', 'order', 'estimate', 'scenario'];
 const NODE_KINDS = ['lesson', 'quiz', 'minigame', 'boss'];
 const RARITIES = ['common', 'rare', 'epic', 'legendary'];
 const ITEM_TYPES = ['outfit', 'pet', 'decoration', 'mascotSkin', 'hat'];
@@ -44,12 +44,15 @@ export function validateContent(c, { sims = [], games = [] } = {}) {
           need((st.options || []).some((o) => o.correct), `${sw}: no correct option`);
         }
         if (st.type === 'number') need(st.answer !== undefined, `${sw}: number step needs "answer"`);
+        if (st.type === 'order') need((st.items || []).length >= 3, `${sw}: an order step needs 3+ items (listed in the correct order)`);
+        if (st.type === 'estimate') need(st.answer !== undefined && st.min !== undefined && st.max !== undefined, `${sw}: an estimate step needs min, max and answer`);
+        if (st.type === 'scenario') need((st.options || []).length >= 2 && st.options.every((o) => o.outcome), `${sw}: a scenario needs 2+ options, each with an "outcome"`);
         if (st.type === 'sort') for (const it of st.items || []) need((st.bins || []).some((b) => b.id === it.bin), `${sw}: item has unknown bin "${it.bin}"`);
         if (st.type === 'sim') need(!sims.length || sims.includes(st.sim), `${sw}: unknown sim "${st.sim}"`);
         if (st.type === 'sim' && st.params?.target) need(!!st.concept && !!st.explain && !!st.goalText, `${sw}: a goal sim needs "concept", "goalText" and "explain"`);
         // "Everything is explained": every answer comes with a why.
-        if (['choice', 'number'].includes(st.type)) need(!!st.explain, `${sw}: question needs an "explain" (shown after answering)`);
-        if (['choice', 'number', 'sort'].includes(st.type)) need(!!st.concept, `${sw}: question needs a "concept" for mastery tracking`);
+        if (['choice', 'number', 'order', 'estimate'].includes(st.type)) need(!!st.explain, `${sw}: question needs an "explain" (shown after answering)`);
+        if (['choice', 'number', 'sort', 'order', 'estimate'].includes(st.type)) need(!!st.concept, `${sw}: question needs a "concept" for mastery tracking`);
         if (st.concept) need(!!w.conceptNames?.[st.concept], `${sw}: concept "${st.concept}" has no name in the world's "concepts" map`);
       });
     }

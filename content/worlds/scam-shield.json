@@ -1,0 +1,1001 @@
+{
+  "id": "scam-shield",
+  "icon": "🕵️",
+  "color": "#0072B2",
+  "name": {
+    "en": "Scam Shield",
+    "ar": "درع الاحتيال"
+  },
+  "tagline": {
+    "en": "Spot scams, phishing, password safety, in-game purchase traps and get-rich-quick tricks",
+    "ar": "اكتشف الاحتيال والتصيّد وأمان كلمات المرور وفخاخ الشراء في الألعاب وحيل الثراء السريع"
+  },
+  "badge": {
+    "id": "world-scam-shield",
+    "icon": "🕵️",
+    "rarity": "rare",
+    "name": {
+      "en": "Scam Spotter",
+      "ar": "كاشف الاحتيال"
+    },
+    "desc": {
+      "en": "Finish Scam Shield",
+      "ar": "أكمل درع الاحتيال"
+    }
+  },
+  "realLife": {
+    "en": "Grown-ups: show your child a real scam text or email you received (with personal details hidden) and spot the clues together.",
+    "ar": "أيها الكبار: أروا طفلكم رسالة احتيال حقيقية وصلتكم (مع إخفاء البيانات الشخصية) وابحثوا عن الدلائل معاً."
+  },
+  "concepts": {
+    "spot-scam": {
+      "en": "Spotting scams",
+      "ar": "اكتشاف الاحتيال"
+    },
+    "phishing": {
+      "en": "Phishing messages",
+      "ar": "رسائل التصيّد"
+    },
+    "passwords": {
+      "en": "Passwords & privacy",
+      "ar": "كلمات المرور والخصوصية"
+    },
+    "game-traps": {
+      "en": "In-game purchase traps",
+      "ar": "فخاخ الشراء في الألعاب"
+    },
+    "quick-rich": {
+      "en": "Get-rich-quick & crypto",
+      "ar": "الثراء السريع والعملات المشفرة"
+    }
+  },
+  "nodes": [
+    {
+      "id": "too-good",
+      "kind": "lesson",
+      "icon": "🎁",
+      "title": {
+        "en": "Too good to be true",
+        "ar": "أجمل من أن يكون حقيقياً"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "shield",
+          "mascot": "thinking",
+          "text": {
+            "en": "Welcome to {stop} in {city}! A SCAM is a trick to take your money or your information. Scammers often promise something amazing, rush you, and ask you to pay or share secrets.",
+            "ar": "أهلاً بك في {stop} في {city}! الاحتيال خدعة لأخذ مالك أو معلوماتك. يعد المحتالون غالباً بشيء مذهل ويستعجلونك ويطلبون أن تدفع أو تشارك أسراراً."
+          }
+        },
+        {
+          "type": "scenario",
+          "key": "scam-prize",
+          "prompt": {
+            "en": "A message pops up: 'You WON a new phone! Pay [[5]] delivery in the next 10 minutes!' What do you do?",
+            "ar": "تظهر رسالة: 'لقد ربحت هاتفاً جديداً! ادفع [[5]] للتوصيل خلال ١٠ دقائق!' ماذا تفعل؟"
+          },
+          "options": [
+            {
+              "emoji": "🛑",
+              "text": {
+                "en": "Close it and show a grown-up",
+                "ar": "أغلقها وأريها لأحد الكبار"
+              },
+              "outcome": {
+                "en": "Smart! You didn't enter any competition, and real prizes never ask you to pay. That was a scam.",
+                "ar": "ذكي! لم تشارك في أي مسابقة، والجوائز الحقيقية لا تطلب منك الدفع. كانت احتيالاً."
+              },
+              "wise": true
+            },
+            {
+              "emoji": "💳",
+              "text": {
+                "en": "Pay quickly before time runs out",
+                "ar": "ادفع بسرعة قبل انتهاء الوقت"
+              },
+              "outcome": {
+                "en": "Uh-oh. The 'delivery fee' was the scam, and now they may have your card details too. Tell a grown-up straight away so they can block the card.",
+                "ar": "أوه. 'رسوم التوصيل' كانت هي الاحتيال، وقد يكون لديهم الآن بيانات بطاقتك أيضاً. أخبر أحد الكبار فوراً ليوقف البطاقة."
+              }
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "spot-scam",
+          "prompt": {
+            "en": "Which is a red flag for a scam?",
+            "ar": "أيّها علامة تحذير من الاحتيال؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Hurry! Only 10 minutes left!",
+                "ar": "أسرع! بقيت ١٠ دقائق فقط!"
+              },
+              "correct": true,
+              "emoji": "⏰"
+            },
+            {
+              "text": {
+                "en": "A receipt after you buy something",
+                "ar": "إيصال بعد شراء شيء"
+              },
+              "emoji": "🧾"
+            }
+          ],
+          "explain": {
+            "en": "Scammers rush you so you don't stop and think. Real offers let you take your time.",
+            "ar": "المحتالون يستعجلونك كي لا تتوقف وتفكر. العروض الحقيقية تمنحك الوقت."
+          }
+        },
+        {
+          "type": "order",
+          "concept": "spot-scam",
+          "prompt": {
+            "en": "Put the safe steps in order when you get a strange message.",
+            "ar": "رتّب الخطوات الآمنة عند وصول رسالة غريبة."
+          },
+          "items": [
+            {
+              "emoji": "✋",
+              "text": {
+                "en": "Stop: don't click anything",
+                "ar": "توقف: لا تضغط على أي شيء"
+              }
+            },
+            {
+              "emoji": "🤔",
+              "text": {
+                "en": "Think: is it too good to be true?",
+                "ar": "فكّر: هل هو أجمل من أن يكون حقيقياً؟"
+              }
+            },
+            {
+              "emoji": "🙋",
+              "text": {
+                "en": "Tell a grown-up",
+                "ar": "أخبر أحد الكبار"
+              }
+            },
+            {
+              "emoji": "🗑️",
+              "text": {
+                "en": "Delete or report it",
+                "ar": "احذفها أو أبلغ عنها"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Stop, think, tell, delete. Those four steps beat almost every scam.",
+            "ar": "توقف، فكّر، أخبر، احذف. هذه الخطوات الأربع تهزم معظم أنواع الاحتيال."
+          }
+        }
+      ]
+    },
+    {
+      "id": "phishing",
+      "kind": "lesson",
+      "icon": "🎣",
+      "title": {
+        "en": "Phishing: fake messages",
+        "ar": "التصيّد: الرسائل المزيفة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "phone",
+          "mascot": "thinking",
+          "text": {
+            "en": "PHISHING is when scammers pretend to be someone you trust, like a bank, a game company or a delivery service, to trick you into clicking a link or sharing a password or code.",
+            "ar": "التصيّد هو أن يتظاهر المحتالون بأنهم جهة تثق بها، مثل بنك أو شركة ألعاب أو شركة توصيل، ليخدعوك فتضغط رابطاً أو تشارك كلمة مرور أو رمزاً."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "phishing",
+          "prompt": {
+            "en": "Safe or scam?",
+            "ar": "آمن أم احتيال؟"
+          },
+          "bins": [
+            {
+              "id": "safe",
+              "emoji": "✅",
+              "label": {
+                "en": "Probably safe",
+                "ar": "غالباً آمن"
+              }
+            },
+            {
+              "id": "scam",
+              "emoji": "🎣",
+              "label": {
+                "en": "Scam warning",
+                "ar": "تحذير احتيال"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "🏦",
+              "text": {
+                "en": "Your bank app shows your balance",
+                "ar": "تطبيق البنك يعرض رصيدك"
+              },
+              "bin": "safe"
+            },
+            {
+              "emoji": "📩",
+              "text": {
+                "en": "'Your account is locked, send your PIN'",
+                "ar": "'حسابك مقفل، أرسل رقمك السري'"
+              },
+              "bin": "scam"
+            },
+            {
+              "emoji": "🔗",
+              "text": {
+                "en": "A link with a strange spelling like 'bannk-login'",
+                "ar": "رابط بتهجئة غريبة مثل 'bannk-login'"
+              },
+              "bin": "scam"
+            },
+            {
+              "emoji": "📦",
+              "text": {
+                "en": "'Pay [[2]] or your parcel is destroyed'",
+                "ar": "'ادفع [[2]] وإلا أُتلف طردك'"
+              },
+              "bin": "scam"
+            },
+            {
+              "emoji": "👩‍🏫",
+              "text": {
+                "en": "Your teacher's note about a school trip",
+                "ar": "ملاحظة معلمتك عن رحلة مدرسية"
+              },
+              "bin": "safe"
+            },
+            {
+              "emoji": "🎮",
+              "text": {
+                "en": "'Free game coins, just enter your password'",
+                "ar": "'عملات لعبة مجانية، فقط أدخل كلمة المرور'"
+              },
+              "bin": "scam"
+            }
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "phishing",
+          "prompt": {
+            "en": "A message says it's from your bank and asks for a one-time code. You…",
+            "ar": "رسالة تقول إنها من بنكك وتطلب رمز تحقق. أنت…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Never share it, the bank never asks",
+                "ar": "لا أشاركه أبداً، البنك لا يطلبه"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Send it quickly",
+                "ar": "أرسله بسرعة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "One-time codes are like keys. Banks never ask for them by phone, text or email.",
+            "ar": "رموز التحقق مثل المفاتيح. البنوك لا تطلبها أبداً عبر الهاتف أو الرسائل أو البريد."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "phishing",
+          "prompt": {
+            "en": "How can you check if a message is really from your bank?",
+            "ar": "كيف تتحقق إن كانت الرسالة من بنكك فعلاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A grown-up opens the bank's own app or calls the number on the card",
+                "ar": "يفتح أحد الكبار تطبيق البنك نفسه أو يتصل بالرقم على البطاقة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Click the link in the message",
+                "ar": "اضغط الرابط في الرسالة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Go to the bank the way you always do, never through a link someone sent you.",
+            "ar": "اذهب إلى البنك بالطريقة المعتادة، لا عبر رابط أرسله لك أحد."
+          }
+        }
+      ]
+    },
+    {
+      "id": "passwords",
+      "kind": "lesson",
+      "icon": "🔐",
+      "title": {
+        "en": "Passwords and privacy",
+        "ar": "كلمات المرور والخصوصية"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "shield",
+          "mascot": "happy",
+          "text": {
+            "en": "A strong PASSWORD is long and hard to guess, like three random words with a number: 'Camel-Rocket-Mango-7'. Never use your name or birthday, and never share passwords with friends.",
+            "ar": "كلمة المرور القوية طويلة وصعبة التخمين، مثل ثلاث كلمات عشوائية مع رقم: 'Camel-Rocket-Mango-7'. لا تستخدم اسمك أو تاريخ ميلادك، ولا تشارك كلمات المرور مع أصدقائك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "passwords",
+          "prompt": {
+            "en": "Which password is the strongest?",
+            "ar": "أيّ كلمة مرور هي الأقوى؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Falcon-Cactus-Bubble-42",
+                "ar": "Falcon-Cactus-Bubble-42"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "1234",
+                "ar": "1234"
+              }
+            },
+            {
+              "text": {
+                "en": "Your first name",
+                "ar": "اسمك الأول"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Long, random and not about you: that's what makes a password hard to crack.",
+            "ar": "طويلة وعشوائية ولا تخصك: هذا ما يجعل كلمة المرور صعبة الاختراق."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "passwords",
+          "prompt": {
+            "en": "A new game asks for your home address and school. What should you do?",
+            "ar": "لعبة جديدة تطلب عنوان بيتك ومدرستك. ماذا تفعل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Don't share it; ask a grown-up",
+                "ar": "لا أشاركه وأسأل أحد الكبار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Fill it all in",
+                "ar": "أملأ كل شيء"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Personal details are private. Games don't need them to be fun.",
+            "ar": "البيانات الشخصية خاصة. الألعاب لا تحتاجها لتكون ممتعة."
+          }
+        }
+      ]
+    },
+    {
+      "id": "game-traps",
+      "kind": "lesson",
+      "icon": "🎮",
+      "title": {
+        "en": "In-game purchase traps",
+        "ar": "فخاخ الشراء في الألعاب"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "coins",
+          "mascot": "thinking",
+          "text": {
+            "en": "Some games turn real money into gems or coins so it's hard to tell what things REALLY cost. Countdown timers and 'mystery boxes' push you to spend before you think. (In MoneyQuest, coins are only earned by playing.)",
+            "ar": "بعض الألعاب تحوّل المال الحقيقي إلى جواهر أو عملات فيصعب معرفة التكلفة الحقيقية. العدّادات التنازلية و'الصناديق الغامضة' تدفعك للإنفاق قبل التفكير. (في رحلة المال تُكسب العملات باللعب فقط.)"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "game-traps",
+          "prompt": {
+            "en": "A game sells 100 gems for [[20]] of real money. A skin costs 400 gems. How much real money is that?",
+            "ar": "لعبة تبيع ١٠٠ جوهرة بـ[[20]] من المال الحقيقي. مظهر يكلف ٤٠٠ جوهرة. كم هذا بالمال الحقيقي؟"
+          },
+          "answer": 80,
+          "explain": {
+            "en": "400 gems = 4 × 100 gems = 4 × [[20]] = [[80]]. Turning gems back into money shows the real price.",
+            "ar": "٤٠٠ جوهرة = ٤ × ١٠٠ = ٤ × [[20]] = [[80]]. تحويل الجواهر إلى مال يكشف السعر الحقيقي."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "game-traps",
+          "prompt": {
+            "en": "A 'mystery box' costs real money and you don't know what's inside. Why is that risky?",
+            "ar": "'صندوق غامض' يكلف مالاً حقيقياً ولا تعرف ما بداخله. لماذا هذا خطِر؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "You might pay again and again chasing the item you want",
+                "ar": "قد تدفع مراراً سعياً وراء ما تريد"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It's always the best item",
+                "ar": "إنه دائماً أفضل عنصر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Random prizes work like gambling. Decide what something is worth before you pay.",
+            "ar": "الجوائز العشوائية تشبه القمار. قرّر قيمة الشيء قبل أن تدفع."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "game-traps",
+          "prompt": {
+            "en": "Before buying anything in a game you should…",
+            "ar": "قبل شراء أي شيء في لعبة يجب أن…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Ask a grown-up first",
+                "ar": "تسأل أحد الكبار أولاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Use a saved card quickly",
+                "ar": "تستخدم بطاقة محفوظة بسرعة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Real money is real money, even when it looks like gems.",
+            "ar": "المال الحقيقي حقيقي حتى عندما يبدو كجواهر."
+          }
+        }
+      ]
+    },
+    {
+      "id": "get-rich-quick",
+      "kind": "lesson",
+      "icon": "🚀",
+      "title": {
+        "en": "Get-rich-quick and crypto",
+        "ar": "الثراء السريع والعملات المشفرة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "chart",
+          "mascot": "thinking",
+          "text": {
+            "en": "Some people online promise to 'double your money in a week'. That's a giant red flag! Real investments can go up AND down. CRYPTO is digital money that exists only online; its price can swing wildly, and many scams use it.",
+            "ar": "يعد بعض الناس عبر الإنترنت 'بمضاعفة مالك في أسبوع'. هذه علامة تحذير كبيرة! الاستثمارات الحقيقية ترتفع وتنخفض. والعملات المشفرة مال رقمي موجود على الإنترنت فقط، وسعرها يتقلب بشدة، وكثير من عمليات الاحتيال تستخدمها."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "quick-rich",
+          "prompt": {
+            "en": "Someone promises 'guaranteed' 50% profit every month. This is…",
+            "ar": "شخص يعد بربح 'مضمون' ٥٠٪ كل شهر. هذا…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Almost certainly a scam",
+                "ar": "احتيال على الأرجح"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A great, safe deal",
+                "ar": "صفقة رائعة وآمنة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "No honest investment can guarantee huge returns. Guarantees + big profits = scam.",
+            "ar": "لا يوجد استثمار أمين يضمن عوائد ضخمة. الضمان + الربح الكبير = احتيال."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "quick-rich",
+          "prompt": {
+            "en": "What's true about crypto?",
+            "ar": "ما الصحيح عن العملات المشفرة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Its price can rise and fall a lot, very quickly",
+                "ar": "سعرها قد يرتفع وينخفض كثيراً وبسرعة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It always goes up",
+                "ar": "ترتفع دائماً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Big swings mean you can lose money fast. It's not a get-rich-quick button.",
+            "ar": "التقلبات الكبيرة تعني أنك قد تخسر المال بسرعة. ليست زراً للثراء السريع."
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scam-or-safe",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "spot-scam",
+        "phishing"
+      ],
+      "title": {
+        "en": "Scam or Safe?",
+        "ar": "احتيال أم آمن؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "safe",
+            "emoji": "✅",
+            "label": {
+              "en": "Safe",
+              "ar": "آمن"
+            }
+          },
+          {
+            "id": "scam",
+            "emoji": "🚨",
+            "label": {
+              "en": "Scam",
+              "ar": "احتيال"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🎁",
+            "text": {
+              "en": "'You won! Pay a fee to claim'",
+              "ar": "'ربحت! ادفع رسوماً لتستلم'"
+            },
+            "bin": "scam"
+          },
+          {
+            "emoji": "🏦",
+            "text": {
+              "en": "Checking balance in the real bank app",
+              "ar": "التحقق من الرصيد في تطبيق البنك الحقيقي"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "🔢",
+            "text": {
+              "en": "Sharing a one-time code",
+              "ar": "مشاركة رمز تحقق"
+            },
+            "bin": "scam"
+          },
+          {
+            "emoji": "🧾",
+            "text": {
+              "en": "Getting a receipt",
+              "ar": "استلام إيصال"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "📈",
+            "text": {
+              "en": "'Double your money in a day'",
+              "ar": "'ضاعف مالك في يوم'"
+            },
+            "bin": "scam"
+          },
+          {
+            "emoji": "🔒",
+            "text": {
+              "en": "Using a long password",
+              "ar": "استخدام كلمة مرور طويلة"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "⏰",
+            "text": {
+              "en": "'Act NOW or lose it forever'",
+              "ar": "'تصرّف الآن وإلا خسرته للأبد'"
+            },
+            "bin": "scam"
+          },
+          {
+            "emoji": "🙋",
+            "text": {
+              "en": "Asking a grown-up before buying online",
+              "ar": "سؤال أحد الكبار قبل الشراء عبر الإنترنت"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "🎮",
+            "text": {
+              "en": "'Free coins: type your password'",
+              "ar": "'عملات مجانية: اكتب كلمة المرور'"
+            },
+            "bin": "scam"
+          },
+          {
+            "emoji": "📚",
+            "text": {
+              "en": "A message from your school's real app",
+              "ar": "رسالة من تطبيق مدرستك الحقيقي"
+            },
+            "bin": "safe"
+          },
+          {
+            "emoji": "💌",
+            "text": {
+              "en": "A stranger asks for gift cards",
+              "ar": "غريب يطلب بطاقات هدايا"
+            },
+            "bin": "scam"
+          },
+          {
+            "emoji": "🛡️",
+            "text": {
+              "en": "Turning on two-step login",
+              "ar": "تفعيل التحقق بخطوتين"
+            },
+            "bin": "safe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Scam Shield quiz",
+        "ar": "اختبار درع الاحتيال"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "spot-scam",
+          "prompt": {
+            "en": "A scam is…",
+            "ar": "الاحتيال هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A trick to take your money or information",
+                "ar": "خدعة لأخذ مالك أو معلوماتك"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A type of savings",
+                "ar": "نوع من الادخار"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Scams trick people into paying or sharing secrets.",
+            "ar": "الاحتيال يخدع الناس ليدفعوا أو يشاركوا أسراراً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "phishing",
+          "prompt": {
+            "en": "Phishing messages usually…",
+            "ar": "رسائل التصيّد عادة…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Pretend to be someone you trust",
+                "ar": "تتظاهر بأنها من جهة تثق بها"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Come with your name printed by the bank on paper",
+                "ar": "تأتي باسمك مطبوعاً على ورق البنك"
+              }
+            }
+          ],
+          "explain": {
+            "en": "They copy logos and names to look real.",
+            "ar": "تنسخ الشعارات والأسماء لتبدو حقيقية."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "passwords",
+          "prompt": {
+            "en": "A strong password is…",
+            "ar": "كلمة المرور القوية…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Long and random",
+                "ar": "طويلة وعشوائية"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Your birthday",
+                "ar": "تاريخ ميلادك"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Length and randomness make it hard to guess.",
+            "ar": "الطول والعشوائية يصعّبان التخمين."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "game-traps",
+          "prompt": {
+            "en": "50 gems cost [[10]]. How much real money are 250 gems?",
+            "ar": "٥٠ جوهرة تكلف [[10]]. كم تكلف ٢٥٠ جوهرة بالمال الحقيقي؟"
+          },
+          "answer": 50,
+          "explain": {
+            "en": "250 ÷ 50 = 5, and 5 × [[10]] = [[50]].",
+            "ar": "٢٥٠ ÷ ٥٠ = ٥، و٥ × [[10]] = [[50]]."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "quick-rich",
+          "prompt": {
+            "en": "'Guaranteed huge profits' usually means…",
+            "ar": "'أرباح ضخمة مضمونة' تعني عادة…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A scam",
+                "ar": "احتيال"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Free money",
+                "ar": "مال مجاني"
+              }
+            }
+          ],
+          "explain": {
+            "en": "If it sounds too good to be true, it probably is.",
+            "ar": "إذا بدا أجمل من أن يكون حقيقياً فهو على الأرجح كذلك."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "👺",
+      "title": {
+        "en": "Boss: the Scam Goblin",
+        "ar": "الزعيم: عفريت الاحتيال"
+      },
+      "boss": {
+        "id": "the-scam-goblin",
+        "name": {
+          "en": "The Scam Goblin",
+          "ar": "عفريت الاحتيال"
+        },
+        "color": "#0072B2",
+        "intro": {
+          "en": "Heh heh! I'm the Scam Goblin. I send fake prizes, fake bank messages and magic money deals. Can you see through my disguises?",
+          "ar": "هيه هيه! أنا عفريت الاحتيال. أرسل جوائز مزيفة ورسائل بنوك مزيفة وصفقات مال سحرية. هل تكشف تنكّري؟"
+        },
+        "taunt": {
+          "en": "Hehe, you nearly fell for it! Try again.",
+          "ar": "هيهي، كدت تقع في الفخ! حاول مجدداً."
+        },
+        "defeat": {
+          "en": "Argh! My disguises don't work on you!",
+          "ar": "آه! تنكّري لا ينفع معك!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "phishing",
+          "prompt": {
+            "en": "Goblin: 'This is your bank. Click this link to unlock your account.' You…",
+            "ar": "العفريت: 'هذا بنكك. اضغط الرابط لفتح حسابك.' أنت…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Don't click; a grown-up checks in the real app",
+                "ar": "لا أضغط، ويتحقق أحد الكبار في التطبيق الحقيقي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Click the link",
+                "ar": "أضغط الرابط"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Never use links in surprise messages about your money.",
+            "ar": "لا تستخدم روابط الرسائل المفاجئة عن مالك."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "spot-scam",
+          "prompt": {
+            "en": "Goblin: 'You won! Just send [[10]] for postage.' Real?",
+            "ar": "العفريت: 'ربحت! فقط أرسل [[10]] للشحن.' حقيقي؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, real prizes don't ask you to pay",
+                "ar": "لا، الجوائز الحقيقية لا تطلب الدفع"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Paying to receive a prize is a classic scam.",
+            "ar": "الدفع لاستلام جائزة احتيال كلاسيكي."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "passwords",
+          "prompt": {
+            "en": "Goblin: 'Tell me your password and I'll give you a rare skin!' You…",
+            "ar": "العفريت: 'أخبرني بكلمة مرورك وسأعطيك مظهراً نادراً!' أنت…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Never share it",
+                "ar": "لا أشاركها أبداً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Share it",
+                "ar": "أشاركها"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Your password is yours alone.",
+            "ar": "كلمة مرورك لك وحدك."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "game-traps",
+          "prompt": {
+            "en": "Goblin: '1000 gems for just [[25]]... and this bundle is 3000 gems!' Real price of the bundle?",
+            "ar": "العفريت: '١٠٠٠ جوهرة بـ[[25]] فقط... والحزمة ٣٠٠٠ جوهرة!' السعر الحقيقي للحزمة؟"
+          },
+          "answer": 75,
+          "explain": {
+            "en": "3000 = 3 × 1000, so 3 × [[25]] = [[75]].",
+            "ar": "٣٠٠٠ = ٣ × ١٠٠٠، إذن ٣ × [[25]] = [[75]]."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "quick-rich",
+          "prompt": {
+            "en": "Goblin: 'Give me [[100]], I'll turn it into [[1000]] by tomorrow!' You…",
+            "ar": "العفريت: 'أعطني [[100]] وسأحوّلها إلى [[1000]] بحلول الغد!' أنت…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Walk away: that's a get-rich-quick scam",
+                "ar": "أبتعد: هذا احتيال ثراء سريع"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Hand it over",
+                "ar": "أسلّمها"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Money doesn't multiply overnight. Promises like that are traps.",
+            "ar": "المال لا يتضاعف بين ليلة وضحاها. وعود كهذه فخاخ."
+          }
+        }
+      ]
+    }
+  ]
+}
