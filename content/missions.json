@@ -1,0 +1,157 @@
+{
+  "$comment": "Real-life missions, one per stop. The child taps 'I did it', a grown-up confirms with the parent PIN, and the reward is paid. Missions are optional and never block progress.",
+  "money-basics": {
+    "icon": "🎯",
+    "text": {
+      "en": "Pick one thing you'd love to save for. Draw it and write its price on a piggy-bank goal chart.",
+      "ar": "اختر شيئاً تحب أن تدخر له. ارسمه واكتب سعره على لوحة هدف الحصّالة."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "salary-street": {
+    "icon": "💼",
+    "text": {
+      "en": "Ask a grown-up what their job is and one thing they like about earning money from it.",
+      "ar": "اسأل أحد الكبار عن عمله وعن شيء يحبه في كسب المال منه."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "household-budget": {
+    "icon": "🛒",
+    "text": {
+      "en": "Help plan this week's grocery shopping: make a list and guess the total before you go.",
+      "ar": "ساعد في تخطيط تسوّق البقالة هذا الأسبوع: اكتب قائمة وخمّن المجموع قبل الذهاب."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "bank-town": {
+    "icon": "🏦",
+    "text": {
+      "en": "With a grown-up, look at a real savings account rate and work out what [[100]] would earn in a year.",
+      "ar": "مع أحد الكبار، انظروا إلى نسبة حساب توفير حقيقي واحسبوا كم تكسب [[100]] في سنة."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "bank-products": {
+    "icon": "💳",
+    "text": {
+      "en": "Look at a bank statement or banking app with a grown-up. Find the balance, one deposit and one payment.",
+      "ar": "انظر إلى كشف حساب أو تطبيق بنك مع أحد الكبار. ابحث عن الرصيد وإيداع ودفعة."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "cash-cards": {
+    "icon": "🏧",
+    "text": {
+      "en": "Next time you're at an ATM with a grown-up, spot the steps: card, PIN (covered!), amount, cash, card back.",
+      "ar": "في المرة القادمة عند الصرّاف مع أحد الكبار، لاحظ الخطوات: البطاقة، الرقم السري (مغطى!)، المبلغ، النقود، استرجاع البطاقة."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "currency-bazaar": {
+    "icon": "💱",
+    "text": {
+      "en": "Find a coin or note from another country at home (or online with a grown-up) and work out what it's worth in your money.",
+      "ar": "ابحث عن عملة من دولة أخرى في البيت (أو عبر الإنترنت مع أحد الكبار) واحسب قيمتها بعملتك."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "lemonade-empire": {
+    "icon": "🍋",
+    "text": {
+      "en": "Plan a pretend stand: list what you'd sell, your costs, and the price you'd charge.",
+      "ar": "خطط لكشك تجريبي: اكتب ما ستبيعه وتكاليفك والسعر الذي ستطلبه."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "pl-factory": {
+    "icon": "☕",
+    "text": {
+      "en": "At a café or restaurant, count the customers and guess what each one spends. Estimate the day's sales together.",
+      "ar": "في مقهى أو مطعم، عدّ الزبائن وخمّن ما ينفقه كل واحد. قدّروا معاً مبيعات اليوم."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "debt-dungeon": {
+    "icon": "🐉",
+    "text": {
+      "en": "Ask a grown-up: what is one thing people often borrow money for, and how do they plan to pay it back?",
+      "ar": "اسأل أحد الكبار: ما الشيء الذي يقترض الناس المال من أجله غالباً، وكيف يخططون لسداده؟"
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "scam-shield": {
+    "icon": "🛡️",
+    "text": {
+      "en": "With a grown-up, look at one message or email and decide together: real or scam? Spot the clues.",
+      "ar": "مع أحد الكبار، انظروا إلى رسالة أو بريد وقرروا معاً: حقيقي أم احتيال؟ ابحثوا عن الدلائل."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "smart-shopper": {
+    "icon": "🛒",
+    "text": {
+      "en": "In a shop, compare two sizes of the same product and work out which is cheaper per item or per 100 g.",
+      "ar": "في متجر، قارن بين حجمين للمنتج نفسه واحسب أيهما أرخص للقطعة أو لكل ١٠٠ غرام."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "investment-island": {
+    "icon": "📈",
+    "text": {
+      "en": "Choose three companies you know. Ask a grown-up what each one sells and how it makes money.",
+      "ar": "اختر ثلاث شركات تعرفها. اسأل أحد الكبار ماذا تبيع كل منها وكيف تكسب المال."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  },
+  "giving-garden": {
+    "icon": "🌻",
+    "text": {
+      "en": "Choose a good cause with your family and put part of your Give jar towards it.",
+      "ar": "اختر مع عائلتك قضية خيرية وخصص لها جزءاً من برطمان العطاء."
+    },
+    "reward": {
+      "coins": 60,
+      "xp": 30
+    }
+  }
+}

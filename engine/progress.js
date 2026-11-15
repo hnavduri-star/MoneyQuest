@@ -38,7 +38,9 @@ export function worldStatus(state, meta, content, age) {
   const world = content.worlds[meta.id];
   const started = world.nodes.some((n) => nodeProgress(state, meta.id, n.id));
   const req = (meta.requires || []).filter((id) => content.worlds[id]);
-  const reqDone = req.every((id) => isWorldComplete(state, content.worlds[id], age));
+  const any = (meta.requiresAny || []).filter((id) => content.worlds[id]);
+  // "requires": every listed world; "requiresAny": at least one of them (lets the journey branch).
+  const reqDone = req.every((id) => isWorldComplete(state, content.worlds[id], age)) && (!any.length || any.some((id) => isWorldComplete(state, content.worlds[id], age)));
   // A world the child has already started never re-locks (e.g. if the journey order changes).
   if (!reqDone && !started) return 'locked';
   return isWorldComplete(state, world, age) ? 'complete' : 'open';
@@ -55,14 +57,39 @@ export function stepsForAge(node, age, ctx) {
     .map((s) => resolveNums(resolveAgeDeep(s, age), ctx));
 }
 
+const MONEY = /\[\[(-?[\d.]+)\]\]/g;
+const r2 = (n) => Math.round(n * 100) / 100;
+
+/** The price factor for one step: "big" amounts (salaries, rent: anything ≥ 1000) use the city's big factor. */
+export function stepPriceScale(step, prices) {
+  if (!prices) return 1;
+  const json = JSON.stringify(step);
+  const amounts = [...json.matchAll(MONEY)].map((m) => Number(m[1]));
+  if (step.money && typeof step.answer === 'number') amounts.push(step.answer);
+  // Simulations: a money parameter of 1000+ (an income, a rent) marks the whole sim as "big".
+  if (step.type === 'sim') for (const v of Object.values(step.params || {})) if (typeof v === 'number') amounts.push(v);
+  return amounts.some((a) => Math.abs(a) >= 1000) ? prices.big : prices.small;
+}
+
+function scaleDeep(v, k) {
+  if (typeof v === 'string') return v.replace(MONEY, (_, n) => `[[${r2(Number(n) * k)}]]`);
+  if (Array.isArray(v)) return v.map((x) => scaleDeep(x, k));
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([key, x]) => [key, scaleDeep(x, k)]));
+  return v;
+}
+
 function resolveNums(step, ctx) {
   const fix = (v) => (typeof v === 'string' ? Number(v.replace(/\{(\w+)\}/g, (_, k) => ctx?.nums?.[k] ?? NaN)) : v);
   let out = step;
   if (typeof step.answer === 'string' || typeof step.tolerance === 'string') out = { ...step, answer: fix(step.answer), tolerance: fix(step.tolerance) };
-  // Money answers scale with the city's prices (e.g. ×10 for rupees), just like [[amounts]] in the text.
-  const k = ctx?.priceScale || 1;
-  if (out.money && k !== 1 && typeof out.answer === 'number') out = { ...out, answer: Math.round(out.answer * k * 100) / 100, tolerance: (out.tolerance || 0) * k };
-  return out;
+  // Realistic local prices: every [[amount]] in the step and any money answer use the same factor,
+  // so the arithmetic in the question still works (e.g. salaries ×0.25 in pounds, ×5 in rupees).
+  const k = stepPriceScale(out, ctx?.prices);
+  if (k === 1) return { ...out, priceScale: 1 };
+  out = scaleDeep(out, k);
+  if (out.money && typeof out.answer === 'number') out = { ...out, answer: r2(out.answer * k), tolerance: (out.tolerance || 0) * k };
+  if (out.type === 'estimate' && out.money) out = { ...out, min: r2(out.min * k), max: r2(out.max * k), step: r2((out.step || 1) * k) };
+  return { ...out, priceScale: k };
 }
 
 /** Mini-games marked "cityItems" sort the chosen city's own places vs places abroad. */

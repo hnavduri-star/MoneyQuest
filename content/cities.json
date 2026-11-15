@@ -1,5 +1,5 @@
 {
-  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing. priceScale multiplies every lesson money amount (and money answers) so prices feel local, e.g. ×10 for rupees.",
+  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing. `prices` makes amounts realistic for each city: small amounts (pocket money, snacks) are multiplied by `small`, and any step with an amount of 1000 or more (salaries, rent, budgets) by `big`. Dubai and Abu Dhabi are the base (1).",
   "defaultCity": "dubai",
   "cities": [
     {
@@ -383,7 +383,10 @@
           "landmark": "🐉"
         }
       },
-      "priceScale": 1
+      "prices": {
+        "small": 1,
+        "big": 1
+      }
     },
     {
       "region": "uae",
@@ -766,7 +769,10 @@
           "landmark": "🐉"
         }
       },
-      "priceScale": 1
+      "prices": {
+        "small": 1,
+        "big": 1
+      }
     },
     {
       "id": "london",
@@ -1148,7 +1154,10 @@
           }
         ]
       },
-      "priceScale": 1
+      "prices": {
+        "small": 1,
+        "big": 0.25
+      }
     },
     {
       "id": "paris",
@@ -1530,7 +1539,10 @@
           }
         ]
       },
-      "priceScale": 1
+      "prices": {
+        "small": 1,
+        "big": 0.25
+      }
     },
     {
       "id": "mumbai",
@@ -1912,7 +1924,10 @@
           }
         ]
       },
-      "priceScale": 10
+      "prices": {
+        "small": 10,
+        "big": 5
+      }
     },
     {
       "id": "new-york",
@@ -2292,7 +2307,10 @@
           }
         ]
       },
-      "priceScale": 1
+      "prices": {
+        "small": 1,
+        "big": 0.3
+      }
     }
   ]
 }

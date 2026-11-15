@@ -20,6 +20,7 @@ export function loadRawContent() {
     characters: read('characters.json'),
     cities: read('cities.json'),
     editions: read('editions.json'),
+    missions: read('missions.json'),
     worldIndex: read('worlds', 'index.json'),
     worlds,
     i18n: { en: read('i18n', 'en.json'), ar: read('i18n', 'ar.json') },

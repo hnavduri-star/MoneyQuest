@@ -6,7 +6,7 @@
       "type": "outfit",
       "art": "explorer",
       "price": {
-        "coins": 95
+        "coins": 140
       },
       "name": {
         "en": "Explorer Vest",
@@ -18,7 +18,7 @@
       "type": "outfit",
       "art": "chef",
       "price": {
-        "coins": 130
+        "coins": 200
       },
       "name": {
         "en": "Chef Jacket",
@@ -30,7 +30,7 @@
       "type": "outfit",
       "art": "suit",
       "price": {
-        "coins": 190
+        "coins": 280
       },
       "unlock": {
         "badge": "world-bank-town"
@@ -60,7 +60,7 @@
       "type": "outfit",
       "art": "sport",
       "price": {
-        "coins": 110
+        "coins": 160
       },
       "name": {
         "en": "Team Jersey",
@@ -87,7 +87,7 @@
       "type": "hat",
       "art": "party",
       "price": {
-        "coins": 65
+        "coins": 100
       },
       "name": {
         "en": "Party Hat",
@@ -99,7 +99,7 @@
       "type": "hat",
       "art": "grad",
       "price": {
-        "coins": 145
+        "coins": 220
       },
       "unlock": {
         "level": 4
@@ -114,7 +114,7 @@
       "type": "pet",
       "art": "🐱",
       "price": {
-        "coins": 160
+        "coins": 240
       },
       "name": {
         "en": "Kitty",
@@ -126,7 +126,7 @@
       "type": "pet",
       "art": "🐶",
       "price": {
-        "coins": 160
+        "coins": 240
       },
       "name": {
         "en": "Puppy",
@@ -138,7 +138,7 @@
       "type": "pet",
       "art": "🐰",
       "price": {
-        "coins": 145
+        "coins": 220
       },
       "name": {
         "en": "Bunny",
@@ -150,7 +150,7 @@
       "type": "pet",
       "art": "🐢",
       "price": {
-        "coins": 130
+        "coins": 200
       },
       "name": {
         "en": "Slow-and-Steady Turtle",
@@ -192,7 +192,7 @@
       "type": "decoration",
       "art": "🌳",
       "price": {
-        "coins": 50
+        "coins": 80
       },
       "name": {
         "en": "Shady Tree",
@@ -204,7 +204,7 @@
       "type": "decoration",
       "art": "🌴",
       "price": {
-        "coins": 50
+        "coins": 80
       },
       "name": {
         "en": "Palm Tree",
@@ -216,7 +216,7 @@
       "type": "decoration",
       "art": "⛲",
       "price": {
-        "coins": 130
+        "coins": 200
       },
       "name": {
         "en": "Fountain",
@@ -228,7 +228,7 @@
       "type": "decoration",
       "art": "🌷",
       "price": {
-        "coins": 30
+        "coins": 40
       },
       "name": {
         "en": "Flower Bed",
@@ -240,7 +240,7 @@
       "type": "decoration",
       "art": "🏮",
       "price": {
-        "coins": 65
+        "coins": 100
       },
       "name": {
         "en": "Lantern",
@@ -267,7 +267,7 @@
       "type": "decoration",
       "art": "🗽",
       "price": {
-        "coins": 240
+        "coins": 360
       },
       "unlock": {
         "badge": "world-money-basics"
@@ -282,7 +282,7 @@
       "type": "mascotSkin",
       "art": "shades",
       "price": {
-        "coins": 80
+        "coins": 120
       },
       "name": {
         "en": "Cool Shades",
@@ -294,7 +294,7 @@
       "type": "mascotSkin",
       "art": "bowtie",
       "price": {
-        "coins": 95
+        "coins": 140
       },
       "name": {
         "en": "Smart Bow Tie",
@@ -321,7 +321,7 @@
       "type": "mascotSkin",
       "art": "tophat",
       "price": {
-        "coins": 175
+        "coins": 260
       },
       "unlock": {
         "level": 5
@@ -336,7 +336,7 @@
       "type": "outfit",
       "art": "goldthobe",
       "price": {
-        "coins": 900
+        "coins": 1350
       },
       "unlock": {
         "level": 10
@@ -351,7 +351,7 @@
       "type": "outfit",
       "art": "commander",
       "price": {
-        "coins": 1200
+        "coins": 1800
       },
       "unlock": {
         "level": 12
@@ -366,7 +366,7 @@
       "type": "hat",
       "art": "falconhat",
       "price": {
-        "coins": 450
+        "coins": 680
       },
       "unlock": {
         "level": 6
@@ -381,7 +381,7 @@
       "type": "pet",
       "art": "🦅",
       "price": {
-        "coins": 800
+        "coins": 1200
       },
       "unlock": {
         "level": 8
@@ -396,7 +396,7 @@
       "type": "pet",
       "art": "🐪",
       "price": {
-        "coins": 600
+        "coins": 900
       },
       "name": {
         "en": "Baby Camel",
@@ -408,7 +408,7 @@
       "type": "pet",
       "art": "🐬",
       "price": {
-        "coins": 700
+        "coins": 1050
       },
       "name": {
         "en": "Dolphin",
@@ -420,7 +420,7 @@
       "type": "pet",
       "art": "🦚",
       "price": {
-        "coins": 500
+        "coins": 750
       },
       "name": {
         "en": "Peacock",
@@ -447,7 +447,7 @@
       "type": "decoration",
       "art": "⛵",
       "price": {
-        "coins": 300
+        "coins": 450
       },
       "name": {
         "en": "Abra Boat",
@@ -459,7 +459,7 @@
       "type": "decoration",
       "art": "🎈",
       "price": {
-        "coins": 200
+        "coins": 300
       },
       "name": {
         "en": "Hot-Air Balloon",
@@ -471,7 +471,7 @@
       "type": "decoration",
       "art": "🎆",
       "price": {
-        "coins": 400
+        "coins": 600
       },
       "name": {
         "en": "Fireworks",
@@ -483,7 +483,7 @@
       "type": "decoration",
       "art": "🏝️",
       "price": {
-        "coins": 1200
+        "coins": 1800
       },
       "unlock": {
         "level": 9
@@ -498,7 +498,7 @@
       "type": "decoration",
       "art": "🚀",
       "price": {
-        "coins": 1500
+        "coins": 2250
       },
       "unlock": {
         "level": 12
@@ -528,7 +528,7 @@
       "type": "mascotSkin",
       "art": "crown",
       "price": {
-        "coins": 700
+        "coins": 1050
       },
       "unlock": {
         "level": 7

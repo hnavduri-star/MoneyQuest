@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useT } from '../lib/i18n.js';
+import { useT, PriceScale } from '../lib/i18n.js';
 import { SIMS } from '../sims/index.jsx';
 
 /**
@@ -24,7 +24,9 @@ export default function SimStep({ step, solved, onCorrect }) {
           {met || solved ? '✅' : '🎯'} {tx(step.goalText)}
         </motion.p>
       )}
-      <div className="card p-4">{Sim ? <Sim params={step.params || {}} onGoal={goal ? onGoal : undefined} /> : <p>Missing sim: {step.sim}</p>}</div>
+      <PriceScale.Provider value={step.priceScale || 1}>
+        <div className="card p-4">{Sim ? <Sim params={step.params || {}} onGoal={goal ? onGoal : undefined} /> : <p>Missing sim: {step.sim}</p>}</div>
+      </PriceScale.Provider>
       <p className="text-sm text-soft mt-2">👆 {goal ? (met || solved ? t('sim.goalMet') : t('sim.goalTodo')) : t('lesson.explore')}</p>
     </div>
   );

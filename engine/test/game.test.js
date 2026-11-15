@@ -32,8 +32,9 @@ describe('content', () => {
   it('passes validation', () => {
     expect(validateContent(content, { sims: SIM_IDS, games: GAME_IDS })).toEqual([]);
   });
-  it('has 100+ badges with rarity tiers', () => {
-    expect(content.badges.length).toBeGreaterThanOrEqual(100);
+  it('has a focused set of badges in all four rarity tiers', () => {
+    expect(content.badges.length).toBeGreaterThanOrEqual(40);
+    expect(content.badges.length).toBeLessThanOrEqual(90);
     expect(new Set(content.badges.map((b) => b.rarity))).toEqual(new Set(['common', 'rare', 'epic', 'legendary']));
   });
   it('worlds have 5-8 levels plus mini-game, quiz and boss', () => {
@@ -97,6 +98,15 @@ describe('cities and partner editions', () => {
     expect(num('mumbai').answer).toBe(600);
     const weeks = content.worlds['money-basics'].nodes.find((n) => n.id === 'piggy-goals');
     expect(stepsForAge(weeks, '10-12', cityContext(content, 'mumbai')).find((s) => s.type === 'number').answer).toBe(5);
+  });
+  it('big amounts (salaries) get realistic local prices and the sums still work', () => {
+    const node = content.worlds['salary-street'].nodes.find((n) => n.id === 'what-is-salary');
+    const q = (city) => stepsForAge(node, '10-12', cityContext(content, city)).find((s) => s.type === 'number');
+    expect(q('dubai').answer).toBe(180000);
+    expect(q('london').answer).toBe(45000);
+    expect(q('london').prompt.en).toContain('[[3750]]');
+    expect(q('mumbai').answer).toBe(900000);
+    expect(q('london').priceScale).toBe(0.25);
   });
   it('the currency mini-game sorts the chosen city\'s own places', () => {
     const node = content.worlds['currency-bazaar'].nodes.find((n) => n.kind === 'minigame');
@@ -232,7 +242,6 @@ describe('reward engine', () => {
     expect(state.town.buildings['money-basics']).toBe(1);
     expect(effects.some((e) => e.type === 'buildingUnlocked' && e.worldId === 'money-basics')).toBe(true);
     expect(state.badges['world-money-basics']).toBeTruthy();
-    expect(state.badges['stars-money-basics']).toBeTruthy();
     expect(state.badges['first-boss']).toBeTruthy();
     expect(worldStatus(state, meta, content, '10-12')).toBe('open');
   });
@@ -259,15 +268,14 @@ describe('reward engine', () => {
   it('every answered question pays coins straight away; streaks pay more; replays pay less', () => {
     const q = (o) => ({ type: 'question.answered', worldId: 'money-basics', nodeId: 'what-is-money', correct: true, ...o });
     const coinsOf = (r) => r.effects.filter((e) => e.type === 'reward' && e.source === 'question.answered').reduce((a, e) => a + e.coins, 0);
-    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 1 }), content, opts))).toBe(3);
-    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 4 }), content, opts))).toBe(6);
-    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 99 }), content, opts))).toBe(7);
+    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 1 }), content, opts))).toBe(2);
+    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 4 }), content, opts))).toBe(4);
+    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 99 }), content, opts))).toBe(4);
     expect(coinsOf(processEvent(fresh(), q({ firstTry: false }), content, opts))).toBe(1);
     let s = processEvent(fresh(), { type: 'level.completed', worldId: 'money-basics', nodeId: 'what-is-money', stars: 3 }, content, opts).state;
     expect(coinsOf(processEvent(s, q({ firstTry: true, streak: 3 }), content, opts))).toBe(1);
     for (let i = 1; i <= 10; i++) s = processEvent(s, q({ firstTry: true, streak: i }), content, opts).state;
     expect(s.stats.questionsAnswered).toBe(10);
-    expect(s.badges['answers-10']).toBeTruthy();
     expect(s.badges['streak-10']).toBeTruthy();
   });
   it('Town Bank: deposit, weekly compound interest, withdraw; gems bought with earned coins', () => {
@@ -297,7 +305,6 @@ describe('reward engine', () => {
     const events = w.nodes.filter((n) => !n.optional).map((n) => ({ type: 'level.completed', worldId: 'bank-town', nodeId: n.id, stars: 2, mistakes: 1 }));
     state = processEvents(state, events, content, opts).state;
     expect(state.badges['world-bank-town']).toBeTruthy();
-    expect(state.badges['two-worlds']).toBeTruthy();
     expect(state.badges['islamic-banking']).toBeUndefined();
   });
   it('buildings upgrade as mastery improves', () => {

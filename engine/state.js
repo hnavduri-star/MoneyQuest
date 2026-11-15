@@ -20,13 +20,17 @@ export function createInitialState({ profileId, start = {} } = {}) {
     weekly: null,
     xpLog: {},
     choices: {},
+    passport: {}, // cityId -> worldId -> day the stop was finished there
+    missions: {}, // worldId -> { status: 'pending' | 'approved', day }
+    checks: {}, // worldId -> { pre: { score, total }, post: { score, total } }
+    familyClaims: {},
   };
 }
 
 /** Bring an older saved state up to date without losing anything. */
 export function migrateState(s) {
   const base = createInitialState({ profileId: s.profileId });
-  return { ...base, ...s, inventory: { ...base.inventory, ...s.inventory }, streak: { ...base.streak, ...s.streak }, bank: { ...base.bank, ...s.bank }, version: STATE_VERSION };
+  return { ...base, ...s, inventory: { ...base.inventory, ...s.inventory }, streak: { ...base.streak, ...s.streak }, bank: { ...base.bank, ...s.bank }, passport: s.passport || {}, missions: s.missions || {}, checks: s.checks || {}, familyClaims: s.familyClaims || {}, version: STATE_VERSION };
 }
 
 /** Summary used for family leaderboards (nickname-only, no other data leaves the profile). */
