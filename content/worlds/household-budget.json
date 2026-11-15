@@ -580,6 +580,148 @@
       ]
     },
     {
+      "id": "balance-challenge",
+      "kind": "lesson",
+      "icon": "⚖️",
+      "title": {
+        "en": "Challenge: balance the family budget",
+        "ar": "تحدٍّ: وازن ميزانية العائلة"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "family",
+          "mascot": "thinking",
+          "text": {
+            "en": "Uh-oh! The {familyName} family wrote a plan that spends MORE than they earn. Your mission: fix it so the budget balances, keeps money for savings, and still pays every bill. Rent and school fees are fixed, so you can't change those.",
+            "ar": "أوه! كتبت عائلة {familyName} خطة تنفق أكثر مما تكسب. مهمتك: أصلحها لتتوازن الميزانية مع الاحتفاظ بمال للادخار ودفع كل الفواتير. الإيجار والرسوم المدرسية ثابتة ولا يمكنك تغييرها."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "budget",
+          "params": {
+            "income": {
+              "7-9": 1000,
+              "default": 16000
+            },
+            "start": "over",
+            "lockFixed": true,
+            "target": {
+              "minSavingsPct": 10
+            }
+          },
+          "text": {
+            "en": "Move the sliders until the plan balances.",
+            "ar": "حرّك المؤشرات حتى تتوازن الخطة."
+          },
+          "concept": "budgeting",
+          "goalText": {
+            "en": "Goal: nothing left below zero, and at least 10% of income in savings + emergency fund.",
+            "ar": "الهدف: لا شيء تحت الصفر، و١٠٪ على الأقل من الدخل للادخار وصندوق الطوارئ."
+          },
+          "explain": {
+            "en": "You balanced it! Fixed bills first, then savings, then you trimmed the wants. That's exactly how real families do it.",
+            "ar": "لقد وازنتها! الفواتير الثابتة أولاً ثم الادخار ثم قلّلت الرغبات. هكذا تفعل العائلات الحقيقية تماماً."
+          }
+        },
+        {
+          "type": "story",
+          "art": "storm",
+          "mascot": "excited",
+          "text": {
+            "en": "Surprise! The car needs an urgent repair this month. It's now on the plan as a cost you can't skip. Can you rebalance the budget again, without giving up your savings?",
+            "ar": "مفاجأة! السيارة تحتاج إصلاحاً عاجلاً هذا الشهر. أصبح الآن في الخطة تكلفة لا يمكن تجاوزها. هل تستطيع موازنة الميزانية من جديد دون التخلي عن مدخراتك؟"
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "budget",
+          "params": {
+            "income": {
+              "7-9": 1000,
+              "default": 16000
+            },
+            "start": "normal",
+            "lockFixed": true,
+            "surpriseShare": 0.08,
+            "target": {
+              "minSavingsPct": 10
+            }
+          },
+          "text": {
+            "en": "Rebalance the plan with the car repair included.",
+            "ar": "أعد موازنة الخطة مع إصلاح السيارة."
+          },
+          "concept": "emergency-fund",
+          "goalText": {
+            "en": "Goal: balance the plan with the repair in it, keeping at least 10% for savings + emergency fund.",
+            "ar": "الهدف: وازن الخطة مع الإصلاح واحتفظ بـ١٠٪ على الأقل للادخار وصندوق الطوارئ."
+          },
+          "explain": {
+            "en": "Brilliant! You found the money by cutting wants for one month, not by borrowing. A bigger emergency fund makes surprises even easier.",
+            "ar": "رائع! وجدت المال بتقليل الرغبات لشهر واحد دون اقتراض. صندوق طوارئ أكبر يجعل المفاجآت أسهل."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "budgeting",
+          "prompt": {
+            "en": "To fix an over-budget plan, what should you cut FIRST?",
+            "ar": "لإصلاح خطة متجاوزة للميزانية، ماذا تقلّل أولاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Wants, like fun and eating out",
+                "ar": "الرغبات، مثل الترفيه والأكل في المطاعم"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Rent",
+                "ar": "الإيجار"
+              }
+            },
+            {
+              "text": {
+                "en": "Groceries for healthy food",
+                "ar": "بقالة الطعام الصحي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Needs and fixed bills stay; wants are the easiest to trim for a while.",
+            "ar": "الحاجات والفواتير الثابتة تبقى، والرغبات هي الأسهل تقليلاً لفترة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "budgeting",
+          "prompt": {
+            "7-9": {
+              "en": "Income is [[100]]. The plan spends [[115]]. How much must be cut?",
+              "ar": "الدخل [[100]] والخطة تنفق [[115]]. كم يجب أن نقلّل؟"
+            },
+            "default": {
+              "en": "Income is [[16000]]. The plan spends [[16800]]. How much must be cut to balance?",
+              "ar": "الدخل [[16000]] والخطة تنفق [[16800]]. كم يجب أن نقلّل لتتوازن؟"
+            }
+          },
+          "answer": {
+            "7-9": 15,
+            "default": 800
+          },
+          "explain": {
+            "en": "Spending − income = the amount to cut.",
+            "ar": "الإنفاق − الدخل = المبلغ المطلوب تقليله."
+          },
+          "money": true
+        }
+      ]
+    },
+    {
       "id": "bill-sort",
       "kind": "minigame",
       "game": "sort",

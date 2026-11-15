@@ -90,6 +90,14 @@ describe('cities and partner editions', () => {
     const mumbaiAr = fill(trText(story, 'ar'), contentVars(content, { cityId: 'mumbai', lang: 'ar', worldId: 'cash-cards' }));
     expect(mumbaiAr).toContain('بنك الاحتياطي الهندي');
   });
+  it('rupee prices are scaled, so money answers scale too', () => {
+    const node = content.worlds['money-basics'].nodes.find((n) => n.id === 'earning');
+    const num = (city) => stepsForAge(node, '10-12', cityContext(content, city)).find((s) => s.type === 'number');
+    expect(num('dubai').answer).toBe(60);
+    expect(num('mumbai').answer).toBe(600);
+    const weeks = content.worlds['money-basics'].nodes.find((n) => n.id === 'piggy-goals');
+    expect(stepsForAge(weeks, '10-12', cityContext(content, 'mumbai')).find((s) => s.type === 'number').answer).toBe(5);
+  });
   it('the currency mini-game sorts the chosen city\'s own places', () => {
     const node = content.worlds['currency-bazaar'].nodes.find((n) => n.kind === 'minigame');
     const cfg = minigameConfig(node, cityContext(content, 'paris'));
@@ -230,7 +238,7 @@ describe('reward engine', () => {
   });
   it('the Dubai journey is a chain, and a started world never re-locks', () => {
     const journey = content.worldIndex.filter((w) => w.playable);
-    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'bank-products', 'cash-cards', 'currency-bazaar', 'lemonade-empire']);
+    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'bank-products', 'cash-cards', 'currency-bazaar', 'lemonade-empire', 'pl-factory', 'debt-dungeon']);
     journey.slice(1).forEach((w, i) => expect(w.requires).toEqual([journey[i].id]));
     journey.forEach((w) => expect(w.location?.en).toBeTruthy());
     const bank = content.worldIndex.find((w) => w.id === 'bank-town');

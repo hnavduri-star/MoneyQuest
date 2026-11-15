@@ -281,5 +281,8 @@
   "creator.cityHelp": "Your journey, money, prices and stories will match this city.",
   "settings.city": "City",
   "settings.edition": "Partner edition (demo)",
-  "welcome.edition": "Edition (demo)"
+  "welcome.edition": "Edition (demo)",
+  "currency.auto": "{city} ({cur})",
+  "sim.goalMet": "Goal reached!",
+  "sim.goalTodo": "Keep adjusting to reach the goal."
 }

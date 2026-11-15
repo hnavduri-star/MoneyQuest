@@ -11,8 +11,8 @@ import { contentVars } from '@engine/city.js';
  * Pass the current world id so {stop} names that world's place in the chosen city.
  */
 export function useT(worldId) {
-  const { lang, age, currency, cityId, editionId } = useGame();
-  const money = makeMoney(currency, lang);
+  const { lang, age, currency, cityId, editionId, cityCtx } = useGame();
+  const money = makeMoney(currency, lang, cityCtx?.priceScale || 1);
   const base = useMemo(() => contentVars(content, { cityId, editionId, lang, worldId }), [cityId, editionId, lang, worldId]);
   const t = useCallback(
     (key, vars) => fill(fill(content.i18n[lang]?.[key] ?? content.i18n.en[key] ?? key, vars, money), base, money),

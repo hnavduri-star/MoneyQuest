@@ -11,7 +11,7 @@ import { setVoiceEnabled } from './lib/speech.js';
 
 export const DEFAULT_SETTINGS = {
   lang: 'en',
-  currency: 'AED',
+  currency: 'auto', // 'auto' = the chosen city's own currency
   sound: true,
   voice: false,
   haptics: true,
@@ -331,7 +331,8 @@ export function GameProvider({ children }) {
     editionPicker: EDITION_PICKER,
     themes,
     themeColor,
-    currency: settings.currency,
+    currency: !settings.currency || settings.currency === 'auto' ? city.currency : settings.currency,
+    currencySetting: settings.currency || 'auto',
     dispatch,
     celebrations: queue,
     syncStatus,

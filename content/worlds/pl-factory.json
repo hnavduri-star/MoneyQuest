@@ -1,0 +1,967 @@
+{
+  "id": "pl-factory",
+  "icon": "🍽️",
+  "color": "#CC79A7",
+  "name": {
+    "en": "Café & Restaurant P&L",
+    "ar": "أرباح المقهى والمطعم"
+  },
+  "tagline": {
+    "en": "Estimate a café's sales, read a P&L, and turn a loss into a profit",
+    "ar": "قدّر مبيعات مقهى واقرأ قائمة الأرباح والخسائر وحوّل الخسارة إلى ربح"
+  },
+  "badge": {
+    "id": "world-pl-factory",
+    "icon": "🍽️",
+    "rarity": "rare",
+    "name": {
+      "en": "P&L Chef",
+      "ar": "طاهي الأرباح"
+    },
+    "desc": {
+      "en": "Finish Café & Restaurant P&L",
+      "ar": "أكمل أرباح المقهى والمطعم"
+    }
+  },
+  "realLife": {
+    "en": "Next time you eat out, estimate together: how many customers are there, what does each spend, and what might the rent and staff cost?",
+    "ar": "في المرة القادمة التي تأكلون فيها في الخارج قدّروا معاً: كم زبوناً هناك، وكم ينفق كل واحد، وكم قد تكلف الإيجار والموظفون؟"
+  },
+  "concepts": {
+    "pnl-basics": {
+      "en": "Reading a P&L",
+      "ar": "قراءة قائمة الأرباح والخسائر"
+    },
+    "revenue-estimate": {
+      "en": "Estimating sales",
+      "ar": "تقدير المبيعات"
+    },
+    "cafe-costs": {
+      "en": "Café costs",
+      "ar": "تكاليف المقهى"
+    },
+    "profit-fix": {
+      "en": "Fixing a loss",
+      "ar": "إصلاح الخسارة"
+    }
+  },
+  "nodes": [
+    {
+      "id": "what-is-pnl",
+      "kind": "lesson",
+      "icon": "📊",
+      "title": {
+        "en": "What is a P&L?",
+        "ar": "ما هي قائمة الأرباح والخسائر؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "stand",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to {stop}! Meet Chef Layla. She runs a café. Every month she checks her P&L, the profit and loss statement: a list that starts with money coming IN and ends with what's LEFT.",
+            "ar": "أهلاً بك في {stop}! تعرّف على الطاهية ليلى. تدير مقهى، وكل شهر تراجع قائمة الأرباح والخسائر: قائمة تبدأ بالمال الداخل وتنتهي بما يتبقى."
+          }
+        },
+        {
+          "type": "story",
+          "art": "profit",
+          "mascot": "thinking",
+          "text": {
+            "en": "A P&L reads from top to bottom: REVENUE (all sales) − COST OF GOODS (the food and drinks used) = GROSS PROFIT. Then GROSS PROFIT − EXPENSES (staff, rent, bills) = NET PROFIT. Below zero means a LOSS.",
+            "ar": "تُقرأ القائمة من الأعلى للأسفل: الإيرادات (كل المبيعات) − تكلفة البضاعة (الطعام والمشروبات المستخدمة) = إجمالي الربح. ثم إجمالي الربح − المصاريف (الموظفون والإيجار والفواتير) = صافي الربح. أقل من صفر يعني خسارة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "pnl-basics",
+          "prompt": {
+            "en": "What sits at the very TOP of a P&L?",
+            "ar": "ما الذي يأتي في أعلى قائمة الأرباح والخسائر؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Revenue (sales)",
+                "ar": "الإيرادات (المبيعات)"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Net profit",
+                "ar": "صافي الربح"
+              }
+            },
+            {
+              "text": {
+                "en": "Rent",
+                "ar": "الإيجار"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A P&L starts with all the money from sales, then takes costs away step by step.",
+            "ar": "تبدأ القائمة بكل مال المبيعات ثم تطرح التكاليف خطوة بخطوة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "pnl-basics",
+          "prompt": {
+            "7-9": {
+              "en": "Sales are [[100]]. The food used cost [[30]]. What is the gross profit?",
+              "ar": "المبيعات [[100]] والطعام المستخدم كلّف [[30]]. ما إجمالي الربح؟"
+            },
+            "default": {
+              "en": "Revenue is [[50000]]. The cost of food and drinks is [[15000]]. What is the gross profit?",
+              "ar": "الإيرادات [[50000]] وتكلفة الطعام والمشروبات [[15000]]. ما إجمالي الربح؟"
+            }
+          },
+          "answer": {
+            "7-9": 70,
+            "default": 35000
+          },
+          "explain": {
+            "en": "Gross profit = revenue − cost of goods.",
+            "ar": "إجمالي الربح = الإيرادات − تكلفة البضاعة."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "pnl-basics",
+          "prompt": {
+            "en": "Net profit is…",
+            "ar": "صافي الربح هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "What's left after ALL costs",
+                "ar": "ما يتبقى بعد كل التكاليف"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "All the money from sales",
+                "ar": "كل مال المبيعات"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Net profit is the bottom line: the real reward for running the business.",
+            "ar": "صافي الربح هو السطر الأخير: المكافأة الحقيقية لإدارة المشروع."
+          }
+        }
+      ]
+    },
+    {
+      "id": "estimate-sales",
+      "kind": "lesson",
+      "icon": "🧮",
+      "title": {
+        "en": "Estimating café sales",
+        "ar": "تقدير مبيعات المقهى"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "price",
+          "mascot": "thinking",
+          "text": {
+            "en": "Before opening, owners ESTIMATE their sales: customers per day × average spend per customer × days open in a month. It's a guess, but a careful one!",
+            "ar": "قبل الافتتاح يقدّر أصحاب المقاهي مبيعاتهم: الزبائن يومياً × متوسط إنفاق الزبون × أيام العمل في الشهر. إنه تخمين، لكنه مدروس!"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "revenue-estimate",
+          "prompt": {
+            "7-9": {
+              "en": "10 customers a day each spend [[5]]. How much does the café take in one day?",
+              "ar": "١٠ زبائن يومياً ينفق كل منهم [[5]]. كم يدخل للمقهى في يوم واحد؟"
+            },
+            "default": {
+              "en": "80 customers a day spend [[25]] each. The café opens 26 days a month. What is the monthly revenue?",
+              "ar": "٨٠ زبوناً يومياً ينفق كل منهم [[25]]. يفتح المقهى ٢٦ يوماً في الشهر. ما الإيرادات الشهرية؟"
+            }
+          },
+          "answer": {
+            "7-9": 50,
+            "default": 52000
+          },
+          "explain": {
+            "7-9": {
+              "en": "10 × 5 = 50.",
+              "ar": "١٠ × ٥ = ٥٠."
+            },
+            "default": {
+              "en": "80 × 25 × 26 = 52000.",
+              "ar": "٨٠ × ٢٥ × ٢٦ = ٥٢٠٠٠."
+            }
+          },
+          "money": true
+        },
+        {
+          "type": "sim",
+          "sim": "cafe",
+          "params": {
+            "mode": "estimate",
+            "customersPerDay": 80,
+            "avgSpend": 25,
+            "foodCostPct": 30,
+            "staff": 18000,
+            "rent": 12000,
+            "utilities": 3000
+          },
+          "text": {
+            "en": "Change customers and average spend and watch the whole P&L update.",
+            "ar": "غيّر عدد الزبائن ومتوسط الإنفاق وشاهد القائمة كلها تتحدث."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "revenue-estimate",
+          "prompt": {
+            "en": "Which would increase the café's revenue?",
+            "ar": "أيّها يزيد إيرادات المقهى؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "More customers or a higher average spend",
+                "ar": "زبائن أكثر أو متوسط إنفاق أعلى"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Paying more rent",
+                "ar": "دفع إيجار أكبر"
+              }
+            },
+            {
+              "text": {
+                "en": "Opening fewer days",
+                "ar": "الفتح أياماً أقل"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Revenue = customers × spend × days. Raise any of them and revenue goes up.",
+            "ar": "الإيرادات = الزبائن × الإنفاق × الأيام. ارفع أياً منها فترتفع الإيرادات."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cafe-costs",
+      "kind": "lesson",
+      "icon": "🧾",
+      "title": {
+        "en": "Café costs",
+        "ar": "تكاليف المقهى"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "ingredients",
+          "mascot": "thinking",
+          "text": {
+            "en": "Café costs come in two kinds. COST OF GOODS SOLD (COGS) is the food and drink you sell: coffee beans, milk, bread. It grows with every order. OPERATING EXPENSES keep the doors open: staff wages, rent, electricity, cleaning.",
+            "ar": "تكاليف المقهى نوعان. تكلفة البضاعة المباعة هي الطعام والشراب الذي تبيعه: البن والحليب والخبز، وتزيد مع كل طلب. والمصاريف التشغيلية تُبقي الأبواب مفتوحة: أجور الموظفين والإيجار والكهرباء والتنظيف."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "cafe-costs",
+          "prompt": {
+            "en": "Sort the café's costs.",
+            "ar": "صنّف تكاليف المقهى."
+          },
+          "bins": [
+            {
+              "id": "cogs",
+              "emoji": "☕",
+              "label": {
+                "en": "Cost of goods (per order)",
+                "ar": "تكلفة البضاعة (لكل طلب)"
+              }
+            },
+            {
+              "id": "opex",
+              "emoji": "🏢",
+              "label": {
+                "en": "Operating expense",
+                "ar": "مصروف تشغيلي"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "☕",
+              "text": {
+                "en": "Coffee beans",
+                "ar": "حبوب البن"
+              },
+              "bin": "cogs"
+            },
+            {
+              "emoji": "🥛",
+              "text": {
+                "en": "Milk",
+                "ar": "الحليب"
+              },
+              "bin": "cogs"
+            },
+            {
+              "emoji": "🍰",
+              "text": {
+                "en": "Cake ingredients",
+                "ar": "مكونات الكعك"
+              },
+              "bin": "cogs"
+            },
+            {
+              "emoji": "🥤",
+              "text": {
+                "en": "Takeaway cups",
+                "ar": "أكواب السفري"
+              },
+              "bin": "cogs"
+            },
+            {
+              "emoji": "🧑‍🍳",
+              "text": {
+                "en": "Staff wages",
+                "ar": "أجور الموظفين"
+              },
+              "bin": "opex"
+            },
+            {
+              "emoji": "🏠",
+              "text": {
+                "en": "Rent",
+                "ar": "الإيجار"
+              },
+              "bin": "opex"
+            },
+            {
+              "emoji": "💡",
+              "text": {
+                "en": "Electricity",
+                "ar": "الكهرباء"
+              },
+              "bin": "opex"
+            },
+            {
+              "emoji": "🧽",
+              "text": {
+                "en": "Cleaning service",
+                "ar": "خدمة التنظيف"
+              },
+              "bin": "opex"
+            }
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "cafe-costs",
+          "prompt": {
+            "en": "Food and drink cost 30% of revenue. Revenue is [[40000]]. What is the food and drink cost?",
+            "ar": "تكلفة الطعام والشراب ٣٠٪ من الإيرادات. الإيرادات [[40000]]. كم تكلفة الطعام والشراب؟"
+          },
+          "answer": 12000,
+          "explain": {
+            "en": "30% of 40000 = 40000 × 30 ÷ 100 = 12000.",
+            "ar": "٣٠٪ من ٤٠٠٠٠ = ٤٠٠٠٠ × ٣٠ ÷ ١٠٠ = ١٢٠٠٠."
+          },
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "cafe-costs",
+          "prompt": {
+            "en": "Food cost rises from 30% to 45% of sales (prices stay the same). What happens to gross profit?",
+            "ar": "ارتفعت تكلفة الطعام من ٣٠٪ إلى ٤٥٪ من المبيعات (الأسعار كما هي). ماذا يحدث لإجمالي الربح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It shrinks",
+                "ar": "ينخفض"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It grows",
+                "ar": "يرتفع"
+              }
+            },
+            {
+              "text": {
+                "en": "Nothing",
+                "ar": "لا شيء"
+              }
+            }
+          ],
+          "explain": {
+            "en": "More of every sale goes on ingredients, so less is left. That's why chefs watch portions and waste.",
+            "ar": "يذهب جزء أكبر من كل بيعة للمكونات فيبقى أقل. لهذا يراقب الطهاة الحصص والهدر."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fix-the-restaurant",
+      "kind": "lesson",
+      "icon": "🍽️",
+      "title": {
+        "en": "Restaurant P&L: from loss to profit",
+        "ar": "قائمة أرباح المطعم: من الخسارة إلى الربح"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "storm",
+          "mascot": "thinking",
+          "text": {
+            "en": "A restaurant in {city} is losing money! Sales are too low to cover its rent and staff, and too much food is wasted. Your job: adjust customers, prices and costs until the P&L shows a profit.",
+            "ar": "مطعم في {city} يخسر المال! المبيعات منخفضة جداً لتغطية الإيجار والموظفين، والهدر في الطعام كبير. مهمتك: عدّل الزبائن والأسعار والتكاليف حتى تُظهر القائمة ربحاً."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "cafe",
+          "params": {
+            "mode": "fix",
+            "customersPerDay": 50,
+            "avgSpend": 30,
+            "foodCostPct": 40,
+            "staff": 30000,
+            "rent": 15000,
+            "utilities": 4000,
+            "target": {
+              "minProfit": 1
+            }
+          },
+          "text": {
+            "en": "Change the levers and watch the bottom line.",
+            "ar": "غيّر الأدوات وراقب السطر الأخير."
+          },
+          "concept": "profit-fix",
+          "goalText": {
+            "en": "Goal: make the net profit above zero.",
+            "ar": "الهدف: اجعل صافي الربح أعلى من صفر."
+          },
+          "explain": {
+            "en": "You turned a loss into a profit! Real owners use the same levers: more customers, smart prices, less food waste and careful costs.",
+            "ar": "حوّلت الخسارة إلى ربح! يستخدم أصحاب المطاعم الأدوات نفسها: زبائن أكثر وأسعار ذكية وهدر أقل وتكاليف مدروسة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "profit-fix",
+          "prompt": {
+            "en": "Which is the RISKIEST way to fix a loss?",
+            "ar": "ما الطريقة الأكثر مخاطرة لإصلاح الخسارة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Doubling prices overnight: customers may leave",
+                "ar": "مضاعفة الأسعار فجأة: قد يرحل الزبائن"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Cutting food waste",
+                "ar": "تقليل هدر الطعام"
+              }
+            },
+            {
+              "text": {
+                "en": "Attracting more customers at quiet times",
+                "ar": "جذب زبائن أكثر في الأوقات الهادئة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Big price jumps can scare customers away and make revenue fall. Small, careful changes are safer.",
+            "ar": "القفزات الكبيرة في الأسعار قد تُبعد الزبائن فتنخفض الإيرادات. التغييرات الصغيرة المدروسة أكثر أماناً."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "profit-fix",
+          "prompt": {
+            "en": "After food costs, each customer brings in [[20]]. Expenses are [[30000]] a month and the restaurant opens 25 days. How many customers a day does it need to break even?",
+            "ar": "بعد تكلفة الطعام يجلب كل زبون [[20]]. المصاريف [[30000]] شهرياً والمطعم يفتح ٢٥ يوماً. كم زبوناً يومياً يحتاج لتغطية التكاليف؟"
+          },
+          "answer": 60,
+          "explain": {
+            "en": "Each day must cover 30000 ÷ 25 = 1200. 1200 ÷ 20 = 60 customers a day.",
+            "ar": "يجب أن يغطي كل يوم ٣٠٠٠٠ ÷ ٢٥ = ١٢٠٠. ١٢٠٠ ÷ ٢٠ = ٦٠ زبوناً يومياً."
+          },
+          "unitText": {
+            "en": "customers",
+            "ar": "زبون"
+          },
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cogs-or-expense",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "cafe-costs"
+      ],
+      "title": {
+        "en": "Cost of Goods or Expense?",
+        "ar": "تكلفة بضاعة أم مصروف؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "cogs",
+            "emoji": "☕",
+            "label": {
+              "en": "Cost of goods",
+              "ar": "تكلفة البضاعة"
+            }
+          },
+          {
+            "id": "opex",
+            "emoji": "🏢",
+            "label": {
+              "en": "Operating expense",
+              "ar": "مصروف تشغيلي"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🍔",
+            "text": {
+              "en": "Burger buns",
+              "ar": "خبز البرغر"
+            },
+            "bin": "cogs"
+          },
+          {
+            "emoji": "🧀",
+            "text": {
+              "en": "Cheese",
+              "ar": "الجبن"
+            },
+            "bin": "cogs"
+          },
+          {
+            "emoji": "🥗",
+            "text": {
+              "en": "Salad vegetables",
+              "ar": "خضار السلطة"
+            },
+            "bin": "cogs"
+          },
+          {
+            "emoji": "🍟",
+            "text": {
+              "en": "Potatoes for fries",
+              "ar": "بطاطس للمقليات"
+            },
+            "bin": "cogs"
+          },
+          {
+            "emoji": "🧃",
+            "text": {
+              "en": "Juice",
+              "ar": "العصير"
+            },
+            "bin": "cogs"
+          },
+          {
+            "emoji": "🍫",
+            "text": {
+              "en": "Chocolate for desserts",
+              "ar": "شوكولاتة للحلويات"
+            },
+            "bin": "cogs"
+          },
+          {
+            "emoji": "🧑‍🍳",
+            "text": {
+              "en": "Chef's salary",
+              "ar": "راتب الطاهي"
+            },
+            "bin": "opex"
+          },
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "Restaurant rent",
+              "ar": "إيجار المطعم"
+            },
+            "bin": "opex"
+          },
+          {
+            "emoji": "💡",
+            "text": {
+              "en": "Electricity bill",
+              "ar": "فاتورة الكهرباء"
+            },
+            "bin": "opex"
+          },
+          {
+            "emoji": "📣",
+            "text": {
+              "en": "Advertising",
+              "ar": "الإعلانات"
+            },
+            "bin": "opex"
+          },
+          {
+            "emoji": "🛡️",
+            "text": {
+              "en": "Insurance",
+              "ar": "التأمين"
+            },
+            "bin": "opex"
+          },
+          {
+            "emoji": "🧽",
+            "text": {
+              "en": "Cleaning",
+              "ar": "التنظيف"
+            },
+            "bin": "opex"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Café & Restaurant P&L quiz",
+        "ar": "اختبار أرباح المقهى والمطعم"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "pnl-basics",
+          "prompt": {
+            "en": "P&L stands for…",
+            "ar": "قائمة P&L تعني…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Profit and loss",
+                "ar": "الأرباح والخسائر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Prices and lunch",
+                "ar": "الأسعار والغداء"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A P&L shows whether a business made a profit or a loss.",
+            "ar": "تُظهر القائمة إن كان المشروع حقق ربحاً أم خسارة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "cafe-costs",
+          "prompt": {
+            "en": "Coffee beans for every cup are…",
+            "ar": "حبوب البن لكل كوب هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Cost of goods sold",
+                "ar": "تكلفة البضاعة المباعة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "An operating expense",
+                "ar": "مصروف تشغيلي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "They're used up in each order, so they're part of COGS.",
+            "ar": "تُستهلك في كل طلب، لذا هي جزء من تكلفة البضاعة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "revenue-estimate",
+          "prompt": {
+            "7-9": {
+              "en": "5 customers a day spend [[4]] each. Daily sales?",
+              "ar": "٥ زبائن يومياً ينفق كل منهم [[4]]. المبيعات اليومية؟"
+            },
+            "default": {
+              "en": "100 customers a day spend [[20]] each, 25 days a month. Monthly revenue?",
+              "ar": "١٠٠ زبون يومياً ينفق كل منهم [[20]]، ٢٥ يوماً في الشهر. الإيرادات الشهرية؟"
+            }
+          },
+          "answer": {
+            "7-9": 20,
+            "default": 50000
+          },
+          "explain": {
+            "en": "Customers × spend × days.",
+            "ar": "الزبائن × الإنفاق × الأيام."
+          },
+          "money": true
+        },
+        {
+          "type": "number",
+          "concept": "pnl-basics",
+          "prompt": {
+            "7-9": {
+              "en": "Gross profit [[60]], expenses [[45]]. Net profit?",
+              "ar": "إجمالي الربح [[60]] والمصاريف [[45]]. صافي الربح؟"
+            },
+            "default": {
+              "en": "Gross profit [[35000]], expenses [[31000]]. Net profit?",
+              "ar": "إجمالي الربح [[35000]] والمصاريف [[31000]]. صافي الربح؟"
+            }
+          },
+          "answer": {
+            "7-9": 15,
+            "default": 4000
+          },
+          "explain": {
+            "en": "Gross profit − expenses = net profit.",
+            "ar": "إجمالي الربح − المصاريف = صافي الربح."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "profit-fix",
+          "prompt": {
+            "en": "A café's net profit is below zero. It has made…",
+            "ar": "صافي ربح مقهى أقل من صفر. لقد حقق…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A loss",
+                "ar": "خسارة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A profit",
+                "ar": "ربحاً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Negative net profit means costs were bigger than sales.",
+            "ar": "صافي الربح السالب يعني أن التكاليف أكبر من المبيعات."
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "👨‍🍳",
+      "title": {
+        "en": "Boss: Chef Chaos",
+        "ar": "الزعيم: الطاهي فوضى"
+      },
+      "boss": {
+        "id": "chef-chaos",
+        "name": {
+          "en": "Chef Chaos",
+          "ar": "الطاهي فوضى"
+        },
+        "color": "#CC79A7",
+        "intro": {
+          "en": "Bonjour! I'm Chef Chaos. I waste food, ignore my P&L and spend like there's no tomorrow. Can you save my restaurant?",
+          "ar": "أهلاً! أنا الطاهي فوضى. أهدر الطعام وأتجاهل قائمة الأرباح وأنفق بلا حساب. هل تستطيع إنقاذ مطعمي؟"
+        },
+        "taunt": {
+          "en": "Oops, I burned that one! Try again.",
+          "ar": "أوه، احترقت هذه! حاول مجدداً."
+        },
+        "defeat": {
+          "en": "Magnifique! My restaurant is profitable!",
+          "ar": "رائع! أصبح مطعمي رابحاً!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "pnl-basics",
+          "prompt": {
+            "en": "Chef: 'Lots of sales means lots of profit!' True?",
+            "ar": "الطاهي: 'مبيعات كثيرة تعني ربحاً كثيراً!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Not always: costs can eat it all",
+                "ar": "ليس دائماً: قد تلتهم التكاليف كل شيء"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, always",
+                "ar": "نعم، دائماً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Profit is what's left after costs. Big sales with bigger costs is still a loss.",
+            "ar": "الربح ما يتبقى بعد التكاليف. مبيعات كبيرة مع تكاليف أكبر تبقى خسارة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "cafe-costs",
+          "prompt": {
+            "en": "Chef: 'Throw away half the food every night!' What's smarter?",
+            "ar": "الطاهي: 'ارمِ نصف الطعام كل ليلة!' ما الأذكى؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Plan portions and cut waste to lower food cost",
+                "ar": "خطط للحصص وقلّل الهدر لخفض تكلفة الطعام"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Throw away even more",
+                "ar": "ارمِ أكثر"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Less waste means a lower cost of goods and a higher gross profit.",
+            "ar": "هدر أقل يعني تكلفة بضاعة أقل وإجمالي ربح أعلى."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "revenue-estimate",
+          "prompt": {
+            "7-9": {
+              "en": "Chef forgot his sales! 20 customers spent [[3]] each. Total?",
+              "ar": "نسي الطاهي مبيعاته! ٢٠ زبوناً أنفق كل منهم [[3]]. المجموع؟"
+            },
+            "default": {
+              "en": "Chef forgot his sales! 60 customers a day spent [[30]] each for 20 days. Revenue?",
+              "ar": "نسي الطاهي مبيعاته! ٦٠ زبوناً يومياً أنفق كل منهم [[30]] لمدة ٢٠ يوماً. الإيرادات؟"
+            }
+          },
+          "answer": {
+            "7-9": 60,
+            "default": 36000
+          },
+          "explain": {
+            "en": "Customers × spend × days.",
+            "ar": "الزبائن × الإنفاق × الأيام."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "profit-fix",
+          "prompt": {
+            "en": "Chef: 'Open a second restaurant while the first one is losing money!' Good idea?",
+            "ar": "الطاهي: 'افتح مطعماً ثانياً والأول يخسر!' فكرة جيدة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, fix the first one's P&L first",
+                "ar": "لا، أصلح قائمة أرباح الأول أولاً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, more is better",
+                "ar": "نعم، الأكثر أفضل"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Growing a loss-making business usually grows the loss.",
+            "ar": "توسيع مشروع خاسر يوسّع الخسارة عادة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "pnl-basics",
+          "prompt": {
+            "en": "Chef: 'Rent is part of the cost of goods!' Is it?",
+            "ar": "الطاهي: 'الإيجار جزء من تكلفة البضاعة!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, rent is an operating expense",
+                "ar": "لا، الإيجار مصروف تشغيلي"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Rent doesn't change with each order, so it's an operating expense.",
+            "ar": "الإيجار لا يتغير مع كل طلب، لذا هو مصروف تشغيلي."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -40,6 +40,18 @@ npm start            # http://localhost:4100   (PORT, DB_FILE env vars optional)
 
 The SQLite file defaults to `moneyquest/data/moneyquest.db`. On hosts with ephemeral disks, point `DB_FILE` at a persistent volume.
 
+## Cities, partner editions and the newer stops
+
+- **Six cities:** Dubai, Abu Dhabi, London, Paris, Mumbai and New York. The child picks a city in the character creator (and can change it in Settings). The city sets the journey stops and landmarks, the skyline, the currency (money shows in the city's currency by default), notes and coins, central bank, ATM network, taxes, bills, payday, exchange rates and the places in the currency game. Lessons use `{placeholders}` that `content/cities.json` fills; numeric answers such as `"{fxTen}"` resolve per city. Mumbai uses `priceScale: 10`, so amounts read like real rupee prices.
+- **Partner editions (`content/editions.json`):** a sponsor bank (e.g. ABC Bank) and/or a school (e.g. Sunrise International School). Their names, colours and marks appear on the welcome screen, town, journey and Town Bank, and the bank's products are named in the **{bank} Junior Club** stop (kids' account, debit card, cheque book, credit card, Islamic savings). Account details for parents sit behind the parent PIN; children only learn how the products work. An edition can limit the cities (ABC Bank: Dubai and Abu Dhabi).
+  - Build for a partner: set `VITE_EDITION=abc-bank` (or `sunrise-school`, `abc-sunrise`) as an environment variable on Render, then redeploy.
+  - Demo build with an edition dropdown on the welcome screen and in Settings: `VITE_EDITION_PICKER=1`.
+  - Add a partner: add a bank or school to `editions.json` and an edition that points at it.
+- **Balance the family budget:** a challenge lesson in Family Budget. The plan starts overspent, rent and school fees are locked, and the level only continues once the budget balances with at least 10% saved, then again after a surprise car repair.
+- **Café & Restaurant P&L:** estimate café sales (customers × spend × days), sort costs into cost of goods and operating expenses, read a P&L, and turn a loss-making restaurant into a profit with a live P&L simulator.
+- **Debt Dungeon:** good vs bad debt, how interest makes debt grow, the minimum-payment trap (simulator compares your payment with paying the minimum), buy-now-pay-later, credit scores, and the avalanche and snowball escape plans. Boss: the Debt Dragon.
+- **Goal simulations:** a sim step with `params.target` is a challenge that must be solved before the lesson continues (budget, café, debt). It needs a `concept`, `goalText` and `explain`.
+
 ## Earning coins and the Town Bank
 
 - **Every answer pays immediately:** 3 coins for a first-try answer, plus 1 more for each answer in a streak (up to +4), and 1 coin if the guide had to explain it. Replays pay 1. Coins fly up to the wallet, and the level header counts what this level has paid so far.
@@ -68,6 +80,7 @@ MoneyQuest is one Node web service: Express serves the API and the built app.
    | Setting | Value |
    |---|---|
    | Root Directory | leave empty |
+   | Environment variable (optional) | `VITE_EDITION` = `abc-bank` for a sponsor build |
    | Runtime | Node |
    | Build Command | `npm ci --include=dev && npm run build` |
    | Start Command | `npm start` |

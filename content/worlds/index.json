@@ -162,14 +162,42 @@
     {
       "id": "pl-factory",
       "phase": 2,
-      "available": false,
-      "icon": "🏭",
-      "color": "#D55E00",
-      "building": "factory",
+      "available": true,
+      "icon": "🍽️",
+      "color": "#CC79A7",
+      "building": "cafe",
       "name": {
-        "en": "P&L Factory",
-        "ar": "مصنع الأرباح"
-      }
+        "en": "Café & Restaurant P&L",
+        "ar": "أرباح المقهى والمطعم"
+      },
+      "requires": [
+        "lemonade-empire"
+      ],
+      "location": {
+        "en": "a café",
+        "ar": "مقهى"
+      },
+      "landmark": "☕"
+    },
+    {
+      "id": "debt-dungeon",
+      "phase": 4,
+      "available": true,
+      "icon": "🐉",
+      "color": "#D55E00",
+      "building": "dungeon",
+      "name": {
+        "en": "Debt Dungeon",
+        "ar": "زنزانة الديون"
+      },
+      "requires": [
+        "pl-factory"
+      ],
+      "location": {
+        "en": "the Debt Dungeon",
+        "ar": "زنزانة الديون"
+      },
+      "landmark": "🐉"
     },
     {
       "id": "supply-demand",
@@ -205,18 +233,6 @@
       "name": {
         "en": "Investment Island",
         "ar": "جزيرة الاستثمار"
-      }
-    },
-    {
-      "id": "debt-dungeon",
-      "phase": 4,
-      "available": false,
-      "icon": "🐉",
-      "color": "#D55E00",
-      "building": "dungeon",
-      "name": {
-        "en": "Debt Dungeon",
-        "ar": "زنزانة الديون"
       }
     },
     {

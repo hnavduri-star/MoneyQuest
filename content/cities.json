@@ -1,5 +1,5 @@
 {
-  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing.",
+  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing. priceScale multiplies every lesson money amount (and money answers) so prices feel local, e.g. ×10 for rupees.",
   "defaultCity": "dubai",
   "cities": [
     {
@@ -367,8 +367,23 @@
             "ar": "شاطئ كايت"
           },
           "landmark": "🏖️"
+        },
+        "pl-factory": {
+          "location": {
+            "en": "a café in Jumeirah",
+            "ar": "مقهى في جميرا"
+          },
+          "landmark": "☕"
+        },
+        "debt-dungeon": {
+          "location": {
+            "en": "the Debt Dungeon beneath Dubai",
+            "ar": "زنزانة الديون تحت دبي"
+          },
+          "landmark": "🐉"
         }
-      }
+      },
+      "priceScale": 1
     },
     {
       "region": "uae",
@@ -735,8 +750,23 @@
             "ar": "شاطئ الكورنيش"
           },
           "landmark": "🏖️"
+        },
+        "pl-factory": {
+          "location": {
+            "en": "a café on Saadiyat Island",
+            "ar": "مقهى في جزيرة السعديات"
+          },
+          "landmark": "☕"
+        },
+        "debt-dungeon": {
+          "location": {
+            "en": "the Debt Dungeon beneath Abu Dhabi",
+            "ar": "زنزانة الديون تحت أبوظبي"
+          },
+          "landmark": "🐉"
         }
-      }
+      },
+      "priceScale": 1
     },
     {
       "id": "london",
@@ -991,6 +1021,20 @@
             "ar": "كشك في سوق ساوث بانك"
           },
           "landmark": "🎪"
+        },
+        "pl-factory": {
+          "location": {
+            "en": "a café in Covent Garden",
+            "ar": "مقهى في كوفنت غاردن"
+          },
+          "landmark": "☕"
+        },
+        "debt-dungeon": {
+          "location": {
+            "en": "the Debt Dungeon beneath London",
+            "ar": "زنزانة الديون تحت لندن"
+          },
+          "landmark": "🐉"
         }
       },
       "places": {
@@ -1103,7 +1147,8 @@
             }
           }
         ]
-      }
+      },
+      "priceScale": 1
     },
     {
       "id": "paris",
@@ -1358,6 +1403,20 @@
             "ar": "شواطئ باريس على نهر السين"
           },
           "landmark": "🏖️"
+        },
+        "pl-factory": {
+          "location": {
+            "en": "a bistro in Le Marais",
+            "ar": "مطعم صغير في حي ماريه"
+          },
+          "landmark": "☕"
+        },
+        "debt-dungeon": {
+          "location": {
+            "en": "the Debt Dungeon beneath Paris",
+            "ar": "زنزانة الديون تحت باريس"
+          },
+          "landmark": "🐉"
         }
       },
       "places": {
@@ -1470,7 +1529,8 @@
             }
           }
         ]
-      }
+      },
+      "priceScale": 1
     },
     {
       "id": "mumbai",
@@ -1725,6 +1785,20 @@
             "ar": "شاطئ جوهو"
           },
           "landmark": "🏖️"
+        },
+        "pl-factory": {
+          "location": {
+            "en": "a café in Bandra",
+            "ar": "مقهى في باندرا"
+          },
+          "landmark": "☕"
+        },
+        "debt-dungeon": {
+          "location": {
+            "en": "the Debt Dungeon beneath Mumbai",
+            "ar": "زنزانة الديون تحت مومباي"
+          },
+          "landmark": "🐉"
         }
       },
       "places": {
@@ -1837,7 +1911,8 @@
             }
           }
         ]
-      }
+      },
+      "priceScale": 10
     },
     {
       "id": "new-york",
@@ -2090,6 +2165,20 @@
             "ar": "ممشى كوني آيلاند"
           },
           "landmark": "🎡"
+        },
+        "pl-factory": {
+          "location": {
+            "en": "a diner in Brooklyn",
+            "ar": "مطعم في بروكلين"
+          },
+          "landmark": "☕"
+        },
+        "debt-dungeon": {
+          "location": {
+            "en": "the Debt Dungeon beneath New York",
+            "ar": "زنزانة الديون تحت نيويورك"
+          },
+          "landmark": "🐉"
         }
       },
       "places": {
@@ -2202,7 +2291,8 @@
             }
           }
         ]
-      }
+      },
+      "priceScale": 1
     }
   ]
 }

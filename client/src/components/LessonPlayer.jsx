@@ -29,7 +29,7 @@ export default function LessonPlayer({ world, node }) {
   const { t, tx, money } = useT(world.id);
   const [run, setRun] = useState(0);
   const steps = useMemo(() => stepsForAge(node, age, cityCtx), [node, age, cityCtx]);
-  const questions = steps.filter((s) => QUESTION.has(s.type)).length;
+  const questions = steps.filter((s) => QUESTION.has(s.type) || (s.type === 'sim' && s.params?.target)).length;
   const boss = node.kind === 'boss' ? node.boss : null;
   const [started, setStarted] = useState(!boss);
   const [idx, setIdx] = useState(0);
@@ -45,7 +45,8 @@ export default function LessonPlayer({ world, node }) {
   const [earned, setEarned] = useState({ xp: 0, coins: 0 }); // paid out question by question
   const [result, setResult] = useState(null);
   const step = steps[idx];
-  const isQ = step && QUESTION.has(step.type);
+  const isGoalSim = (s) => s?.type === 'sim' && !!s.params?.target;
+  const isQ = step && (QUESTION.has(step.type) || isGoalSim(step));
   const meta = content.worldIndex.find((w) => w.id === world.id);
 
   const reset = () => {
@@ -78,7 +79,7 @@ export default function LessonPlayer({ world, node }) {
 
   const finish = (finalFirstTry, finalMistakes) => {
     const stars = starsFromMistakes(finalMistakes, questions);
-    const answers = steps.map((s, i) => (QUESTION.has(s.type) && s.concept ? { concept: s.concept, correct: !!finalFirstTry[i] } : null)).filter(Boolean);
+    const answers = steps.map((s, i) => ((QUESTION.has(s.type) || isGoalSim(s)) && s.concept ? { concept: s.concept, correct: !!finalFirstTry[i] } : null)).filter(Boolean);
     const correct = Object.values(finalFirstTry).filter(Boolean).length;
     const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes: finalMistakes, score: questions ? Math.round((correct / questions) * 100) : 100, answers, answered: questions });
     setResult({ stars, effects });
@@ -183,9 +184,9 @@ export default function LessonPlayer({ world, node }) {
           )}
         </motion.div>
       ) : isQ ? (
-        step.type === 'sort' && solved ? (
+        (step.type === 'sort' || isGoalSim(step)) && solved ? (
           <button className="btn-leaf w-full" onClick={next}>{t('common.continue')}</button>
-        ) : hint ? (
+        ) : isGoalSim(step) ? null : hint ? (
           <button className="btn-ghost w-full" onClick={askHint} disabled={hintShown}>
             💡 {hintShown ? tx(hint) : state.coins >= content.rewards.hintCost ? t('lesson.hintCost', { cost: content.rewards.hintCost }) : t('lesson.hintFree')}
           </button>

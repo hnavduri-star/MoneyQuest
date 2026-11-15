@@ -9,14 +9,15 @@ export const CURRENCIES = [
 ];
 const LOCALE = { en: { INR: 'en-IN', default: 'en-GB' }, ar: { default: 'ar-AE-u-nu-latn' } };
 
-export function makeMoney(currency = 'AED', lang = 'en') {
+/** `scale` multiplies lesson amounts so prices feel local (e.g. ×10 in rupees). */
+export function makeMoney(currency = 'AED', lang = 'en', scale = 1) {
   const locale = LOCALE[lang]?.[currency] || LOCALE[lang]?.default || 'en-GB';
   if (currency === 'GEMS') {
     const nf = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 });
-    return (n) => `${nf.format(n)} ✦`;
+    return (n) => `${nf.format(n * scale)} ✦`;
   }
   const nf = new Intl.NumberFormat(locale, { style: 'currency', currency, maximumFractionDigits: 2, minimumFractionDigits: 0 });
-  return (n) => nf.format(n);
+  return (n) => nf.format(n * scale);
 }
 export function currencySymbol(currency, lang) {
   if (currency === 'GEMS') return '✦';

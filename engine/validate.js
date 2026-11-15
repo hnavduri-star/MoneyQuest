@@ -46,6 +46,7 @@ export function validateContent(c, { sims = [], games = [] } = {}) {
         if (st.type === 'number') need(st.answer !== undefined, `${sw}: number step needs "answer"`);
         if (st.type === 'sort') for (const it of st.items || []) need((st.bins || []).some((b) => b.id === it.bin), `${sw}: item has unknown bin "${it.bin}"`);
         if (st.type === 'sim') need(!sims.length || sims.includes(st.sim), `${sw}: unknown sim "${st.sim}"`);
+        if (st.type === 'sim' && st.params?.target) need(!!st.concept && !!st.explain && !!st.goalText, `${sw}: a goal sim needs "concept", "goalText" and "explain"`);
         // "Everything is explained": every answer comes with a why.
         if (['choice', 'number'].includes(st.type)) need(!!st.explain, `${sw}: question needs an "explain" (shown after answering)`);
         if (['choice', 'number', 'sort'].includes(st.type)) need(!!st.concept, `${sw}: question needs a "concept" for mastery tracking`);

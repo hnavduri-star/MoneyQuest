@@ -79,3 +79,33 @@ describe('business engine', () => {
     expect(b.price).toBeLessThan(12.5);
   });
 });
+
+import { cafePnl, cafeBreakEvenCustomers } from '../sims/business.js';
+import { minimumPaymentPayoff, paymentToClearIn, payoffOrder, payoffMonths } from '../sims/loans.js';
+
+describe('café / restaurant P&L engine', () => {
+  it('builds a monthly P&L', () => {
+    const r = cafePnl({ customersPerDay: 80, avgSpend: 25, daysOpen: 26, foodCostPct: 30, staff: 18000, rent: 12000, utilities: 3000 });
+    expect(r).toMatchObject({ revenue: 52000, cogs: 15600, grossProfit: 36400, grossMargin: 70, expenses: 33000, netProfit: 3400 });
+  });
+  it('shows a loss and the break-even customers', () => {
+    expect(cafePnl({ customersPerDay: 40, avgSpend: 25, foodCostPct: 30, staff: 18000, rent: 12000, utilities: 3000 }).netProfit).toBeLessThan(0);
+    expect(cafeBreakEvenCustomers({ avgSpend: 25, foodCostPct: 30, staff: 18000, rent: 12000, utilities: 3000 })).toBe(73);
+    expect(cafeBreakEvenCustomers({ avgSpend: 10, foodCostPct: 100, rent: 1 })).toBe(Infinity);
+  });
+});
+
+describe('debt engine', () => {
+  it('minimum payments take far longer and cost far more', () => {
+    const min = minimumPaymentPayoff(1000, 36, { minPct: 3, minFloor: 25 });
+    const fixed = payoffMonths(1000, 36, 100);
+    expect(min.months).toBeGreaterThan(fixed.months * 3);
+    expect(min.interestPaid).toBeGreaterThan(fixed.interestPaid * 3);
+  });
+  it('payment to clear in 12 months, and payoff order', () => {
+    expect(paymentToClearIn(1200, 0, 12)).toBe(100);
+    const debts = [{ id: 'card', balance: 900, ratePct: 36 }, { id: 'phone', balance: 200, ratePct: 10 }];
+    expect(payoffOrder(debts, 'avalanche')[0].id).toBe('card');
+    expect(payoffOrder(debts, 'snowball')[0].id).toBe('phone');
+  });
+});

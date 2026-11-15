@@ -49,7 +49,7 @@ export default function Creator({ edit = false }) {
   const [d, setD] = useState(() =>
     edit && active
       ? { nickname: active.nickname, ageTier: active.ageTier, avatar: active.meta.avatar, companion: active.meta.companion, theme: active.meta.theme, presetId: null, lang, currency: g.settings.currency }
-      : { nickname: '', ageTier: '10-12', avatar: { ...startPreset.avatar }, presetId: startPreset.id, companion: 'owl', theme: partner ? 'partner' : 'sky', lang, city: defaultCity.id, currency: defaultCity.currency },
+      : { nickname: '', ageTier: '10-12', avatar: { ...startPreset.avatar }, presetId: startPreset.id, companion: 'owl', theme: partner ? 'partner' : 'sky', lang, city: defaultCity.id, currency: 'auto' },
   );
   const steps = edit ? ['look', 'buddy', 'theme', 'name'] : ['language', 'age', 'name', 'look', 'buddy', 'theme'];
   const [i, setI] = useState(0);
@@ -107,7 +107,7 @@ export default function Creator({ edit = false }) {
                   value={d.city}
                   onChange={(e) => {
                     const c = allowedCities.find((x) => x.id === e.target.value);
-                    set({ city: c.id, currency: c.currency });
+                    set({ city: c.id });
                     setDeviceCity(c.id);
                   }}
                 >
@@ -121,7 +121,7 @@ export default function Creator({ edit = false }) {
               </div>
               <div>
                 <p className="font-bold mb-2">{t('creator.currency')}</p>
-                <Segmented label={t('creator.currency')} value={d.currency} onChange={(v) => set({ currency: v })} options={CURRENCIES.map((c) => ({ value: c.id, label: c.id === 'GEMS' ? tx(c.name) : c.id }))} />
+                <Segmented label={t('creator.currency')} value={d.currency || 'auto'} onChange={(v) => set({ currency: v })} options={[{ value: 'auto', label: t('currency.auto') }, ...CURRENCIES.map((c) => ({ value: c.id, label: c.id === 'GEMS' ? tx(c.name) : c.id }))]} />
               </div>
             </>
           )}

@@ -49,3 +49,32 @@ export function payoffMonths(principal, annualRatePct, payment, maxMonths = 1200
   }
   return { months, interestPaid: round2(interestPaid) };
 }
+
+/**
+ * Paying only the minimum on a card: each month pay minPct of the balance (at least minFloor).
+ * Shows how long it takes and how much interest piles up.
+ */
+export function minimumPaymentPayoff(balance, annualRatePct, { minPct = 3, minFloor = 25, maxMonths = 600 } = {}) {
+  assertNonNegative({ balance, annualRatePct, minPct, minFloor });
+  const r = annualRatePct / 100 / 12;
+  let bal = balance;
+  let months = 0;
+  let interestPaid = 0;
+  while (bal > 0.005 && months < maxMonths) {
+    const interest = round2(bal * r);
+    const pay = Math.min(round2(bal + interest), Math.max(minFloor, round2((bal * minPct) / 100)));
+    interestPaid += interest;
+    bal = round2(bal + interest - pay);
+    months++;
+  }
+  return { months: bal > 0.005 ? Infinity : months, interestPaid: round2(interestPaid) };
+}
+
+/** Monthly payment needed to clear a debt in a target number of months. */
+export const paymentToClearIn = (balance, annualRatePct, months) => monthlyPayment(balance, annualRatePct, months);
+
+/** Order debts for the avalanche (highest rate first) or snowball (smallest balance first) method. */
+export function payoffOrder(debts, method = 'avalanche') {
+  const list = [...debts];
+  return method === 'snowball' ? list.sort((a, b) => a.balance - b.balance) : list.sort((a, b) => b.ratePct - a.ratePct);
+}

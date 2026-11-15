@@ -1,0 +1,1000 @@
+{
+  "id": "debt-dungeon",
+  "icon": "🐉",
+  "color": "#D55E00",
+  "name": {
+    "en": "Debt Dungeon",
+    "ar": "زنزانة الديون"
+  },
+  "tagline": {
+    "en": "What debt is, how it grows, the minimum-payment trap, credit scores and escaping debt",
+    "ar": "ما هو الدين وكيف ينمو وفخ الحد الأدنى والسجل الائتماني والخروج من الديون"
+  },
+  "badge": {
+    "id": "world-debt-dungeon",
+    "icon": "🐉",
+    "rarity": "rare",
+    "name": {
+      "en": "Dungeon Escaper",
+      "ar": "الهارب من الزنزانة"
+    },
+    "desc": {
+      "en": "Escape the Debt Dungeon",
+      "ar": "اهرب من زنزانة الديون"
+    }
+  },
+  "realLife": {
+    "en": "Grown-ups: talk about a time you borrowed (a loan, a card, an instalment plan). What did it cost, and how did you plan to pay it back?",
+    "ar": "أيها الكبار: تحدثوا عن مرة اقترضتم فيها (قرض أو بطاقة أو تقسيط). كم كلّف ذلك وكيف خططتم للسداد؟"
+  },
+  "concepts": {
+    "debt-basics": {
+      "en": "What debt is",
+      "ar": "ما هو الدين"
+    },
+    "debt-growth": {
+      "en": "How debt grows",
+      "ar": "كيف ينمو الدين"
+    },
+    "min-payment": {
+      "en": "The minimum-payment trap",
+      "ar": "فخ الحد الأدنى"
+    },
+    "credit-score": {
+      "en": "Credit scores & BNPL",
+      "ar": "السجل الائتماني والدفع لاحقاً"
+    },
+    "debt-plan": {
+      "en": "Escaping debt",
+      "ar": "الخروج من الديون"
+    }
+  },
+  "nodes": [
+    {
+      "id": "what-is-debt",
+      "kind": "lesson",
+      "icon": "⛓️",
+      "title": {
+        "en": "What is debt?",
+        "ar": "ما هو الدين؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "loan",
+          "mascot": "thinking",
+          "text": {
+            "en": "Welcome to {stop}! DEBT is money you owe. When you borrow, you promise to pay it back, usually with INTEREST: the price of borrowing.",
+            "ar": "أهلاً بك في {stop}! الدين مال تدين به. عندما تقترض تتعهد بإعادته، وعادة مع الفائدة: ثمن الاقتراض."
+          }
+        },
+        {
+          "type": "story",
+          "art": "partners",
+          "mascot": "happy",
+          "text": {
+            "en": "Not all debt is bad. GOOD debt can help build something valuable over time, like a home or an education. BAD debt pays for things that lose value fast, like a new gadget on an expensive credit card.",
+            "ar": "ليس كل دين سيئاً. الدين الجيد يساعد على بناء شيء قيّم مع الوقت مثل منزل أو تعليم. والدين السيئ يدفع ثمن أشياء تفقد قيمتها بسرعة، مثل جهاز جديد ببطاقة ائتمان مكلفة."
+          }
+        },
+        {
+          "type": "sort",
+          "concept": "debt-basics",
+          "prompt": {
+            "en": "Good debt or bad debt?",
+            "ar": "دين جيد أم سيئ؟"
+          },
+          "bins": [
+            {
+              "id": "good",
+              "emoji": "🌱",
+              "label": {
+                "en": "Can be good debt",
+                "ar": "قد يكون ديناً جيداً"
+              }
+            },
+            {
+              "id": "bad",
+              "emoji": "⚠️",
+              "label": {
+                "en": "Usually bad debt",
+                "ar": "عادة دين سيئ"
+              }
+            }
+          ],
+          "items": [
+            {
+              "emoji": "🎓",
+              "text": {
+                "en": "A loan to study at university",
+                "ar": "قرض للدراسة الجامعية"
+              },
+              "bin": "good"
+            },
+            {
+              "emoji": "🏠",
+              "text": {
+                "en": "A sensible home loan",
+                "ar": "قرض منزل مدروس"
+              },
+              "bin": "good"
+            },
+            {
+              "emoji": "🏪",
+              "text": {
+                "en": "A loan to start a business with a plan",
+                "ar": "قرض لبدء مشروع بخطة"
+              },
+              "bin": "good"
+            },
+            {
+              "emoji": "🏖️",
+              "text": {
+                "en": "A holiday on a credit card",
+                "ar": "عطلة ببطاقة ائتمان"
+              },
+              "bin": "bad"
+            },
+            {
+              "emoji": "👟",
+              "text": {
+                "en": "Buy-now-pay-later for trendy clothes",
+                "ar": "اشترِ الآن وادفع لاحقاً لملابس عصرية"
+              },
+              "bin": "bad"
+            },
+            {
+              "emoji": "🎮",
+              "text": {
+                "en": "Borrowing for a new games console",
+                "ar": "الاقتراض لشراء جهاز ألعاب"
+              },
+              "bin": "bad"
+            }
+          ],
+          "hint": {
+            "en": "Ask: will this help build something valuable, or lose value quickly?",
+            "ar": "اسأل: هل سيساعد على بناء شيء قيّم أم سيفقد قيمته بسرعة؟"
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debt-basics",
+          "prompt": {
+            "en": "Interest on a loan is…",
+            "ar": "الفائدة على القرض هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The price you pay for borrowing",
+                "ar": "الثمن الذي تدفعه مقابل الاقتراض"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A gift from the bank",
+                "ar": "هدية من البنك"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The lender charges interest for letting you use their money.",
+            "ar": "يأخذ المُقرض فائدة مقابل السماح لك باستخدام ماله."
+          }
+        }
+      ]
+    },
+    {
+      "id": "debt-grows",
+      "kind": "lesson",
+      "icon": "📈",
+      "title": {
+        "en": "How debt grows",
+        "ar": "كيف ينمو الدين"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "snowball",
+          "mascot": "thinking",
+          "text": {
+            "en": "Interest is charged on what you still owe. If you don't pay, the interest is added to the debt, and next month interest is charged on THAT too. Debt can snowball just like savings, but the wrong way!",
+            "ar": "تُحسب الفائدة على ما تبقى عليك. إذا لم تدفع تُضاف الفائدة إلى الدين، وفي الشهر التالي تُحسب الفائدة عليها أيضاً. قد يتدحرج الدين مثل كرة الثلج تماماً كالمدخرات، لكن في الاتجاه الخاطئ!"
+          }
+        },
+        {
+          "type": "number",
+          "concept": "debt-growth",
+          "prompt": {
+            "7-9": {
+              "en": "You owe [[100]]. Each month [[10]] of interest is added and you pay nothing. How much do you owe after 2 months?",
+              "ar": "عليك [[100]]. كل شهر تُضاف [[10]] فائدة ولا تدفع شيئاً. كم عليك بعد شهرين؟"
+            },
+            "default": {
+              "en": "You owe [[1000]] at 3% interest a month and pay nothing. How much do you owe after 1 month?",
+              "ar": "عليك [[1000]] بفائدة ٣٪ شهرياً ولا تدفع شيئاً. كم عليك بعد شهر؟"
+            }
+          },
+          "answer": {
+            "7-9": 120,
+            "default": 1030
+          },
+          "explain": {
+            "7-9": {
+              "en": "100 + 10 + 10 = 120.",
+              "ar": "١٠٠ + ١٠ + ١٠ = ١٢٠."
+            },
+            "default": {
+              "en": "3% of 1000 is 30, so you owe 1030.",
+              "ar": "٣٪ من ١٠٠٠ هي ٣٠، فيصبح عليك ١٠٣٠."
+            }
+          },
+          "money": true
+        },
+        {
+          "type": "number",
+          "concept": "debt-growth",
+          "prompt": {
+            "en": "Still paying nothing: what do you owe after the 2nd month? (3% on the new total of [[1030]])",
+            "ar": "ما زلت لا تدفع: كم عليك بعد الشهر الثاني؟ (٣٪ على المجموع الجديد [[1030]])"
+          },
+          "answer": 1060.9,
+          "explain": {
+            "en": "3% of 1030 = 30.90, so 1030 + 30.90 = 1060.90. The interest itself grew!",
+            "ar": "٣٪ من ١٠٣٠ = ٣٠٫٩٠، إذن ١٠٣٠ + ٣٠٫٩٠ = ١٠٦٠٫٩٠. الفائدة نفسها كبرت!"
+          },
+          "money": true,
+          "tolerance": 0.1,
+          "ages": [
+            "13-15"
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "debt-growth",
+          "prompt": {
+            "en": "Who earns the interest on your debt?",
+            "ar": "من يكسب الفائدة على دينك؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The lender",
+                "ar": "المُقرض"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "You",
+                "ar": "أنت"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Interest is the lender's income, and your cost.",
+            "ar": "الفائدة دخل للمُقرض وتكلفة عليك."
+          }
+        }
+      ]
+    },
+    {
+      "id": "minimum-trap",
+      "kind": "lesson",
+      "icon": "🪤",
+      "title": {
+        "en": "The minimum-payment trap",
+        "ar": "فخ الحد الأدنى"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "bills",
+          "mascot": "thinking",
+          "text": {
+            "en": "Credit card statements show a small MINIMUM PAYMENT. Pay only that, and most of it goes on interest, so the debt barely shrinks. It can take YEARS to escape!",
+            "ar": "كشوف بطاقات الائتمان تُظهر حداً أدنى صغيراً للدفع. إذا دفعته فقط يذهب معظمه للفائدة فلا يكاد الدين يصغر. قد يستغرق الخروج سنوات!"
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "debt",
+          "params": {
+            "balance": 1000,
+            "apr": 36,
+            "target": {
+              "maxMonths": 12
+            }
+          },
+          "text": {
+            "en": "Pick a monthly payment and compare it with paying only the minimum.",
+            "ar": "اختر دفعة شهرية وقارنها بدفع الحد الأدنى فقط."
+          },
+          "concept": "min-payment",
+          "goalText": {
+            "en": "Goal: choose a payment that escapes the dungeon in 12 months or less.",
+            "ar": "الهدف: اختر دفعة تخرجك من الزنزانة خلال ١٢ شهراً أو أقل."
+          },
+          "explain": {
+            "en": "Escaped! Paying more each month cuts both the time and the interest. Paying the full amount on time avoids interest completely.",
+            "ar": "هربت! الدفع أكثر كل شهر يقلل المدة والفائدة معاً. والسداد الكامل في موعده يجنّبك الفائدة تماماً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "min-payment",
+          "prompt": {
+            "en": "Paying only the minimum every month…",
+            "ar": "دفع الحد الأدنى فقط كل شهر…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Takes much longer and costs much more interest",
+                "ar": "يستغرق وقتاً أطول بكثير ويكلف فائدة أكثر بكثير"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Is the cheapest way",
+                "ar": "هو الطريقة الأرخص"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The minimum keeps you in the dungeon longest. Pay as much as you can.",
+            "ar": "الحد الأدنى يُبقيك في الزنزانة أطول مدة. ادفع قدر ما تستطيع."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bnpl-credit",
+      "kind": "lesson",
+      "icon": "📋",
+      "title": {
+        "en": "Buy now, pay later and credit scores",
+        "ar": "اشترِ الآن وادفع لاحقاً والسجل الائتماني"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "phone",
+          "mascot": "thinking",
+          "text": {
+            "en": "BUY NOW, PAY LATER splits a price into instalments. It feels easy, but missed payments bring fees. Your CREDIT SCORE is like a report card for borrowing: paying on time builds it, paying late damages it.",
+            "ar": "'اشترِ الآن وادفع لاحقاً' يقسم السعر إلى أقساط. يبدو سهلاً، لكن الأقساط الفائتة تجلب رسوماً. السجل الائتماني مثل شهادة مدرسية للاقتراض: الدفع في الموعد يبنيه والتأخير يضره."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-score",
+          "prompt": {
+            "en": "What helps build a good credit score?",
+            "ar": "ما الذي يساعد على بناء سجل ائتماني جيد؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Paying bills and loans on time",
+                "ar": "دفع الفواتير والقروض في موعدها"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Missing payments",
+                "ar": "تفويت الدفعات"
+              }
+            },
+            {
+              "text": {
+                "en": "Borrowing as much as possible",
+                "ar": "الاقتراض قدر الإمكان"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Lenders look at your history. On-time payments show you're trustworthy.",
+            "ar": "ينظر المقرضون إلى تاريخك، والدفع في الموعد يُظهر أنك جدير بالثقة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-score",
+          "prompt": {
+            "en": "Why does a good credit score matter?",
+            "ar": "لماذا يهم السجل الائتماني الجيد؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Lenders trust you more, so borrowing later can be cheaper",
+                "ar": "يثق بك المقرضون أكثر فيصبح الاقتراض لاحقاً أرخص"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It gives you free money",
+                "ar": "يعطيك مالاً مجانياً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A good score can mean lower interest on a future home or car loan.",
+            "ar": "السجل الجيد قد يعني فائدة أقل على قرض منزل أو سيارة مستقبلاً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-score",
+          "prompt": {
+            "en": "Shoes cost [[200]], paid as 4 × [[50]]. You already have 3 other pay-later plans. What's the risk?",
+            "ar": "حذاء بـ[[200]] يُدفع ٤ أقساط × [[50]]. لديك أصلاً ٣ خطط دفع لاحق أخرى. ما الخطر؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Too many payments pile up and are easy to miss",
+                "ar": "تتراكم الدفعات وتصبح سهلة النسيان"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "No risk at all",
+                "ar": "لا خطر إطلاقاً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Each plan feels small, but together they can take a big bite out of every month.",
+            "ar": "كل خطة تبدو صغيرة، لكنها معاً تأخذ جزءاً كبيراً من كل شهر."
+          }
+        }
+      ]
+    },
+    {
+      "id": "escape-plan",
+      "kind": "lesson",
+      "icon": "🗝️",
+      "title": {
+        "en": "Plan your escape",
+        "ar": "خطط لهروبك"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "shield",
+          "mascot": "excited",
+          "text": {
+            "en": "Escaping debt needs a plan: 1) stop adding new debt, 2) list every debt and its interest rate, 3) pay the minimum on all, 4) put any extra money on one debt at a time. The AVALANCHE method pays the highest interest rate first and saves the most. The SNOWBALL method pays the smallest debt first for quick wins.",
+            "ar": "الخروج من الديون يحتاج خطة: ١) توقف عن الاقتراض الجديد، ٢) اكتب كل دين ونسبة فائدته، ٣) ادفع الحد الأدنى للجميع، ٤) ضع أي مال إضافي على دين واحد في كل مرة. طريقة 'الانهيار الجليدي' تبدأ بأعلى فائدة وتوفر أكثر، وطريقة 'كرة الثلج' تبدأ بأصغر دين لتحقيق انتصارات سريعة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debt-plan",
+          "prompt": {
+            "en": "A credit card charges 36% interest and a phone plan charges 10%. With the avalanche method, which do you attack first?",
+            "ar": "بطاقة ائتمان بفائدة ٣٦٪ وخطة هاتف بفائدة ١٠٪. بطريقة الانهيار الجليدي، أيهما تهاجم أولاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The credit card (36%)",
+                "ar": "بطاقة الائتمان (٣٦٪)"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The phone plan (10%)",
+                "ar": "خطة الهاتف (١٠٪)"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Paying the highest rate first stops the most expensive interest soonest.",
+            "ar": "البدء بأعلى نسبة يوقف الفائدة الأغلى في أسرع وقت."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debt-plan",
+          "prompt": {
+            "en": "What is the FIRST step of any debt escape plan?",
+            "ar": "ما الخطوة الأولى في أي خطة للخروج من الديون؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Stop borrowing more",
+                "ar": "التوقف عن الاقتراض أكثر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Borrow to pay a party",
+                "ar": "الاقتراض لإقامة حفلة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "You can't climb out of a hole while digging it deeper.",
+            "ar": "لا يمكنك الخروج من حفرة وأنت تحفرها أعمق."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "debt-plan",
+          "prompt": {
+            "en": "You owe [[600]] with no interest and pay [[100]] a month. How many months until you're debt-free?",
+            "ar": "عليك [[600]] بلا فائدة وتدفع [[100]] شهرياً. كم شهراً حتى تتحرر من الدين؟"
+          },
+          "answer": 6,
+          "explain": {
+            "en": "600 ÷ 100 = 6 months.",
+            "ar": "٦٠٠ ÷ ١٠٠ = ٦ أشهر."
+          },
+          "unitText": {
+            "en": "months",
+            "ar": "أشهر"
+          }
+        }
+      ]
+    },
+    {
+      "id": "good-or-bad-debt",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "debt-basics"
+      ],
+      "title": {
+        "en": "Good Debt or Bad Debt?",
+        "ar": "دين جيد أم سيئ؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "good",
+            "emoji": "🌱",
+            "label": {
+              "en": "Can be good",
+              "ar": "قد يكون جيداً"
+            }
+          },
+          {
+            "id": "bad",
+            "emoji": "⚠️",
+            "label": {
+              "en": "Usually bad",
+              "ar": "عادة سيئ"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🎓",
+            "text": {
+              "en": "University loan",
+              "ar": "قرض جامعي"
+            },
+            "bin": "good"
+          },
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "Affordable home loan",
+              "ar": "قرض منزل ميسور"
+            },
+            "bin": "good"
+          },
+          {
+            "emoji": "🧰",
+            "text": {
+              "en": "Loan for work tools",
+              "ar": "قرض لأدوات العمل"
+            },
+            "bin": "good"
+          },
+          {
+            "emoji": "🏪",
+            "text": {
+              "en": "Business loan with a plan",
+              "ar": "قرض تجاري بخطة"
+            },
+            "bin": "good"
+          },
+          {
+            "emoji": "🚐",
+            "text": {
+              "en": "Van loan for a delivery business",
+              "ar": "قرض شاحنة لمشروع توصيل"
+            },
+            "bin": "good"
+          },
+          {
+            "emoji": "🩺",
+            "text": {
+              "en": "Training course loan",
+              "ar": "قرض لدورة تدريبية"
+            },
+            "bin": "good"
+          },
+          {
+            "emoji": "👜",
+            "text": {
+              "en": "Designer bag on a credit card",
+              "ar": "حقيبة فاخرة ببطاقة ائتمان"
+            },
+            "bin": "bad"
+          },
+          {
+            "emoji": "🎰",
+            "text": {
+              "en": "Payday loan",
+              "ar": "قرض يوم الراتب"
+            },
+            "bin": "bad"
+          },
+          {
+            "emoji": "🍕",
+            "text": {
+              "en": "Takeaways on pay-later",
+              "ar": "وجبات بالدفع لاحقاً"
+            },
+            "bin": "bad"
+          },
+          {
+            "emoji": "📱",
+            "text": {
+              "en": "Newest phone on expensive credit",
+              "ar": "أحدث هاتف بائتمان مكلف"
+            },
+            "bin": "bad"
+          },
+          {
+            "emoji": "🎉",
+            "text": {
+              "en": "Party on a credit card",
+              "ar": "حفلة ببطاقة ائتمان"
+            },
+            "bin": "bad"
+          },
+          {
+            "emoji": "🎮",
+            "text": {
+              "en": "Game skins on borrowed money",
+              "ar": "مظاهر ألعاب بمال مقترض"
+            },
+            "bin": "bad"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Debt Dungeon quiz",
+        "ar": "اختبار زنزانة الديون"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "debt-basics",
+          "prompt": {
+            "en": "Debt is…",
+            "ar": "الدين هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Money you owe",
+                "ar": "مال تدين به"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Money you saved",
+                "ar": "مال ادخرته"
+              }
+            }
+          ],
+          "explain": {
+            "en": "When you borrow, you owe the money back.",
+            "ar": "عندما تقترض تصبح مديناً بإعادة المال."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debt-growth",
+          "prompt": {
+            "en": "If you don't pay a debt with interest, it…",
+            "ar": "إذا لم تدفع ديناً بفائدة فإنه…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Grows",
+                "ar": "ينمو"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Disappears",
+                "ar": "يختفي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Unpaid interest is added to the debt.",
+            "ar": "الفائدة غير المدفوعة تُضاف إلى الدين."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "min-payment",
+          "prompt": {
+            "en": "The fastest, cheapest way out of credit card debt is…",
+            "ar": "أسرع وأرخص طريقة للخروج من دين البطاقة هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Paying as much as you can each month",
+                "ar": "دفع أكبر قدر ممكن كل شهر"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Paying only the minimum",
+                "ar": "دفع الحد الأدنى فقط"
+              }
+            }
+          ],
+          "explain": {
+            "en": "More each month means less time and less interest.",
+            "ar": "دفع أكثر كل شهر يعني وقتاً أقل وفائدة أقل."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-score",
+          "prompt": {
+            "en": "A credit score goes UP when you…",
+            "ar": "يرتفع السجل الائتماني عندما…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Pay on time",
+                "ar": "تدفع في الموعد"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Pay late",
+                "ar": "تتأخر في الدفع"
+              }
+            }
+          ],
+          "explain": {
+            "en": "On-time payments build trust.",
+            "ar": "الدفع في الموعد يبني الثقة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "debt-plan",
+          "prompt": {
+            "7-9": {
+              "en": "You owe [[40]] and pay [[10]] a week. How many weeks to be free?",
+              "ar": "عليك [[40]] وتدفع [[10]] أسبوعياً. كم أسبوعاً حتى تتحرر؟"
+            },
+            "default": {
+              "en": "You owe [[1500]] (no interest) and pay [[250]] a month. How many months?",
+              "ar": "عليك [[1500]] (بلا فائدة) وتدفع [[250]] شهرياً. كم شهراً؟"
+            }
+          },
+          "answer": {
+            "7-9": 4,
+            "default": 6
+          },
+          "explain": {
+            "en": "Debt ÷ payment = time to be free.",
+            "ar": "الدين ÷ الدفعة = مدة التحرر."
+          },
+          "unitText": {
+            "en": "",
+            "ar": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "🐉",
+      "title": {
+        "en": "Boss: the Debt Dragon",
+        "ar": "الزعيم: تنين الديون"
+      },
+      "boss": {
+        "id": "the-debt-dragon",
+        "name": {
+          "en": "The Debt Dragon",
+          "ar": "تنين الديون"
+        },
+        "color": "#D55E00",
+        "intro": {
+          "en": "ROAR! I'm the Debt Dragon. I grow bigger every month people pay only the minimum. Answer my riddles to escape my dungeon!",
+          "ar": "روووار! أنا تنين الديون. أكبر كل شهر يدفع فيه الناس الحد الأدنى فقط. أجب عن ألغازي لتهرب من زنزانتي!"
+        },
+        "taunt": {
+          "en": "Hah! I just grew a little bigger. Try again!",
+          "ar": "ها! كبرت قليلاً. حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Nooo! You escaped my dungeon!",
+          "ar": "لا! لقد هربت من زنزانتي!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "min-payment",
+          "prompt": {
+            "en": "Dragon: 'Pay only the minimum, I'll shrink fast!' True?",
+            "ar": "التنين: 'ادفع الحد الأدنى فقط، سأصغر بسرعة!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, minimums keep the dragon big for years",
+                "ar": "لا، الحد الأدنى يُبقي التنين كبيراً لسنوات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Most of a minimum payment goes on interest.",
+            "ar": "معظم الحد الأدنى يذهب للفائدة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "debt-growth",
+          "prompt": {
+            "7-9": {
+              "en": "Dragon: 'You owe [[50]], plus [[5]] interest this month.' What do you owe now?",
+              "ar": "التنين: 'عليك [[50]] وزادت [[5]] فائدة هذا الشهر.' كم عليك الآن؟"
+            },
+            "default": {
+              "en": "Dragon: 'You owe [[2000]] at 2% a month.' What do you owe after one month if you pay nothing?",
+              "ar": "التنين: 'عليك [[2000]] بفائدة ٢٪ شهرياً.' كم عليك بعد شهر إذا لم تدفع؟"
+            }
+          },
+          "answer": {
+            "7-9": 55,
+            "default": 2040
+          },
+          "explain": {
+            "en": "Add the interest to the debt.",
+            "ar": "أضف الفائدة إلى الدين."
+          },
+          "money": true
+        },
+        {
+          "type": "choice",
+          "concept": "debt-basics",
+          "prompt": {
+            "en": "Dragon: 'All debt is good debt!' Is it?",
+            "ar": "التنين: 'كل الديون جيدة!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: borrowing for things that lose value fast is usually bad",
+                "ar": "لا: الاقتراض لأشياء تفقد قيمتها بسرعة سيئ عادة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, borrow for everything",
+                "ar": "نعم، اقترض لكل شيء"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Good debt builds value; bad debt just costs you.",
+            "ar": "الدين الجيد يبني قيمة، والسيئ يكلفك فقط."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "debt-plan",
+          "prompt": {
+            "en": "Dragon: 'Borrow more to pay off your debt!' Smart?",
+            "ar": "التنين: 'اقترض أكثر لتسدد دينك!' هل هذا ذكي؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, stop borrowing and make a payoff plan",
+                "ar": "لا، توقف عن الاقتراض وضع خطة سداد"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "New debt to pay old debt usually makes the dragon bigger.",
+            "ar": "الدين الجديد لسداد القديم يكبّر التنين عادة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "credit-score",
+          "prompt": {
+            "en": "Dragon: 'Late payments don't matter!' Do they?",
+            "ar": "التنين: 'التأخر في الدفع لا يهم!' هل هذا صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Yes they do: fees, and a lower credit score",
+                "ar": "بل يهم: رسوم وسجل ائتماني أسوأ"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "They don't matter",
+                "ar": "لا يهم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Late payments cost money now and make borrowing harder later.",
+            "ar": "التأخير يكلف المال الآن ويصعّب الاقتراض لاحقاً."
+          }
+        }
+      ]
+    }
+  ]
+}

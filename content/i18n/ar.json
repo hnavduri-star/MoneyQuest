@@ -281,5 +281,8 @@
   "creator.cityHelp": "ستناسب رحلتك والمال والأسعار والقصص هذه المدينة.",
   "settings.city": "المدينة",
   "settings.edition": "نسخة الشريك (تجريبية)",
-  "welcome.edition": "النسخة (تجريبية)"
+  "welcome.edition": "النسخة (تجريبية)",
+  "currency.auto": "{city} ({cur})",
+  "sim.goalMet": "تحقق الهدف!",
+  "sim.goalTodo": "واصل التعديل للوصول إلى الهدف."
 }

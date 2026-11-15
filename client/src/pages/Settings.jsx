@@ -40,13 +40,13 @@ export default function Settings() {
 
       <section className="card p-4 space-y-3">
         <label className="font-bold block" htmlFor="set-city">🌍 {t('settings.city')}</label>
-        <select id="set-city" className="w-full min-h-[52px] rounded-2xl border border-line bg-surface px-4 font-bold" value={city.id} onChange={(e) => { const c = allowedCities.find((x) => x.id === e.target.value); updateSettings({ city: c.id, currency: c.currency }); }}>
+        <select id="set-city" className="w-full min-h-[52px] rounded-2xl border border-line bg-surface px-4 font-bold" value={city.id} onChange={(e) => { const c = allowedCities.find((x) => x.id === e.target.value); updateSettings({ city: c.id }); }}>
           {allowedCities.map((c) => <option key={c.id} value={c.id}>{c.flag} {tx(c.name)}</option>)}
         </select>
         <p className="font-bold">{t('settings.language')}</p>
         <Segmented label={t('settings.language')} value={settings.lang} onChange={(v) => updateSettings({ lang: v })} options={LANGUAGES.map((l) => ({ value: l.id, label: l.name }))} />
         <p className="font-bold">{t('settings.currency')}</p>
-        <Segmented label={t('settings.currency')} value={settings.currency} onChange={(v) => updateSettings({ currency: v })} options={CURRENCIES.map((c) => ({ value: c.id, label: c.id === 'GEMS' ? tx(c.name) : c.id }))} />
+        <Segmented label={t('settings.currency')} value={settings.currency || 'auto'} onChange={(v) => updateSettings({ currency: v })} options={[{ value: 'auto', label: t('currency.auto') }, ...CURRENCIES.map((c) => ({ value: c.id, label: c.id === 'GEMS' ? tx(c.name) : c.id }))]} />
         <p className="font-bold">{t('settings.ageTier')}</p>
         <Segmented label={t('settings.ageTier')} value={active.ageTier} onChange={(v) => setAgeGate(v)} options={AGE_TIERS.map((a) => ({ value: a, label: t(`creator.age.${a}`) }))} />
       </section>

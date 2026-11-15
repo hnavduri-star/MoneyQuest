@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useT } from '../lib/i18n.js';
 import { useGame } from '../store.jsx';
@@ -81,6 +81,30 @@ const L = {
   get: { en: 'You receive', ar: 'تستلم' },
   margin: { en: 'Exchange house keeps', ar: 'يحتفظ محل الصرافة بـ' },
   rateNote: { en: 'Example rates. Real rates change every day.', ar: 'أسعار للتوضيح. الأسعار الحقيقية تتغير كل يوم.' },
+  repair: { en: 'Car repair (this month)', ar: 'إصلاح السيارة (هذا الشهر)' },
+  savingsRate: { en: 'Saved', ar: 'المدخر' },
+  customersDay: { en: 'Customers a day', ar: 'الزبائن يومياً' },
+  avgSpend: { en: 'Average spend per customer', ar: 'متوسط إنفاق الزبون' },
+  foodCost: { en: 'Food & drink cost (% of sales)', ar: 'تكلفة الطعام والشراب (٪ من المبيعات)' },
+  staff: { en: 'Staff wages (month)', ar: 'أجور الموظفين (شهرياً)' },
+  rentM: { en: 'Rent (month)', ar: 'الإيجار (شهرياً)' },
+  plRevenue: { en: 'Revenue (sales)', ar: 'الإيرادات (المبيعات)' },
+  plCogs: { en: '− Cost of food & drinks', ar: '− تكلفة الطعام والشراب' },
+  plGross: { en: '= Gross profit', ar: '= إجمالي الربح' },
+  plStaff: { en: '− Staff', ar: '− الموظفون' },
+  plRent: { en: '− Rent', ar: '− الإيجار' },
+  plBills: { en: '− Electricity & other bills', ar: '− الكهرباء والفواتير الأخرى' },
+  plNet: { en: '= Net profit', ar: '= صافي الربح' },
+  daysOpen: { en: '{n} days open a month', ar: 'مفتوح {n} يوماً في الشهر' },
+  breakEvenDay: { en: 'Break-even: {n} customers a day', ar: 'نقطة التعادل: {n} زبوناً يومياً' },
+  debtOwe: { en: 'You owe (card at {apr}% a year)', ar: 'عليك (بطاقة بفائدة {apr}٪ سنوياً)' },
+  monthlyPay: { en: 'You pay each month', ar: 'تدفع كل شهر' },
+  yourPlan: { en: 'Your plan', ar: 'خطتك' },
+  minPlan: { en: 'Minimum payments only', ar: 'الحد الأدنى فقط' },
+  monthsFree: { en: 'Months to be debt-free', ar: 'أشهر حتى التحرر من الدين' },
+  interestTotal: { en: 'Interest paid', ar: 'الفائدة المدفوعة' },
+  never: { en: 'Never! The interest grows faster', ar: 'أبداً! الفائدة تنمو أسرع' },
+  years: { en: '{n} years', ar: '{n} سنوات' },
   chequeTitle: { en: 'Practice cheque', ar: 'شيك تدريبي' },
   date: { en: 'Date', ar: 'التاريخ' },
   today: { en: 'Tap for today', ar: 'اضغط لتاريخ اليوم' },
@@ -296,29 +320,43 @@ function Payslip({ params }) {
 
 const BUDGET_KEYS = ['rent', 'food', 'bills', 'school', 'transport', 'emergency', 'savings', 'fun'];
 const BUDGET_SHARE = { rent: 0.35, food: 0.15, bills: 0.07, school: 0.15, transport: 0.08, emergency: 0.05, savings: 0.05, fun: 0.08 };
-function Budget({ params }) {
+function Budget({ params, onGoal }) {
   const { tx, money } = useT();
   const { age } = useGame();
   const income = pickAge(params.income, age) || 16000;
   const step = income >= 5000 ? 250 : 5;
-  const [alloc, setAlloc] = useState(() => Object.fromEntries(BUDGET_KEYS.map((k) => [k, Math.round((income * BUDGET_SHARE[k]) / step) * step])));
-  const [surprise, setSurprise] = useState(null);
-  const sum = S.budgetSummary(income, alloc);
+  const locked = params.lockFixed ? ['rent', 'school'] : [];
+  const surprise = params.surpriseShare ? Math.round((income * params.surpriseShare) / step) * step : 0;
+  const startFactor = params.start === 'over' ? 1.14 : 1;
+  const [alloc, setAlloc] = useState(() => Object.fromEntries(BUDGET_KEYS.map((k) => [k, Math.round((income * BUDGET_SHARE[k] * (locked.includes(k) ? 1 : startFactor)) / step) * step])));
+  const [surpriseResult, setSurpriseResult] = useState(null);
+  const sum = S.budgetSummary(income, { ...alloc, ...(surprise ? { repair: surprise } : {}) });
+  const target = params.target;
+  const met = !!target && sum.balanced && sum.savingsRate >= (target.minSavingsPct || 0);
+  useEffect(() => {
+    if (onGoal) onGoal(met);
+  }, [met]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="space-y-2">
       <Stat label={tx(L.income)} value={money(income)} />
       {BUDGET_KEYS.map((k) => (
-        <Slider key={k} label={tx(L[k])} value={alloc[k]} min={0} max={Math.round(income * 0.6)} step={step} onChange={(v) => { setSurprise(null); setAlloc((a) => ({ ...a, [k]: v })); }} format={money} />
+        <div key={k} className={locked.includes(k) ? 'opacity-70' : ''}>
+          <Slider label={`${tx(L[k])}${locked.includes(k) ? ' 🔒' : ''}`} value={alloc[k]} min={0} max={Math.round(income * 0.6)} step={step} onChange={(v) => { if (locked.includes(k)) return; setSurpriseResult(null); setAlloc((a) => ({ ...a, [k]: v })); }} format={money} />
+        </div>
       ))}
+      {surprise > 0 && <div className="rounded-2xl bg-ember-pale p-3 font-bold flex justify-between"><span>🚗💥 {tx(L.repair)} 🔒</span><span>{money(surprise)}</span></div>}
       <div className={`rounded-2xl p-3 text-center font-extrabold ${sum.balanced ? 'bg-leaf-pale' : 'bg-ember-pale'}`} role="status">
         {sum.balanced ? tx(L.balanced) : tx(L.over)} · {tx(L.left)}: {money(sum.left)}
+        {target && <div className="text-sm font-bold">🐷 {tx(L.savingsRate)}: {Math.round(sum.savingsRate)}% {sum.savingsRate >= (target.minSavingsPct || 0) ? '✓' : `(≥ ${target.minSavingsPct}%)`}</div>}
       </div>
-      <button type="button" className="btn-ghost w-full" onClick={() => setSurprise(S.coverSurprise({ emergency: alloc.emergency, savings: alloc.savings }, Math.round(income * 0.08)))}>
-        🚗💥 {tx(L.surprise)} ({money(Math.round(income * 0.08))})
-      </button>
-      {surprise && (
-        <p className={`rounded-2xl p-3 font-bold ${surprise.covered ? 'bg-leaf-pale' : 'bg-sun-pale'}`} role="status">
-          {surprise.covered ? tx(L.covered) : `${tx(L.short)} ${money(surprise.shortfall)} 😬`}
+      {!target && (
+        <button type="button" className="btn-ghost w-full" onClick={() => setSurpriseResult(S.coverSurprise({ emergency: alloc.emergency, savings: alloc.savings }, Math.round(income * 0.08)))}>
+          🚗💥 {tx(L.surprise)} ({money(Math.round(income * 0.08))})
+        </button>
+      )}
+      {surpriseResult && (
+        <p className={`rounded-2xl p-3 font-bold ${surpriseResult.covered ? 'bg-leaf-pale' : 'bg-sun-pale'}`} role="status">
+          {surpriseResult.covered ? tx(L.covered) : `${tx(L.short)} ${money(surpriseResult.shortfall)} 😬`}
         </p>
       )}
     </div>
@@ -514,4 +552,82 @@ function Cheque() {
   );
 }
 
-export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare, payslip: Payslip, budget: Budget, atm: Atm, currency: Currency, stand: Stand, cheque: Cheque };
+function Cafe({ params, onGoal }) {
+  const { tx, money } = useT();
+  const fix = params.mode === 'fix';
+  const days = params.daysOpen || 26;
+  const [customers, setCustomers] = useState(params.customersPerDay ?? 80);
+  const [spend, setSpend] = useState(params.avgSpend ?? 25);
+  const [food, setFood] = useState(params.foodCostPct ?? 30);
+  const [staff, setStaff] = useState(params.staff ?? 18000);
+  const rent = params.rent ?? 12000;
+  const utilities = params.utilities ?? 3000;
+  const p = S.cafePnl({ customersPerDay: customers, avgSpend: spend, daysOpen: days, foodCostPct: food, staff, rent, utilities });
+  const be = S.cafeBreakEvenCustomers({ avgSpend: spend, daysOpen: days, foodCostPct: food, staff, rent, utilities });
+  const met = !!params.target && p.netProfit >= (params.target.minProfit ?? 1);
+  useEffect(() => {
+    if (onGoal) onGoal(met);
+  }, [met]); // eslint-disable-line react-hooks/exhaustive-deps
+  const row = (label, v, strong, tone) => (
+    <div className={`flex justify-between gap-2 px-3 py-1.5 ${strong ? 'font-extrabold border-t border-line' : ''} ${tone || ''}`}>
+      <span>{tx(label)}</span>
+      <span className="tabular-nums">{money(v)}</span>
+    </div>
+  );
+  return (
+    <div className="space-y-3">
+      <Slider label={`🧍 ${tx(L.customersDay)}`} value={customers} min={10} max={200} step={5} onChange={setCustomers} />
+      <Slider label={`🧾 ${tx(L.avgSpend)}`} value={spend} min={5} max={80} onChange={setSpend} format={money} />
+      <Slider label={`🥘 ${tx(L.foodCost)}`} value={food} min={20} max={60} onChange={setFood} format={(v) => `${v}%`} />
+      {fix && <Slider label={`🧑‍🍳 ${tx(L.staff)}`} value={staff} min={10000} max={40000} step={1000} onChange={setStaff} format={money} />}
+      <p className="text-xs text-soft">📅 {tx(L.daysOpen, { n: days })}</p>
+      <div className="rounded-2xl border border-line bg-surface text-sm" role="table" aria-label="P&L">
+        {row(L.plRevenue, p.revenue, true)}
+        {row(L.plCogs, p.cogs)}
+        {row(L.plGross, p.grossProfit, true)}
+        {row(L.plStaff, staff)}
+        {row(L.plRent, rent)}
+        {row(L.plBills, utilities)}
+        {row(L.plNet, p.netProfit, true, p.netProfit >= 0 ? 'bg-leaf-pale rounded-b-2xl' : 'bg-ember-pale rounded-b-2xl')}
+      </div>
+      <p className="text-sm font-bold">{p.netProfit >= 0 ? '▲' : '▼'} {Math.round(p.netMargin)}% · ⚖️ {tx(L.breakEvenDay, { n: Number.isFinite(be) ? be : '∞' })}</p>
+    </div>
+  );
+}
+
+function Debt({ params, onGoal }) {
+  const { tx, money, t } = useT();
+  const balance = params.balance ?? 1000;
+  const apr = params.apr ?? 36;
+  const [pay, setPay] = useState(40);
+  const plan = S.payoffMonths(balance, apr, pay);
+  const min = S.minimumPaymentPayoff(balance, apr, { minPct: 3, minFloor: 25 });
+  const maxMonths = params.target?.maxMonths;
+  const met = !!maxMonths && Number.isFinite(plan.months) && plan.months <= maxMonths;
+  useEffect(() => {
+    if (onGoal) onGoal(met);
+  }, [met]); // eslint-disable-line react-hooks/exhaustive-deps
+  const fmtMonths = (m) => (!Number.isFinite(m) ? tx(L.never) : m >= 24 ? `${m} (${tx(L.years, { n: (m / 12).toFixed(1) })})` : String(m));
+  const maxBar = Math.max(Number.isFinite(min.months) ? min.months : 0, Number.isFinite(plan.months) ? plan.months : 0, 1);
+  return (
+    <div className="space-y-3">
+      <Stat label={`🐉 ${tx(L.debtOwe, { apr })}`} value={money(balance)} tone="bg-ember-pale" />
+      <Slider label={tx(L.monthlyPay)} value={pay} min={30} max={300} step={5} onChange={setPay} format={money} />
+      {[[L.yourPlan, plan, 'bg-leaf'], [L.minPlan, min, 'bg-ember']].map(([label, r, color]) => (
+        <div key={label.en} className="rounded-2xl border border-line bg-surface p-3">
+          <p className="font-extrabold">{tx(label)}</p>
+          <div className="h-3 rounded-full bg-soft/20 mt-1 overflow-hidden" aria-hidden>
+            <motion.div className={`h-full ${color}`} animate={{ width: `${Number.isFinite(r.months) ? Math.max(4, (r.months / maxBar) * 100) : 100}%` }} />
+          </div>
+          <div className="grid grid-cols-2 gap-2 text-sm mt-2">
+            <span>📅 {tx(L.monthsFree)}: <b>{fmtMonths(r.months)}</b></span>
+            <span>💸 {tx(L.interestTotal)}: <b>{Number.isFinite(r.interestPaid) ? money(r.interestPaid) : '∞'}</b></span>
+          </div>
+        </div>
+      ))}
+      {maxMonths && <p className="text-xs text-soft">🎯 ≤ {maxMonths} {t('common.months')}</p>}
+    </div>
+  );
+}
+
+export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare, payslip: Payslip, budget: Budget, atm: Atm, currency: Currency, stand: Stand, cheque: Cheque, cafe: Cafe, debt: Debt };

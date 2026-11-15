@@ -57,8 +57,12 @@ export function stepsForAge(node, age, ctx) {
 
 function resolveNums(step, ctx) {
   const fix = (v) => (typeof v === 'string' ? Number(v.replace(/\{(\w+)\}/g, (_, k) => ctx?.nums?.[k] ?? NaN)) : v);
-  if (typeof step.answer === 'string' || typeof step.tolerance === 'string') return { ...step, answer: fix(step.answer), tolerance: fix(step.tolerance) };
-  return step;
+  let out = step;
+  if (typeof step.answer === 'string' || typeof step.tolerance === 'string') out = { ...step, answer: fix(step.answer), tolerance: fix(step.tolerance) };
+  // Money answers scale with the city's prices (e.g. ×10 for rupees), just like [[amounts]] in the text.
+  const k = ctx?.priceScale || 1;
+  if (out.money && k !== 1 && typeof out.answer === 'number') out = { ...out, answer: Math.round(out.answer * k * 100) / 100, tolerance: (out.tolerance || 0) * k };
+  return out;
 }
 
 /** Mini-games marked "cityItems" sort the chosen city's own places vs places abroad. */
