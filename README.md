@@ -23,6 +23,7 @@ Child-safe by design: no ads, no third-party scripts, fonts or trackers, no real
 Requires **Node 22.13+**. SQLite is Node's built-in `node:sqlite`, so there is nothing native to compile.
 
 ```bash
+git clone https://github.com/hnavduri-star/MoneyQuest.git moneyquest
 cd moneyquest
 npm install
 npm run dev          # API on :4100, app on http://localhost:5180 (proxies /api)
@@ -61,12 +62,12 @@ Settings → Look offers Light, Dark or Auto (follows the device). The design us
 MoneyQuest is one Node web service: Express serves the API and the built app.
 
 1. Push the code to GitHub.
-2. In the Render dashboard, choose **New → Web Service**, connect GitHub, and pick the repository and branch.
+2. In the Render dashboard, choose **New → Web Service**, connect GitHub, and pick the `MoneyQuest` repository and the `main` branch.
 3. Fill in:
 
    | Setting | Value |
    |---|---|
-   | Root Directory | `moneyquest` (leave empty if MoneyQuest is the root of its own repository) |
+   | Root Directory | leave empty |
    | Runtime | Node |
    | Build Command | `npm ci --include=dev && npm run build` |
    | Start Command | `npm start` |
