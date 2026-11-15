@@ -69,7 +69,7 @@ export default function Quests() {
         </div>
         <div className="grid grid-cols-7 gap-1 mb-3">
           {cal.map((r, i) => (
-            <div key={i} className={`rounded-xl p-1 text-center text-[11px] font-bold border-2 ${i === today ? 'border-ink bg-sun-pale' : i < today ? 'border-transparent bg-leaf-pale' : 'border-line bg-white'}`}>
+            <div key={i} className={`rounded-xl p-1 text-center text-[11px] font-bold border-2 ${i === today ? 'border-ink bg-sun-pale' : i < today ? 'border-transparent bg-leaf-pale' : 'border-line bg-surface'}`}>
               <div aria-hidden>{i < today || (i === today && state.daily.chestClaimed) ? '✅' : i === 6 ? '💎' : '🎁'}</div>
               <div className="flex items-center justify-center gap-0.5"><Coin size={10} />{r.coins}</div>
               {r.gems ? <div className="flex items-center justify-center gap-0.5"><Gem size={10} />{r.gems}</div> : null}
@@ -119,7 +119,7 @@ export default function Quests() {
             {lb[lbMode].map((r, i) => (
               <li key={r.id} className={`flex items-center gap-3 rounded-2xl p-2 ${r.id === active.id ? 'bg-sun-pale' : ''}`}>
                 <span className="w-6 text-center font-extrabold">{['🥇', '🥈', '🥉'][i] || i + 1}</span>
-                <span className="w-10 h-10 overflow-hidden rounded-xl bg-white flex justify-center"><Avatar avatar={r.avatar || {}} size={38} /></span>
+                <span className="w-10 h-10 overflow-hidden rounded-xl bg-surface flex justify-center"><Avatar avatar={r.avatar || {}} size={38} /></span>
                 <span className="flex-1 font-bold">{r.nickname}{r.id === active.id && ` (${t('quests.you')})`}</span>
                 <span className="font-extrabold">{lbMode === 'top' ? `${r.summary.weekXp} XP` : `${r.summary.improvement >= 0 ? '+' : ''}${r.summary.improvement}`}</span>
               </li>

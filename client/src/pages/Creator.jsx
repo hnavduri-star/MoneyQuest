@@ -31,7 +31,7 @@ function Picker({ items, value, onChange, label, tx }) {
   return (
     <div role="radiogroup" aria-label={label} className="flex gap-2 overflow-x-auto no-scrollbar pb-1">
       {items.map((it) => (
-        <button key={it.id} type="button" role="radio" aria-checked={value === it.id} onClick={() => { play('tap'); onChange(it.id); }} className={`shrink-0 min-h-[48px] px-4 rounded-2xl border-2 font-bold ${value === it.id ? 'border-ink bg-ink text-white' : 'border-line bg-white'}`}>
+        <button key={it.id} type="button" role="radio" aria-checked={value === it.id} onClick={() => { play('tap'); onChange(it.id); }} className={`shrink-0 min-h-[48px] px-4 rounded-2xl border-2 font-bold ${value === it.id ? 'border-ink bg-ink text-cream' : 'border-line bg-surface'}`}>
           {tx(it.name)}
         </button>
       ))}
@@ -76,11 +76,11 @@ export default function Creator({ edit = false }) {
   return (
     <div className="min-h-full max-w-app mx-auto px-4 py-4 flex flex-col">
       <div className="flex items-center gap-2">
-        <button className="tap rounded-2xl bg-white border-2 border-line font-bold" aria-label={t('common.back')} onClick={() => (i > 0 ? setI(i - 1) : nav(edit ? '/settings' : Object.keys(profiles).length ? '/profiles' : '/'))}>
+        <button className="tap rounded-2xl bg-surface border-2 border-line font-bold" aria-label={t('common.back')} onClick={() => (i > 0 ? setI(i - 1) : nav(edit ? '/settings' : Object.keys(profiles).length ? '/profiles' : '/'))}>
           <span className="inline-block rtl:rotate-180">←</span>
         </button>
         <div className="flex-1 flex gap-1" aria-label={`${i + 1} / ${steps.length}`}>
-          {steps.map((s, k) => <span key={s} className={`h-2 flex-1 rounded-full ${k <= i ? 'bg-theme' : 'bg-black/10'}`} style={k <= i ? { background: themeColor } : undefined} />)}
+          {steps.map((s, k) => <span key={s} className={`h-2 flex-1 rounded-full ${k <= i ? 'bg-theme' : 'bg-soft/20'}`} style={k <= i ? { background: themeColor } : undefined} />)}
         </div>
       </div>
       <h1 className="title mt-3">{t(`creator.step.${step}`)}</h1>
@@ -113,7 +113,7 @@ export default function Creator({ edit = false }) {
               <p className="font-bold mb-2">{t('creator.age')}</p>
               <div className="grid grid-cols-3 gap-3">
                 {AGE_TIERS.map((a) => (
-                  <button key={a} onClick={() => set({ ageTier: a })} aria-pressed={d.ageTier === a} className={`min-h-[84px] rounded-blob border-4 text-2xl font-extrabold ${d.ageTier === a ? 'border-ink bg-sun-pale' : 'border-line bg-white'}`}>
+                  <button key={a} onClick={() => set({ ageTier: a })} aria-pressed={d.ageTier === a} className={`min-h-[84px] rounded-blob border-4 text-2xl font-extrabold ${d.ageTier === a ? 'border-ink bg-sun-pale' : 'border-line bg-surface'}`}>
                     {t(`creator.age.${a}`)}
                     {d.ageTier === a && <span className="block text-base">✓</span>}
                   </button>
@@ -197,7 +197,7 @@ export default function Creator({ edit = false }) {
 
       <div className="sticky bottom-0 bg-cream pt-3 pb-safe">
         {i < steps.length - 1 ? (
-          <button className="btn-primary w-full" disabled={!canNext} onClick={() => { play('tap'); setI(i + 1); }} style={{ background: themeColor }}>
+          <button className="btn-primary w-full" disabled={!canNext} onClick={() => { play('tap'); setI(i + 1); }} style={{ '--btn': themeColor }}>
             {t('common.next')} <span className="rtl:rotate-180 inline-block">→</span>
           </button>
         ) : (

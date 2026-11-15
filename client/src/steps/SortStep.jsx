@@ -49,7 +49,7 @@ export default function SortStep({ step, solved, onCorrect, onWrong }) {
                 setSel(i);
               }}
               aria-pressed={current === i}
-              className={`min-h-[56px] px-3 rounded-2xl border-4 font-bold flex items-center gap-2 bg-white ${current === i ? 'border-ink shadow-pop -translate-y-1' : 'border-line'}`}
+              className={`min-h-[56px] px-3 rounded-2xl border-4 font-bold flex items-center gap-2 bg-surface ${current === i ? 'border-ink shadow-pop -translate-y-1' : 'border-line'}`}
             >
               <span className="text-2xl" aria-hidden>{step.items[i].emoji}</span>
               {tx(step.items[i].text)}
@@ -60,7 +60,7 @@ export default function SortStep({ step, solved, onCorrect, onWrong }) {
       </div>
       <div className="grid grid-cols-2 gap-3">
         {step.bins.map((b) => (
-          <motion.button key={b.id} type="button" disabled={solved} animate={shake === b.id ? { x: [0, -10, 10, -6, 0] } : {}} onClick={() => drop(b.id)} className="min-h-[150px] rounded-blob border-4 border-dashed border-ink/30 bg-white p-2 flex flex-col items-center">
+          <motion.button key={b.id} type="button" disabled={solved} animate={shake === b.id ? { x: [0, -10, 10, -6, 0] } : {}} onClick={() => drop(b.id)} className="min-h-[150px] rounded-blob border-4 border-dashed border-ink/30 bg-surface p-2 flex flex-col items-center">
             <span className="text-4xl" aria-hidden>{b.emoji}</span>
             <span className="font-extrabold text-lg">{tx(b.label)}</span>
             <span className="flex flex-wrap justify-center gap-1 mt-1">

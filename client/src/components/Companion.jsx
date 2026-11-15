@@ -6,7 +6,7 @@ import { evolutionStage } from '@engine/levels.js';
  * Companion guide. Grows from a baby (stage 1) to a grand guide (stage 5).
  * mood: 'happy' | 'thinking' | 'excited' | 'wink' | 'sad' (gentle) ; skin: shop mascot look.
  */
-const SKINS = { 'skin-sunglasses': 'shades', 'skin-bowtie': 'bowtie', 'skin-cape': 'cape', 'skin-tophat': 'tophat' };
+const SKINS = { 'skin-sunglasses': 'shades', 'skin-bowtie': 'bowtie', 'skin-cape': 'cape', 'skin-tophat': 'tophat', 'skin-crownbuddy': 'crown' };
 
 function Eyes({ mood, y = 42, gap = 12, cx = 50 }) {
   const l = cx - gap;
@@ -173,6 +173,7 @@ function Companion({ id = 'owl', level = 1, skin, mood = 'happy', size = 96, bou
             <rect x="34" y="12" width="32" height="5" fill="#CC79A7" />
           </g>
         )}
+        {look === 'crown' && <path d="M32 16 L35 -2 L43 8 L50 -6 L57 8 L65 -2 L68 16 Z" fill="#F7C95C" stroke="#B07400" strokeWidth="1.5" />}
         {stage >= 5 && !look && <path d="M36 14 L38 0 L45 9 L50 -2 L55 9 L62 0 L64 14 Z" fill="#F7C95C" stroke="#E69F00" strokeWidth="1.5" />}
       </g>
       {stage >= 4 && (

@@ -32,7 +32,7 @@ export default function ChoiceStep({ step, solved, onCorrect, onWrong }) {
                   onWrong();
                 }
               }}
-              className={`min-h-[60px] w-full rounded-2xl border-4 px-4 py-3 text-start text-lg font-bold flex items-center gap-3 transition ${right ? 'border-leaf bg-leaf-pale' : wrong ? 'border-line bg-black/5 line-through decoration-2' : 'border-line bg-white active:border-ink'}`}
+              className={`min-h-[60px] w-full rounded-2xl border-4 px-4 py-3 text-start text-lg font-bold flex items-center gap-3 transition ${right ? 'border-leaf bg-leaf-pale' : wrong ? 'border-line bg-soft/10 line-through decoration-2' : 'border-line bg-surface active:border-ink'}`}
             >
               {o.emoji && <span className="text-3xl" aria-hidden>{o.emoji}</span>}
               <span className="flex-1">{tx(o.text)}</span>

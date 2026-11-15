@@ -28,7 +28,7 @@ export default function NumberStep({ step, solved, onCorrect, onWrong }) {
         <input
           inputMode="decimal"
           aria-label={t('lesson.yourAnswer')}
-          className={`w-44 min-h-[64px] rounded-2xl border-4 text-center text-3xl font-extrabold ${solved ? 'border-leaf bg-leaf-pale' : 'border-line bg-white'}`}
+          className={`w-44 min-h-[64px] rounded-2xl border-4 text-center text-3xl font-extrabold ${solved ? 'border-leaf bg-leaf-pale' : 'border-line bg-surface'}`}
           value={val}
           disabled={solved}
           onChange={(e) => setVal(e.target.value)}
@@ -40,7 +40,7 @@ export default function NumberStep({ step, solved, onCorrect, onWrong }) {
         <>
           <div className="grid grid-cols-3 gap-2 max-w-xs mx-auto" dir="ltr">
             {['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'].map((k) => (
-              <button key={k} type="button" onClick={() => press(k)} className="min-h-[56px] rounded-2xl bg-white border-2 border-line text-2xl font-extrabold shadow-pop active:translate-y-[2px]" aria-label={k === '⌫' ? 'delete' : k}>
+              <button key={k} type="button" onClick={() => press(k)} className="min-h-[56px] rounded-2xl bg-surface border-2 border-line text-2xl font-extrabold shadow-pop active:translate-y-[2px]" aria-label={k === '⌫' ? 'delete' : k}>
                 {k}
               </button>
             ))}

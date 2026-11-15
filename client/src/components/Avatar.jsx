@@ -7,8 +7,8 @@ import { evolutionStage } from '@engine/levels.js';
  * `equipped` (from the shop) can swap the outfit and add a hat. `level` drives evolution:
  * 2 = star pin, 3 = hero cape, 4 = golden glow, 5 = sparkles + crown.
  */
-const SHOP_OUTFITS = { 'outfit-explorer': 'explorer', 'outfit-chef': 'chef', 'outfit-banker': 'suit', 'outfit-superhero': 'hero', 'outfit-sport': 'sport' };
-const SHOP_HATS = { 'hat-crown': 'crown', 'hat-party': 'party', 'hat-grad': 'grad' };
+const SHOP_OUTFITS = { 'outfit-explorer': 'explorer', 'outfit-chef': 'chef', 'outfit-banker': 'suit', 'outfit-superhero': 'hero', 'outfit-sport': 'sport', 'outfit-gold-thobe': 'goldthobe', 'outfit-space': 'commander' };
+const SHOP_HATS = { 'hat-crown': 'crown', 'hat-party': 'party', 'hat-grad': 'grad', 'hat-falcon': 'falcon' };
 const shade = (hex, amt) => {
   const n = parseInt(hex.slice(1), 16);
   const c = (v) => Math.max(0, Math.min(255, v + amt));
@@ -175,6 +175,13 @@ function Avatar({ avatar = {}, level = 1, equipped = {}, size = 120, theme = '#0
           <rect x="44" y="22" width="32" height="10" fill="#1E2A3A" />
           <path d="M30 22 L60 10 L90 22 L60 32 Z" fill="#1E2A3A" />
           <path d="M88 22 L92 38" stroke="#E69F00" strokeWidth="2.5" />
+        </g>
+      )}
+      {hat === 'falcon' && (
+        <g>
+          <path d="M34 34 Q60 14 86 34 Q60 26 34 34 Z" fill="#8D5A36" />
+          <path d="M70 26 Q86 4 96 12 Q84 14 78 30 Z" fill="#B97A4E" stroke="#6B4226" strokeWidth="1" />
+          <path d="M78 22 Q88 12 94 14" stroke="#F2E3D0" strokeWidth="1.5" fill="none" />
         </g>
       )}
       {stage >= 2 && (
@@ -386,6 +393,31 @@ function Body({ outfit, color, skin, theme }) {
           <path d={torso} fill={theme} />
           <circle cx="60" cy="118" r="12" fill="#F7C95C" />
           <text x="60" y="124" textAnchor="middle" fontSize="16" fontWeight="900" fill={shade(theme, -30)}>$</text>
+        </g>
+      );
+    case 'goldthobe':
+      return (
+        <g>
+          <defs>
+            <linearGradient id="mqGold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#FFF1C4" />
+              <stop offset="0.5" stopColor="#E3B341" />
+              <stop offset="1" stopColor="#A87400" />
+            </linearGradient>
+          </defs>
+          <path d="M22 150 Q22 98 60 93 Q98 98 98 150 Z" fill="url(#mqGold)" />
+          <path d="M52 95 Q60 104 68 95 M60 100 V140" stroke="#8A5A00" strokeWidth="1.8" fill="none" />
+          {[108, 118, 128].map((y) => <circle key={y} cx="60" cy={y} r="1.8" fill="#FFF8E0" />)}
+        </g>
+      );
+    case 'commander':
+      return (
+        <g>
+          <path d={torso} fill="#2B2F55" />
+          <path d="M40 100 L60 130 L80 100" stroke="#F7C95C" strokeWidth="3" fill="none" />
+          <circle cx="60" cy="118" r="7" fill="#56B4E9" stroke="#F7C95C" strokeWidth="2" />
+          <rect x="30" y="104" width="12" height="5" rx="2" fill="#F7C95C" />
+          <rect x="78" y="104" width="12" height="5" rx="2" fill="#F7C95C" />
         </g>
       );
     case 'sport':

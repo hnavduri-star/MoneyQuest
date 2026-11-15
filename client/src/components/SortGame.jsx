@@ -53,7 +53,7 @@ export default function SortGame({ world, node }) {
     const stars = starsFromScore(correct, cfg.stars);
     const accuracy = correct / Math.max(1, correct + mistakes);
     const answers = (node.concepts || []).map((c) => ({ concept: c, correct: accuracy >= 0.7 }));
-    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes, score: points, combo: best, comboBonus: Math.min(15, Math.floor(best / 3) * 3), coinBoost: boost ? 2 : 1, answers });
+    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes, score: points, combo: best, comboBonus: Math.min(15, Math.floor(best / 3) * 3), correct, coinBoost: boost ? 2 : 1, answers });
     setTimeout(() => setResult({ stars, effects }), 900);
   };
 
@@ -119,7 +119,7 @@ export default function SortGame({ world, node }) {
           {cfg.prompt && <p className="text-lg font-bold">{tx(cfg.prompt)}</p>}
           <Mascot text={t('game.ready')} mood="excited" size={90} />
           <p className="text-soft font-bold">⭐⭐ {cfg.stars[1]}+ · ⭐⭐⭐ {cfg.stars[2]}+</p>
-          <button className="btn-primary w-full text-xl" style={{ background: meta.color }} onClick={() => setPhase('play')}>
+          <button className="btn-primary w-full text-xl" style={{ '--btn': meta.color }} onClick={() => setPhase('play')}>
             ▶ {t('game.start')} ({total}s)
           </button>
         </div>
@@ -155,7 +155,7 @@ export default function SortGame({ world, node }) {
           <p className="text-center font-bold min-h-[1.5rem]" aria-live="polite">{msg}</p>
           <div className="grid grid-cols-2 gap-3">
             {cfg.bins.map((b) => (
-              <button key={b.id} onClick={() => sort(b.id)} disabled={phase !== 'play'} className={`min-h-[110px] rounded-blob border-4 bg-white flex flex-col items-center justify-center font-extrabold text-xl shadow-pop active:translate-y-[2px] ${reveal && current?.bin === b.id ? 'border-leaf ring-4 ring-leaf/40' : 'border-line'}`}>
+              <button key={b.id} onClick={() => sort(b.id)} disabled={phase !== 'play'} className={`min-h-[110px] rounded-blob border-4 bg-surface flex flex-col items-center justify-center font-extrabold text-xl shadow-pop active:translate-y-[2px] ${reveal && current?.bin === b.id ? 'border-leaf ring-4 ring-leaf/40' : 'border-line'}`}>
                 <span className="text-4xl" aria-hidden>{b.emoji}</span>
                 {tx(b.label)}
                 {reveal && current?.bin === b.id && <span className="text-sm">👀</span>}
@@ -170,7 +170,7 @@ export default function SortGame({ world, node }) {
                 ['doubleCoins', '💰', t('game.doubleCoins')],
                 ['reveal', '👀', t('game.reveal')],
               ].map(([id, icon, label]) => (
-                <button key={id} disabled={phase !== 'play' || (id === 'doubleCoins' && boost) || state.coins < p[id].cost} onClick={() => usePower(id)} className="min-h-[56px] rounded-2xl bg-white border-2 border-line font-bold text-sm flex flex-col items-center justify-center">
+                <button key={id} disabled={phase !== 'play' || (id === 'doubleCoins' && boost) || state.coins < p[id].cost} onClick={() => usePower(id)} className="min-h-[56px] rounded-2xl bg-surface border-2 border-line font-bold text-sm flex flex-col items-center justify-center">
                   <span>{icon} {label}</span>
                   <span className="flex items-center gap-1 text-xs">
                     <Coin size={12} /> {p[id].cost}

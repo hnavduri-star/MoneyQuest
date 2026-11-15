@@ -47,6 +47,11 @@ export default function Settings() {
         <Segmented label={t('settings.ageTier')} value={active.ageTier} onChange={(v) => setAgeGate(v)} options={AGE_TIERS.map((a) => ({ value: a, label: t(`creator.age.${a}`) }))} />
       </section>
 
+      <section className="card p-4 space-y-2">
+        <p className="font-bold">🎨 {t('settings.appearance')}</p>
+        <Segmented label={t('settings.appearance')} value={settings.appearance} onChange={(v) => updateSettings({ appearance: v })} options={[{ value: 'light', label: t('settings.appearance.light'), icon: '☀️' }, { value: 'dark', label: t('settings.appearance.dark'), icon: '🌙' }, { value: 'auto', label: t('settings.appearance.auto'), icon: '🌓' }]} />
+      </section>
+
       <section className="card px-4 divide-y divide-line">
         <Toggle label={`🔊 ${t('settings.sound')}`} checked={settings.sound} onChange={(v) => updateSettings({ sound: v })} />
         <Toggle label={`🗣️ ${t('settings.voice')}`} checked={settings.voice} onChange={(v) => updateSettings({ voice: v })} />

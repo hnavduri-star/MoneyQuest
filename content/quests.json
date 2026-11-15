@@ -148,8 +148,7 @@
     {
       "id": "answer-10",
       "group": "answers",
-      "event": "level.completed",
-      "measure": "answered",
+      "event": "question.answered",
       "target": 10,
       "text": {
         "en": "Answer 10 questions",
@@ -158,6 +157,20 @@
       "reward": {
         "xp": 25,
         "coins": 20
+      }
+    },
+    {
+      "id": "save-in-bank",
+      "group": "bank",
+      "event": "bank.deposit",
+      "target": 1,
+      "text": {
+        "en": "Save some coins in the Town Bank",
+        "ar": "ادخر بعض العملات في بنك المدينة"
+      },
+      "reward": {
+        "xp": 15,
+        "coins": 15
       }
     }
   ],
@@ -225,8 +238,7 @@
     },
     {
       "id": "week-answers",
-      "event": "level.completed",
-      "measure": "answered",
+      "event": "question.answered",
       "target": 60,
       "text": {
         "en": "Answer 60 questions this week",

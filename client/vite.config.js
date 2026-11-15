@@ -5,13 +5,21 @@ import { fileURLToPath } from 'node:url';
 
 const r = (p) => fileURLToPath(new URL(p, import.meta.url));
 
-export default defineConfig({
-  resolve: { alias: { '@content': r('../content'), '@engine': r('../engine') } },
+/**
+ * `vite build --mode preview-page` makes a self-contained, server-free build (no service worker,
+ * in-memory routing, relative paths) that can be hosted as a single shareable web page.
+ */
+export default defineConfig(({ mode }) => {
+  const staticPage = mode === 'preview-page';
+  return {
+  base: staticPage ? './' : '/',
+  define: { 'import.meta.env.VITE_STATIC': JSON.stringify(staticPage ? '1' : '') },
+  resolve: { alias: { '@content': r('../content'), '@engine': r('../engine'), ...(staticPage ? { 'virtual:pwa-register': r('./src/lib/pwa-stub.js') } : {}) } },
   server: { port: 5180, proxy: { '/api': 'http://localhost:4100' }, fs: { allow: ['..'] } },
   preview: { port: 5180, proxy: { '/api': 'http://localhost:4100' } },
   plugins: [
     react(),
-    VitePWA({
+    !staticPage && VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'],
       manifest: {
@@ -38,5 +46,6 @@ export default defineConfig({
       },
     }),
   ],
-  build: { chunkSizeWarningLimit: 900 },
+  build: { chunkSizeWarningLimit: 900, outDir: staticPage ? 'dist-page' : 'dist' },
+  };
 });

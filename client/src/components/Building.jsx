@@ -1,10 +1,15 @@
-import { memo } from 'react';
+import { createContext, memo, useContext } from 'react';
+
+/** At night (dark mode) every window glows. */
+const Night = createContext(false);
 
 /**
  * Town buildings as SVG. tier: 0 empty plot, 'construction', 1-3 built (bigger, brighter, golden).
  * Unknown building types fall back to a generic shop with the world's icon, so new worlds work without new art.
  */
-function Windows({ x, y, cols, rows, lit, w = 10, h = 12, gap = 6 }) {
+function Windows({ x, y, cols, rows, lit: litProp, w = 10, h = 12, gap = 6 }) {
+  const night = useContext(Night);
+  const lit = litProp || night;
   const out = [];
   for (let r = 0; r < rows; r++)
     for (let c = 0; c < cols; c++) {
@@ -37,7 +42,7 @@ function Sparkles() {
   );
 }
 
-function Art({ type, tier, color, icon }) {
+function Art({ type, tier, color, icon, night }) {
   const t = typeof tier === 'number' ? tier : 1;
   const gold = t >= 3 ? '#E69F00' : '#5B6B7F';
   switch (type) {
@@ -107,10 +112,12 @@ function Art({ type, tier, color, icon }) {
   }
 }
 
-function Building({ type, tier, color = '#0072B2', icon = '🏠', size = 110, label }) {
+function Building({ type, tier, color = '#0072B2', icon = '🏠', size = 110, label, night = false }) {
   return (
+    <Night.Provider value={night}>
     <svg viewBox="0 0 120 120" width={size} height={size} role="img" aria-label={label} className="overflow-visible">
-      <ellipse cx="60" cy="104" rx="50" ry="10" fill="#7BC47F" />
+      {night && typeof tier === 'number' && tier > 0 && <ellipse cx="60" cy="70" rx="46" ry="38" fill="#FFD27A" opacity="0.18" />}
+      <ellipse cx="60" cy="104" rx="50" ry="10" fill={night ? '#2F6B4A' : '#7BC47F'} />
       {tier === 0 && (
         <g>
           <rect x="30" y="86" width="60" height="16" rx="4" fill="#C9A97A" opacity="0.7" />
@@ -142,6 +149,7 @@ function Building({ type, tier, color = '#0072B2', icon = '🏠', size = 110, la
         </g>
       )}
     </svg>
+    </Night.Provider>
   );
 }
 

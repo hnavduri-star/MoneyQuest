@@ -13,6 +13,7 @@ export function createInitialState({ profileId, start = {} } = {}) {
     mastery: {},
     badges: {},
     inventory: { owned: [], equipped: {}, decorations: [] },
+    bank: { balance: 0, lastInterestWeek: null, interestEarned: 0 },
     town: { buildings: {} },
     streak: { count: 0, best: 0, lastDay: null, freezes: 1 },
     daily: { day: null, quests: [], chestClaimed: false },
@@ -25,7 +26,7 @@ export function createInitialState({ profileId, start = {} } = {}) {
 /** Bring an older saved state up to date without losing anything. */
 export function migrateState(s) {
   const base = createInitialState({ profileId: s.profileId });
-  return { ...base, ...s, inventory: { ...base.inventory, ...s.inventory }, streak: { ...base.streak, ...s.streak }, version: STATE_VERSION };
+  return { ...base, ...s, inventory: { ...base.inventory, ...s.inventory }, streak: { ...base.streak, ...s.streak }, bank: { ...base.bank, ...s.bank }, version: STATE_VERSION };
 }
 
 /** Summary used for family leaderboards (nickname-only, no other data leaves the profile). */

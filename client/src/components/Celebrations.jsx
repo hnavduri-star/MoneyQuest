@@ -16,7 +16,7 @@ export default function Celebrations() {
   const cur = celebrations[0];
 
   // Small news (quests, streaks) shows as a toast; big moments as a modal.
-  const isToast = cur && (cur.type === 'questDone' || cur.type === 'streak');
+  const isToast = cur && (cur.type === 'questDone' || cur.type === 'streak' || cur.type === 'bankInterest');
   useEffect(() => {
     if (!cur) return;
     if (cur.type === 'levelUp') {
@@ -41,7 +41,8 @@ export default function Celebrations() {
     if (cur.type === 'questDone') {
       const def = [...content.quests.daily, ...content.quests.weekly].find((q) => q.id === cur.questId);
       text = `✅ ${tx(def?.text)}`;
-    } else text = `🔥 ${t(`streak.${cur.result}`, { n: cur.count })}`;
+    } else if (cur.type === 'bankInterest') text = `🏦 ${t('bank.interestToast', { n: cur.amount })}`;
+    else text = `🔥 ${t(`streak.${cur.result}`, { n: cur.count })}`;
     return (
       <AnimatePresence>
         <motion.button key={celebrations.length + text} onClick={shiftCelebration} initial={{ y: -60, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -60, opacity: 0 }} className="fixed top-3 inset-x-3 mx-auto max-w-sm z-[70] card px-4 py-3 font-bold text-center" role="status">
@@ -105,7 +106,7 @@ export default function Celebrations() {
   return (
     <>
       <Confetti key={celebrations.length + cur.type} />
-      <div className="fixed inset-0 z-[65] bg-ink/55 flex items-center justify-center p-4" onClick={shiftCelebration}>
+      <div className="fixed inset-0 z-[65] bg-black/60 flex items-center justify-center p-4" onClick={shiftCelebration}>
         <motion.div role="dialog" aria-modal="true" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: 'spring', stiffness: 240, damping: 16 }} className="card max-w-sm w-full p-6 flex flex-col items-center text-center gap-3" onClick={(e) => e.stopPropagation()}>
           {body}
           <button className="btn-primary w-full mt-2" onClick={shiftCelebration} autoFocus>

@@ -69,7 +69,7 @@ export default function Review() {
   return (
     <div className="min-h-full max-w-app mx-auto px-4 py-3 flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        <button className="tap rounded-2xl bg-white border-2 border-line font-bold" onClick={() => nav('/town')} aria-label={t('lesson.quit')}>✕</button>
+        <button className="tap rounded-2xl bg-surface border-2 border-line font-bold" onClick={() => nav('/town')} aria-label={t('lesson.quit')}>✕</button>
         <Progress value={(idx + (solved ? 1 : 0)) / questions.length} />
       </div>
       <p className="chip bg-sky-pale mb-3 self-start">{world?.icon} {tx(content.conceptIndex[q.concept]?.name)}</p>

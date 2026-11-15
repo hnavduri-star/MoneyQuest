@@ -330,6 +330,213 @@
         "en": "Top Hat",
         "ar": "قبعة عالية"
       }
+    },
+    {
+      "id": "outfit-gold-thobe",
+      "type": "outfit",
+      "art": "goldthobe",
+      "price": {
+        "coins": 900
+      },
+      "unlock": {
+        "level": 10
+      },
+      "name": {
+        "en": "Golden Celebration Outfit",
+        "ar": "زي الاحتفال الذهبي"
+      }
+    },
+    {
+      "id": "outfit-space",
+      "type": "outfit",
+      "art": "commander",
+      "price": {
+        "coins": 1200
+      },
+      "unlock": {
+        "level": 12
+      },
+      "name": {
+        "en": "Space Commander Suit",
+        "ar": "بدلة قائد الفضاء"
+      }
+    },
+    {
+      "id": "hat-falcon",
+      "type": "hat",
+      "art": "falconhat",
+      "price": {
+        "coins": 450
+      },
+      "unlock": {
+        "level": 6
+      },
+      "name": {
+        "en": "Falcon Feather Hat",
+        "ar": "قبعة ريشة الصقر"
+      }
+    },
+    {
+      "id": "pet-falcon",
+      "type": "pet",
+      "art": "🦅",
+      "price": {
+        "coins": 800
+      },
+      "unlock": {
+        "level": 8
+      },
+      "name": {
+        "en": "Falcon",
+        "ar": "صقر"
+      }
+    },
+    {
+      "id": "pet-camel",
+      "type": "pet",
+      "art": "🐪",
+      "price": {
+        "coins": 600
+      },
+      "name": {
+        "en": "Baby Camel",
+        "ar": "حوار صغير"
+      }
+    },
+    {
+      "id": "pet-dolphin",
+      "type": "pet",
+      "art": "🐬",
+      "price": {
+        "coins": 700
+      },
+      "name": {
+        "en": "Dolphin",
+        "ar": "دلفين"
+      }
+    },
+    {
+      "id": "pet-peacock",
+      "type": "pet",
+      "art": "🦚",
+      "price": {
+        "coins": 500
+      },
+      "name": {
+        "en": "Peacock",
+        "ar": "طاووس"
+      }
+    },
+    {
+      "id": "pet-unicorn",
+      "type": "pet",
+      "art": "🦄",
+      "price": {
+        "gems": 10
+      },
+      "unlock": {
+        "level": 10
+      },
+      "name": {
+        "en": "Unicorn",
+        "ar": "يونيكورن"
+      }
+    },
+    {
+      "id": "deco-abra",
+      "type": "decoration",
+      "art": "⛵",
+      "price": {
+        "coins": 300
+      },
+      "name": {
+        "en": "Abra Boat",
+        "ar": "عبرة"
+      }
+    },
+    {
+      "id": "deco-balloon",
+      "type": "decoration",
+      "art": "🎈",
+      "price": {
+        "coins": 200
+      },
+      "name": {
+        "en": "Hot-Air Balloon",
+        "ar": "منطاد"
+      }
+    },
+    {
+      "id": "deco-fireworks",
+      "type": "decoration",
+      "art": "🎆",
+      "price": {
+        "coins": 400
+      },
+      "name": {
+        "en": "Fireworks",
+        "ar": "ألعاب نارية"
+      }
+    },
+    {
+      "id": "deco-island",
+      "type": "decoration",
+      "art": "🏝️",
+      "price": {
+        "coins": 1200
+      },
+      "unlock": {
+        "level": 9
+      },
+      "name": {
+        "en": "Palm Island",
+        "ar": "جزيرة النخيل"
+      }
+    },
+    {
+      "id": "deco-rocket",
+      "type": "decoration",
+      "art": "🚀",
+      "price": {
+        "coins": 1500
+      },
+      "unlock": {
+        "level": 12
+      },
+      "name": {
+        "en": "Space Rocket",
+        "ar": "صاروخ فضائي"
+      }
+    },
+    {
+      "id": "deco-tower",
+      "type": "decoration",
+      "art": "🗼",
+      "price": {
+        "gems": 8
+      },
+      "unlock": {
+        "level": 10
+      },
+      "name": {
+        "en": "Sky Tower",
+        "ar": "برج السماء"
+      }
+    },
+    {
+      "id": "skin-crownbuddy",
+      "type": "mascotSkin",
+      "art": "crown",
+      "price": {
+        "coins": 700
+      },
+      "unlock": {
+        "level": 7
+      },
+      "name": {
+        "en": "Royal Crown",
+        "ar": "تاج ملكي"
+      }
     }
   ]
 }

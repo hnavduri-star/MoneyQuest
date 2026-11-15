@@ -29,7 +29,7 @@ export default function PinPad({ onDone, error }) {
           d === '' ? (
             <span key={i} />
           ) : (
-            <button key={i} type="button" className="w-[72px] h-[64px] rounded-2xl bg-white border-2 border-line text-2xl font-extrabold shadow-pop active:translate-y-[2px]" onClick={() => (d === '⌫' ? setPin(pin.slice(0, -1)) : press(d))} aria-label={d === '⌫' ? 'delete' : d}>
+            <button key={i} type="button" className="w-[72px] h-[64px] rounded-2xl bg-surface border-2 border-line text-2xl font-extrabold shadow-pop active:translate-y-[2px]" onClick={() => (d === '⌫' ? setPin(pin.slice(0, -1)) : press(d))} aria-label={d === '⌫' ? 'delete' : d}>
               {d}
             </button>
           ),

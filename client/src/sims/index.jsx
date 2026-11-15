@@ -273,7 +273,7 @@ function Payslip({ params }) {
       <Slider label={tx(L.allowances)} value={allow} min={0} max={15000} step={500} onChange={setAllow} format={money} />
       <Slider label={tx(L.pension)} value={pension} min={0} max={15} step={0.5} onChange={setPension} format={(v) => `${v}%`} />
       <Slider label={tx(L.tax)} value={tax} min={0} max={40} onChange={setTax} format={(v) => (v ? `${v}%` : `0% · ${tx(L.uaeNote)}`)} />
-      <div className="rounded-2xl border-2 border-dashed border-line bg-white p-3 font-bold text-sm space-y-1">
+      <div className="rounded-2xl border-2 border-dashed border-line bg-surface p-3 font-bold text-sm space-y-1">
         <div className="flex justify-between"><span>{tx(L.gross)}</span><span>{money(r.gross)}</span></div>
         {r.pension > 0 && <div className="flex justify-between text-ember"><span>− {tx(L.pension)}</span><span>{money(r.pension)}</span></div>}
         {r.tax > 0 && <div className="flex justify-between text-ember"><span>− {tx(L.tax)}</span><span>{money(r.tax)}</span></div>}
@@ -344,7 +344,7 @@ function Atm({ params }) {
     }
   };
   return (
-    <div className="rounded-2xl bg-ink text-white p-4 space-y-3" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="rounded-2xl bg-[#1E2A3A] text-white p-4 space-y-3" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <div className="flex justify-between text-sm font-bold"><span>🏧 ATM</span><span>{tx(L.balance)}: {aed(balance)}</span></div>
       <div className="rounded-xl bg-[#1d4f6e] p-3 min-h-[150px] flex flex-col items-center justify-center text-center gap-2" aria-live="polite">
         {stage === 'insert' && <button className="btn-sun" onClick={() => setStage('pin')}>💳 {tx(L.insert)}</button>}
@@ -354,7 +354,7 @@ function Atm({ params }) {
             <p className="text-2xl tracking-[0.5em]" dir="ltr">{'•'.repeat(pin.length).padEnd(4, '○')}</p>
             {pinErr && <p className="text-sun font-bold">{tx(L.wrongPin)}</p>}
             <div className="grid grid-cols-5 gap-1" dir="ltr">
-              {['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].map((d) => <button key={d} onClick={() => press(d)} className="w-11 h-11 rounded-lg bg-white/90 text-ink font-extrabold">{d}</button>)}
+              {['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'].map((d) => <button key={d} onClick={() => press(d)} className="w-11 h-11 rounded-lg bg-white/90 text-[#1E2A3A] font-extrabold">{d}</button>)}
             </div>
           </>
         )}
@@ -362,8 +362,8 @@ function Atm({ params }) {
           <>
             <p className="font-bold">{tx(L.chooseAmount)}</p>
             <div className="grid grid-cols-3 gap-2">
-              {ATM_AMOUNTS.map((a) => <button key={a} onClick={() => go(a)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-ink font-extrabold">{aed(a)}</button>)}
-              <button onClick={() => go(150)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-ink font-extrabold">{aed(150)}</button>
+              {ATM_AMOUNTS.map((a) => <button key={a} onClick={() => go(a)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-[#1E2A3A] font-extrabold">{aed(a)}</button>)}
+              <button onClick={() => go(150)} className="min-h-[44px] px-2 rounded-lg bg-white/90 text-[#1E2A3A] font-extrabold">{aed(150)}</button>
             </div>
           </>
         )}
@@ -401,7 +401,7 @@ function Currency({ params }) {
       <Slider label={`🇦🇪 ${tx(L.change)}`} value={amount} min={100} max={10000} step={100} onChange={setAmount} format={(v) => fmt(v, 'AED')} />
       <p className="font-bold">{tx(L.to)}</p>
       <div className="flex flex-wrap gap-2">
-        {FX.map(([c, f]) => <button key={c} onClick={() => setTo(c)} aria-pressed={to === c} className={`min-h-[44px] px-3 rounded-xl border-2 font-bold ${to === c ? 'border-ink bg-ink text-white' : 'border-line bg-white'}`}>{f} {c}</button>)}
+        {FX.map(([c, f]) => <button key={c} onClick={() => setTo(c)} aria-pressed={to === c} className={`min-h-[44px] px-3 rounded-xl border-2 font-bold ${to === c ? 'border-ink bg-ink text-cream' : 'border-line bg-surface'}`}>{f} {c}</button>)}
       </div>
       <p className="text-sm font-bold text-center" dir="ltr">1 {to} = {S.EXAMPLE_RATES[to]} AED</p>
       <div className="grid grid-cols-3 gap-2">

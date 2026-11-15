@@ -112,6 +112,24 @@ function rollBoards(ctx) {
     s.daily = { day, quests: pickDailyQuests(pool, s.profileId || 'p', day, content.rewards.dailyQuestCount || 3), chestClaimed: false };
   }
   if ((content.quests.weekly || []).length && s.weekly?.week !== weekKey(day)) s.weekly = pickWeekly(content.quests.weekly, day);
+  payBankInterest(ctx);
+}
+
+/** The in-game Town Bank pays compound interest once a week on coins the child has saved there. */
+function payBankInterest(ctx) {
+  const { s, day, content } = ctx;
+  const cfg = content.rewards.bank || {};
+  const wk = weekKey(day);
+  s.bank ||= { balance: 0, lastInterestWeek: null, interestEarned: 0 };
+  if (s.bank.lastInterestWeek === wk) return;
+  const first = s.bank.lastInterestWeek === null;
+  s.bank.lastInterestWeek = wk;
+  if (first || s.bank.balance <= 0) return;
+  const interest = Math.min(cfg.maxWeeklyInterest ?? 200, Math.max(1, Math.floor((s.bank.balance * (cfg.weeklyRatePct ?? 5)) / 100)));
+  s.bank.balance += interest;
+  s.bank.interestEarned += interest;
+  bump(s, 'interestEarned', interest);
+  ctx.effects.push({ type: 'bankInterest', amount: interest, balance: s.bank.balance });
 }
 
 function trackQuests(ctx, ev) {
@@ -205,6 +223,50 @@ const HANDLERS = {
     };
     for (const a of ev.answers || []) if (a.concept) s.mastery[a.concept] = updateConcept(s.mastery[a.concept], !!a.correct, day);
     ctx.effects.push({ type: 'levelResult', worldId: ev.worldId, nodeId: ev.nodeId, stars: ev.stars, firstClear: ev.firstClear, improved: ev.improved });
+  },
+
+  /** Every answered question pays out straight away, so earning feels immediate. Replays pay less. */
+  'question.answered'(ctx, ev) {
+    const { s, content } = ctx;
+    const world = content.worlds[ev.worldId];
+    if (!world?.nodes.some((n) => n.id === ev.nodeId)) throw new Rejected('unknownNode');
+    ev.replay = !!s.progress[ev.worldId]?.[ev.nodeId];
+    ev.firstTry = !!ev.firstTry;
+    ev.correct = ev.correct !== false;
+    ev.streakBonus = ev.firstTry ? Math.max(0, Math.min(5, ev.streak || 1) - 1) : 0;
+  },
+
+  'bank.deposit'(ctx, ev) {
+    const n = Math.floor(ev.amount);
+    if (!(n > 0)) throw new Rejected('badAmount');
+    if (ctx.s.coins < n) throw new Rejected('notEnoughCoins');
+    ctx.s.coins -= n;
+    ctx.s.bank.balance += n;
+    bump(ctx.s, 'depositsMade');
+    ctx.s.stats.peakBank = Math.max(ctx.s.stats.peakBank || 0, ctx.s.bank.balance);
+    ev.skipRules = true;
+    ctx.effects.push({ type: 'deposited', amount: n });
+  },
+
+  'bank.withdraw'(ctx, ev) {
+    const n = Math.floor(ev.amount);
+    if (!(n > 0)) throw new Rejected('badAmount');
+    if (ctx.s.bank.balance < n) throw new Rejected('notEnoughSaved');
+    ctx.s.bank.balance -= n;
+    ctx.s.coins += n;
+    ev.skipRules = true;
+    ctx.effects.push({ type: 'withdrew', amount: n });
+  },
+
+  /** Swap earned coins for gems (the "credits" of MoneyQuest). Never real money. */
+  'gems.buy'(ctx, ev) {
+    const count = Math.floor(ev.count || 1);
+    if (!(count > 0)) throw new Rejected('badAmount');
+    spend(ctx, { coins: count * (ctx.content.rewards.gemPriceCoins ?? 120) });
+    ctx.s.gems += count;
+    bump(ctx.s, 'gemsBought', count);
+    ev.skipRules = true;
+    ctx.effects.push({ type: 'gemsBought', count });
   },
 
   'review.completed'(ctx, ev) {

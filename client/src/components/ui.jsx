@@ -16,25 +16,49 @@ export function Stars({ n = 0, size = 22, label }) {
 export function Progress({ value, color = 'var(--theme)', height = 12, label }) {
   const pct = Math.max(0, Math.min(1, value || 0));
   return (
-    <div className="w-full rounded-full bg-black/10 overflow-hidden" style={{ height }} role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(pct * 100)} aria-label={label}>
+    <div className="w-full rounded-full bg-soft/20 overflow-hidden" style={{ height }} role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(pct * 100)} aria-label={label}>
       <motion.div className="h-full rounded-full" style={{ background: color }} initial={false} animate={{ width: `${pct * 100}%` }} transition={{ type: 'spring', stiffness: 120, damping: 20 }} />
     </div>
   );
 }
 
+/** Brushed-gold coin: satin gradient rim, embossed face, soft highlight. */
 export function Coin({ size = 20 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
-      <circle cx="12" cy="12" r="10" fill="#F7C95C" stroke="#B07400" strokeWidth="2" />
-      <circle cx="12" cy="12" r="6" fill="none" stroke="#B07400" strokeWidth="1.2" opacity="0.6" />
+      <defs>
+        <linearGradient id="mqCoinRim" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#FFE7A0" />
+          <stop offset="0.55" stopColor="#E3A21A" />
+          <stop offset="1" stopColor="#9A6200" />
+        </linearGradient>
+        <radialGradient id="mqCoinFace" cx="0.38" cy="0.32" r="0.8">
+          <stop offset="0" stopColor="#FFF1C4" />
+          <stop offset="0.45" stopColor="#F5C445" />
+          <stop offset="1" stopColor="#C98800" />
+        </radialGradient>
+      </defs>
+      <circle cx="12" cy="12" r="11" fill="url(#mqCoinRim)" />
+      <circle cx="12" cy="12" r="8" fill="url(#mqCoinFace)" stroke="#A86F00" strokeOpacity="0.45" strokeWidth="0.8" />
+      <path d="M12 7.2l1.4 2.9 3.1.4-2.3 2.1.6 3.1L12 14.2l-2.8 1.5.6-3.1-2.3-2.1 3.1-.4z" fill="#B47A00" opacity="0.55" />
+      <ellipse cx="8.8" cy="7.6" rx="3" ry="1.4" fill="#fff" opacity="0.45" transform="rotate(-30 8.8 7.6)" />
     </svg>
   );
 }
+/** Cut gem with facets and a soft glint. */
 export function Gem({ size = 20 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
-      <path d="M6 3h12l4 6-10 12L2 9z" fill="#56B4E9" stroke="#0072B2" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M2 9h20M9 3l3 18 3-18" stroke="#0072B2" strokeWidth="1" fill="none" opacity="0.5" />
+      <defs>
+        <linearGradient id="mqGem" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#B9E6FF" />
+          <stop offset="0.5" stopColor="#3FA3E0" />
+          <stop offset="1" stopColor="#0B4F86" />
+        </linearGradient>
+      </defs>
+      <path d="M6 3h12l4 6-10 12L2 9z" fill="url(#mqGem)" stroke="#0B4F86" strokeWidth="1" strokeLinejoin="round" />
+      <path d="M2 9h20M9 3l3 18 3-18M6 3l3 6 3-6 3 6 3-6" stroke="#E8F7FF" strokeWidth="0.7" fill="none" opacity="0.6" />
+      <path d="M8 5l1.5 3" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" opacity="0.8" />
     </svg>
   );
 }
@@ -61,7 +85,7 @@ export function Modal({ open, onClose, children, label, wide }) {
   return (
     <AnimatePresence>
       {open && (
-        <motion.div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-ink/50 p-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
+        <motion.div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
           <motion.div
             role="dialog"
             aria-modal="true"
@@ -95,7 +119,7 @@ export function Toggle({ checked, onChange, label, help }) {
           play('tap');
           onChange(!checked);
         }}
-        className={`relative shrink-0 w-14 h-8 rounded-full transition ${checked ? 'bg-leaf' : 'bg-black/20'}`}
+        className={`relative shrink-0 w-14 h-8 rounded-full transition ${checked ? 'bg-leaf' : 'bg-soft/35'}`}
       >
         <span className={`absolute top-1 w-6 h-6 rounded-full bg-white shadow transition-all ${checked ? 'start-7' : 'start-1'}`} />
         <span className="sr-only">{checked ? 'on' : 'off'}</span>
@@ -117,7 +141,7 @@ export function Segmented({ options, value, onChange, label }) {
             play('tap');
             onChange(o.value);
           }}
-          className={`min-h-[48px] px-4 rounded-2xl border-2 font-bold transition ${value === o.value ? 'border-ink bg-ink text-white' : 'border-line bg-white'}`}
+          className={`min-h-[48px] px-4 rounded-2xl border-2 font-bold transition ${value === o.value ? 'border-ink bg-ink text-cream' : 'border-line bg-surface'}`}
         >
           {o.icon && <span className="me-1" aria-hidden>{o.icon}</span>}
           {o.label}
@@ -132,7 +156,7 @@ export function Header({ title, onBack, right }) {
   return (
     <div className="flex items-center gap-2 mb-4">
       {onBack && (
-        <button onClick={onBack} className="tap rounded-2xl bg-white border-2 border-line font-bold text-xl" aria-label="back">
+        <button onClick={onBack} className="tap rounded-2xl bg-surface border-2 border-line font-bold text-xl" aria-label="back">
           <span className="inline-block rtl:rotate-180">←</span>
         </button>
       )}

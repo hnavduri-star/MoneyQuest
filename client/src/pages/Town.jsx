@@ -13,7 +13,7 @@ import { play } from '../lib/sound.js';
 const WALKERS = ['🚶', '🚴', '🧍', '🛵', '🚶‍♀️', '🧑‍🦽', '🛴', '🚗', '🚌', '🏃'];
 
 export default function Town() {
-  const { state, active, content, settings } = useGame();
+  const { state, active, content, settings, isDark } = useGame();
   const { t, tx } = useT();
   const nav = useNavigate();
   const worlds = useWorlds();
@@ -35,11 +35,15 @@ export default function Town() {
 
       {/* Town scene */}
       <section className="relative rounded-blob overflow-hidden border border-line shadow-card" aria-label={t('nav.town')}>
-        <div className="absolute inset-0" style={{ background: `linear-gradient(#BFE6FA, #E9F7FD ${40 + live * 20}%, #A8DCA0 60%)` }} />
-        <motion.div className="absolute top-3 end-6 text-5xl" animate={settings.reducedMotion ? {} : { rotate: [0, 10, 0] }} transition={{ duration: 8, repeat: Infinity }} aria-hidden>
-          ☀️
+        <div className="absolute inset-0" style={{ background: isDark ? 'linear-gradient(#0B1330, #1B2A5A 45%, #23506A 58%, #1E4A3A 62%)' : `linear-gradient(#BFE6FA, #E9F7FD ${40 + live * 20}%, #A8DCA0 60%)` }} />
+        {isDark &&
+          Array.from({ length: 18 }, (_, i) => (
+            <motion.span key={i} className="absolute rounded-full bg-white" style={{ width: 2 + (i % 3), height: 2 + (i % 3), top: 6 + ((i * 37) % 70), left: `${(i * 53) % 100}%` }} animate={settings.reducedMotion ? {} : { opacity: [0.2, 1, 0.2] }} transition={{ duration: 2 + (i % 4), repeat: Infinity, delay: i * 0.2 }} aria-hidden />
+          ))}
+        <motion.div className="absolute top-3 end-6 text-5xl" style={isDark ? { filter: 'drop-shadow(0 0 12px rgba(255,240,180,.7))' } : undefined} animate={settings.reducedMotion ? {} : { rotate: [0, 10, 0] }} transition={{ duration: 8, repeat: Infinity }} aria-hidden>
+          {isDark ? '🌙' : '☀️'}
         </motion.div>
-        {[0, 1].map((i) => (
+        {!isDark && [0, 1].map((i) => (
           <motion.div key={i} className="absolute text-4xl opacity-80" style={{ top: 12 + i * 34 }} initial={{ x: i ? 260 : -60 }} animate={settings.reducedMotion ? {} : { x: [i ? 260 : -60, i ? -60 : 380] }} transition={{ duration: 40 + i * 15, repeat: Infinity, ease: 'linear' }} aria-hidden>
             ☁️
           </motion.div>
@@ -49,17 +53,17 @@ export default function Town() {
             {/* Home with the avatar and pet */}
             <div className="flex flex-col items-center">
               <div className="relative">
-                <Building type="home" tier={1} color={theme} size={96} label={t('town.home')} />
+                <Building type="home" tier={1} color={theme} size={96} label={t('town.home')} night={isDark} />
                 <div className="absolute -bottom-1 -start-4 flex items-end">
                   <Avatar avatar={active.meta.avatar} level={state.level} equipped={state.inventory.equipped} size={40} theme={theme} />
                   {pet && <span className="text-2xl -ms-1">{pet.art}</span>}
                 </div>
               </div>
-              <span className="text-xs font-bold bg-white/80 rounded-full px-2">{t('town.home')}</span>
+              <span className="text-xs font-bold bg-surface/80 rounded-full px-2">{t('town.home')}</span>
             </div>
             <div className="flex flex-col items-center">
-              <Building type="hall" tier={1} size={96} label={t('town.hall')} />
-              <span className="text-xs font-bold bg-white/80 rounded-full px-2">{t('town.hall')}</span>
+              <Building type="hall" tier={1} size={96} label={t('town.hall')} night={isDark} />
+              <span className="text-xs font-bold bg-surface/80 rounded-full px-2">{t('town.hall')}</span>
             </div>
             {worlds.filter(({ meta }) => meta.playable).map(({ meta, status }) => {
               const tier = meta.playable ? state.town.buildings[meta.id] ?? 0 : 0;
@@ -75,9 +79,9 @@ export default function Town() {
                   aria-label={`${tx(meta.name)}: ${locked ? t('common.locked') : typeof tier === 'number' && tier > 0 ? t('town.plot.tier', { tier }) : t('town.plot.building')}`}
                 >
                   <div className={locked ? 'opacity-55 saturate-50' : ''}>
-                    <Building type={meta.building} tier={tier} color={meta.color} icon={meta.icon} size={96} />
+                    <Building type={meta.building} tier={tier} color={meta.color} icon={meta.icon} size={96} night={isDark} />
                   </div>
-                  <span className="text-xs font-bold bg-white/85 rounded-full px-2 leading-tight text-center max-w-[100px] truncate">
+                  <span className="text-xs font-bold bg-surface/85 rounded-full px-2 leading-tight text-center max-w-[100px] truncate">
                     {locked && '🔒 '}
                     {tx(meta.name)}
                   </span>
@@ -87,7 +91,7 @@ export default function Town() {
             })}
           </div>
           {/* Districts arriving in future updates: small signposts so the town shows where it will grow */}
-          <button className="mt-3 w-full rounded-2xl bg-white/70 px-3 py-2 text-start" onClick={() => nav('/worlds')}>
+          <button className="mt-3 w-full rounded-2xl bg-surface/70 px-3 py-2 text-start" onClick={() => nav('/worlds')}>
             <span className="text-xs font-bold text-soft">🚧 {t('common.comingSoon')}</span>
             <span className="flex flex-wrap gap-1 text-xl mt-1" aria-hidden>
               {worlds.filter(({ meta }) => !meta.playable).map(({ meta }) => <span key={meta.id} className="opacity-70" title={tx(meta.name)}>{meta.icon}</span>)}
@@ -101,7 +105,7 @@ export default function Town() {
           )}
         </div>
         {/* Road with walkers: busier as the town grows */}
-        <div className="relative h-12 bg-[#8E9AA6] border-t-4 border-[#C9D3DC] overflow-hidden" aria-hidden>
+        <div className={`relative h-12 border-t-4 overflow-hidden ${isDark ? 'bg-[#2A3346] border-[#3B4660]' : 'bg-[#8E9AA6] border-[#C9D3DC]'}`} aria-hidden>
           <div className="absolute top-1/2 inset-x-0 border-t-2 border-dashed border-white/70" />
           {Array.from({ length: walkers }, (_, i) => (
             <motion.span key={i} className="absolute top-1 text-2xl" initial={{ x: -40 }} animate={settings.reducedMotion ? { x: 30 + i * 36 } : { x: [-40 - i * 30, 560] }} transition={{ duration: 14 + (i % 4) * 4, repeat: Infinity, delay: i * 1.6, ease: 'linear' }}>

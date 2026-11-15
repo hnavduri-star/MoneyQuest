@@ -210,11 +210,40 @@ describe('reward engine', () => {
       for (const n of w.nodes.filter((x) => x.kind === 'lesson')) expect(n.steps[0].type).toBe('story');
     }
   });
-  it('participation: answering questions earns XP and coins and counts toward badges', () => {
-    const r = processEvent(fresh(), { type: 'level.completed', worldId: 'money-basics', nodeId: 'what-is-money', stars: 1, mistakes: 3, answered: 10 }, content, opts);
-    expect(r.effects.some((e) => e.type === 'reward' && e.source === 'participation' && e.xp === 20 && e.coins === 10)).toBe(true);
-    expect(r.state.stats.questionsAnswered).toBe(10);
-    expect(r.state.badges['answers-10']).toBeTruthy();
+  it('every answered question pays coins straight away; streaks pay more; replays pay less', () => {
+    const q = (o) => ({ type: 'question.answered', worldId: 'money-basics', nodeId: 'what-is-money', correct: true, ...o });
+    const coinsOf = (r) => r.effects.filter((e) => e.type === 'reward' && e.source === 'question.answered').reduce((a, e) => a + e.coins, 0);
+    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 1 }), content, opts))).toBe(3);
+    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 4 }), content, opts))).toBe(6);
+    expect(coinsOf(processEvent(fresh(), q({ firstTry: true, streak: 99 }), content, opts))).toBe(7);
+    expect(coinsOf(processEvent(fresh(), q({ firstTry: false }), content, opts))).toBe(1);
+    let s = processEvent(fresh(), { type: 'level.completed', worldId: 'money-basics', nodeId: 'what-is-money', stars: 3 }, content, opts).state;
+    expect(coinsOf(processEvent(s, q({ firstTry: true, streak: 3 }), content, opts))).toBe(1);
+    for (let i = 1; i <= 10; i++) s = processEvent(s, q({ firstTry: true, streak: i }), content, opts).state;
+    expect(s.stats.questionsAnswered).toBe(10);
+    expect(s.badges['answers-10']).toBeTruthy();
+    expect(s.badges['streak-10']).toBeTruthy();
+  });
+  it('Town Bank: deposit, weekly compound interest, withdraw; gems bought with earned coins', () => {
+    let s = processEvent(fresh(), { type: 'daily.login' }, content, opts).state;
+    s.coins = 1000;
+    expect(processEvent(s, { type: 'bank.deposit', amount: 5000 }, content, opts).effects[0].code).toBe('notEnoughCoins');
+    s = processEvent(s, { type: 'bank.deposit', amount: 400 }, content, opts).state;
+    expect(s.bank.balance).toBe(400);
+    expect(s.badges['first-deposit']).toBeTruthy();
+    const nextWeek = processEvent(s, { type: 'daily.login' }, content, { ...opts, day: addDays(DAY, 7) });
+    expect(nextWeek.state.bank.balance).toBe(420);
+    expect(nextWeek.effects.some((e) => e.type === 'bankInterest' && e.amount === 20)).toBe(true);
+    const twoWeeks = processEvent(nextWeek.state, { type: 'daily.login' }, content, { ...opts, day: addDays(DAY, 14) }).state;
+    expect(twoWeeks.bank.balance).toBe(441);
+    const sameWeek = processEvent(twoWeeks, { type: 'daily.login' }, content, { ...opts, day: addDays(DAY, 14) }).state;
+    expect(sameWeek.bank.balance).toBe(441);
+    const w = processEvent(sameWeek, { type: 'bank.withdraw', amount: 41 }, content, { ...opts, day: addDays(DAY, 14) }).state;
+    expect(w.bank.balance).toBe(400);
+    expect(processEvent(w, { type: 'bank.withdraw', amount: 9999 }, content, opts).effects[0].code).toBe('notEnoughSaved');
+    const g = processEvent({ ...w, coins: 500 }, { type: 'gems.buy', count: 2 }, content, opts).state;
+    expect(g.gems).toBe(w.gems + 2 + (g.badges['gem-trader'] && content.rewards.badgeRewards.rare.gems ? content.rewards.badgeRewards.rare.gems : 0));
+    expect(g.stats.gemsBought).toBe(2);
   });
   it('the optional Islamic banking lesson never blocks completion', () => {
     let { state } = clearWorld(fresh(), 'money-basics');

@@ -352,6 +352,78 @@
           "nodeId": "boss"
         }
       }
+    },
+    {
+      "id": "first-deposit",
+      "icon": "🏦",
+      "rarity": "common",
+      "category": "collect",
+      "name": {
+        "en": "First Deposit",
+        "ar": "أول إيداع"
+      },
+      "desc": {
+        "en": "Save coins in the Town Bank",
+        "ar": "ادخر عملات في بنك المدينة"
+      },
+      "criteria": {
+        "stat": "depositsMade",
+        "gte": 1
+      }
+    },
+    {
+      "id": "gem-trader",
+      "icon": "💎",
+      "rarity": "rare",
+      "category": "collect",
+      "name": {
+        "en": "Gem Trader",
+        "ar": "تاجر الجواهر"
+      },
+      "desc": {
+        "en": "Swap earned coins for a gem",
+        "ar": "بادل عملاتك المكتسبة بجوهرة"
+      },
+      "criteria": {
+        "stat": "gemsBought",
+        "gte": 1
+      }
+    },
+    {
+      "id": "streak-5",
+      "icon": "🔥",
+      "rarity": "rare",
+      "category": "skill",
+      "name": {
+        "en": "Hot Streak",
+        "ar": "سلسلة مشتعلة"
+      },
+      "desc": {
+        "en": "Answer 5 questions in a row right first time",
+        "ar": "أجب عن ٥ أسئلة متتالية صحيحة من أول مرة"
+      },
+      "criteria": {
+        "stat": "bestAnswerStreak",
+        "gte": 5
+      }
+    },
+    {
+      "id": "streak-10",
+      "icon": "☄️",
+      "rarity": "epic",
+      "category": "skill",
+      "name": {
+        "en": "Unstoppable",
+        "ar": "لا يمكن إيقافك"
+      },
+      "desc": {
+        "en": "Answer 10 questions in a row right first time",
+        "ar": "أجب عن ١٠ أسئلة متتالية صحيحة من أول مرة"
+      },
+      "criteria": {
+        "stat": "bestAnswerStreak",
+        "gte": 10
+      }
     }
   ],
   "series": [
@@ -1255,6 +1327,68 @@
         {
           "n": 40,
           "rarity": "legendary"
+        }
+      ]
+    },
+    {
+      "id": "interest",
+      "icon": "🌱",
+      "category": "collect",
+      "criteria": {
+        "stat": "interestEarned",
+        "gte": "$n"
+      },
+      "name": {
+        "en": "Interest Earner {n}",
+        "ar": "كاسب الفائدة {n}"
+      },
+      "desc": {
+        "en": "Earn {n} coins of interest in the Town Bank",
+        "ar": "اكسب {n} عملة فائدة في بنك المدينة"
+      },
+      "tiers": [
+        {
+          "n": 5,
+          "rarity": "common"
+        },
+        {
+          "n": 50,
+          "rarity": "rare"
+        },
+        {
+          "n": 250,
+          "rarity": "epic"
+        }
+      ]
+    },
+    {
+      "id": "saver-bank",
+      "icon": "🐷",
+      "category": "collect",
+      "criteria": {
+        "stat": "peakBank",
+        "gte": "$n"
+      },
+      "name": {
+        "en": "Bank Saver {n}",
+        "ar": "مدخر البنك {n}"
+      },
+      "desc": {
+        "en": "Have {n} coins saved in the Town Bank",
+        "ar": "ادخر {n} عملة في بنك المدينة"
+      },
+      "tiers": [
+        {
+          "n": 100,
+          "rarity": "common"
+        },
+        {
+          "n": 500,
+          "rarity": "rare"
+        },
+        {
+          "n": 2000,
+          "rarity": "epic"
         }
       ]
     }

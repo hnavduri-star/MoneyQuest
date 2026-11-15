@@ -36,7 +36,7 @@ export default function Mascot({ text, mood = 'happy', size = 84, compact = fals
                 🔊
               </button>
             )}
-            <span className="absolute -bottom-2 start-6 w-4 h-4 bg-white border-b border-e border-line rotate-45" aria-hidden />
+            <span className="absolute -bottom-2 start-6 w-4 h-4 bg-surface border-b border-e border-line rotate-45" aria-hidden />
           </motion.div>
         )}
       </AnimatePresence>

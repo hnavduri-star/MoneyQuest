@@ -1,5 +1,7 @@
 /** First-party API only. No third-party requests are ever made. */
 async function call(method, path, { token, body, headers = {} } = {}) {
+  // The standalone preview page has no server: everything stays on this device.
+  if (import.meta.env.VITE_STATIC === '1') throw Object.assign(new Error('offline'), { status: 0 });
   const res = await fetch(`/api${path}`, {
     method,
     headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...headers },

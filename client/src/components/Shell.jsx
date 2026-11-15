@@ -17,7 +17,7 @@ export function HUD() {
   return (
     <header className="sticky top-0 z-30 bg-cream/95 backdrop-blur border-b border-line">
       <div className="max-w-app mx-auto px-3 py-2 flex items-center gap-2">
-        <button onClick={() => nav('/settings')} className="shrink-0 w-12 h-12 rounded-2xl bg-white border-2 border-line overflow-hidden flex items-start justify-center" aria-label={t('settings.title')}>
+        <button onClick={() => nav('/settings')} className="shrink-0 w-12 h-12 rounded-2xl bg-surface border-2 border-line overflow-hidden flex items-start justify-center" aria-label={t('settings.title')}>
           <Avatar avatar={active.meta.avatar} level={state.level} equipped={state.inventory.equipped} size={46} theme={theme} />
         </button>
         <div className="flex-1 min-w-0">
@@ -26,14 +26,14 @@ export function HUD() {
             <span className="text-soft">· {rank.icon} {tx(rank.name)}</span>
           </div>
           <div className="flex items-center gap-2 mt-1">
-            <span className="chip bg-ink text-white text-xs px-2 py-0.5">{t('common.level')} {state.level}</span>
+            <span className="chip bg-ink text-cream text-xs px-2 py-0.5">{t('common.level')} {state.level}</span>
             <Progress value={lp.pct} height={10} label={`${lp.into} / ${lp.needed} XP`} />
           </div>
         </div>
         <div className="flex flex-col items-end gap-1 text-sm font-extrabold">
-          <span className="flex items-center gap-1" aria-label={`${state.coins} ${t('common.coins')}`}>
-            <Coin size={18} /> {state.coins}
-          </span>
+          <motion.span key={state.coins} initial={{ scale: 1.25 }} animate={{ scale: 1 }} className="flex items-center gap-1" aria-label={`${state.coins} ${t('common.coins')}`}>
+            <Coin size={20} /> <span className="tabular-nums">{state.coins}</span>
+          </motion.span>
           <span className="flex items-center gap-2">
             <span className="flex items-center gap-1" aria-label={`${state.gems} ${t('common.gems')}`}>
               <Gem size={16} /> {state.gems}
@@ -60,7 +60,7 @@ export function BottomNav() {
   const { state } = useGame();
   const claimable = (state.daily?.quests || []).some((q) => q.done && !q.claimed) || !state.daily?.chestClaimed || (state.weekly?.done && !state.weekly?.claimed);
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-30 bg-white border-t border-line pb-safe" aria-label="main">
+    <nav className="fixed bottom-0 inset-x-0 z-30 bg-surface border-t border-line pb-safe" aria-label="main">
       <div className="max-w-app mx-auto grid grid-cols-5">
         {TABS.map((tab) => (
           <NavLink key={tab.to} to={tab.to} onClick={() => play('tap')} className={({ isActive }) => `relative flex flex-col items-center justify-center min-h-[60px] text-xs font-bold ${isActive ? 'text-ink' : 'text-soft'}`}>

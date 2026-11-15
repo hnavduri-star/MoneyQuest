@@ -14,14 +14,15 @@ export function sumRewards(effects) {
   return effects.filter((e) => e.type === 'reward' && LEVEL_SOURCES.has(e.source)).reduce((a, e) => ({ xp: a.xp + e.xp, coins: a.coins + e.coins, gems: a.gems + e.gems }), { xp: 0, coins: 0, gems: 0 });
 }
 
-export default function Results({ world, node, stars, effects, extra, onReplay }) {
+export default function Results({ world, node, stars, effects, extra, onReplay, bonus }) {
   const { t } = useT();
   const { state, age } = useGame();
   const nav = useNavigate();
   const nodes = useVisibleNodes(world);
   const idx = nodes.findIndex((n) => n.id === node.id);
   const next = nodes.slice(idx + 1).find((n) => isNodeUnlocked(state, world, n.id, age));
-  const r = sumRewards(effects);
+  const base = sumRewards(effects);
+  const r = { xp: base.xp + (bonus?.xp || 0), coins: base.coins + (bonus?.coins || 0), gems: base.gems };
   const res = effects.find((e) => e.type === 'levelResult');
   const boss = node.kind === 'boss';
   const lines = { 3: t('lesson.correct3'), 2: t('lesson.correct2'), 1: t('lesson.correct') };

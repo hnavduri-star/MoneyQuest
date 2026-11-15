@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useT } from '../lib/i18n.js';
 import { motion } from 'framer-motion';
-import { Modal, Progress } from './ui.jsx';
+import { Modal, Progress, Coin } from './ui.jsx';
 import Avatar from './Avatar.jsx';
 import { useGame } from '../store.jsx';
 
@@ -16,7 +16,7 @@ export default function PlayFrame({ world, progress, children, footer, color }) 
   return (
     <div className="min-h-full max-w-app mx-auto flex flex-col">
       <div className="sticky top-0 z-20 bg-cream/95 backdrop-blur px-4 pt-3 pb-2 flex items-center gap-3">
-        <button className="tap rounded-2xl bg-white border-2 border-line font-bold" onClick={() => setQuit(true)} aria-label={t('lesson.quit')}>
+        <button className="tap rounded-2xl bg-surface border-2 border-line font-bold" onClick={() => setQuit(true)} aria-label={t('lesson.quit')}>
           ✕
         </button>
         {/* The child's own character walks along the level towards the flag */}
@@ -27,6 +27,9 @@ export default function PlayFrame({ world, progress, children, footer, color }) 
           </motion.div>
           <span className="absolute -top-0.5 end-0 text-lg" aria-hidden>🏁</span>
         </div>
+        <motion.span key={state?.coins} initial={{ scale: 1.35 }} animate={{ scale: 1 }} className="chip bg-sun-pale font-extrabold" aria-label={`${state?.coins} coins`}>
+          <Coin size={18} /> <span className="tabular-nums">{state?.coins}</span>
+        </motion.span>
       </div>
       <div className="flex-1 px-4 pb-4">{children}</div>
       {footer && <div className="sticky bottom-0 z-20 px-4 pt-2 pb-safe bg-cream">{footer}</div>}

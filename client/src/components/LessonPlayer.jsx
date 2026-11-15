@@ -9,7 +9,8 @@ import PlayFrame from './PlayFrame.jsx';
 import Mascot from './Mascot.jsx';
 import Illustration from './Illustration.jsx';
 import Results from './Results.jsx';
-import { Progress } from './ui.jsx';
+import { Progress, Coin } from './ui.jsx';
+import CoinBurst from './CoinBurst.jsx';
 import ChoiceStep from '../steps/ChoiceStep.jsx';
 import NumberStep from '../steps/NumberStep.jsx';
 import SortStep from '../steps/SortStep.jsx';
@@ -40,7 +41,8 @@ export default function LessonPlayer({ world, node }) {
   const [hits, setHits] = useState(0);
   const [tries, setTries] = useState(0); // wrong tries on the current step
   const [streak, setStreak] = useState(0); // first-try correct answers in a row
-  const [pop, setPop] = useState(0); // "+XP" participation pop
+  const [pop, setPop] = useState(null); // { n, key } coins just earned for an answer
+  const [earned, setEarned] = useState({ xp: 0, coins: 0 }); // paid out question by question
   const [result, setResult] = useState(null);
   const step = steps[idx];
   const isQ = step && QUESTION.has(step.type);
@@ -58,7 +60,20 @@ export default function LessonPlayer({ world, node }) {
     setHits(0);
     setTries(0);
     setStreak(0);
+    setEarned({ xp: 0, coins: 0 });
+    setPop(null);
     setResult(null);
+  };
+
+  /** Each answer pays out immediately (more for first-try answers and streaks). */
+  const payAnswer = (firstTryNow, st) => {
+    const eff = dispatch({ type: 'question.answered', worldId: world.id, nodeId: node.id, correct: true, firstTry: firstTryNow, streak: st }, { defer: true });
+    const r = eff.filter((e) => e.type === 'reward' && e.source === 'question.answered').reduce((a, e) => ({ xp: a.xp + e.xp, coins: a.coins + e.coins }), { xp: 0, coins: 0 });
+    setEarned((x) => ({ xp: x.xp + r.xp, coins: x.coins + r.coins }));
+    if (r.coins) {
+      setPop({ n: r.coins, key: Date.now() });
+      play('coin');
+    }
   };
 
   const finish = (finalFirstTry, finalMistakes) => {
@@ -85,14 +100,15 @@ export default function LessonPlayer({ world, node }) {
     const ft = firstTry[idx] === undefined ? { ...firstTry, [idx]: true } : firstTry;
     setFirstTry(ft);
     setSolved(true);
-    setPop((p) => p + 1);
     const st = firstTry[idx] === undefined ? streak + 1 : 0;
     setStreak(st);
+    payAnswer(firstTry[idx] === undefined, st);
     if (boss) setHits((h) => h + 1);
     setFeedback({ ok: true, text: st >= 3 && st % 2 === 1 ? `${t('lesson.onFire')} ${t('lesson.streak', { n: st })}` : t(PRAISE[(idx + run) % 3]) });
   };
   /** After two wrong tries the guide explains the answer, so a child is never stuck. */
   const revealAndContinue = () => {
+    payAnswer(false, 0);
     setSolved(true);
     if (boss) setHits((h) => h + 1);
     next();
@@ -116,7 +132,7 @@ export default function LessonPlayer({ world, node }) {
     setHintShown(true);
   };
 
-  if (result) return <Results world={world} node={node} stars={result.stars} effects={result.effects} onReplay={reset} />;
+  if (result) return <Results world={world} node={node} stars={result.stars} effects={result.effects} onReplay={reset} bonus={earned} />;
 
   // ---- Boss intro ----
   if (boss && !started)
@@ -126,7 +142,7 @@ export default function LessonPlayer({ world, node }) {
           <BossArt boss={boss} icon={node.icon} />
           <h1 className="title text-3xl">{tx(boss.name)}</h1>
           <div className="card p-4 text-lg font-semibold">{tx(boss.intro)}</div>
-          <button className="btn-primary w-full text-xl" style={{ background: boss.color }} onClick={() => setStarted(true)}>
+          <button className="btn-primary w-full text-xl" style={{ '--btn': boss.color }} onClick={() => setStarted(true)}>
             ⚔️ {t('boss.fight')}
           </button>
         </div>
@@ -175,7 +191,7 @@ export default function LessonPlayer({ world, node }) {
           </button>
         ) : null
       ) : (
-        <button className="btn-primary w-full" onClick={next} style={{ background: meta?.color }}>
+        <button className="btn-primary w-full" onClick={next} style={{ '--btn': meta?.color }}>
           {t('common.continue')} <span className="inline-block rtl:rotate-180">→</span>
         </button>
       )}
@@ -184,6 +200,7 @@ export default function LessonPlayer({ world, node }) {
 
   return (
     <PlayFrame world={world} progress={(idx + (solved || !isQ ? 1 : 0)) / steps.length} color={boss?.color || meta?.color} footer={footer}>
+      <CoinBurst pop={pop} />
       {boss && (
         <div className="flex items-center gap-3 mb-3">
           <motion.div key={hits} animate={hits ? { x: [0, -12, 12, -6, 0], rotate: [0, -8, 8, 0] } : {}} transition={{ duration: 0.4 }}>
@@ -198,13 +215,9 @@ export default function LessonPlayer({ world, node }) {
       )}
       <div className="flex items-center justify-between min-h-[28px] mb-1" aria-live="polite">
         <span>{streak >= 2 && <motion.span key={streak} initial={{ scale: 1.6 }} animate={{ scale: 1 }} className="chip bg-ember-pale">🔥 {t('lesson.streak', { n: streak })}</motion.span>}</span>
-        <AnimatePresence>
-          {pop > 0 && solved && isQ && (
-            <motion.span key={pop} initial={{ y: 10, opacity: 0 }} animate={{ y: -6, opacity: 1 }} exit={{ opacity: 0 }} className="chip bg-leaf-pale text-leaf">
-              +2 {t('common.xp')} 🙋
-            </motion.span>
-          )}
-        </AnimatePresence>
+        <span className="chip bg-sun-pale text-sm" aria-label={`${t('earn.thisLevel')}: ${earned.coins}`}>
+          <Coin size={16} /> <span className="tabular-nums">+{earned.coins}</span>
+        </span>
       </div>
       <AnimatePresence mode="wait">
         <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>

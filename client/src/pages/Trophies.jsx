@@ -8,7 +8,7 @@ import BadgeIcon from '../components/BadgeIcon.jsx';
 
 const CATS = ['all', 'worlds', 'progress', 'skill', 'habits', 'collect', 'special'];
 const CAT_ICON = { all: '🏆', worlds: '🗺️', progress: '🚀', skill: '🎯', habits: '🔥', collect: '🎒', special: '✨' };
-const LEVEL_UI = { new: ['○', 'bg-black/10', 0], learning: ['◔', 'bg-sun', 0.33], practising: ['◑', 'bg-sky-light', 0.66], mastered: ['●', 'bg-leaf', 1] };
+const LEVEL_UI = { new: ['○', 'bg-soft/20', 0], learning: ['◔', 'bg-sun', 0.33], practising: ['◑', 'bg-sky-light', 0.66], mastered: ['●', 'bg-leaf', 1] };
 
 export default function Trophies() {
   const { content, state } = useGame();
@@ -26,7 +26,7 @@ export default function Trophies() {
         <>
           <div className="flex gap-2 overflow-x-auto no-scrollbar my-3">
             {CATS.map((c) => (
-              <button key={c} onClick={() => setCat(c)} aria-pressed={cat === c} className={`shrink-0 min-h-[44px] px-3 rounded-2xl text-xl border-2 ${cat === c ? 'border-ink bg-white' : 'border-transparent'}`} aria-label={c}>
+              <button key={c} onClick={() => setCat(c)} aria-pressed={cat === c} className={`shrink-0 min-h-[44px] px-3 rounded-2xl text-xl border-2 ${cat === c ? 'border-ink bg-surface' : 'border-transparent'}`} aria-label={c}>
                 {CAT_ICON[c]}
               </button>
             ))}
@@ -58,7 +58,7 @@ export default function Trophies() {
                       <span>{sym} {t(`mastery.${lvl}`)}</span>
                     </div>
                     <div className="flex gap-1 mt-1" aria-hidden>
-                      {[0.33, 0.66, 1].map((s) => <span key={s} className={`h-2 flex-1 rounded-full ${pct >= s ? color : 'bg-black/10'}`} />)}
+                      {[0.33, 0.66, 1].map((s) => <span key={s} className={`h-2 flex-1 rounded-full ${pct >= s ? color : 'bg-soft/20'}`} />)}
                     </div>
                   </div>
                 );

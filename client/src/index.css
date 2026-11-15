@@ -12,11 +12,77 @@
 @tailwind utilities;
 
 :root {
+  /* Layout: one phone-width column floating on a softly lit, grained backdrop. */
+  --c-bg: 255 246 232;
+  --c-surface: 255 253 249;
+  --c-surface2: 249 241 228;
+  --c-ink: 30 38 56;
+  --c-soft: 94 104 125;
+  --c-line: 232 219 198;
+  --c-shadow: 74 52 20;
+  --c-sky: 0 114 178;
+  --c-leaf: 0 140 102;
+  --c-ember: 196 86 0;
+  --c-sky-pale: 221 239 250;
+  --c-sun-pale: 255 238 200;
+  --c-leaf-pale: 214 241 230;
+  --c-berry-pale: 247 227 238;
+  --c-ember-pale: 252 228 211;
+  --glow-1: 247 201 92;
+  --glow-2: 86 180 233;
+  --sheen: 0.85;
+  --grain: 0.05;
   --theme: #0072b2;
   --font-body: 'Baloo 2';
   --font-display: 'Baloo 2';
   font-size: 17px;
   color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --c-bg: 14 18 32;
+    --c-surface: 33 40 62;
+    --c-surface2: 25 31 50;
+    --c-ink: 236 239 247;
+    --c-soft: 160 170 196;
+    --c-line: 52 62 92;
+    --c-shadow: 0 0 0;
+    --c-sky: 110 196 242;
+    --c-leaf: 52 211 160;
+    --c-ember: 255 150 92;
+    --c-sky-pale: 22 52 80;
+    --c-sun-pale: 66 50 18;
+    --c-leaf-pale: 16 58 48;
+    --c-berry-pale: 62 32 56;
+    --c-ember-pale: 72 36 20;
+    --glow-1: 92 70 190;
+    --glow-2: 0 114 178;
+    --sheen: 0.07;
+    --grain: 0.09;
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --c-bg: 14 18 32;
+  --c-surface: 33 40 62;
+  --c-surface2: 25 31 50;
+  --c-ink: 236 239 247;
+  --c-soft: 160 170 196;
+  --c-line: 52 62 92;
+  --c-shadow: 0 0 0;
+  --c-sky: 110 196 242;
+  --c-leaf: 52 211 160;
+  --c-ember: 255 150 92;
+  --c-sky-pale: 22 52 80;
+  --c-sun-pale: 66 50 18;
+  --c-leaf-pale: 16 58 48;
+  --c-berry-pale: 62 32 56;
+  --c-ember-pale: 72 36 20;
+  --glow-1: 92 70 190;
+  --glow-2: 0 114 178;
+  --sheen: 0.07;
+  --grain: 0.09;
+  color-scheme: dark;
 }
 :root[lang='ar'] {
   --font-body: 'Baloo Bhaijaan 2';
@@ -31,29 +97,63 @@
 :root.text-large { font-size: 19px; }
 :root.text-xl { font-size: 21px; }
 
+/* Fine paper grain: what gives surfaces their matte finish. */
+:root {
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 html, body, #root { height: 100%; }
 body {
-  @apply bg-cream text-ink font-sans antialiased;
+  @apply text-ink font-sans antialiased;
+  background-color: rgb(var(--c-bg));
+  background-image:
+    radial-gradient(60rem 36rem at -10% -10%, rgb(var(--glow-1) / 0.32), transparent 60%),
+    radial-gradient(50rem 32rem at 115% 5%, rgb(var(--glow-2) / 0.26), transparent 60%),
+    linear-gradient(rgb(var(--c-bg) / calc(1 - var(--grain) * 2.5)), rgb(var(--c-bg) / calc(1 - var(--grain) * 2.5))),
+    var(--noise);
+  background-attachment: fixed;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
   line-height: 1.45;
 }
 button { touch-action: manipulation; }
-:focus-visible { outline: 3px solid #1e2a3a; outline-offset: 3px; border-radius: 12px; }
+:focus-visible { outline: 3px solid rgb(var(--c-ink)); outline-offset: 3px; border-radius: 12px; }
 
 @layer components {
-  .card { @apply bg-white rounded-blob shadow-card border border-line; }
+  /* Matte card: soft top-lit gradient, grain, a hairline sheen on the top edge and a deep diffuse shadow. */
+  .card {
+    @apply rounded-blob border border-line;
+    background-image: var(--noise), linear-gradient(180deg, rgb(var(--c-surface)), rgb(var(--c-surface2)));
+    background-size: 160px 160px, 100% 100%;
+    background-blend-mode: soft-light, normal;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / var(--sheen)), 0 1px 0 rgb(var(--c-shadow) / 0.06), 0 18px 40px -22px rgb(var(--c-shadow) / 0.55);
+  }
   .btn {
     @apply inline-flex items-center justify-center gap-2 min-h-[52px] px-5 rounded-2xl font-display font-extrabold text-lg
       transition active:translate-y-[2px] disabled:opacity-50 disabled:pointer-events-none select-none;
   }
-  .btn-primary { @apply btn text-white shadow-pop; background: var(--theme); }
-  .btn-sun { @apply btn bg-sun text-ink shadow-pop; }
-  .btn-leaf { @apply btn bg-leaf text-white shadow-pop; }
-  .btn-ghost { @apply btn bg-white text-ink border-2 border-line; }
-  .chip { @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-bold; }
-  .title { @apply font-display font-extrabold text-2xl leading-tight; }
+  /* Satin buttons: lit from above, darker base, a pressed-in lip. Uses --btn so any colour can be set inline. */
+  .btn-primary, .btn-leaf, .btn-sun {
+    @apply btn;
+    background-image: linear-gradient(180deg, color-mix(in srgb, var(--btn) 72%, white) 0%, var(--btn) 46%, color-mix(in srgb, var(--btn) 84%, black) 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.38), inset 0 -2px 0 rgb(0 0 0 / 0.14), 0 4px 0 color-mix(in srgb, var(--btn) 58%, black), 0 12px 22px -12px color-mix(in srgb, var(--btn) 70%, black);
+    text-shadow: 0 1px 0 rgb(0 0 0 / 0.18);
+  }
+  .btn-primary:active, .btn-leaf:active, .btn-sun:active { box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 2px 0 color-mix(in srgb, var(--btn) 58%, black); }
+  .btn-primary { --btn: var(--theme); color: #fff; }
+  .btn-leaf { --btn: #009e73; color: #fff; }
+  .btn-sun { --btn: #f2b01e; color: #2a1d00; text-shadow: 0 1px 0 rgb(255 255 255 / 0.35); }
+  .btn-ghost {
+    @apply btn text-ink border border-line;
+    background-image: var(--noise), linear-gradient(180deg, rgb(var(--c-surface)), rgb(var(--c-surface2)));
+    background-size: 160px 160px, 100% 100%;
+    background-blend-mode: soft-light, normal;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / var(--sheen)), 0 3px 0 rgb(var(--c-shadow) / 0.14);
+  }
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-bold; box-shadow: inset 0 1px 0 rgb(255 255 255 / calc(var(--sheen) * 0.5)); }
+  .title { @apply font-display font-extrabold text-2xl leading-tight; text-wrap: balance; }
   .tap { @apply min-h-[48px] min-w-[48px]; }
+  .coin-text { background: linear-gradient(180deg, #ffe08a, #e2a100 60%, #b47300); -webkit-background-clip: text; background-clip: text; color: transparent; }
 }
 
 @media (prefers-reduced-motion: reduce) {

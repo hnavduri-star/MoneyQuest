@@ -4,8 +4,13 @@
   "version": "0.1.0",
   "description": "MoneyQuest: a child-safe money-learning town game (PWA).",
   "type": "module",
-  "workspaces": ["client", "server"],
-  "engines": { "node": ">=22.13" },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "dev:client": "npm run dev -w client",
@@ -13,7 +18,8 @@
     "build": "npm run content:check && npm run build -w client",
     "start": "npm run start -w server",
     "test": "vitest run",
-    "content:check": "node scripts/check-content.mjs"
+    "content:check": "node scripts/check-content.mjs",
+    "build:page": "npm run build:page -w client"
   },
   "devDependencies": {
     "supertest": "^7.0.0",

@@ -10,7 +10,7 @@ import { Segmented } from '../components/ui.jsx';
 
 /** First run: a grown-up sets the parent PIN (or links this device to an existing family). */
 export default function Welcome() {
-  const { createFamily, joinFamily, setDeviceLang, lang } = useGame();
+  const { createFamily, joinFamily, setDeviceLang, lang, appearance, setDeviceAppearance } = useGame();
   const { t } = useT();
   const [step, setStep] = useState('hello');
   const [first, setFirst] = useState(null);
@@ -20,7 +20,8 @@ export default function Welcome() {
 
   return (
     <div className="min-h-full max-w-app mx-auto px-5 py-8 flex flex-col">
-      <div className="flex justify-end">
+      <div className="flex justify-between gap-2 flex-wrap">
+        <Segmented label="theme" value={appearance} onChange={setDeviceAppearance} options={[{ value: 'light', label: '☀️' }, { value: 'dark', label: '🌙' }]} />
         <Segmented label="language" value={lang} onChange={setDeviceLang} options={LANGUAGES.map((l) => ({ value: l.id, label: l.name }))} />
       </div>
       {step === 'hello' && (

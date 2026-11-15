@@ -39,6 +39,23 @@ npm start            # http://localhost:4100   (PORT, DB_FILE env vars optional)
 
 The SQLite file defaults to `moneyquest/data/moneyquest.db`. On hosts with ephemeral disks, point `DB_FILE` at a persistent volume.
 
+## Earning coins and the Town Bank
+
+- **Every answer pays immediately:** 3 coins for a first-try answer, plus 1 more for each answer in a streak (up to +4), and 1 coin if the guide had to explain it. Replays pay 1. Coins fly up to the wallet, and the level header counts what this level has paid so far.
+- **Finishing levels, mini-games, quests, chests and badges** still pay their bonuses on top.
+- **Town Bank (Shop → Bank):** children can save coins and earn 5% compound interest every week, up to 200 a week. They can also swap earned coins for gems (120 coins = 1 gem) to unlock special items.
+- **Nothing costs real money.** There are no purchases with real money anywhere; the content checker rejects real-money prices.
+
+All amounts live in `content/rewards.json` (`events["question.answered"]`, `bank`, `gemPriceCoins`).
+
+## Look: matte light and dark
+
+Settings → Look offers Light, Dark or Auto (follows the device). The design uses satin buttons, grained matte cards, metallic coins and gems, and a night-time town with lit windows in dark mode. All colours are CSS variables in `client/src/index.css`.
+
+## Preview page (no server)
+
+`npm run build:page` makes `client/dist-page/`: a self-contained build with no service worker and no server calls. Progress stays in the browser. Use it to share a playable preview on any static host.
+
 ## Deploy to Render
 
 MoneyQuest is one Node web service: Express serves the API and the built app.

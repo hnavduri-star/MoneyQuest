@@ -1,5 +1,5 @@
 {
-  "$comment": "Reward rules. Every player action is an event; these rules turn events into XP, coins, gems and stats. Amounts are a number or { base, per: { eventField: multiplier } }.",
+  "$comment": "Reward rules. Every player action is an event; these rules turn events into XP, coins, gems and stats. Amounts are a number or { base, per: { eventField: multiplier } }. Coins are only ever earned by playing; there is no way to buy them with real money.",
   "levelCurve": {
     "base": 25,
     "exponent": 1.1
@@ -154,19 +154,15 @@
         },
         {
           "when": {
+            "kind": "minigame",
             "firstClear": true
-          },
-          "xp": {
-            "per": {
-              "answered": 2
-            }
           },
           "coins": {
             "per": {
-              "answered": 1
+              "correct": 1
             }
           },
-          "source": "participation"
+          "source": "combo"
         }
       ],
       "stats": [
@@ -244,10 +240,6 @@
           "when": {
             "firstClear": false
           }
-        },
-        {
-          "stat": "questionsAnswered",
-          "addField": "answered"
         }
       ]
     },
@@ -305,6 +297,63 @@
           "add": 1
         }
       ]
+    },
+    "question.answered": {
+      "variants": [
+        {
+          "when": {
+            "firstTry": true,
+            "replay": false
+          },
+          "xp": 3,
+          "coins": {
+            "base": 3,
+            "per": {
+              "streakBonus": 1
+            }
+          }
+        },
+        {
+          "when": {
+            "firstTry": true,
+            "replay": true
+          },
+          "xp": 1,
+          "coins": 1
+        },
+        {
+          "when": {
+            "replay": false
+          },
+          "xp": 1,
+          "coins": 1
+        },
+        {
+          "xp": 1
+        }
+      ],
+      "stats": [
+        {
+          "stat": "questionsAnswered",
+          "add": 1
+        },
+        {
+          "stat": "firstTryCorrect",
+          "add": 1,
+          "when": {
+            "firstTry": true
+          }
+        },
+        {
+          "stat": "bestAnswerStreak",
+          "maxField": "streak"
+        }
+      ]
     }
+  },
+  "gemPriceCoins": 120,
+  "bank": {
+    "weeklyRatePct": 5,
+    "maxWeeklyInterest": 200
   }
 }

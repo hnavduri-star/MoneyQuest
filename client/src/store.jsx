@@ -19,8 +19,9 @@ export const DEFAULT_SETTINGS = {
   textSize: 'normal',
   islamic: true,
   sessionLimit: 20,
+  appearance: 'auto', // 'light' | 'dark' | 'auto' (follow the device)
 };
-const CELEBRATE = new Set(['levelUp', 'badge', 'buildingUnlocked', 'buildingUpgraded', 'questDone', 'streak']);
+const CELEBRATE = new Set(['levelUp', 'badge', 'buildingUnlocked', 'buildingUpgraded', 'questDone', 'streak', 'bankInterest']);
 const deviceLang = () => (typeof navigator !== 'undefined' && navigator.language?.startsWith('ar') ? 'ar' : 'en');
 
 const GameCtx = createContext(null);
@@ -49,6 +50,17 @@ export function GameProvider({ children }) {
   const active = data.activeId ? data.profiles[data.activeId] : null;
   const settings = { ...DEFAULT_SETTINGS, ...(active?.meta?.settings || {}) };
   const lang = active ? settings.lang : data.device.lang || deviceLang();
+  const appearance = active ? settings.appearance : data.device.appearance || 'auto';
+  const [systemDark, setSystemDark] = useState(() => typeof window !== 'undefined' && window.matchMedia?.('(prefers-color-scheme: dark)').matches);
+  useEffect(() => {
+    const mq = window.matchMedia?.('(prefers-color-scheme: dark)');
+    if (!mq) return;
+    const on = (e) => setSystemDark(e.matches);
+    mq.addEventListener?.('change', on);
+    return () => mq.removeEventListener?.('change', on);
+  }, []);
+  const isDark = appearance === 'dark' || (appearance === 'auto' && systemDark);
+  const deferred = useRef([]);
   const age = active?.ageTier || '10-12';
 
   // ---------- sync with the family account ----------
@@ -111,13 +123,19 @@ export function GameProvider({ children }) {
 
   // ---------- game events ----------
   const dispatch = useCallback(
-    (event) => {
+    (event, { defer = false } = {}) => {
       const d = ref.current;
       const p = d.profiles[d.activeId];
       if (!p) return [];
       const { state, effects } = processEvent(p.state, event, content, { age: p.ageTier });
       if (state !== p.state) commit((x) => setProfile(x, p.id, { state, updatedAt: Date.now(), dirty: true }));
-      const celebrate = batchCelebrations(effects.filter((e) => CELEBRATE.has(e.type) && !(e.type === 'streak' && e.result === 'same')));
+      const wanted = effects.filter((e) => CELEBRATE.has(e.type) && !(e.type === 'streak' && e.result === 'same'));
+      // During a level, badges/level-ups wait until the level ends so they don't interrupt a question.
+      if (defer) {
+        deferred.current.push(...wanted);
+        return effects;
+      }
+      const celebrate = batchCelebrations([...deferred.current.splice(0), ...wanted]);
       if (celebrate.length) setQueue((q) => [...q, ...celebrate]);
       return effects;
     },
@@ -167,17 +185,29 @@ export function GameProvider({ children }) {
     root.classList.toggle('reduce-motion', !!settings.reducedMotion);
     root.classList.toggle('text-large', settings.textSize === 'large');
     root.classList.toggle('text-xl', settings.textSize === 'xl');
+    // Light / dark: an explicit choice sets data-theme; Auto leaves the device (or host) setting in charge.
+    if (appearance === 'auto') {
+      if (root.dataset.mqTheme) {
+        delete root.dataset.theme;
+        delete root.dataset.mqTheme;
+      }
+    } else {
+      root.dataset.theme = appearance;
+      root.dataset.mqTheme = '1';
+    }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#0E1220' : '#0072B2');
     const theme = content.characters.themes.find((x) => x.id === active?.meta?.theme)?.color || '#0072B2';
     root.style.setProperty('--theme', theme);
     setSoundEnabled(settings.sound);
     setHapticsEnabled(settings.haptics);
     setVoiceEnabled(settings.voice);
-  }, [lang, settings.dyslexia, settings.reducedMotion, settings.textSize, settings.sound, settings.haptics, settings.voice, active?.meta?.theme]);
+  }, [appearance, isDark, lang, settings.dyslexia, settings.reducedMotion, settings.textSize, settings.sound, settings.haptics, settings.voice, active?.meta?.theme]);
 
   // ---------- family + profiles ----------
   const actions = useMemo(
     () => ({
       setDeviceLang: (l) => commit((x) => ({ ...x, device: { ...x.device, lang: l } })),
+      setDeviceAppearance: (a) => commit((x) => ({ ...x, device: { ...x.device, appearance: a } })),
       async createFamily(pin) {
         const pinHash = await localPinHash(pin);
         let fam = { pinHash, local: true };
@@ -268,6 +298,8 @@ export function GameProvider({ children }) {
     settings,
     lang,
     age,
+    appearance,
+    isDark,
     currency: settings.currency,
     dispatch,
     celebrations: queue,
@@ -287,7 +319,7 @@ function batchCelebrations(list) {
   for (const e of list) {
     if (e.type === 'levelUp') level = { ...e, from: level?.from ?? e.level - 1, rankChanged: !!(level?.rankChanged || e.rankChanged) };
     else if (e.type === 'badge') badges.push(e.badgeId);
-    else if (e.type === 'questDone' || e.type === 'streak') toasts.push(e);
+    else if (e.type === 'questDone' || e.type === 'streak' || e.type === 'bankInterest') toasts.push(e);
     else big.push(e);
   }
   return [level, ...big, badges.length ? { type: 'badges', ids: badges } : null, ...toasts].filter(Boolean);

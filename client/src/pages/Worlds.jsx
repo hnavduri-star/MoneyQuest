@@ -27,7 +27,7 @@ export default function Worlds() {
     <div>
       <div className="rounded-blob overflow-hidden border border-line shadow-card mb-4">
         <Skyline height={110} />
-        <div className="bg-white p-4">
+        <div className="bg-surface p-4">
           <h1 className="title">🗺️ {t('journey.title')}</h1>
           <p className="text-soft">{t('journey.intro')}</p>
         </div>
@@ -68,11 +68,11 @@ export default function Worlds() {
                   </span>
                 )}
                 {status === 'complete' && <span className="chip bg-leaf-pale text-leaf text-xs mt-1">✅ {t('journey.done')}</span>}
-                {here && <span className="btn-primary min-h-[40px] text-sm mt-2 w-full" style={{ background: meta.color }}>▶ {t('journey.next')}</span>}
+                {here && <span className="btn-primary min-h-[40px] text-sm mt-2 w-full" style={{ '--btn': meta.color }}>▶ {t('journey.next')}</span>}
               </button>
               {here && (
                 <motion.div className={`absolute top-0 ${left ? 'end-0' : 'start-0'} w-[46%] flex flex-col items-center`} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.3 }} aria-hidden>
-                  <span className="chip bg-ink text-white text-xs">📍 {t('journey.here')}</span>
+                  <span className="chip bg-ink text-cream text-xs">📍 {t('journey.here')}</span>
                   <div className="flex items-end">
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 1.6 }}>
                       <Avatar avatar={active.meta.avatar} level={state.level} equipped={state.inventory.equipped} size={64} theme={theme} />
