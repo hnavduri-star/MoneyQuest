@@ -19,7 +19,9 @@
     "start": "npm run start -w server",
     "test": "vitest run",
     "content:check": "node scripts/check-content.mjs",
-    "build:page": "npm run build:page -w client"
+    "build:page": "npm run build:page -w client",
+    "review:export": "node scripts/review-export.mjs",
+    "review:import": "node scripts/review-import.mjs"
   },
   "devDependencies": {
     "supertest": "^7.0.0",
