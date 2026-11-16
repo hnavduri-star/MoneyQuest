@@ -1391,6 +1391,64 @@
           "rarity": "epic"
         }
       ]
+    },
+    {
+      "id": "arcade",
+      "icon": "🎮",
+      "category": "skill",
+      "criteria": {
+        "stat": "arcadePlays",
+        "gte": "$n"
+      },
+      "name": {
+        "en": "Arcade Player {n}",
+        "ar": "لاعب الألعاب {n}"
+      },
+      "desc": {
+        "en": "Play {n} games in the Games arcade",
+        "ar": "العب {n} ألعاب في ساحة الألعاب"
+      },
+      "tiers": [
+        {
+          "n": 1,
+          "rarity": "common"
+        },
+        {
+          "n": 10,
+          "rarity": "rare"
+        },
+        {
+          "n": 50,
+          "rarity": "epic"
+        }
+      ]
+    },
+    {
+      "id": "arcade-stars",
+      "icon": "🌟",
+      "category": "skill",
+      "criteria": {
+        "stat": "arcadeThreeStars",
+        "gte": "$n"
+      },
+      "name": {
+        "en": "Arcade Star {n}",
+        "ar": "نجم الألعاب {n}"
+      },
+      "desc": {
+        "en": "Get 3 stars in arcade games {n} times",
+        "ar": "احصل على ٣ نجوم في ألعاب الساحة {n} مرات"
+      },
+      "tiers": [
+        {
+          "n": 1,
+          "rarity": "common"
+        },
+        {
+          "n": 10,
+          "rarity": "epic"
+        }
+      ]
     }
   ]
 }

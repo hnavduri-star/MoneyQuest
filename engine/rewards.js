@@ -269,6 +269,24 @@ const HANDLERS = {
     ctx.effects.push({ type: 'gemsBought', count });
   },
 
+  /** Arcade games: replayable, but only the first few plays of each game per day pay coins. */
+  'arcade.played'(ctx, ev) {
+    const { s, content, day } = ctx;
+    const game = content.arcade?.games?.find((g) => g.id === ev.gameId);
+    if (!game) throw new Rejected('unknownGame');
+    ev.stars = Math.max(1, Math.min(3, Math.round(ev.stars || 1)));
+    s.arcade ||= {};
+    const rec = (s.arcade[game.id] ||= { best: 0, plays: 0, bestStars: 0, daily: {} });
+    rec.plays += 1;
+    const newBest = (ev.score || 0) > rec.best;
+    rec.best = Math.max(rec.best, ev.score || 0);
+    rec.bestStars = Math.max(rec.bestStars, ev.stars);
+    rec.daily = { [day]: (rec.daily?.[day] || 0) + 1 };
+    ev.capped = rec.daily[day] > (content.rewards.arcadeRewardedPlaysPerDay ?? 3);
+    ev.newBest = newBest;
+    ctx.effects.push({ type: 'arcadeResult', gameId: game.id, stars: ev.stars, newBest, capped: ev.capped });
+  },
+
   'review.completed'(ctx, ev) {
     const { s, day } = ctx;
     let correct = 0;

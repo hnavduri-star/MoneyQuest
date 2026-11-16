@@ -1,5 +1,5 @@
 {
-  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing. priceScale multiplies every lesson money amount (and money answers) so prices feel local, e.g. ×10 for rupees.",
+  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing. priceScale multiplies every lesson money amount (and money answers) so prices feel local, e.g. ×10 for rupees. `cash` lists the notes and coins used in the cash games.",
   "defaultCity": "dubai",
   "cities": [
     {
@@ -383,7 +383,24 @@
           "landmark": "🐉"
         }
       },
-      "priceScale": 1
+      "priceScale": 1,
+      "cash": {
+        "notes": [
+          5,
+          10,
+          20,
+          50,
+          100,
+          200,
+          500,
+          1000
+        ],
+        "coins": [
+          0.25,
+          0.5,
+          1
+        ]
+      }
     },
     {
       "region": "uae",
@@ -766,7 +783,24 @@
           "landmark": "🐉"
         }
       },
-      "priceScale": 1
+      "priceScale": 1,
+      "cash": {
+        "notes": [
+          5,
+          10,
+          20,
+          50,
+          100,
+          200,
+          500,
+          1000
+        ],
+        "coins": [
+          0.25,
+          0.5,
+          1
+        ]
+      }
     },
     {
       "id": "london",
@@ -1148,7 +1182,25 @@
           }
         ]
       },
-      "priceScale": 1
+      "priceScale": 1,
+      "cash": {
+        "notes": [
+          5,
+          10,
+          20,
+          50
+        ],
+        "coins": [
+          0.01,
+          0.02,
+          0.05,
+          0.1,
+          0.2,
+          0.5,
+          1,
+          2
+        ]
+      }
     },
     {
       "id": "paris",
@@ -1530,7 +1582,27 @@
           }
         ]
       },
-      "priceScale": 1
+      "priceScale": 1,
+      "cash": {
+        "notes": [
+          5,
+          10,
+          20,
+          50,
+          100,
+          200
+        ],
+        "coins": [
+          0.01,
+          0.02,
+          0.05,
+          0.1,
+          0.2,
+          0.5,
+          1,
+          2
+        ]
+      }
     },
     {
       "id": "mumbai",
@@ -1912,7 +1984,24 @@
           }
         ]
       },
-      "priceScale": 10
+      "priceScale": 10,
+      "cash": {
+        "notes": [
+          10,
+          20,
+          50,
+          100,
+          200,
+          500
+        ],
+        "coins": [
+          1,
+          2,
+          5,
+          10,
+          20
+        ]
+      }
     },
     {
       "id": "new-york",
@@ -2292,7 +2381,24 @@
           }
         ]
       },
-      "priceScale": 1
+      "priceScale": 1,
+      "cash": {
+        "notes": [
+          1,
+          2,
+          5,
+          10,
+          20,
+          50,
+          100
+        ],
+        "coins": [
+          0.01,
+          0.05,
+          0.1,
+          0.25
+        ]
+      }
     }
   ]
 }

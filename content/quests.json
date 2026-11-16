@@ -172,6 +172,20 @@
         "xp": 15,
         "coins": 15
       }
+    },
+    {
+      "id": "play-arcade",
+      "group": "game",
+      "event": "arcade.played",
+      "target": 2,
+      "text": {
+        "en": "Play 2 games in the Games arcade",
+        "ar": "العب لعبتين في ساحة الألعاب"
+      },
+      "reward": {
+        "xp": 20,
+        "coins": 20
+      }
     }
   ],
   "weekly": [

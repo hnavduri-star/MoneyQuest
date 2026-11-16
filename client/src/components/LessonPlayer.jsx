@@ -138,7 +138,7 @@ export default function LessonPlayer({ world, node }) {
   // ---- Boss intro ----
   if (boss && !started)
     return (
-      <PlayFrame world={world} progress={0} color={boss.color}>
+      <PlayFrame node={node} world={world} progress={0} color={boss.color}>
         <div className="flex flex-col items-center text-center gap-4 pt-6">
           <BossArt boss={boss} icon={node.icon} />
           <h1 className="title text-3xl">{tx(boss.name)}</h1>
@@ -200,7 +200,7 @@ export default function LessonPlayer({ world, node }) {
   );
 
   return (
-    <PlayFrame world={world} progress={(idx + (solved || !isQ ? 1 : 0)) / steps.length} color={boss?.color || meta?.color} footer={footer}>
+    <PlayFrame node={node} world={world} progress={(idx + (solved || !isQ ? 1 : 0)) / steps.length} color={boss?.color || meta?.color} footer={footer}>
       <CoinBurst pop={pop} />
       {boss && (
         <div className="flex items-center gap-3 mb-3">

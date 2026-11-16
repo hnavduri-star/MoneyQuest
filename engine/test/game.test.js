@@ -13,7 +13,7 @@ import { pickDailyQuests } from '../quests.js';
 import { addDays, daysBetween, weekKey } from '../dates.js';
 import { starsFromMistakes, comboMultiplier } from '../scoring.js';
 import { contentVars, cityContext, editionCities, getEdition } from '../city.js';
-import { minigameConfig } from '../progress.js';
+import { minigameConfig, journeyProgress, nodePosition } from '../progress.js';
 import { fill, tr as trText } from '../text.js';
 
 const content = loadContent();
@@ -112,6 +112,41 @@ describe('cities and partner editions', () => {
     const std = contentVars(content, { cityId: 'london', editionId: 'standard', lang: 'en' });
     expect(std.bank).toBe('Town Bank');
     expect(contentVars(content, { editionId: 'sunrise-school', lang: 'en' }).school).toBe('Sunrise International School');
+  });
+});
+
+describe('games arcade and journey progress', () => {
+  it('arcade games pay for the first 3 plays a day, then XP only; best score is kept', () => {
+    let s = fresh();
+    const coins = [];
+    for (let i = 0; i < 4; i++) {
+      const r = processEvent(s, { type: 'arcade.played', gameId: 'count-cash', score: 10 + i, stars: 3 }, content, opts);
+      coins.push(r.effects.filter((e) => e.type === 'reward' && e.source === 'arcade.played').reduce((a, e) => a + e.coins, 0));
+      s = r.state;
+    }
+    expect(coins).toEqual([15, 15, 15, 0]);
+    expect(s.arcade['count-cash']).toMatchObject({ best: 13, plays: 4, bestStars: 3 });
+    expect(s.badges['arcade-1']).toBeTruthy();
+    const tomorrow = processEvent(s, { type: 'arcade.played', gameId: 'count-cash', score: 1, stars: 1 }, content, { ...opts, day: addDays(DAY, 1) });
+    expect(tomorrow.effects.some((e) => e.type === 'reward' && e.coins === 5)).toBe(true);
+    expect(processEvent(s, { type: 'arcade.played', gameId: 'nope', score: 1 }, content, opts).effects[0].code).toBe('unknownGame');
+  });
+  it('journey progress shows overall %, the current stop and lesson position', () => {
+    const p0 = journeyProgress(fresh(), content, '10-12');
+    expect(p0.pct).toBe(0);
+    expect(p0.current).toMatchObject({ worldId: 'money-basics', stopNumber: 1, nodesDone: 0 });
+    const s = clearWorld(fresh(), 'money-basics').state;
+    const p1 = journeyProgress(s, content, '10-12');
+    expect(p1.worldsDone).toBe(1);
+    expect(p1.current.worldId).toBe('salary-street');
+    expect(p1.pct).toBeGreaterThan(0);
+    expect(nodePosition(content.worlds['money-basics'], 'needs-wants', '10-12')).toEqual({ index: 2, total: 8 });
+  });
+  it('every city has notes and coins for the cash games', () => {
+    for (const c of content.cities.cities) {
+      expect(c.cash.notes.length).toBeGreaterThan(2);
+      expect(c.cash.coins.length).toBeGreaterThan(1);
+    }
   });
 });
 

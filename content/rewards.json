@@ -349,11 +349,63 @@
           "maxField": "streak"
         }
       ]
+    },
+    "arcade.played": {
+      "variants": [
+        {
+          "when": {
+            "capped": true
+          },
+          "xp": 2
+        },
+        {
+          "when": {
+            "stars": 3
+          },
+          "xp": 15,
+          "coins": 15
+        },
+        {
+          "when": {
+            "stars": 2
+          },
+          "xp": 10,
+          "coins": 10
+        },
+        {
+          "xp": 5,
+          "coins": 5
+        }
+      ],
+      "bonus": [
+        {
+          "when": {
+            "newBest": true,
+            "capped": false
+          },
+          "coins": 5,
+          "source": "newBest"
+        }
+      ],
+      "stats": [
+        {
+          "stat": "arcadePlays",
+          "add": 1
+        },
+        {
+          "stat": "arcadeThreeStars",
+          "add": 1,
+          "when": {
+            "stars": 3
+          }
+        }
+      ]
     }
   },
   "gemPriceCoins": 120,
   "bank": {
     "weeklyRatePct": 5,
     "maxWeeklyInterest": 200
-  }
+  },
+  "arcadeRewardedPlaysPerDay": 3
 }

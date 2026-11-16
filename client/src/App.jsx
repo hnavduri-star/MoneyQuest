@@ -16,6 +16,7 @@ import Quests from './pages/Quests.jsx';
 import Trophies from './pages/Trophies.jsx';
 import Shop from './pages/Shop.jsx';
 import Settings from './pages/Settings.jsx';
+import Arcade, { ArcadeGame } from './pages/Arcade.jsx';
 
 export default function App() {
   const { family, active, profiles, settings } = useGame();
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/town" element={<Town />} />
           <Route path="/worlds" element={<Worlds />} />
           <Route path="/world/:worldId" element={<WorldMap />} />
+          <Route path="/games" element={<Arcade />} />
           <Route path="/quests" element={<Quests />} />
           <Route path="/trophies" element={<Trophies />} />
           <Route path="/shop" element={<Shop />} />
@@ -47,6 +49,7 @@ export default function App() {
         </Route>
         <Route path="/play/:worldId/:nodeId" element={<Play />} />
         <Route path="/review" element={<Review />} />
+        <Route path="/games/:gameId" element={<ArcadeGame />} />
         <Route path="/edit-character" element={<Creator edit />} />
         <Route path="/create" element={<Creator />} />
         <Route path="/profiles" element={<Profiles />} />

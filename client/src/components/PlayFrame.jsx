@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useT } from '../lib/i18n.js';
+import { nodePosition } from '@engine/progress.js';
 import { motion } from 'framer-motion';
 import { Modal, Progress, Coin } from './ui.jsx';
 import Avatar from './Avatar.jsx';
 import { useGame } from '../store.jsx';
 
 /** Full-screen frame for levels: progress, a gentle "leave" button, content. */
-export default function PlayFrame({ world, progress, children, footer, color }) {
+export default function PlayFrame({ world, progress, children, footer, color, node }) {
   const { t } = useT();
   const nav = useNavigate();
   const [quit, setQuit] = useState(false);
@@ -31,6 +32,7 @@ export default function PlayFrame({ world, progress, children, footer, color }) 
           <Coin size={18} /> <span className="tabular-nums">{state?.coins}</span>
         </motion.span>
       </div>
+      {node && <Where world={world} node={node} />}
       <div className="flex-1 px-4 pb-4">{children}</div>
       {footer && <div className="sticky bottom-0 z-20 px-4 pt-2 pb-safe bg-cream">{footer}</div>}
       <Modal open={quit} onClose={() => setQuit(false)} label={t('lesson.quit')}>
@@ -45,5 +47,19 @@ export default function PlayFrame({ world, progress, children, footer, color }) 
         </div>
       </Modal>
     </div>
+  );
+}
+
+/** "Money Basics · Lesson 2 of 8 · Stop 1 of 10": always shows where you are in the journey. */
+function Where({ world, node }) {
+  const { content, age } = useGame();
+  const { t, tx } = useT();
+  const pos = nodePosition(world, node.id, age);
+  const stopNo = content.worldIndex.filter((w) => w.playable).findIndex((w) => w.id === world.id) + 1;
+  const total = content.worldIndex.filter((w) => w.playable).length;
+  return (
+    <p className="px-4 -mt-1 mb-2 text-xs font-bold text-soft" aria-live="off">
+      {world.icon} {tx(world.name)} · {t('journey.lessonOf', { n: pos.index, total: pos.total })} · {t('journey.stopOf', { n: stopNo, total })}
+    </p>
   );
 }

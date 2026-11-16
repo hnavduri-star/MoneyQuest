@@ -8,6 +8,7 @@ import { townLiveliness } from '@engine/town.js';
 import Building from '../components/Building.jsx';
 import Avatar from '../components/Avatar.jsx';
 import Mascot from '../components/Mascot.jsx';
+import JourneyCard from '../components/JourneyCard.jsx';
 import { PartnerStrip } from '../components/Brand.jsx';
 import { play } from '../lib/sound.js';
 
@@ -33,6 +34,7 @@ export default function Town() {
   return (
     <div className="space-y-4">
       <Mascot text={greeting} mood="happy" size={72} />
+      <JourneyCard />
       <PartnerStrip compact />
 
       {/* Town scene */}
@@ -119,11 +121,6 @@ export default function Town() {
       </section>
       <p className="text-center text-sm text-soft">{t('town.tapBuilding')}</p>
 
-      {current?.next && (
-        <button className="btn-primary w-full text-xl" onClick={() => nav(`/play/${current.meta.id}/${current.next.id}`)}>
-          ▶ {t('town.continue', { world: tx(current.meta.name) })}
-        </button>
-      )}
       {due.length > 0 && (
         <button className="card w-full p-4 flex items-center gap-3 text-start" onClick={() => nav('/review')}>
           <span className="text-4xl" aria-hidden>🔁</span>

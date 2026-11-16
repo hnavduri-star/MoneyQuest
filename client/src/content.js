@@ -9,6 +9,7 @@ import characters from '@content/characters.json';
 import worldIndex from '@content/worlds/index.json';
 import cities from '@content/cities.json';
 import editions from '@content/editions.json';
+import arcade from '@content/arcade.json';
 import en from '@content/i18n/en.json';
 import ar from '@content/i18n/ar.json';
 
@@ -17,7 +18,7 @@ const worlds = Object.entries(worldFiles)
   .filter(([path]) => !path.endsWith('/index.json'))
   .map(([, w]) => w);
 
-export const content = buildContent({ rewards, ranks, badges, quests, shop, characters, worldIndex, worlds, cities, editions, i18n: { en, ar } });
+export const content = buildContent({ rewards, ranks, badges, quests, shop, characters, worldIndex, worlds, cities, editions, arcade, i18n: { en, ar } });
 export const LANGUAGES = [
   { id: 'en', name: 'English', dir: 'ltr', speech: 'en-US' },
   { id: 'ar', name: 'العربية', dir: 'rtl', speech: 'ar-SA' },

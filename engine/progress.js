@@ -83,3 +83,35 @@ function resolveAgeDeep(v, age) {
   }
   return v;
 }
+
+/**
+ * Where the child is on the whole money journey: overall %, current stop, lesson number within it,
+ * and the next node to play. Used for the "My money journey" card and lesson headers.
+ */
+export function journeyProgress(state, content, age) {
+  let done = 0;
+  let total = 0;
+  let current = null;
+  let worldsDone = 0;
+  const playable = content.worldIndex.filter((w) => w.playable);
+  for (const meta of playable) {
+    const world = content.worlds[meta.id];
+    const nodes = visibleNodes(world, age).filter((n) => n.required);
+    const finished = nodes.filter((n) => nodeProgress(state, world.id, n.id)).length;
+    done += finished;
+    total += nodes.length;
+    if (finished === nodes.length) worldsDone++;
+    else if (!current && worldStatus(state, meta, content, age) === 'open') {
+      const next = nodes.find((n) => !nodeProgress(state, world.id, n.id));
+      current = { worldId: world.id, stopNumber: playable.indexOf(meta) + 1, nodesDone: finished, nodesTotal: nodes.length, next };
+    }
+  }
+  return { done, total, pct: total ? done / total : 0, worldsDone, worldsTotal: playable.length, current };
+}
+
+/** "Lesson 3 of 8" for a node inside its world (required nodes only). */
+export function nodePosition(world, nodeId, age) {
+  const nodes = visibleNodes(world, age);
+  const i = nodes.findIndex((n) => n.id === nodeId);
+  return { index: i + 1, total: nodes.length };
+}

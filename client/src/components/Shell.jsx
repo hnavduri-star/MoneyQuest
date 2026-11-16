@@ -50,6 +50,7 @@ export function HUD() {
 const TABS = [
   { to: '/town', icon: '🏘️', key: 'nav.town' },
   { to: '/worlds', icon: '🗺️', key: 'nav.worlds' },
+  { to: '/games', icon: '🎮', key: 'nav.games' },
   { to: '/quests', icon: '📜', key: 'nav.quests' },
   { to: '/trophies', icon: '🏆', key: 'nav.trophies' },
   { to: '/shop', icon: '🛍️', key: 'nav.shop' },
@@ -61,7 +62,7 @@ export function BottomNav() {
   const claimable = (state.daily?.quests || []).some((q) => q.done && !q.claimed) || !state.daily?.chestClaimed || (state.weekly?.done && !state.weekly?.claimed);
   return (
     <nav className="fixed bottom-0 inset-x-0 z-30 bg-surface border-t border-line pb-safe" aria-label="main">
-      <div className="max-w-app mx-auto grid grid-cols-5">
+      <div className="max-w-app mx-auto grid grid-cols-6">
         {TABS.map((tab) => (
           <NavLink key={tab.to} to={tab.to} onClick={() => play('tap')} className={({ isActive }) => `relative flex flex-col items-center justify-center min-h-[60px] text-xs font-bold ${isActive ? 'text-ink' : 'text-soft'}`}>
             {({ isActive }) => (
@@ -71,7 +72,7 @@ export function BottomNav() {
                   {tab.icon}
                 </span>
                 <span className="relative">{t(tab.key)}</span>
-                {tab.to === '/quests' && claimable && <span className="absolute top-2 end-[30%] w-3 h-3 rounded-full bg-ember border-2 border-white" aria-label="!" />}
+                {tab.to === '/quests' && claimable && <span className="absolute top-2 end-[25%] w-3 h-3 rounded-full bg-ember border-2 border-white" aria-label="!" />}
               </>
             )}
           </NavLink>

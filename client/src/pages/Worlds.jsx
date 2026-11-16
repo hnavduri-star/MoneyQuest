@@ -7,6 +7,7 @@ import { Progress } from '../components/ui.jsx';
 import Avatar from '../components/Avatar.jsx';
 import Companion from '../components/Companion.jsx';
 import Skyline from '../components/Skyline.jsx';
+import JourneyCard from '../components/JourneyCard.jsx';
 import { PartnerStrip } from '../components/Brand.jsx';
 import { play } from '../lib/sound.js';
 
@@ -34,6 +35,7 @@ export default function Worlds() {
         </div>
       </div>
 
+      <div className="mb-4"><JourneyCard compact /></div>
       <div className="mb-4"><PartnerStrip compact /></div>
       <ol className="relative">
         {/* the road */}
@@ -72,7 +74,7 @@ export default function Worlds() {
                   </span>
                 )}
                 {status === 'complete' && <span className="chip bg-leaf-pale text-leaf text-xs mt-1">✅ {t('journey.done')}</span>}
-                {here && <span className="btn-primary min-h-[40px] text-sm mt-2 w-full" style={{ '--btn': meta.color }}>▶ {t('journey.next')}</span>}
+                {here && <span className="btn-primary min-h-[40px] text-sm mt-2 w-full" style={{ '--btn': meta.color }}>▶ {t('common.continue')}</span>}
               </button>
               {here && (
                 <motion.div className={`absolute top-0 ${left ? 'end-0' : 'start-0'} w-[46%] flex flex-col items-center`} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.3 }} aria-hidden>

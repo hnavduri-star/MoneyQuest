@@ -113,7 +113,7 @@ export default function SortGame({ world, node }) {
   if (result) return <Results key={run} world={world} node={node} stars={result.stars} effects={result.effects} onReplay={restart} extra={extra} />;
 
   return (
-    <PlayFrame world={world} progress={phase === 'ready' ? 0 : 1 - time / total} color={meta.color}>
+    <PlayFrame node={node} world={world} progress={phase === 'ready' ? 0 : 1 - time / total} color={meta.color}>
       {phase === 'ready' ? (
         <div className="flex flex-col items-center text-center gap-4 pt-4">
           <h1 className="title text-3xl">{tx(node.title)}</h1>
