@@ -78,6 +78,24 @@ function scaleDeep(v, k) {
   return v;
 }
 
+const AR = '٠١٢٣٤٥٦٧٨٩';
+const toWestern = (str) => str.replace(/[٠-٩]/g, (d) => String(AR.indexOf(d))).replace(/٫/g, '.');
+const toArabic = (str) => str.replace(/\d/g, (d) => AR[d]).replace(/\./g, '٫');
+/** Scale standalone numbers (Western or Arabic digits) that equal one of the step's amounts; leave counts and percentages. */
+export function scalePlainNumbers(v, amounts, k) {
+  if (typeof v === 'string') {
+    return v.replace(/(?<![\d.٫[])([\d٠-٩]+(?:[.٫][\d٠-٩]+)?)(?![\d٠-٩]|\s*[%٪]|\]\])/g, (raw) => {
+      const arabic = /[٠-٩]/.test(raw);
+      const n = Number(toWestern(raw));
+      if (!amounts.has(n)) return raw;
+      const scaled = String(r2(n * k));
+      return arabic ? toArabic(scaled) : scaled;
+    });
+  }
+  if (v && typeof v === 'object' && !Array.isArray(v)) return Object.fromEntries(Object.entries(v).map(([key, x]) => [key, scalePlainNumbers(x, amounts, k)]));
+  return v;
+}
+
 function resolveNums(step, ctx) {
   const fix = (v) => (typeof v === 'string' ? Number(v.replace(/\{(\w+)\}/g, (_, k) => ctx?.nums?.[k] ?? NaN)) : v);
   let out = step;
@@ -86,7 +104,14 @@ function resolveNums(step, ctx) {
   // so the arithmetic in the question still works (e.g. salaries ×0.25 in pounds, ×5 in rupees).
   const k = stepPriceScale(out, ctx?.prices);
   if (k === 1) return { ...out, priceScale: 1 };
+  // Worked explanations and hints ("15 × 4 = 60") use plain numbers: scale the ones that are amounts
+  // from this step (or its answer) so the explanation matches the prices the child sees.
+  const amounts = new Set([...JSON.stringify(out).matchAll(MONEY)].map((m) => Number(m[1])));
+  if (out.money && typeof out.answer === 'number') amounts.add(out.answer);
+  // Intermediate steps like "10% of 50 is 5, so 50 − 5 = 45": a difference between two amounts is an amount too.
+  for (const a of [...amounts]) for (const b of [...amounts]) if (a > b) amounts.add(r2(a - b));
   out = scaleDeep(out, k);
+  for (const field of ['explain', 'hint']) if (out[field]) out = { ...out, [field]: scalePlainNumbers(out[field], amounts, k) };
   if (out.money && typeof out.answer === 'number') out = { ...out, answer: r2(out.answer * k), tolerance: (out.tolerance || 0) * k };
   if (out.type === 'estimate' && out.money) out = { ...out, min: r2(out.min * k), max: r2(out.max * k), step: r2((out.step || 1) * k) };
   return { ...out, priceScale: k };

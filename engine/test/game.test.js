@@ -108,6 +108,13 @@ describe('cities and partner editions', () => {
     expect(q('mumbai').answer).toBe(900000);
     expect(q('london').priceScale).toBe(0.25);
   });
+  it('worked explanations follow scaled prices (amounts scale, counts and percentages do not)', () => {
+    const node = content.worlds['money-basics'].nodes.find((n) => n.id === 'earning');
+    const q = stepsForAge(node, '10-12', cityContext(content, 'mumbai')).find((s) => s.type === 'number');
+    expect(q.answer).toBe(600);
+    expect(q.hint.en).toBe('Multiply: 150 × 4');
+    expect(q.hint.ar).toBe('اضرب: ١٥٠ × ٤');
+  });
   it('the currency mini-game sorts the chosen city\'s own places', () => {
     const node = content.worlds['currency-bazaar'].nodes.find((n) => n.kind === 'minigame');
     const cfg = minigameConfig(node, cityContext(content, 'paris'));
