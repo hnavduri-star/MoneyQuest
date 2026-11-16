@@ -32,9 +32,8 @@ describe('content', () => {
   it('passes validation', () => {
     expect(validateContent(content, { sims: SIM_IDS, games: GAME_IDS })).toEqual([]);
   });
-  it('has a focused set of badges in all four rarity tiers', () => {
-    expect(content.badges.length).toBeGreaterThanOrEqual(40);
-    expect(content.badges.length).toBeLessThanOrEqual(90);
+  it('has 100+ badges with rarity tiers', () => {
+    expect(content.badges.length).toBeGreaterThanOrEqual(100);
     expect(new Set(content.badges.map((b) => b.rarity))).toEqual(new Set(['common', 'rare', 'epic', 'legendary']));
   });
   it('worlds have 5-8 levels plus mini-game, quiz and boss', () => {
@@ -98,22 +97,6 @@ describe('cities and partner editions', () => {
     expect(num('mumbai').answer).toBe(600);
     const weeks = content.worlds['money-basics'].nodes.find((n) => n.id === 'piggy-goals');
     expect(stepsForAge(weeks, '10-12', cityContext(content, 'mumbai')).find((s) => s.type === 'number').answer).toBe(5);
-  });
-  it('big amounts (salaries) get realistic local prices and the sums still work', () => {
-    const node = content.worlds['salary-street'].nodes.find((n) => n.id === 'what-is-salary');
-    const q = (city) => stepsForAge(node, '10-12', cityContext(content, city)).find((s) => s.type === 'number');
-    expect(q('dubai').answer).toBe(180000);
-    expect(q('london').answer).toBe(45000);
-    expect(q('london').prompt.en).toContain('[[3750]]');
-    expect(q('mumbai').answer).toBe(900000);
-    expect(q('london').priceScale).toBe(0.25);
-  });
-  it('worked explanations follow scaled prices (amounts scale, counts and percentages do not)', () => {
-    const node = content.worlds['money-basics'].nodes.find((n) => n.id === 'earning');
-    const q = stepsForAge(node, '10-12', cityContext(content, 'mumbai')).find((s) => s.type === 'number');
-    expect(q.answer).toBe(600);
-    expect(q.hint.en).toBe('Multiply: 150 × 4');
-    expect(q.hint.ar).toBe('اضرب: ١٥٠ × ٤');
   });
   it('the currency mini-game sorts the chosen city\'s own places', () => {
     const node = content.worlds['currency-bazaar'].nodes.find((n) => n.kind === 'minigame');
@@ -249,57 +232,24 @@ describe('reward engine', () => {
     expect(state.town.buildings['money-basics']).toBe(1);
     expect(effects.some((e) => e.type === 'buildingUnlocked' && e.worldId === 'money-basics')).toBe(true);
     expect(state.badges['world-money-basics']).toBeTruthy();
+    expect(state.badges['stars-money-basics']).toBeTruthy();
     expect(state.badges['first-boss']).toBeTruthy();
     expect(worldStatus(state, meta, content, '10-12')).toBe('open');
   });
-  it('the journey branches, every stop is reachable, and a started world never re-locks', () => {
+  it('the Dubai journey is a chain, and a started world never re-locks', () => {
     const journey = content.worldIndex.filter((w) => w.playable);
-    expect(journey).toHaveLength(14);
-    const seen = new Set();
-    for (const w of journey) {
-      for (const r of [...(w.requires || []), ...(w.requiresAny || [])]) expect(seen.has(r)).toBe(true);
-      seen.add(w.id);
-    }
-    // finishing the family budget opens three paths at once: banking, shopping and business
-    let st = fresh();
-    for (const id of ['money-basics', 'salary-street', 'household-budget']) st = clearWorld(st, id).state;
-    const open = journey.filter((w) => worldStatus(st, w, content, '10-12') === 'open').map((w) => w.id);
-    expect(open).toEqual(expect.arrayContaining(['bank-town', 'smart-shopper', 'lemonade-empire', 'giving-garden']));
-    const bank = content.worldIndex.find((w) => w.id === 'bank-products');
-    const s = processEvent(fresh(), { type: 'level.completed', worldId: 'bank-products', nodeId: 'kids-account', stars: 3 }, content, opts).state;
+    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'bank-products', 'cash-cards', 'currency-bazaar', 'lemonade-empire', 'pl-factory', 'debt-dungeon']);
+    journey.slice(1).forEach((w, i) => expect(w.requires).toEqual([journey[i].id]));
+    journey.forEach((w) => expect(w.location?.en).toBeTruthy());
+    const bank = content.worldIndex.find((w) => w.id === 'bank-town');
+    const s = processEvent(fresh(), { type: 'level.completed', worldId: 'bank-town', nodeId: 'what-is-a-bank', stars: 3 }, content, opts).state;
     expect(worldStatus(s, bank, content, '10-12')).toBe('open');
     expect(worldStatus(fresh(), bank, content, '10-12')).toBe('locked');
-  });
-  it('passport stamps, missions, savings goal, family challenge and learning checks', () => {
-    let s = processEvent(fresh(), { type: 'level.completed', worldId: 'money-basics', nodeId: 'boss', stars: 3, cityId: 'london' }, content, opts).state;
-    expect(s.passport.london['money-basics']).toBe(DAY);
-    s = processEvent(s, { type: 'level.completed', worldId: 'money-basics', nodeId: 'boss', stars: 3, cityId: 'paris' }, content, opts).state;
-    expect(s.stats.citiesVisited).toBe(2);
-    expect(s.badges['passport-2']).toBeTruthy();
-    s = processEvent(s, { type: 'mission.done', worldId: 'money-basics' }, content, opts).state;
-    expect(s.missions['money-basics'].status).toBe('pending');
-    const before = s.coins;
-    s = processEvent(s, { type: 'mission.approve', worldId: 'money-basics' }, content, opts).state;
-    expect(s.missions['money-basics'].status).toBe('approved');
-    expect(s.coins).toBeGreaterThan(before);
-    s = processEvent({ ...s, coins: 0 }, { type: 'bank.goal', itemId: 'pet-cat' }, content, opts).state;
-    expect(s.bank.goal).toBe('pet-cat');
-    const r = processEvent({ ...s, coins: 1000 }, { type: 'daily.login' }, content, opts);
-    expect(r.effects.some((e) => e.type === 'goalReached')).toBe(true);
-    expect(processEvent(s, { type: 'family.claim', progress: 10, target: 100 }, content, opts).effects[0].code).toBe('notYet');
-    const fam = processEvent(s, { type: 'family.claim', progress: 120, target: 100 }, content, opts);
-    expect(fam.state.badges['family-team']).toBeTruthy();
-    expect(processEvent(fam.state, { type: 'family.claim', progress: 120, target: 100 }, content, opts).effects[0].code).toBe('alreadyClaimed');
-    s = processEvent(s, { type: 'check.completed', worldId: 'money-basics', phase: 'pre', score: 2, total: 5 }, content, opts).state;
-    const post = processEvent(s, { type: 'check.completed', worldId: 'money-basics', phase: 'post', score: 5, total: 5 }, content, opts);
-    expect(post.state.checks['money-basics']).toMatchObject({ pre: { score: 2 }, post: { score: 5 } });
-    expect(post.effects.some((e) => e.type === 'reward' && e.source === 'check.completed' && e.coins === 30)).toBe(true);
   });
   it('every playable world has lessons, a mini-game, a quiz and a boss, and every lesson starts by explaining', () => {
     for (const w of Object.values(content.worlds)) {
       const kinds = w.nodes.map((n) => n.kind);
       expect(kinds.filter((k) => k === 'lesson').length).toBeGreaterThanOrEqual(4);
-      expect(kinds.filter((k) => k === 'minigame')).toHaveLength(1);
       expect(kinds).toContain('minigame');
       expect(kinds).toContain('quiz');
       expect(kinds.at(-1)).toBe('boss');
@@ -317,6 +267,7 @@ describe('reward engine', () => {
     expect(coinsOf(processEvent(s, q({ firstTry: true, streak: 3 }), content, opts))).toBe(1);
     for (let i = 1; i <= 10; i++) s = processEvent(s, q({ firstTry: true, streak: i }), content, opts).state;
     expect(s.stats.questionsAnswered).toBe(10);
+    expect(s.badges['answers-10']).toBeTruthy();
     expect(s.badges['streak-10']).toBeTruthy();
   });
   it('Town Bank: deposit, weekly compound interest, withdraw; gems bought with earned coins', () => {
@@ -346,6 +297,7 @@ describe('reward engine', () => {
     const events = w.nodes.filter((n) => !n.optional).map((n) => ({ type: 'level.completed', worldId: 'bank-town', nodeId: n.id, stars: 2, mistakes: 1 }));
     state = processEvents(state, events, content, opts).state;
     expect(state.badges['world-bank-town']).toBeTruthy();
+    expect(state.badges['two-worlds']).toBeTruthy();
     expect(state.badges['islamic-banking']).toBeUndefined();
   });
   it('buildings upgrade as mastery improves', () => {

@@ -15,12 +15,9 @@ import ChoiceStep from '../steps/ChoiceStep.jsx';
 import NumberStep from '../steps/NumberStep.jsx';
 import SortStep from '../steps/SortStep.jsx';
 import SimStep from '../steps/SimStep.jsx';
-import OrderStep from '../steps/OrderStep.jsx';
-import EstimateStep from '../steps/EstimateStep.jsx';
-import ScenarioStep from '../steps/ScenarioStep.jsx';
 
-const QUESTION = new Set(['choice', 'number', 'sort', 'order', 'estimate']);
-const STEP_UI = { choice: ChoiceStep, number: NumberStep, sort: SortStep, sim: SimStep, order: OrderStep, estimate: EstimateStep };
+const QUESTION = new Set(['choice', 'number', 'sort']);
+const STEP_UI = { choice: ChoiceStep, number: NumberStep, sort: SortStep, sim: SimStep };
 const PRAISE = ['lesson.correct', 'lesson.correct2', 'lesson.correct3'];
 
 /**
@@ -28,9 +25,8 @@ const PRAISE = ['lesson.correct', 'lesson.correct2', 'lesson.correct3'];
  * the child gets a hint and tries again; mistakes only lower the star rating.
  */
 export default function LessonPlayer({ world, node }) {
-  const { age, dispatch, content, state, cityCtx, takeDeferred } = useGame();
+  const { age, dispatch, content, state, cityCtx } = useGame();
   const { t, tx, money } = useT(world.id);
-  const [chose, setChose] = useState(false);
   const [run, setRun] = useState(0);
   const steps = useMemo(() => stepsForAge(node, age, cityCtx), [node, age, cityCtx]);
   const questions = steps.filter((s) => QUESTION.has(s.type) || (s.type === 'sim' && s.params?.target)).length;
@@ -85,9 +81,8 @@ export default function LessonPlayer({ world, node }) {
     const stars = starsFromMistakes(finalMistakes, questions);
     const answers = steps.map((s, i) => ((QUESTION.has(s.type) || isGoalSim(s)) && s.concept ? { concept: s.concept, correct: !!finalFirstTry[i] } : null)).filter(Boolean);
     const correct = Object.values(finalFirstTry).filter(Boolean).length;
-    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes: finalMistakes, score: questions ? Math.round((correct / questions) * 100) : 100, answers, answered: questions, cityId: cityCtx.cityId }, { defer: true });
-    // One combined victory screen: everything earned during the level (level-ups, badges, buildings, stamps) shows together.
-    setResult({ stars, effects, extras: takeDeferred() });
+    const effects = dispatch({ type: 'level.completed', worldId: world.id, nodeId: node.id, stars, mistakes: finalMistakes, score: questions ? Math.round((correct / questions) * 100) : 100, answers, answered: questions });
+    setResult({ stars, effects });
   };
 
   const next = () => {
@@ -98,7 +93,6 @@ export default function LessonPlayer({ world, node }) {
     setFeedback(null);
     setHintShown(false);
     setTries(0);
-    setChose(false);
   };
 
   const onCorrect = () => {
@@ -129,7 +123,7 @@ export default function LessonPlayer({ world, node }) {
     setStreak(0);
     const n = tries + 1;
     setTries(n);
-    if (!quiet) setFeedback({ ok: false, reveal: n >= 2 && step.type !== 'sort' && step.type !== 'order' ? true : n >= 3 && step.type === 'order' });
+    if (!quiet) setFeedback({ ok: false, reveal: n >= 2 && step.type !== 'sort' });
     setHintShown(true); // after a wrong try, the hint is always free
   };
 
@@ -139,7 +133,7 @@ export default function LessonPlayer({ world, node }) {
     setHintShown(true);
   };
 
-  if (result) return <Results world={world} node={node} stars={result.stars} effects={result.effects} extras={result.extras} onReplay={reset} bonus={earned} />;
+  if (result) return <Results world={world} node={node} stars={result.stars} effects={result.effects} onReplay={reset} bonus={earned} />;
 
   // ---- Boss intro ----
   if (boss && !started)
@@ -198,7 +192,7 @@ export default function LessonPlayer({ world, node }) {
           </button>
         ) : null
       ) : (
-        <button className="btn-primary w-full" onClick={next} disabled={step.type === 'scenario' && !chose} style={{ '--btn': meta?.color }}>
+        <button className="btn-primary w-full" onClick={next} style={{ '--btn': meta?.color }}>
           {t('common.continue')} <span className="inline-block rtl:rotate-180">→</span>
         </button>
       )}
@@ -228,9 +222,7 @@ export default function LessonPlayer({ world, node }) {
       </div>
       <AnimatePresence mode="wait">
         <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}>
-          {step.type === 'scenario' ? (
-            <ScenarioStep key={`${run}-${idx}`} step={step} onChoose={(i) => { setChose(true); dispatch({ type: 'choice.made', key: step.key, value: i }, { defer: true }); }} />
-          ) : step.type === 'story' ? (
+          {step.type === 'story' ? (
             <div className="pt-2">
               <Illustration art={step.art} />
               <Mascot text={tx(step.text)} mood={step.mascot || 'happy'} size={96} />
@@ -246,9 +238,7 @@ export default function LessonPlayer({ world, node }) {
 
 function answerText(step, tx, t, money) {
   if (step.type === 'choice') return tx(step.options.find((o) => o.correct)?.text);
-  if ((step.type === 'number' || step.type === 'estimate') && step.money) return money(step.answer);
-  if (step.type === 'order') return step.items.map((x) => tx(x.text)).join(' → ');
-  if (step.type === 'estimate') return `${step.answer}${step.unitText ? ' ' + tx(step.unitText) : ''}`;
+  if (step.type === 'number' && step.money) return money(step.answer);
   if (step.type === 'number') return `${step.answer}${step.unitText ? ' ' + tx(step.unitText) : step.unit === 'percent' ? '%' : step.unit === 'weeks' ? ' ' + t('common.weeks') : ''}`;
   return '';
 }

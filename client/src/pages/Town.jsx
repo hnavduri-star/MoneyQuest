@@ -8,7 +8,6 @@ import { townLiveliness } from '@engine/town.js';
 import Building from '../components/Building.jsx';
 import Avatar from '../components/Avatar.jsx';
 import Mascot from '../components/Mascot.jsx';
-import Sticker from '../components/Sticker.jsx';
 import { PartnerStrip } from '../components/Brand.jsx';
 import { play } from '../lib/sound.js';
 
@@ -60,7 +59,7 @@ export default function Town() {
                 <Building type="home" tier={1} color={theme} size={96} label={t('town.home')} night={isDark} />
                 <div className="absolute -bottom-1 -start-4 flex items-end">
                   <Avatar avatar={active.meta.avatar} level={state.level} equipped={state.inventory.equipped} size={40} theme={theme} />
-                  {pet && <span className="-ms-1"><Sticker item={pet} size={30} /></span>}
+                  {pet && <span className="text-2xl -ms-1">{pet.art}</span>}
                 </div>
               </div>
               <span className="text-xs font-bold bg-surface/80 rounded-full px-2">{t('town.home')}</span>
@@ -104,7 +103,7 @@ export default function Town() {
           {/* Decorations bought in the shop */}
           {decorations.length > 0 && (
             <div className="flex justify-center gap-3 text-3xl mt-2" aria-label={t('shop.decoration')}>
-              {decorations.map((d) => <span key={d.id} title={tx(d.name)}><Sticker item={d} size={44} /></span>)}
+              {decorations.map((d) => <span key={d.id} title={tx(d.name)}>{d.art}</span>)}
             </div>
           )}
         </div>

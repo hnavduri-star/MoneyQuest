@@ -7,7 +7,6 @@ import { isNodeUnlocked } from '@engine/progress.js';
 import { RewardRow } from './ui.jsx';
 import Confetti from './Confetti.jsx';
 import Mascot from './Mascot.jsx';
-import BadgeIcon from './BadgeIcon.jsx';
 
 const LEVEL_SOURCES = new Set(['level.completed', 'boss', 'perfect', 'combo', 'participation']);
 
@@ -15,10 +14,9 @@ export function sumRewards(effects) {
   return effects.filter((e) => e.type === 'reward' && LEVEL_SOURCES.has(e.source)).reduce((a, e) => ({ xp: a.xp + e.xp, coins: a.coins + e.coins, gems: a.gems + e.gems }), { xp: 0, coins: 0, gems: 0 });
 }
 
-export default function Results({ world, node, stars, effects, extra, onReplay, bonus, extras = [] }) {
+export default function Results({ world, node, stars, effects, extra, onReplay, bonus }) {
   const { t } = useT(world.id);
-  const { state, age, content, city } = useGame();
-  const { tx } = useT(world.id);
+  const { state, age } = useGame();
   const nav = useNavigate();
   const nodes = useVisibleNodes(world);
   const idx = nodes.findIndex((n) => n.id === node.id);
@@ -43,27 +41,6 @@ export default function Results({ world, node, stars, effects, extra, onReplay, 
       {extra}
       <p className="font-bold text-soft">{t('results.rewards')}</p>
       <RewardRow {...r} t={t} />
-      {extras.length > 0 && (
-        <div className="w-full grid gap-2" aria-label={t('results.also')}>
-          {extras.map((e, i) => (
-            <motion.div key={i} initial={{ y: 12, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.6 + i * 0.15 }} className="card px-4 py-3 flex items-center gap-3 text-start">
-              {e.type === 'levelUp' && (<><span className="text-3xl" aria-hidden>🚀</span><span className="font-bold">{t('levelUp.body', { level: e.level })}</span></>)}
-              {e.type === 'badges' && (
-                <>
-                  <span className="flex -space-x-3 rtl:space-x-reverse">{e.ids.slice(0, 4).map((id) => content.badgeMap[id] && <BadgeIcon key={id} badge={content.badgeMap[id]} earned size={40} />)}</span>
-                  <span className="font-bold">{t('badge.new')} ×{e.ids.length}: {e.ids.slice(0, 2).map((id) => tx(content.badgeMap[id]?.name)).join(', ')}{e.ids.length > 2 ? '…' : ''}</span>
-                </>
-              )}
-              {(e.type === 'buildingUnlocked' || e.type === 'buildingUpgraded') && (<><span className="text-3xl" aria-hidden>🏗️</span><span className="font-bold">{e.type === 'buildingUnlocked' ? t('building.unlocked', { name: tx(content.worldIndex.find((w) => w.id === e.worldId)?.name) }) : t('building.upgraded', { name: tx(content.worldIndex.find((w) => w.id === e.worldId)?.name), tier: e.tier })}</span></>)}
-              {e.type === 'stamp' && (<><span className="text-3xl" aria-hidden>🛂</span><span className="font-bold">{t('passport.stamped', { city: tx(city.name) })}</span></>)}
-              {['questDone', 'streak', 'goalReached', 'missionApproved', 'bankInterest'].includes(e.type) && (<><span className="text-2xl" aria-hidden>✨</span><span className="font-bold">{e.type === 'questDone' ? t('quests.claim') + ' ✓' : e.type === 'goalReached' ? t('goal.reached') : t('results.bonus')}</span></>)}
-            </motion.div>
-          ))}
-        </div>
-      )}
-      {node.kind === 'boss' && !state.checks?.[world.id]?.post && (
-        <button className="btn-sun w-full" onClick={() => nav(`/check/${world.id}/post`)}>🧠 {t('check.afterCta')}</button>
-      )}
       <Mascot text={lines[stars]} mood="excited" size={80} />
       <div className="w-full grid gap-2 mt-auto">
         {next && (

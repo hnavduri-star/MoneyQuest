@@ -166,11 +166,3 @@ button { touch-action: manipulation; }
 .pb-safe { padding-bottom: max(env(safe-area-inset-bottom), 0.5rem); }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { scrollbar-width: none; }
-
-/* Printing (certificates, worksheets): plain white page, no app chrome. */
-@media print {
-  body { background: #fff !important; color: #000 !important; }
-  .no-print, nav, header { display: none !important; }
-  .page-break { page-break-before: always; }
-  .worksheet { max-width: none; padding: 0; }
-}

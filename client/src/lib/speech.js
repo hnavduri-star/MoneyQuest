@@ -14,10 +14,7 @@ export function speak(text, { lang = 'en-US', pitch = 1.1, rate = 0.95, force = 
   u.lang = lang;
   u.pitch = pitch;
   u.rate = rate;
-  // Prefer the most natural-sounding voice the device offers (neural/enhanced voices first).
-  const voices = synth.getVoices().filter((v) => v.lang?.toLowerCase().startsWith(lang.slice(0, 2)));
-  const score = (v) => (/(natural|neural|enhanced|premium)/i.test(v.name) ? 3 : 0) + (/(google|samantha|daniel|karen|moira|tessa|maged|laila)/i.test(v.name) ? 2 : 0) + (v.localService ? 0 : 1);
-  const voice = voices.sort((a, b) => score(b) - score(a))[0];
+  const voice = synth.getVoices().find((v) => v.lang?.toLowerCase().startsWith(lang.slice(0, 2)));
   if (voice) u.voice = voice;
   synth.speak(u);
 }

@@ -20,17 +20,13 @@ export function createInitialState({ profileId, start = {} } = {}) {
     weekly: null,
     xpLog: {},
     choices: {},
-    passport: {}, // cityId -> worldId -> day the stop was finished there
-    missions: {}, // worldId -> { status: 'pending' | 'approved', day }
-    checks: {}, // worldId -> { pre: { score, total }, post: { score, total } }
-    familyClaims: {},
   };
 }
 
 /** Bring an older saved state up to date without losing anything. */
 export function migrateState(s) {
   const base = createInitialState({ profileId: s.profileId });
-  return { ...base, ...s, inventory: { ...base.inventory, ...s.inventory }, streak: { ...base.streak, ...s.streak }, bank: { ...base.bank, ...s.bank }, passport: s.passport || {}, missions: s.missions || {}, checks: s.checks || {}, familyClaims: s.familyClaims || {}, version: STATE_VERSION };
+  return { ...base, ...s, inventory: { ...base.inventory, ...s.inventory }, streak: { ...base.streak, ...s.streak }, bank: { ...base.bank, ...s.bank }, version: STATE_VERSION };
 }
 
 /** Summary used for family leaderboards (nickname-only, no other data leaves the profile). */
@@ -43,9 +39,5 @@ export function summarize(state, day, daysBack) {
   const weekXp = sumRange(daysBack(day, 7), day);
   const prevWeekXp = sumRange(daysBack(day, 14), daysBack(day, 7));
   const stars = Object.values(state.progress || {}).reduce((s, w) => s + Object.values(w).reduce((a, n) => a + (n.stars || 0), 0), 0);
-  // Compact learning picture for family/class dashboards: stops done, skill levels, before/after checks.
-  const levelOf = (c) => (c.score >= 80 && c.box >= 3 ? 'mastered' : c.score >= 40 ? 'practising' : 'learning');
-  const concepts = Object.fromEntries(Object.entries(state.mastery || {}).map(([id, c]) => [id, levelOf(c)]));
-  const stops = Object.keys(state.town?.buildings || {}).filter((k) => typeof state.town.buildings[k] === 'number' && state.town.buildings[k] > 0);
-  return { level: state.level, xp: state.xp, weekXp, prevWeekXp, improvement: weekXp - prevWeekXp, stars, badges: Object.keys(state.badges || {}).length, streak: state.streak?.count || 0, stops, concepts, checks: state.checks || {} };
+  return { level: state.level, xp: state.xp, weekXp, prevWeekXp, improvement: weekXp - prevWeekXp, stars, badges: Object.keys(state.badges || {}).length, streak: state.streak?.count || 0 };
 }

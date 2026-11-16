@@ -7,11 +7,10 @@ import { LANGUAGES } from '../content.js';
 
 /** The child's guide with a speech bubble. Reads aloud when the voice setting is on, or when tapped. */
 export default function Mascot({ text, mood = 'happy', size = 84, compact = false, autoSpeak = true }) {
-  const { active, content, lang, state, age } = useGame();
+  const { active, content, lang, state } = useGame();
   const companion = content.characters.companions.find((c) => c.id === active?.meta?.companion) || content.characters.companions[0];
   const speechLang = LANGUAGES.find((l) => l.id === lang)?.speech;
-  // Younger readers get a slower voice.
-  const say = (force) => speak(text, { lang: speechLang, pitch: companion.voice?.pitch, rate: (companion.voice?.rate || 1) * (age === '7-9' ? 0.85 : 1), force });
+  const say = (force) => speak(text, { lang: speechLang, pitch: companion.voice?.pitch, rate: companion.voice?.rate, force });
   useEffect(() => {
     if (autoSpeak && text) say(false);
   }, [text]); // eslint-disable-line react-hooks/exhaustive-deps

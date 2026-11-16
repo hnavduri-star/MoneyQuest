@@ -3,91 +3,34 @@
   "defaultEdition": "standard",
   "banks": {
     "town": {
-      "name": {
-        "en": "Town Bank",
-        "ar": "بنك المدينة"
-      },
-      "short": {
-        "en": "Town Bank",
-        "ar": "بنك المدينة"
-      },
+      "name": { "en": "Town Bank", "ar": "بنك المدينة" },
+      "short": { "en": "Town Bank", "ar": "بنك المدينة" },
       "logo": "TB",
-      "colors": {
-        "primary": "#0072B2",
-        "accent": "#F2B01E"
-      },
+      "colors": { "primary": "#0072B2", "accent": "#F2B01E" },
       "sponsor": false,
       "products": {
-        "kidsAccount": {
-          "en": "Junior Saver account",
-          "ar": "حساب المدّخر الصغير"
-        },
-        "kidsCard": {
-          "en": "junior debit card",
-          "ar": "بطاقة الخصم للصغار"
-        },
-        "chequeBook": {
-          "en": "cheque book",
-          "ar": "دفتر الشيكات"
-        },
-        "creditCard": {
-          "en": "credit card",
-          "ar": "بطاقة الائتمان"
-        },
-        "islamicAccount": {
-          "en": "profit-sharing savings account",
-          "ar": "حساب ادخار بالمشاركة في الأرباح"
-        },
-        "bankApp": {
-          "en": "banking app",
-          "ar": "تطبيق البنك"
-        }
+        "kidsAccount": { "en": "Junior Saver account", "ar": "حساب المدّخر الصغير" },
+        "kidsCard": { "en": "junior debit card", "ar": "بطاقة الخصم للصغار" },
+        "chequeBook": { "en": "cheque book", "ar": "دفتر الشيكات" },
+        "creditCard": { "en": "credit card", "ar": "بطاقة الائتمان" },
+        "islamicAccount": { "en": "profit-sharing savings account", "ar": "حساب ادخار بالمشاركة في الأرباح" },
+        "bankApp": { "en": "banking app", "ar": "تطبيق البنك" }
       }
     },
     "abc": {
-      "name": {
-        "en": "ABC Bank",
-        "ar": "بنك ABC"
-      },
-      "short": {
-        "en": "ABC",
-        "ar": "ABC"
-      },
+      "name": { "en": "ABC Bank", "ar": "بنك ABC" },
+      "short": { "en": "ABC", "ar": "ABC" },
       "logo": "ABC",
-      "colors": {
-        "primary": "#0B3D91",
-        "accent": "#F2B01E"
-      },
-      "tagline": {
-        "en": "Growing young savers",
-        "ar": "ننمّي المدّخرين الصغار"
-      },
+      "colors": { "primary": "#0B3D91", "accent": "#F2B01E" },
+      "tagline": { "en": "Growing young savers", "ar": "ننمّي المدّخرين الصغار" },
       "sponsor": true,
       "products": {
-        "kidsAccount": {
-          "en": "ABC Junior Saver account",
-          "ar": "حساب ABC للمدّخر الصغير"
-        },
-        "kidsCard": {
-          "en": "ABC Junior Debit Card",
-          "ar": "بطاقة ABC للخصم للصغار"
-        },
-        "chequeBook": {
-          "en": "ABC cheque book",
-          "ar": "دفتر شيكات ABC"
-        },
-        "creditCard": {
-          "en": "ABC Classic Credit Card",
-          "ar": "بطاقة ABC الكلاسيكية الائتمانية"
-        },
-        "islamicAccount": {
-          "en": "ABC Junior Savings-i account",
-          "ar": "حساب ABC الإسلامي للادخار للصغار"
-        },
-        "bankApp": {
-          "en": "ABC Mobile app",
-          "ar": "تطبيق ABC للجوال"
-        }
+        "kidsAccount": { "en": "ABC Junior Saver account", "ar": "حساب ABC للمدّخر الصغير" },
+        "kidsCard": { "en": "ABC Junior Debit Card", "ar": "بطاقة ABC للخصم للصغار" },
+        "chequeBook": { "en": "ABC cheque book", "ar": "دفتر شيكات ABC" },
+        "creditCard": { "en": "ABC Classic Credit Card", "ar": "بطاقة ABC الكلاسيكية الائتمانية" },
+        "islamicAccount": { "en": "ABC Junior Savings-i account", "ar": "حساب ABC الإسلامي للادخار للصغار" },
+        "bankApp": { "en": "ABC Mobile app", "ar": "تطبيق ABC للجوال" }
       },
       "parentInfo": {
         "en": "ABC Bank offers the ABC Junior Saver account for children under 18, opened by a parent or guardian. It comes with an optional ABC Junior Debit Card with spending limits and payment alerts that you control in the ABC Mobile app. Visit any ABC branch or the website to compare fees, rates and terms before you decide.",
@@ -98,69 +41,17 @@
   },
   "schools": {
     "sunrise": {
-      "name": {
-        "en": "Sunrise International School",
-        "ar": "مدرسة الشروق الدولية"
-      },
-      "short": {
-        "en": "Sunrise School",
-        "ar": "مدرسة الشروق"
-      },
+      "name": { "en": "Sunrise International School", "ar": "مدرسة الشروق الدولية" },
+      "short": { "en": "Sunrise School", "ar": "مدرسة الشروق" },
       "logo": "SIS",
-      "motto": {
-        "en": "Learn today, lead tomorrow",
-        "ar": "تعلّم اليوم، وقُد الغد"
-      },
-      "colors": {
-        "primary": "#7A1F5C",
-        "accent": "#F28C28"
-      }
+      "motto": { "en": "Learn today, lead tomorrow", "ar": "تعلّم اليوم، وقُد الغد" },
+      "colors": { "primary": "#7A1F5C", "accent": "#F28C28" }
     }
   },
   "editions": [
-    {
-      "id": "standard",
-      "name": {
-        "en": "MoneyQuest",
-        "ar": "رحلة المال"
-      },
-      "bank": "town"
-    },
-    {
-      "id": "abc-bank",
-      "name": {
-        "en": "ABC Bank edition",
-        "ar": "نسخة بنك ABC"
-      },
-      "bank": "abc",
-      "cities": [
-        "dubai",
-        "abu-dhabi"
-      ],
-      "defaultCity": "dubai"
-    },
-    {
-      "id": "sunrise-school",
-      "name": {
-        "en": "Sunrise School edition",
-        "ar": "نسخة مدرسة الشروق"
-      },
-      "bank": "town",
-      "school": "sunrise"
-    },
-    {
-      "id": "abc-sunrise",
-      "name": {
-        "en": "ABC Bank × Sunrise School",
-        "ar": "بنك ABC × مدرسة الشروق"
-      },
-      "bank": "abc",
-      "school": "sunrise",
-      "cities": [
-        "dubai",
-        "abu-dhabi"
-      ],
-      "defaultCity": "dubai"
-    }
+    { "id": "standard", "name": { "en": "MoneyQuest", "ar": "رحلة المال" }, "bank": "town" },
+    { "id": "abc-bank", "name": { "en": "ABC Bank edition", "ar": "نسخة بنك ABC" }, "bank": "abc", "cities": ["dubai", "abu-dhabi"], "defaultCity": "dubai" },
+    { "id": "sunrise-school", "name": { "en": "Sunrise School edition", "ar": "نسخة مدرسة الشروق" }, "bank": "town", "school": "sunrise" },
+    { "id": "abc-sunrise", "name": { "en": "ABC Bank × Sunrise School", "ar": "بنك ABC × مدرسة الشروق" }, "bank": "abc", "school": "sunrise", "cities": ["dubai", "abu-dhabi"], "defaultCity": "dubai" }
   ]
 }

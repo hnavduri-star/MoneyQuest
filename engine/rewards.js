@@ -167,19 +167,12 @@ function settle(ctx) {
       s.town.buildings[meta.id] = tier;
       if (typeof tier === 'number' && tier > 0 && (typeof prev !== 'number' || prev === 0)) {
         ctx.effects.push({ type: 'worldComplete', worldId: meta.id });
-        bump(s, 'worldsCompleted');
         ctx.effects.push({ type: 'buildingUnlocked', worldId: meta.id, building: meta.building, tier });
         grant(ctx, content.rewards.worldComplete || {}, 'worldComplete');
       } else if (typeof tier === 'number' && typeof prev === 'number' && tier > prev) {
         ctx.effects.push({ type: 'buildingUpgraded', worldId: meta.id, building: meta.building, tier });
         grant(ctx, content.rewards.buildingUpgrade || {}, 'buildingUpgrade');
       }
-      changed = true;
-    }
-    const goal = s.bank?.goal && content.items[s.bank.goal];
-    if (goal && !s.bank.goalReached && !s.inventory.owned.includes(goal.id) && s.coins + (s.bank.balance || 0) >= (goal.price.coins || 0) && s.gems >= (goal.price.gems || 0)) {
-      s.bank.goalReached = true;
-      ctx.effects.push({ type: 'goalReached', itemId: goal.id });
       changed = true;
     }
     for (const b of content.badges) {
@@ -229,17 +222,6 @@ const HANDLERS = {
       lastDay: day,
     };
     for (const a of ev.answers || []) if (a.concept) s.mastery[a.concept] = updateConcept(s.mastery[a.concept], !!a.correct, day);
-    // City passport: beating a stop's boss stamps the passport for the city it was played in.
-    if (node.kind === 'boss' && ev.cityId) {
-      s.passport ||= {};
-      s.passport[ev.cityId] ||= {};
-      if (!s.passport[ev.cityId][ev.worldId]) {
-        s.passport[ev.cityId][ev.worldId] = day;
-        s.stats.stamps = (s.stats.stamps || 0) + 1;
-        s.stats.citiesVisited = Object.keys(s.passport).length;
-        ctx.effects.push({ type: 'stamp', cityId: ev.cityId, worldId: ev.worldId });
-      }
-    }
     ctx.effects.push({ type: 'levelResult', worldId: ev.worldId, nodeId: ev.nodeId, stars: ev.stars, firstClear: ev.firstClear, improved: ev.improved });
   },
 
@@ -285,60 +267,6 @@ const HANDLERS = {
     bump(ctx.s, 'gemsBought', count);
     ev.skipRules = true;
     ctx.effects.push({ type: 'gemsBought', count });
-  },
-
-  /** Short check before and after a stop, so families and teachers can see what was learned. */
-  'check.completed'(ctx, ev) {
-    const { s, day } = ctx;
-    if (!ctx.content.worlds[ev.worldId] || !['pre', 'post'].includes(ev.phase)) throw new Rejected('badCheck');
-    s.checks ||= {};
-    s.checks[ev.worldId] ||= {};
-    const first = !s.checks[ev.worldId][ev.phase];
-    s.checks[ev.worldId][ev.phase] = { score: ev.score, total: ev.total, day };
-    ev.firstTime = first;
-    const pre = s.checks[ev.worldId].pre;
-    ev.gain = ev.phase === 'post' && pre ? Math.max(0, ev.score - pre.score) : 0;
-    bump(s, 'checksDone');
-  },
-
-  /** Real-life mission: the child says they did it; a grown-up confirms it with the parent PIN. */
-  'mission.done'(ctx, ev) {
-    const { s } = ctx;
-    if (!ctx.content.missions?.[ev.worldId]) throw new Rejected('unknownMission');
-    if (s.missions?.[ev.worldId]) throw new Rejected('alreadyDone');
-    s.missions ||= {};
-    s.missions[ev.worldId] = { status: 'pending', day: ctx.day };
-    ev.skipRules = true;
-  },
-  'mission.approve'(ctx, ev) {
-    const { s } = ctx;
-    const m = s.missions?.[ev.worldId];
-    if (!m || m.status !== 'pending') throw new Rejected('notPending');
-    m.status = 'approved';
-    bump(s, 'missionsDone');
-    ev.skipRules = true;
-    grant(ctx, ctx.content.missions[ev.worldId].reward || { coins: 50, xp: 30 }, 'mission');
-    ctx.effects.push({ type: 'missionApproved', worldId: ev.worldId });
-  },
-
-  /** Save towards a shop item; the Town Bank shows progress and celebrates when it's affordable. */
-  'bank.goal'(ctx, ev) {
-    ctx.s.bank.goal = ev.itemId && ctx.content.items[ev.itemId] ? ev.itemId : null;
-    ctx.s.bank.goalReached = false;
-    ev.skipRules = true;
-  },
-
-  /** Weekly family challenge: when the family together reaches the target, each child can claim once. */
-  'family.claim'(ctx, ev) {
-    const { s } = ctx;
-    const wk = weekKey(ctx.day);
-    s.familyClaims ||= {};
-    if (s.familyClaims[wk]) throw new Rejected('alreadyClaimed');
-    if (!(ev.progress >= ev.target)) throw new Rejected('notYet');
-    s.familyClaims[wk] = true;
-    bump(s, 'familyChallenges');
-    ev.skipRules = true;
-    grant(ctx, ctx.content.rewards.familyChallenge?.reward || { coins: 80, xp: 40 }, 'family');
   },
 
   'review.completed'(ctx, ev) {

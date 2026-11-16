@@ -1,5 +1,5 @@
 {
-  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing. `prices` makes amounts realistic for each city: small amounts (pocket money, snacks) are multiplied by `small`, and any step with an amount of 1000 or more (salaries, rent, budgets) by `big`. Dubai and Abu Dhabi are the base (1).",
+  "$comment": "Cities a child can play in. Each city fills the {placeholders} used in lessons (currency, notes, tax, bills, exchange rates, places), sets the journey stops, and the ATM notes. Add a city by copying one and changing its values; `npm run content:check` reports any placeholder a city is missing. priceScale multiplies every lesson money amount (and money answers) so prices feel local, e.g. ×10 for rupees.",
   "defaultCity": "dubai",
   "cities": [
     {
@@ -381,40 +381,9 @@
             "ar": "زنزانة الديون تحت دبي"
           },
           "landmark": "🐉"
-        },
-        "scam-shield": {
-          "location": {
-            "en": "Dubai Internet City",
-            "ar": "مدينة دبي للإنترنت"
-          },
-          "landmark": "🛡️"
-        },
-        "smart-shopper": {
-          "location": {
-            "en": "a Karama market street",
-            "ar": "شارع سوق الكرامة"
-          },
-          "landmark": "🛍️"
-        },
-        "investment-island": {
-          "location": {
-            "en": "Bluewaters Island",
-            "ar": "جزيرة بلوواترز"
-          },
-          "landmark": "🏝️"
-        },
-        "giving-garden": {
-          "location": {
-            "en": "a community garden in Al Barsha",
-            "ar": "حديقة مجتمعية في البرشاء"
-          },
-          "landmark": "🌻"
         }
       },
-      "prices": {
-        "small": 1,
-        "big": 1
-      }
+      "priceScale": 1
     },
     {
       "region": "uae",
@@ -795,40 +764,9 @@
             "ar": "زنزانة الديون تحت أبوظبي"
           },
           "landmark": "🐉"
-        },
-        "scam-shield": {
-          "location": {
-            "en": "a cyber-safety lab on Al Reem",
-            "ar": "مختبر أمان رقمي في الريم"
-          },
-          "landmark": "🛡️"
-        },
-        "smart-shopper": {
-          "location": {
-            "en": "the Abu Dhabi Mall",
-            "ar": "أبوظبي مول"
-          },
-          "landmark": "🛍️"
-        },
-        "investment-island": {
-          "location": {
-            "en": "Lulu Island",
-            "ar": "جزيرة اللولو"
-          },
-          "landmark": "🏝️"
-        },
-        "giving-garden": {
-          "location": {
-            "en": "Umm Al Emarat Park",
-            "ar": "حديقة أم الإمارات"
-          },
-          "landmark": "🌻"
         }
       },
-      "prices": {
-        "small": 1,
-        "big": 1
-      }
+      "priceScale": 1
     },
     {
       "id": "london",
@@ -1097,34 +1035,6 @@
             "ar": "زنزانة الديون تحت لندن"
           },
           "landmark": "🐉"
-        },
-        "scam-shield": {
-          "location": {
-            "en": "a tech hub in Shoreditch",
-            "ar": "مركز تقني في شورديتش"
-          },
-          "landmark": "🛡️"
-        },
-        "smart-shopper": {
-          "location": {
-            "en": "Camden Market",
-            "ar": "سوق كامدن"
-          },
-          "landmark": "🛍️"
-        },
-        "investment-island": {
-          "location": {
-            "en": "Canary Wharf's dockside",
-            "ar": "رصيف كناري وارف"
-          },
-          "landmark": "🏝️"
-        },
-        "giving-garden": {
-          "location": {
-            "en": "a community garden in Hackney",
-            "ar": "حديقة مجتمعية في هاكني"
-          },
-          "landmark": "🌻"
         }
       },
       "places": {
@@ -1238,10 +1148,7 @@
           }
         ]
       },
-      "prices": {
-        "small": 1,
-        "big": 0.25
-      }
+      "priceScale": 1
     },
     {
       "id": "paris",
@@ -1510,34 +1417,6 @@
             "ar": "زنزانة الديون تحت باريس"
           },
           "landmark": "🐉"
-        },
-        "scam-shield": {
-          "location": {
-            "en": "Station F, the startup campus",
-            "ar": "ستيشن إف، حرم الشركات الناشئة"
-          },
-          "landmark": "🛡️"
-        },
-        "smart-shopper": {
-          "location": {
-            "en": "the Marché d'Aligre",
-            "ar": "سوق أليغر"
-          },
-          "landmark": "🛍️"
-        },
-        "investment-island": {
-          "location": {
-            "en": "Île Saint-Louis",
-            "ar": "جزيرة سان لوي"
-          },
-          "landmark": "🏝️"
-        },
-        "giving-garden": {
-          "location": {
-            "en": "a shared garden in Belleville",
-            "ar": "حديقة مشتركة في بيلفيل"
-          },
-          "landmark": "🌻"
         }
       },
       "places": {
@@ -1651,10 +1530,7 @@
           }
         ]
       },
-      "prices": {
-        "small": 1,
-        "big": 0.25
-      }
+      "priceScale": 1
     },
     {
       "id": "mumbai",
@@ -1923,34 +1799,6 @@
             "ar": "زنزانة الديون تحت مومباي"
           },
           "landmark": "🐉"
-        },
-        "scam-shield": {
-          "location": {
-            "en": "a tech park in Powai",
-            "ar": "مجمع تقني في بوواي"
-          },
-          "landmark": "🛡️"
-        },
-        "smart-shopper": {
-          "location": {
-            "en": "Linking Road market",
-            "ar": "سوق لينكنغ رود"
-          },
-          "landmark": "🛍️"
-        },
-        "investment-island": {
-          "location": {
-            "en": "Elephanta Island",
-            "ar": "جزيرة إليفانتا"
-          },
-          "landmark": "🏝️"
-        },
-        "giving-garden": {
-          "location": {
-            "en": "a community garden in Dadar",
-            "ar": "حديقة مجتمعية في دادار"
-          },
-          "landmark": "🌻"
         }
       },
       "places": {
@@ -2064,10 +1912,7 @@
           }
         ]
       },
-      "prices": {
-        "small": 10,
-        "big": 5
-      }
+      "priceScale": 10
     },
     {
       "id": "new-york",
@@ -2334,34 +2179,6 @@
             "ar": "زنزانة الديون تحت نيويورك"
           },
           "landmark": "🐉"
-        },
-        "scam-shield": {
-          "location": {
-            "en": "a cyber lab in Chelsea",
-            "ar": "مختبر رقمي في تشيلسي"
-          },
-          "landmark": "🛡️"
-        },
-        "smart-shopper": {
-          "location": {
-            "en": "a Queens farmers' market",
-            "ar": "سوق مزارعين في كوينز"
-          },
-          "landmark": "🛍️"
-        },
-        "investment-island": {
-          "location": {
-            "en": "Governors Island",
-            "ar": "جزيرة الحكام"
-          },
-          "landmark": "🏝️"
-        },
-        "giving-garden": {
-          "location": {
-            "en": "a community garden in Harlem",
-            "ar": "حديقة مجتمعية في هارلم"
-          },
-          "landmark": "🌻"
         }
       },
       "places": {
@@ -2475,10 +2292,7 @@
           }
         ]
       },
-      "prices": {
-        "small": 1,
-        "big": 0.3
-      }
+      "priceScale": 1
     }
   ]
 }

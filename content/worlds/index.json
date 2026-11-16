@@ -1,5 +1,5 @@
 {
-  "$comment": "Every world in display order. 'available: false' shows it as coming soon. 'requires' = finish all of these first; 'requiresAny' = finish at least one (the journey branches, so children choose their path). Location names come from content/cities.json for the chosen city.",
+  "$comment": "Every world in display order. 'available: false' shows it as coming soon. A world becomes playable when available is true AND worlds/<id>.json exists. 'requires' lists worlds to finish first; 'ages' limits which age tiers see it. The order is the Dubai Money Journey: each stop has a 'location' and 'landmark' shown on the journey map. Location names come from content/cities.json for the chosen city; these are fallbacks.",
   "worlds": [
     {
       "id": "money-basics",
@@ -59,26 +59,6 @@
       "landmark": "🏡"
     },
     {
-      "id": "giving-garden",
-      "phase": 3,
-      "available": true,
-      "icon": "🌻",
-      "color": "#009E73",
-      "building": "garden",
-      "name": {
-        "en": "Giving Garden",
-        "ar": "حديقة العطاء"
-      },
-      "requires": [
-        "salary-street"
-      ],
-      "location": {
-        "en": "the Giving Garden",
-        "ar": "حديقة العطاء"
-      },
-      "landmark": "🌻"
-    },
-    {
       "id": "bank-town",
       "phase": 1,
       "available": true,
@@ -97,46 +77,6 @@
         "ar": "مركز دبي المالي العالمي"
       },
       "landmark": "🏦"
-    },
-    {
-      "id": "smart-shopper",
-      "phase": 5,
-      "available": true,
-      "icon": "🛒",
-      "color": "#E69F00",
-      "building": "mall",
-      "name": {
-        "en": "Smart Shopper",
-        "ar": "المتسوّق الذكي"
-      },
-      "requires": [
-        "household-budget"
-      ],
-      "location": {
-        "en": "a shopping street",
-        "ar": "شارع تسوق"
-      },
-      "landmark": "🛍️"
-    },
-    {
-      "id": "lemonade-empire",
-      "phase": 2,
-      "available": true,
-      "icon": "🍋",
-      "color": "#E69F00",
-      "building": "shop",
-      "name": {
-        "en": "Lemonade to Empire",
-        "ar": "من الليمونادة إلى الإمبراطورية"
-      },
-      "requires": [
-        "household-budget"
-      ],
-      "location": {
-        "en": "Kite Beach",
-        "ar": "شاطئ كايت"
-      },
-      "landmark": "🏖️"
     },
     {
       "id": "bank-products",
@@ -160,26 +100,6 @@
       "landmark": "🏛️"
     },
     {
-      "id": "pl-factory",
-      "phase": 2,
-      "available": true,
-      "icon": "🍽️",
-      "color": "#CC79A7",
-      "building": "cafe",
-      "name": {
-        "en": "Café & Restaurant P&L",
-        "ar": "أرباح المقهى والمطعم"
-      },
-      "requires": [
-        "lemonade-empire"
-      ],
-      "location": {
-        "en": "a café",
-        "ar": "مقهى"
-      },
-      "landmark": "☕"
-    },
-    {
       "id": "cash-cards",
       "icon": "🏧",
       "color": "#56B4E9",
@@ -198,48 +118,6 @@
         "ar": "دبي مول"
       },
       "landmark": "🛍️"
-    },
-    {
-      "id": "investment-island",
-      "phase": 4,
-      "available": true,
-      "icon": "📈",
-      "color": "#009E73",
-      "building": "exchange",
-      "name": {
-        "en": "Investment Island",
-        "ar": "جزيرة الاستثمار"
-      },
-      "requiresAny": [
-        "pl-factory",
-        "bank-town"
-      ],
-      "location": {
-        "en": "Investment Island",
-        "ar": "جزيرة الاستثمار"
-      },
-      "landmark": "🏝️"
-    },
-    {
-      "id": "debt-dungeon",
-      "phase": 4,
-      "available": true,
-      "icon": "🐉",
-      "color": "#D55E00",
-      "building": "dungeon",
-      "name": {
-        "en": "Debt Dungeon",
-        "ar": "زنزانة الديون"
-      },
-      "location": {
-        "en": "the Debt Dungeon",
-        "ar": "زنزانة الديون"
-      },
-      "landmark": "🐉",
-      "requiresAny": [
-        "bank-products",
-        "pl-factory"
-      ]
     },
     {
       "id": "currency-bazaar",
@@ -262,24 +140,64 @@
       "landmark": "✈️"
     },
     {
-      "id": "scam-shield",
-      "phase": 5,
+      "id": "lemonade-empire",
+      "phase": 2,
       "available": true,
-      "icon": "🕵️",
-      "color": "#0072B2",
-      "building": "tower",
+      "icon": "🍋",
+      "color": "#E69F00",
+      "building": "shop",
       "name": {
-        "en": "Scam Shield",
-        "ar": "درع الاحتيال"
+        "en": "Lemonade to Empire",
+        "ar": "من الليمونادة إلى الإمبراطورية"
       },
       "requires": [
-        "cash-cards"
+        "currency-bazaar"
       ],
       "location": {
-        "en": "the Cyber Safety Centre",
-        "ar": "مركز الأمان الرقمي"
+        "en": "Kite Beach",
+        "ar": "شاطئ كايت"
       },
-      "landmark": "🛡️"
+      "landmark": "🏖️"
+    },
+    {
+      "id": "pl-factory",
+      "phase": 2,
+      "available": true,
+      "icon": "🍽️",
+      "color": "#CC79A7",
+      "building": "cafe",
+      "name": {
+        "en": "Café & Restaurant P&L",
+        "ar": "أرباح المقهى والمطعم"
+      },
+      "requires": [
+        "lemonade-empire"
+      ],
+      "location": {
+        "en": "a café",
+        "ar": "مقهى"
+      },
+      "landmark": "☕"
+    },
+    {
+      "id": "debt-dungeon",
+      "phase": 4,
+      "available": true,
+      "icon": "🐉",
+      "color": "#D55E00",
+      "building": "dungeon",
+      "name": {
+        "en": "Debt Dungeon",
+        "ar": "زنزانة الديون"
+      },
+      "requires": [
+        "pl-factory"
+      ],
+      "location": {
+        "en": "the Debt Dungeon",
+        "ar": "زنزانة الديون"
+      },
+      "landmark": "🐉"
     },
     {
       "id": "supply-demand",
@@ -291,6 +209,30 @@
       "name": {
         "en": "Supply & Demand Market",
         "ar": "سوق العرض والطلب"
+      }
+    },
+    {
+      "id": "giving-garden",
+      "phase": 3,
+      "available": false,
+      "icon": "🌻",
+      "color": "#009E73",
+      "building": "garden",
+      "name": {
+        "en": "Giving Garden",
+        "ar": "حديقة العطاء"
+      }
+    },
+    {
+      "id": "investment-island",
+      "phase": 4,
+      "available": false,
+      "icon": "📈",
+      "color": "#0072B2",
+      "building": "exchange",
+      "name": {
+        "en": "Investment Island",
+        "ar": "جزيرة الاستثمار"
       }
     },
     {
@@ -330,6 +272,18 @@
       }
     },
     {
+      "id": "scam-shield",
+      "phase": 5,
+      "available": false,
+      "icon": "🕵️",
+      "color": "#0072B2",
+      "building": "tower",
+      "name": {
+        "en": "Scam Shield",
+        "ar": "درع الاحتيال"
+      }
+    },
+    {
       "id": "government-city",
       "phase": 5,
       "available": false,
@@ -351,6 +305,18 @@
       "name": {
         "en": "Career Compass",
         "ar": "بوصلة المهن"
+      }
+    },
+    {
+      "id": "smart-shopper",
+      "phase": 5,
+      "available": false,
+      "icon": "🛒",
+      "color": "#E69F00",
+      "building": "mall",
+      "name": {
+        "en": "Smart Shopper",
+        "ar": "المتسوّق الذكي"
       }
     },
     {

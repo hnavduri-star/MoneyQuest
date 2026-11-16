@@ -21,29 +21,8 @@ export default function Trophies() {
   return (
     <div>
       <Header title={t('trophies.title')} />
-      <Segmented label="tab" value={tab} onChange={setTab} options={[{ value: 'badges', label: t('trophies.count', { got: earned, total: content.badges.length }), icon: '🏅' }, { value: 'skills', label: t('trophies.mastery'), icon: '🎓' }, { value: 'passport', label: t('passport.title'), icon: '🛂' }]} />
-      {tab === 'passport' ? (
-        <div className="space-y-3 mt-4">
-          <p className="text-soft">{t('passport.help')}</p>
-          <p className="font-extrabold">{t('passport.count', { n: Object.values(state.passport || {}).reduce((a, w) => a + Object.keys(w).length, 0), c: Object.keys(state.passport || {}).length })}</p>
-          {content.cities.cities.map((c) => {
-            const got = state.passport?.[c.id] || {};
-            const playable = content.worldIndex.filter((w) => w.playable);
-            return (
-              <section key={c.id} className="card p-4">
-                <h2 className="font-extrabold mb-2">{c.flag} {tx(c.name)} <span className="text-soft text-sm">· {Object.keys(got).length}/{playable.length}</span></h2>
-                <div className="grid grid-cols-7 gap-1">
-                  {playable.map((w) => (
-                    <span key={w.id} title={tx(w.name)} className={`aspect-square rounded-full flex items-center justify-center text-lg border-2 ${got[w.id] ? 'border-leaf bg-leaf-pale rotate-[-8deg]' : 'border-dashed border-line opacity-40'}`} aria-label={`${tx(w.name)} ${got[w.id] ? '✓' : ''}`}>
-                      {got[w.id] ? c.stops[w.id]?.landmark || w.icon : '·'}
-                    </span>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
-        </div>
-      ) : tab === 'badges' ? (
+      <Segmented label="tab" value={tab} onChange={setTab} options={[{ value: 'badges', label: t('trophies.count', { got: earned, total: content.badges.length }), icon: '🏅' }, { value: 'skills', label: t('trophies.mastery'), icon: '🎓' }]} />
+      {tab === 'badges' ? (
         <>
           <div className="flex gap-2 overflow-x-auto no-scrollbar my-3">
             {CATS.map((c) => (

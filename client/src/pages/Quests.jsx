@@ -111,8 +111,6 @@ export default function Quests() {
         )}
       </section>
 
-      {lb && <FamilyChallenge lb={lb} />}
-
       <section className="card p-4">
         <h2 className="font-extrabold text-lg mb-2">👨‍👩‍👧 {t('quests.leaderboard')}</h2>
         <Segmented label={t('quests.leaderboard')} value={lbMode} onChange={setLbMode} options={[{ value: 'top', label: t('quests.lbTop'), icon: '🏅' }, { value: 'improved', label: t('quests.lbImproved'), icon: '📈' }]} />
@@ -130,25 +128,5 @@ export default function Quests() {
         ))}
       </section>
     </div>
-  );
-}
-
-/** The whole family works together towards one weekly XP target; each child claims the reward once. */
-function FamilyChallenge({ lb }) {
-  const { content, state, dispatch } = useGame();
-  const { t } = useT();
-  const kids = lb.top.length || 1;
-  const target = (content.rewards.familyChallenge?.targetXpPerChild || 150) * kids;
-  const progress = lb.top.reduce((a, r) => a + (r.summary.weekXp || 0), 0);
-  const claimed = Object.keys(state.familyClaims || {}).some((wk) => wk === state.weekly?.week);
-  return (
-    <section className="card p-4">
-      <h2 className="font-extrabold text-lg">🤝 {t('family.title')}</h2>
-      <p className="text-sm text-soft mb-2">{t('family.help', { n: target })}</p>
-      <Progress value={progress / target} height={12} />
-      <p className="text-sm font-bold mt-1">{Math.min(progress, target)} / {target} XP</p>
-      {progress >= target && !claimed && <button className="btn-sun w-full mt-2" onClick={() => dispatch({ type: 'family.claim', progress, target })}>🎁 {t('quests.claim')}</button>}
-      {claimed && <p className="chip bg-leaf-pale mt-2">✓ {t('quests.claimed')}</p>}
-    </section>
   );
 }

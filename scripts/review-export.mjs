@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Writes review/city-facts.csv and review/lesson-text.csv for human reviewers (see docs/content-review.md).
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -23,6 +23,6 @@ writeFileSync(join(out, 'city-facts.csv'), ['path,en,ar', ...cityRows.map((r) =>
 
 const lessonRows = [];
 for (const f of readdirSync(join(root, 'content/worlds')).filter((x) => x.endsWith('.json'))) walk(JSON.parse(readFileSync(join(root, 'content/worlds', f), 'utf8')), `worlds/${f}#`, lessonRows);
-for (const f of ['missions.json', 'badges.json', 'shop.json', 'quests.json', 'editions.json']) walk(JSON.parse(readFileSync(join(root, 'content', f), 'utf8')), `${f}#`, lessonRows);
+for (const f of ['missions.json', 'badges.json', 'shop.json', 'quests.json', 'editions.json'].filter((x) => existsSync(join(root, 'content', x)))) walk(JSON.parse(readFileSync(join(root, 'content', f), 'utf8')), `${f}#`, lessonRows);
 writeFileSync(join(out, 'lesson-text.csv'), ['path,en,ar', ...lessonRows.map((r) => r.map(csv).join(','))].join('\n'));
 console.log(`✓ review/city-facts.csv (${cityRows.length} rows), review/lesson-text.csv (${lessonRows.length} rows)`);

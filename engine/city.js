@@ -45,5 +45,5 @@ export function contentVars(content, { cityId, editionId, lang = 'en', worldId }
 /** Numbers a city provides for answers such as "{fxTen}", plus its region for region-only steps. */
 export function cityContext(content, cityId) {
   const city = getCity(content, cityId);
-  return { cityId: city.id, region: city.region, nums: city.nums, places: city.places, prices: city.prices || { small: 1, big: 1 } };
+  return { cityId: city.id, region: city.region, nums: city.nums, places: city.places, priceScale: city.priceScale || 1 };
 }

@@ -41,11 +41,12 @@ export function worldConcepts(world, { includeOptional = false } = {}) {
   return [...set];
 }
 
-/** Auto badges every playable world gets (finish + master), so a new world file needs no badge edits. */
+/** Auto badges every playable world gets, so a new world file needs no badge edits. */
 function worldBadges(world) {
   const b = world.badge || {};
   return [
     { id: b.id || `world-${world.id}`, icon: b.icon || world.icon, rarity: b.rarity || 'rare', category: 'worlds', name: b.name || world.name, desc: b.desc || { en: 'Finish this world', ar: 'أكمل هذا العالم' }, criteria: { worldComplete: world.id } },
+    { id: `stars-${world.id}`, icon: '🌟', rarity: 'epic', category: 'worlds', name: { en: `${world.name.en}: All Stars`, ar: `${world.name.ar || world.name.en}: كل النجوم` }, desc: { en: 'Get 3 stars on every level of this world', ar: 'احصل على ٣ نجوم في كل مستويات هذا العالم' }, criteria: { worldPerfect: world.id } },
     { id: `master-${world.id}`, icon: '🎓', rarity: 'legendary', category: 'worlds', name: { en: `${world.name.en} Master`, ar: `خبير ${world.name.ar || world.name.en}` }, desc: { en: 'Master every skill in this world', ar: 'أتقن كل مهارات هذا العالم' }, criteria: { masteredWorld: world.id } },
   ];
 }

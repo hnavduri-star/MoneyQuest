@@ -23,8 +23,4 @@ export const api = {
   putProfile: (token, p) => call('PUT', `/profiles/${p.id}`, { token, body: p }),
   deleteProfile: (token, id, pin) => call('DELETE', `/profiles/${id}`, { token, headers: { 'x-parent-pin': pin } }),
   leaderboard: (token) => call('GET', '/leaderboard', { token }),
-  createClass: (name, pin) => call('POST', '/classes', { body: { name, pin } }),
-  loginClass: (code, pin) => call('POST', '/classes/login', { body: { code, pin } }),
-  classInfo: (code) => call('GET', `/classes/${encodeURIComponent(code)}/info`),
-  classReport: (code, token) => call('GET', `/classes/${encodeURIComponent(code)}`, { token }),
 };

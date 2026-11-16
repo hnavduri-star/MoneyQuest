@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useGame } from '../store.jsx';
 import { useT } from '../lib/i18n.js';
-import { Header, Segmented, Coin, Gem, Progress } from '../components/ui.jsx';
-import Sticker from '../components/Sticker.jsx';
+import { Header, Segmented, Coin, Gem } from '../components/ui.jsx';
 import Avatar from '../components/Avatar.jsx';
 import Companion from '../components/Companion.jsx';
 import { BrandMark } from '../components/Brand.jsx';
@@ -14,14 +13,13 @@ const TYPES = ['bank', 'outfit', 'hat', 'pet', 'decoration', 'mascotSkin'];
 function Preview({ item, active, state }) {
   if (item.type === 'outfit' || item.type === 'hat') return <Avatar avatar={active.meta.avatar} level={state.level} equipped={{ ...state.inventory.equipped, [item.type]: item.id }} size={64} />;
   if (item.type === 'mascotSkin') return <Companion id={active.meta.companion} level={state.level} skin={item.id} size={70} bounce={false} />;
-  return <Sticker item={item} size={76} />;
+  return <span className="text-5xl leading-[80px]" aria-hidden>{item.art}</span>;
 }
 
 /** The in-game Town Bank: save coins to earn weekly compound interest, and swap coins for gems. */
 function BankPanel({ amt, setAmt, setNote }) {
-  const { content, state, dispatch, bank, active } = useGame();
-  const { t, tx } = useT();
-  const goalItem = state.bank.goal && content.items[state.bank.goal];
+  const { content, state, dispatch, bank } = useGame();
+  const { t } = useT();
   const rate = content.rewards.bank?.weeklyRatePct ?? 5;
   const price = content.rewards.gemPriceCoins ?? 120;
   let projected = state.bank.balance || amt;
@@ -59,15 +57,6 @@ function BankPanel({ amt, setAmt, setNote }) {
         </div>
         <p className="text-sm font-bold">📈 {t('bank.projection', { n: start, m: projected })}</p>
         {state.bank.interestEarned > 0 && <p className="text-sm">🌱 {t('bank.earned', { n: state.bank.interestEarned })}</p>}
-        {goalItem && (
-          <div className="rounded-2xl bg-sky-pale p-3">
-            <p className="font-extrabold flex items-center gap-2"><Sticker item={goalItem} size={36} /> {t('goal.savingFor', { name: tx(goalItem.name) })}</p>
-            <Progress value={Math.min(1, (state.coins + state.bank.balance) / (goalItem.price.coins || 1))} height={12} />
-            <p className="text-sm font-bold mt-1">{Math.min(state.coins + state.bank.balance, goalItem.price.coins || 0)} / {goalItem.price.coins} 🪙</p>
-            <button className="text-sm underline mt-1" onClick={() => dispatch({ type: 'bank.goal', itemId: null })}>{t('goal.clear')}</button>
-          </div>
-        )}
-        {active?.meta?.allowanceGoal?.name && <p className="text-sm">🏡 {t('goal.realLife', { name: active.meta.allowanceGoal.name })}</p>}
       </section>
       <section className="card p-4 space-y-2">
         <h2 className="font-extrabold text-lg flex items-center gap-2"><Gem size={22} /> {t('bank.gems')}</h2>
@@ -136,15 +125,9 @@ export default function Shop() {
               ) : needLevel || needBadge ? (
                 <p className="mt-2 text-sm font-bold text-soft">🔒 {needLevel ? t('shop.needLevel', { n: item.unlock.level }) : t('shop.needBadge')}</p>
               ) : (
-                <>
-                  <button className={`${afford ? 'btn-sun' : 'btn-ghost'} w-full mt-2 min-h-[44px] text-base`} onClick={() => buy(item)}>
-                    {t('shop.buy')} · {price}
-                  </button>
-                  {!afford && item.price.coins && state.bank.goal !== item.id && (
-                    <button className="text-sm font-bold underline mt-1" onClick={() => { dispatch({ type: 'bank.goal', itemId: item.id }); setNote(`🎯 ${t('goal.set', { name: tx(item.name) })}`); }}>🎯 {t('goal.saveFor')}</button>
-                  )}
-                  {state.bank.goal === item.id && <span className="chip bg-sky-pale text-xs mt-1">🎯 {t('goal.current')}</span>}
-                </>
+                <button className={`${afford ? 'btn-sun' : 'btn-ghost'} w-full mt-2 min-h-[44px] text-base`} onClick={() => buy(item)}>
+                  {t('shop.buy')} · {price}
+                </button>
               )}
             </motion.div>
           );

@@ -105,21 +105,4 @@ describe('MoneyQuest API', () => {
     const r = await request(app).put('/api/profiles/profile_big000').set({ Authorization: `Bearer ${f.token}` }).send(profile({ state: { junk: 'x'.repeat(450_000) } }));
     expect(r.status).toBe(413);
   });
-
-  it('teacher mode: create a class, children join by code, teacher sees nicknames and progress only', async () => {
-    const cls = (await request(app).post('/api/classes').send({ name: 'Year 5 Falcons', pin: '2468' })).body;
-    expect(cls.code).toMatch(/^[A-Z2-9]{4}-[A-Z2-9]{4}$/);
-    expect((await request(app).get(`/api/classes/${cls.code}/info`)).body.name).toBe('Year 5 Falcons');
-    const f = await family();
-    const auth = { Authorization: `Bearer ${f.token}` };
-    await request(app).put('/api/profiles/profile_cls001').set(auth).send(profile({ nickname: 'Ace', meta: { classCode: cls.code }, summary: { level: 4, stops: ['money-basics'] } }));
-    await request(app).put('/api/profiles/profile_cls002').set(auth).send(profile({ nickname: 'Bee', meta: {} }));
-    expect((await request(app).get(`/api/classes/${cls.code}`)).status).toBe(401);
-    const rep = (await request(app).get(`/api/classes/${cls.code}`).set({ Authorization: `Bearer ${cls.token}` })).body;
-    expect(rep.students.map((s) => s.nickname)).toEqual(['Ace']);
-    expect(rep.students[0].summary.level).toBe(4);
-    expect(rep.students[0].state).toBeUndefined();
-    expect((await request(app).post('/api/classes/login').send({ code: cls.code, pin: '0000' })).status).toBe(403);
-    expect((await request(app).post('/api/classes/login').send({ code: cls.code, pin: '2468' })).body.token).toBeTruthy();
-  });
 });

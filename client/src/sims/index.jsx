@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useT, useMoney } from '../lib/i18n.js';
+import { useT } from '../lib/i18n.js';
 import { useGame } from '../store.jsx';
 import { sims as S } from '@engine/index.js';
 import { pickAge } from '@engine/text.js';
@@ -136,8 +136,7 @@ function Stat({ label, value, tone = 'bg-cream' }) {
 }
 
 function SavingsGoal({ params }) {
-  const { tx, t } = useT();
-  const money = useMoney();
+  const { tx, money, t } = useT();
   const { age } = useGame();
   const [goal, setGoal] = useState(pickAge(params.goal, age) ?? 100);
   const [per, setPer] = useState(pickAge(params.perWeek, age) ?? 10);
@@ -159,23 +158,21 @@ function SavingsGoal({ params }) {
 }
 
 function Jars({ params }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const amount = params.amount || 20;
-  const step = amount >= 100 ? 5 : 1;
-  // Amounts, not percentages: children move coins between jars and see exactly how much is in each.
-  const [save, setSave] = useState(Math.round(amount / 2 / step) * step);
-  const [give, setGive] = useState(Math.round(amount / 10 / step) * step);
-  const spend = Math.max(0, amount - save - give);
+  const [save, setSave] = useState(50);
+  const [give, setGive] = useState(10);
+  const spend = Math.max(0, 100 - save - give);
+  const j = S.jarSplit(amount, { save, spend, give });
   const jars = [
-    ['save', '🐷', save, 'bg-berry-pale'],
-    ['spend', '🛍️', spend, 'bg-sun-pale'],
-    ['give', '💝', give, 'bg-leaf-pale'],
+    ['save', '🐷', j.save, 'bg-berry-pale'],
+    ['spend', '🛍️', j.spend, 'bg-sun-pale'],
+    ['give', '💝', j.give, 'bg-leaf-pale'],
   ];
   return (
     <div className="space-y-3">
-      <Slider label={`🐷 ${tx(L.save)}`} value={save} min={0} max={amount - give} step={step} onChange={setSave} format={money} />
-      <Slider label={`💝 ${tx(L.give)}`} value={give} min={0} max={amount - save} step={step} onChange={setGive} format={money} />
+      <Slider label={`${tx(L.save)} %`} value={save} min={0} max={100 - give} step={5} onChange={setSave} format={(v) => `${v}%`} />
+      <Slider label={`${tx(L.give)} %`} value={give} min={0} max={100 - save} step={5} onChange={setGive} format={(v) => `${v}%`} />
       <div className="grid grid-cols-3 gap-2">
         {jars.map(([k, e, v, tone]) => (
           <div key={k} className={`rounded-2xl ${tone} p-2 text-center`}>
@@ -190,8 +187,7 @@ function Jars({ params }) {
 }
 
 function Compound({ params }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const { age } = useGame();
   const principal = params.principal || 100;
   const [rate, setRate] = useState(pickAge(params.rate, age) || 6);
@@ -221,8 +217,7 @@ function Compound({ params }) {
 }
 
 function Loan({ params }) {
-  const { tx, t } = useT();
-  const money = useMoney();
+  const { tx, money, t } = useT();
   const [amount, setAmount] = useState(params.amount || 1000);
   const [rate, setRate] = useState(params.rate || 10);
   const [months, setMonths] = useState(params.months || 12);
@@ -242,8 +237,7 @@ function Loan({ params }) {
 }
 
 function BankSpread({ params }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const [depositRate, setDep] = useState(params.depositRate ?? 2);
   const [loanRate, setLoan] = useState(params.loanRate ?? 8);
   const r = S.bankSpread({ deposits: params.deposits || 1000, depositRatePct: depositRate, loanRatePct: loanRate, reservePct: params.reserve ?? 10 });
@@ -281,8 +275,7 @@ function BankSpread({ params }) {
 }
 
 function ProfitShare({ params }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const capital = params.capital || 1000;
   const [ret, setRet] = useState(params.returnPct ?? 10);
   const [share, setShare] = useState(params.sharePct ?? 60);
@@ -304,8 +297,7 @@ function ProfitShare({ params }) {
 
 
 function Payslip({ params }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const [basic, setBasic] = useState(params.basic || 12000);
   const [allow, setAllow] = useState(params.allowances || 3000);
   const [pension, setPension] = useState(0);
@@ -330,8 +322,7 @@ function Payslip({ params }) {
 const BUDGET_KEYS = ['rent', 'food', 'bills', 'school', 'transport', 'emergency', 'savings', 'fun'];
 const BUDGET_SHARE = { rent: 0.35, food: 0.15, bills: 0.07, school: 0.15, transport: 0.08, emergency: 0.05, savings: 0.05, fun: 0.08 };
 function Budget({ params, onGoal }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const { age } = useGame();
   const income = pickAge(params.income, age) || 16000;
   const step = income >= 5000 ? 250 : 5;
@@ -489,8 +480,7 @@ function Currency() {
 }
 
 function Stand({ params }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const unitCost = params.unitCost ?? 2;
   const fixedCosts = params.fixedCosts ?? 50;
   const [price, setPrice] = useState(5);
@@ -525,8 +515,7 @@ const CHEQUE_AMOUNTS = [
   { n: 2500, en: 'Two thousand five hundred only', ar: 'ألفان وخمسمئة فقط' },
 ];
 function Cheque() {
-  const { tx, lang } = useT();
-  const money = useMoney();
+  const { tx, money, lang } = useT();
   const { bank } = useGame();
   const [date, setDate] = useState('');
   const [payee, setPayee] = useState(null);
@@ -569,8 +558,7 @@ function Cheque() {
 }
 
 function Cafe({ params, onGoal }) {
-  const { tx } = useT();
-  const money = useMoney();
+  const { tx, money } = useT();
   const fix = params.mode === 'fix';
   const days = params.daysOpen || 26;
   const [customers, setCustomers] = useState(params.customersPerDay ?? 80);
@@ -613,8 +601,7 @@ function Cafe({ params, onGoal }) {
 }
 
 function Debt({ params, onGoal }) {
-  const { tx, t } = useT();
-  const money = useMoney();
+  const { tx, money, t } = useT();
   const balance = params.balance ?? 1000;
   const apr = params.apr ?? 36;
   const [pay, setPay] = useState(40);

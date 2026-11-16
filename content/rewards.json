@@ -349,49 +349,11 @@
           "maxField": "streak"
         }
       ]
-    },
-    "check.completed": {
-      "variants": [
-        {
-          "when": {
-            "phase": "post",
-            "firstTime": true
-          },
-          "xp": {
-            "base": 20,
-            "per": {
-              "gain": 10
-            }
-          },
-          "coins": {
-            "base": 15,
-            "per": {
-              "gain": 5
-            }
-          }
-        },
-        {
-          "when": {
-            "phase": "pre",
-            "firstTime": true
-          },
-          "xp": 10,
-          "coins": 5
-        }
-      ],
-      "stats": []
     }
   },
   "gemPriceCoins": 120,
   "bank": {
     "weeklyRatePct": 5,
     "maxWeeklyInterest": 200
-  },
-  "familyChallenge": {
-    "targetXpPerChild": 150,
-    "reward": {
-      "coins": 80,
-      "xp": 40
-    }
   }
 }
