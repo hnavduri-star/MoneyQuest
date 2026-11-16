@@ -34,6 +34,11 @@ const SCENES = {
   ingredients: ['🍋', '🌿', '🧊', '🥤'],
   profit: ['💰', '➖', '🧾'],
   price: ['🏷️', '🤔', '🧍'],
+  shares: ['🏢', '➗', '📄', '🧑‍🤝‍🧑'],
+  trading: ['🙋', '🏛️', '🙅'],
+  updown: ['📈', '📰', '📉'],
+  eggs: ['🧺', '🥚', '🥚', '🥚'],
+  riskreturn: ['🐢', '⚖️', '🐇'],
 };
 
 export default function Illustration({ art }) {

@@ -273,7 +273,7 @@ describe('reward engine', () => {
   });
   it('the Dubai journey is a chain, and a started world never re-locks', () => {
     const journey = content.worldIndex.filter((w) => w.playable);
-    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'bank-products', 'cash-cards', 'currency-bazaar', 'lemonade-empire', 'pl-factory', 'debt-dungeon']);
+    expect(journey.map((w) => w.id)).toEqual(['money-basics', 'salary-street', 'household-budget', 'bank-town', 'bank-products', 'cash-cards', 'currency-bazaar', 'lemonade-empire', 'pl-factory', 'debt-dungeon', 'stock-market']);
     journey.slice(1).forEach((w, i) => expect(w.requires).toEqual([journey[i].id]));
     journey.forEach((w) => expect(w.location?.en).toBeTruthy());
     const bank = content.worldIndex.find((w) => w.id === 'bank-town');
@@ -442,5 +442,22 @@ describe('reward engine', () => {
     expect(comboMultiplier(0)).toBe(1);
     expect(comboMultiplier(6)).toBe(2);
     expect(comboMultiplier(100)).toBe(3);
+  });
+});
+
+describe('stock market sims', () => {
+  it('prices follow buyers and sellers, and shares beat savings only over the long run', async () => {
+    const { sharePrice, savingsVsShares, worstYear, shareValue } = await import('../sims/stocks.js');
+    expect(sharePrice(10, 10, 10)).toBe(10);
+    expect(sharePrice(10, 16, 4)).toBe(20);
+    expect(sharePrice(10, 4, 16)).toBe(5);
+    expect(shareValue(10, 11, 8)).toEqual({ value: 110, gain: 30 });
+    const short = savingsVsShares(1000, 1000, 5).at(-1);
+    expect(short.total).toBeLessThan(short.allSavings);
+    const long = savingsVsShares(1000, 1000, 15).at(-1);
+    expect(long.total).toBeGreaterThan(long.allSavings);
+    expect(savingsVsShares(1000, 0, 10).at(-1).total).toBe(savingsVsShares(1000, 0, 10).at(-1).allSavings);
+    expect(worstYear(10)).toEqual({ year: 5, pct: -18 });
+    expect(() => savingsVsShares(100, 200, 1)).toThrow();
   });
 });

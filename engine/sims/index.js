@@ -8,3 +8,4 @@ export * from './budget.js';
 export * from './atm.js';
 export * from './fx.js';
 export * from './business.js';
+export * from './stocks.js';

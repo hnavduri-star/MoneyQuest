@@ -200,6 +200,27 @@
       "landmark": "🐉"
     },
     {
+      "id": "stock-market",
+      "phase": 4,
+      "available": true,
+      "advanced": true,
+      "icon": "📈",
+      "color": "#0072B2",
+      "building": "exchange",
+      "name": {
+        "en": "Stock Market",
+        "ar": "سوق الأسهم"
+      },
+      "requires": [
+        "debt-dungeon"
+      ],
+      "location": {
+        "en": "the stock exchange",
+        "ar": "سوق الأوراق المالية"
+      },
+      "landmark": "📈"
+    },
+    {
       "id": "supply-demand",
       "phase": 3,
       "available": false,
@@ -221,18 +242,6 @@
       "name": {
         "en": "Giving Garden",
         "ar": "حديقة العطاء"
-      }
-    },
-    {
-      "id": "investment-island",
-      "phase": 4,
-      "available": false,
-      "icon": "📈",
-      "color": "#0072B2",
-      "building": "exchange",
-      "name": {
-        "en": "Investment Island",
-        "ar": "جزيرة الاستثمار"
       }
     },
     {

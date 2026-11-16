@@ -1,0 +1,1299 @@
+{
+  "id": "stock-market",
+  "icon": "📈",
+  "color": "#0072B2",
+  "name": {
+    "en": "Stock Market",
+    "ar": "سوق الأسهم"
+  },
+  "tagline": {
+    "en": "Advanced: what shares are, how they're bought and sold, why prices move, and savings vs shares",
+    "ar": "متقدم: ما هي الأسهم وكيف تُشترى وتُباع ولماذا تتحرك الأسعار والادخار مقابل الأسهم"
+  },
+  "badge": {
+    "id": "world-stock-market",
+    "icon": "📈",
+    "rarity": "epic",
+    "name": {
+      "en": "Market Master",
+      "ar": "خبير السوق"
+    },
+    "desc": {
+      "en": "Finish the Stock Market stop",
+      "ar": "أكمل محطة سوق الأسهم"
+    }
+  },
+  "realLife": {
+    "en": "Grown-ups: do you (or does your pension) own shares or funds? Show your child a share price or the {stockIndex} over a year, and talk about the ups and downs.",
+    "ar": "أيها الكبار: هل تملكون (أو يملك صندوق تقاعدكم) أسهماً أو صناديق؟ أروا طفلكم سعر سهم أو {stockIndex} على مدى سنة، وتحدثوا عن الصعود والهبوط."
+  },
+  "concepts": {
+    "shares-basics": {
+      "en": "What shares are",
+      "ar": "ما هي الأسهم"
+    },
+    "trading": {
+      "en": "Buying & selling shares",
+      "ar": "شراء الأسهم وبيعها"
+    },
+    "price-moves": {
+      "en": "Why prices move",
+      "ar": "لماذا تتحرك الأسعار"
+    },
+    "risk-return": {
+      "en": "Savings vs shares",
+      "ar": "الادخار مقابل الأسهم"
+    },
+    "investing-smart": {
+      "en": "Investing wisely",
+      "ar": "الاستثمار بحكمة"
+    }
+  },
+  "nodes": [
+    {
+      "id": "what-is-a-share",
+      "kind": "lesson",
+      "icon": "🧩",
+      "title": {
+        "en": "What is a share?",
+        "ar": "ما هو السهم؟"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "shares",
+          "mascot": "excited",
+          "text": {
+            "en": "Welcome to {stop}, an ADVANCED stop! Big companies are owned by lots of people. The company is cut into tiny pieces called SHARES (also called STOCKS). Buy a share and you own a tiny piece of the company!",
+            "ar": "أهلاً بك في {stop}، محطة متقدمة! الشركات الكبيرة يملكها كثير من الناس. تُقسَّم الشركة إلى قطع صغيرة تسمى الأسهم. اشترِ سهماً فتملك قطعة صغيرة من الشركة!"
+          }
+        },
+        {
+          "type": "story",
+          "art": "partners",
+          "mascot": "happy",
+          "text": {
+            "en": "Think of a pizza cut into slices. The whole pizza is the company and each slice is a share. Companies sell shares to raise money to grow: a new shop, a new factory, new ideas.",
+            "ar": "تخيّل بيتزا مقطعة إلى شرائح. البيتزا كلها هي الشركة وكل شريحة سهم. تبيع الشركات الأسهم لتجمع المال وتنمو: متجر جديد أو مصنع جديد أو أفكار جديدة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "shares-basics",
+          "prompt": {
+            "en": "If you own a share of a company, you…",
+            "ar": "إذا كنت تملك سهماً في شركة فأنت…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Own a tiny piece of that company",
+                "ar": "تملك قطعة صغيرة من تلك الشركة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Lent the company money that it must pay back",
+                "ar": "أقرضت الشركة مالاً يجب أن تعيده"
+              }
+            },
+            {
+              "text": {
+                "en": "Work for the company",
+                "ar": "تعمل لدى الشركة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A share is ownership. A loan is different: it must be paid back with interest.",
+            "ar": "السهم ملكية. أما القرض فمختلف: يجب سداده مع الفائدة."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "shares-basics",
+          "prompt": {
+            "7-9": {
+              "en": "A juice company is worth [[100]] and is cut into 10 equal shares. What is one share worth?",
+              "ar": "شركة عصير قيمتها [[100]] مقسمة إلى ١٠ أسهم متساوية. كم قيمة السهم الواحد؟"
+            },
+            "default": {
+              "en": "A juice company is worth [[50000]] and is cut into 1000 equal shares. What is one share worth?",
+              "ar": "شركة عصير قيمتها [[50000]] مقسمة إلى ١٠٠٠ سهم متساوٍ. كم قيمة السهم الواحد؟"
+            }
+          },
+          "answer": {
+            "7-9": 10,
+            "default": 50
+          },
+          "explain": {
+            "en": "Company value ÷ number of shares = value of one share.",
+            "ar": "قيمة الشركة ÷ عدد الأسهم = قيمة السهم الواحد."
+          },
+          "money": true
+        },
+        {
+          "type": "story",
+          "art": "profit",
+          "mascot": "happy",
+          "text": {
+            "en": "When a company makes a profit, it may share some of it with its owners. This payment is called a DIVIDEND. More shares = a bigger slice of the dividend.",
+            "ar": "عندما تحقق الشركة ربحاً قد توزع جزءاً منه على مالكيها. تسمى هذه الدفعة توزيعات الأرباح. أسهم أكثر = حصة أكبر من التوزيعات."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "shares-basics",
+          "prompt": {
+            "en": "A DIVIDEND is…",
+            "ar": "توزيعات الأرباح هي…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Part of the company's profit paid to shareholders",
+                "ar": "جزء من ربح الشركة يُدفع للمساهمين"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A fee you pay to buy shares",
+                "ar": "رسوم تدفعها لشراء الأسهم"
+              }
+            },
+            {
+              "text": {
+                "en": "A type of loan",
+                "ar": "نوع من القروض"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Not every company pays dividends, and they are never guaranteed.",
+            "ar": "ليست كل الشركات توزع أرباحاً، وهي غير مضمونة أبداً."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "shares-basics",
+          "prompt": {
+            "en": "A company pays a dividend of [[2]] for every share. You own 15 shares. How much do you get?",
+            "ar": "شركة توزع [[2]] عن كل سهم. تملك ١٥ سهماً. كم تحصل؟"
+          },
+          "answer": 30,
+          "explain": {
+            "en": "15 × 2 = 30.",
+            "ar": "١٥ × ٢ = ٣٠."
+          },
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "buy-and-sell",
+      "kind": "lesson",
+      "icon": "🏛️",
+      "title": {
+        "en": "How shares are bought and sold",
+        "ar": "كيف تُشترى الأسهم وتُباع"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "trading",
+          "mascot": "excited",
+          "text": {
+            "en": "Shares are bought and sold on a STOCK EXCHANGE: a giant market for shares. In {city} it's {exchange}. Every day millions of shares change hands.",
+            "ar": "تُشترى الأسهم وتُباع في سوق الأوراق المالية (البورصة): سوق ضخم للأسهم. في {city} هو {exchange}. كل يوم تنتقل ملايين الأسهم من يد إلى يد."
+          }
+        },
+        {
+          "type": "story",
+          "art": "thinking",
+          "mascot": "thinking",
+          "text": {
+            "en": "Every trade needs TWO people: a BUYER who wants the share and a SELLER who wants to sell it. The exchange matches them up, usually in a split second on computers.",
+            "ar": "كل صفقة تحتاج شخصين: مشترياً يريد السهم وبائعاً يريد بيعه. تطابق البورصة بينهما، عادة في جزء من الثانية عبر الحواسيب."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "trading",
+          "prompt": {
+            "en": "When you buy a share on the exchange, who are you buying it from?",
+            "ar": "عندما تشتري سهماً في البورصة، ممن تشتريه؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Another investor who wants to sell",
+                "ar": "مستثمر آخر يريد البيع"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The government",
+                "ar": "الحكومة"
+              }
+            },
+            {
+              "text": {
+                "en": "Nobody: shares are free",
+                "ar": "لا أحد: الأسهم مجانية"
+              }
+            }
+          ],
+          "explain": {
+            "en": "For every buyer there is a seller. The exchange is the meeting place.",
+            "ar": "لكل مشترٍ بائع. البورصة هي مكان اللقاء."
+          }
+        },
+        {
+          "type": "story",
+          "art": "bank",
+          "mascot": "happy",
+          "text": {
+            "en": "You can't just walk in and shout 'I'll buy!'. Grown-ups use a BROKER: a bank or an app licensed to place orders on the exchange. Brokers usually charge a small FEE for each trade. In most places you must be 18 to open your own account.",
+            "ar": "لا يمكنك الدخول والصياح 'سأشتري!'. يستخدم الكبار وسيطاً: بنكاً أو تطبيقاً مرخّصاً لتقديم الأوامر في البورصة. عادة يأخذ الوسيط رسوماً صغيرة عن كل صفقة. وفي معظم الدول يجب أن تكون في الثامنة عشرة لفتح حسابك الخاص."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "trading",
+          "prompt": {
+            "en": "What does a BROKER do?",
+            "ar": "ماذا يفعل الوسيط؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Places your buy and sell orders on the exchange",
+                "ar": "يقدّم أوامر الشراء والبيع في البورصة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Decides the share price",
+                "ar": "يحدد سعر السهم"
+              }
+            },
+            {
+              "text": {
+                "en": "Promises you will make money",
+                "ar": "يعدك بأنك ستربح"
+              }
+            }
+          ],
+          "explain": {
+            "en": "A broker carries out your orders. No honest broker can promise profits.",
+            "ar": "ينفذ الوسيط أوامرك. ولا يمكن لوسيط أمين أن يعدك بالأرباح."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "trading",
+          "prompt": {
+            "7-9": {
+              "en": "You buy 3 shares at [[5]] each. How much do you pay?",
+              "ar": "تشتري ٣ أسهم بسعر [[5]] للسهم. كم تدفع؟"
+            },
+            "default": {
+              "en": "You buy 4 shares at [[25]] each, and the broker charges a [[2]] fee. How much do you pay in total?",
+              "ar": "تشتري ٤ أسهم بسعر [[25]] للسهم، ويأخذ الوسيط رسوماً قدرها [[2]]. كم تدفع إجمالاً؟"
+            }
+          },
+          "answer": {
+            "7-9": 15,
+            "default": 102
+          },
+          "explain": {
+            "7-9": {
+              "en": "3 × 5 = 15.",
+              "ar": "٣ × ٥ = ١٥."
+            },
+            "default": {
+              "en": "4 × 25 = 100, plus the 2 fee = 102.",
+              "ar": "٤ × ٢٥ = ١٠٠، زائد رسوم ٢ = ١٠٢."
+            }
+          },
+          "money": true
+        },
+        {
+          "type": "story",
+          "art": "shield",
+          "mascot": "happy",
+          "text": {
+            "en": "A REGULATOR keeps the market fair. In {city} it's the {regulator}. It checks companies tell the truth and licenses brokers, so always use a licensed one.",
+            "ar": "الجهة الرقابية تحافظ على عدالة السوق. في {city} هي {regulator}. تتأكد من أن الشركات تقول الحقيقة وترخّص الوسطاء، لذا استخدم دائماً وسيطاً مرخّصاً."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "trading",
+          "prompt": {
+            "en": "Why should grown-ups only use a LICENSED broker?",
+            "ar": "لماذا يجب أن يستخدم الكبار وسيطاً مرخّصاً فقط؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The regulator checks they are honest and safe",
+                "ar": "الجهة الرقابية تتأكد من أنه أمين وآمن"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "They always pick winning shares",
+                "ar": "يختار دائماً أسهماً رابحة"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Unlicensed 'brokers' are a common scam.",
+            "ar": "الوسطاء غير المرخّصين احتيال شائع."
+          }
+        }
+      ]
+    },
+    {
+      "id": "price-up-down",
+      "kind": "lesson",
+      "icon": "🎢",
+      "title": {
+        "en": "Why share prices go up and down",
+        "ar": "لماذا ترتفع أسعار الأسهم وتنخفض"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "updown",
+          "mascot": "thinking",
+          "text": {
+            "en": "A share's price is set by buyers and sellers. If more people want to BUY than SELL, the price rises. If more want to SELL, it falls. Just like mangoes at the market!",
+            "ar": "يتحدد سعر السهم بالمشترين والبائعين. إذا كان من يريدون الشراء أكثر ممن يريدون البيع يرتفع السعر، وإذا كان البائعون أكثر ينخفض. تماماً مثل المانجو في السوق!"
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "sharePrice",
+          "concept": "price-moves",
+          "params": {
+            "start": 10,
+            "target": {
+              "rise": true
+            }
+          },
+          "text": {
+            "en": "Move the buyers and sellers, or tap the news. Watch the price of Sunny Juice Co.",
+            "ar": "حرّك المشترين والبائعين أو اضغط على الأخبار. راقب سعر سهم شركة صني للعصير."
+          },
+          "goalText": {
+            "en": "Goal: make the share price go UP.",
+            "ar": "الهدف: اجعل سعر السهم يرتفع."
+          },
+          "explain": {
+            "en": "More buyers than sellers pushes the price up. Bad news brings out sellers and pushes it down.",
+            "ar": "المشترون الأكثر من البائعين يرفعون السعر. والأخبار السيئة تكثّر البائعين فتخفضه."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "price-moves",
+          "prompt": {
+            "en": "A company announces record profits. What usually happens to its share price?",
+            "ar": "تعلن شركة عن أرباح قياسية. ماذا يحدث عادة لسعر سهمها؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "It goes up: more people want to buy",
+                "ar": "يرتفع: يريد المزيد من الناس الشراء"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It goes down",
+                "ar": "ينخفض"
+              }
+            },
+            {
+              "text": {
+                "en": "Nothing, ever",
+                "ar": "لا شيء أبداً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Good news makes the company look more valuable, so buyers pile in.",
+            "ar": "الأخبار الجيدة تجعل الشركة تبدو أكثر قيمة فيتسابق المشترون."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "price-moves",
+          "prompt": {
+            "en": "Which could make a share price FALL?",
+            "ar": "أيّ مما يلي قد يخفض سعر السهم؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "The company loses a big customer",
+                "ar": "الشركة تخسر عميلاً كبيراً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The company launches a hit product",
+                "ar": "الشركة تطلق منتجاً ناجحاً جداً"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Bad news makes owners want to sell, and sellers push the price down.",
+            "ar": "الأخبار السيئة تجعل المالكين يريدون البيع، والبائعون يخفضون السعر."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "price-moves",
+          "prompt": {
+            "7-9": {
+              "en": "You bought 1 share for [[8]]. Now it's worth [[11]]. How much has it gone up?",
+              "ar": "اشتريت سهماً بـ[[8]]. الآن قيمته [[11]]. بكم ارتفع؟"
+            },
+            "default": {
+              "en": "You bought 10 shares at [[8]] each. Now each is worth [[11]]. What is your gain?",
+              "ar": "اشتريت ١٠ أسهم بسعر [[8]] للسهم. الآن قيمة السهم [[11]]. كم ربحك؟"
+            }
+          },
+          "answer": {
+            "7-9": 3,
+            "default": 30
+          },
+          "explain": {
+            "7-9": {
+              "en": "11 − 8 = 3.",
+              "ar": "١١ − ٨ = ٣."
+            },
+            "default": {
+              "en": "(11 − 8) × 10 = 30. It's only a real profit when you sell!",
+              "ar": "(١١ − ٨) × ١٠ = ٣٠. ولا يصبح ربحاً حقيقياً إلا عند البيع!"
+            }
+          },
+          "money": true
+        },
+        {
+          "type": "number",
+          "concept": "price-moves",
+          "prompt": {
+            "en": "You bought 20 shares at [[15]]. The price drops to [[12]]. How much have they lost in value?",
+            "ar": "اشتريت ٢٠ سهماً بسعر [[15]]. انخفض السعر إلى [[12]]. كم خسرت من القيمة؟"
+          },
+          "answer": 60,
+          "explain": {
+            "en": "(15 − 12) × 20 = 60. Prices can fall as well as rise.",
+            "ar": "(١٥ − ١٢) × ٢٠ = ٦٠. الأسعار قد تنخفض كما ترتفع."
+          },
+          "money": true,
+          "ages": [
+            "13-15"
+          ]
+        },
+        {
+          "type": "choice",
+          "concept": "price-moves",
+          "prompt": {
+            "en": "Someone online says: 'This share will DEFINITELY double next week!' What's true?",
+            "ar": "شخص على الإنترنت يقول: 'هذا السهم سيتضاعف حتماً الأسبوع القادم!' ما الصحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Nobody knows tomorrow's price; promises like that are a warning sign",
+                "ar": "لا أحد يعرف سعر الغد، ووعود كهذه علامة تحذير"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "It must be true if it's online",
+                "ar": "لا بد أنه صحيح ما دام على الإنترنت"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Share prices move every day and can't be predicted for sure. 'Guaranteed' quick profits are a classic scam.",
+            "ar": "أسعار الأسهم تتحرك كل يوم ولا يمكن توقعها بيقين. الأرباح السريعة 'المضمونة' احتيال معروف."
+          }
+        }
+      ]
+    },
+    {
+      "id": "savings-vs-shares",
+      "kind": "lesson",
+      "icon": "⚖️",
+      "title": {
+        "en": "Savings vs shares",
+        "ar": "الادخار مقابل الأسهم"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "riskreturn",
+          "mascot": "thinking",
+          "text": {
+            "en": "A SAVINGS account is like a tortoise 🐢: slow and steady. Your money is safe at the bank and grows a little each year. SHARES are like a hare 🐇: they can grow much faster over many years, but they can also fall, and nothing is guaranteed.",
+            "ar": "حساب الادخار مثل السلحفاة 🐢: بطيء وثابت. مالك آمن في البنك وينمو قليلاً كل سنة. والأسهم مثل الأرنب 🐇: قد تنمو أسرع بكثير على مدى سنوات، لكنها قد تنخفض أيضاً ولا شيء مضمون."
+          }
+        },
+        {
+          "type": "story",
+          "art": "chart",
+          "mascot": "happy",
+          "text": {
+            "en": "This trade-off is called RISK and RETURN. More chance of a higher return usually comes with more risk of losing money, at least for a while.",
+            "ar": "هذه المقايضة تسمى المخاطرة والعائد. فرصة العائد الأعلى تأتي عادة مع خطر أكبر للخسارة، على الأقل لفترة."
+          }
+        },
+        {
+          "type": "sim",
+          "sim": "savingsShares",
+          "concept": "risk-return",
+          "params": {
+            "total": 1000,
+            "startShares": 500,
+            "startYears": 3,
+            "target": {
+              "minYears": 10,
+              "minShares": 100
+            }
+          },
+          "text": {
+            "en": "Split [[1000]] between savings and shares, then choose how many years to wait. Watch the bad years too!",
+            "ar": "قسّم [[1000]] بين الادخار والأسهم، ثم اختر عدد سنوات الانتظار. راقب السنوات السيئة أيضاً!"
+          },
+          "goalText": {
+            "en": "Goal: put some money in shares and wait at least 10 years.",
+            "ar": "الهدف: ضع بعض المال في الأسهم وانتظر ١٠ سنوات على الأقل."
+          },
+          "explain": {
+            "en": "In the first few years shares can be behind savings, because of bad years. Over 10+ years they had time to recover and grow more. That's why shares are for money you won't need for a long time.",
+            "ar": "في السنوات الأولى قد تتأخر الأسهم عن الادخار بسبب السنوات السيئة. وعلى مدى ١٠ سنوات أو أكثر كان لديها وقت للتعافي والنمو أكثر. لهذا الأسهم للمال الذي لن تحتاجه لفترة طويلة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "risk-return",
+          "prompt": {
+            "en": "Which one can LOSE value?",
+            "ar": "أيهما قد يفقد قيمته؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Shares",
+                "ar": "الأسهم"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Money in a regulated bank savings account",
+                "ar": "المال في حساب ادخار ببنك مرخّص"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Share prices can fall. Savings in a licensed bank are much safer, though they grow slowly.",
+            "ar": "أسعار الأسهم قد تنخفض. أما الادخار في بنك مرخّص فأكثر أماناً بكثير، رغم أنه ينمو ببطء."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "risk-return",
+          "prompt": {
+            "en": "Mum needs money for next month's rent. Where should it be?",
+            "ar": "تحتاج أمي المال لإيجار الشهر القادم. أين يجب أن يكون؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "In savings: it's needed soon",
+                "ar": "في الادخار: ستحتاجه قريباً"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "In shares",
+                "ar": "في الأسهم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Shares might be down just when you need the money. Money needed soon belongs in savings.",
+            "ar": "قد تكون الأسهم منخفضة تماماً حين تحتاج المال. المال المطلوب قريباً مكانه الادخار."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "risk-return",
+          "prompt": {
+            "en": "What should grown-ups build BEFORE buying shares?",
+            "ar": "ماذا يجب أن يبني الكبار قبل شراء الأسهم؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "An emergency fund in savings, and no expensive debt",
+                "ar": "صندوق طوارئ في الادخار وعدم وجود ديون مكلفة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Nothing, just buy shares",
+                "ar": "لا شيء، فقط اشترِ الأسهم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "First a safety cushion and paying off costly debt, then investing money you won't need for years.",
+            "ar": "أولاً وسادة أمان وسداد الديون المكلفة، ثم استثمار مال لن تحتاجه لسنوات."
+          }
+        },
+        {
+          "type": "story",
+          "art": "partners",
+          "mascot": "happy",
+          "text": {
+            "en": "Many families in the UAE choose SHARIA-COMPLIANT shares. They avoid companies whose main business is things like gambling or alcohol, and companies with too much interest-based debt. It's the same idea of owning a piece of a real business and sharing its profit and loss.",
+            "ar": "تختار عائلات كثيرة في الإمارات الأسهم المتوافقة مع الشريعة. فهي تتجنب الشركات التي يقوم نشاطها الرئيسي على أشياء مثل القمار أو الكحول، والشركات ذات الديون الربوية الكبيرة. والفكرة نفسها: امتلاك جزء من عمل حقيقي ومشاركة ربحه وخسارته."
+          },
+          "regions": [
+            "uae"
+          ]
+        },
+        {
+          "type": "number",
+          "concept": "risk-return",
+          "prompt": {
+            "en": "Savings pay 3% a year. You save [[1000]] for 1 year. How much do you have at the end?",
+            "ar": "الادخار يعطي ٣٪ سنوياً. تدخر [[1000]] لسنة واحدة. كم يصبح لديك في النهاية؟"
+          },
+          "answer": 1030,
+          "explain": {
+            "en": "3% of 1000 is 30, so 1030. Steady, but slow.",
+            "ar": "٣٪ من ١٠٠٠ هي ٣٠، فيصبح ١٠٣٠. ثابت لكنه بطيء."
+          },
+          "money": true,
+          "ages": [
+            "10-12",
+            "13-15"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "smart-investor",
+      "kind": "lesson",
+      "icon": "🧺",
+      "title": {
+        "en": "Thinking like a smart investor",
+        "ar": "فكّر مثل مستثمر ذكي"
+      },
+      "steps": [
+        {
+          "type": "story",
+          "art": "eggs",
+          "mascot": "thinking",
+          "text": {
+            "en": "'Don't put all your eggs in one basket!' If you own shares in just ONE company and it fails, you lose a lot. Owning many different companies spreads the risk. This is called DIVERSIFICATION.",
+            "ar": "'لا تضع كل البيض في سلة واحدة!' إذا امتلكت أسهماً في شركة واحدة فقط وفشلت، تخسر كثيراً. امتلاك شركات مختلفة كثيرة يوزع المخاطرة. وهذا يسمى التنويع."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "investing-smart",
+          "prompt": {
+            "7-9": {
+              "en": "You put [[10]] in each of 5 companies. One company fails (its shares are worth 0). The others stay the same. How much do you have?",
+              "ar": "وضعت [[10]] في كل من ٥ شركات. فشلت شركة واحدة (أسهمها تساوي صفراً). وبقيت الأخرى كما هي. كم لديك؟"
+            },
+            "default": {
+              "en": "You put [[100]] in each of 5 companies. One fails (worth 0). The others stay the same. How much do you have now?",
+              "ar": "وضعت [[100]] في كل من ٥ شركات. فشلت واحدة (تساوي صفراً). وبقيت الأخرى كما هي. كم لديك الآن؟"
+            }
+          },
+          "answer": {
+            "7-9": 40,
+            "default": 400
+          },
+          "explain": {
+            "en": "You lost one basket, not all of them. With everything in that one company, you'd have nothing!",
+            "ar": "خسرت سلة واحدة لا كل السلال. لو وضعت كل شيء في تلك الشركة لما بقي لك شيء!"
+          },
+          "money": true
+        },
+        {
+          "type": "story",
+          "art": "chart",
+          "mascot": "happy",
+          "text": {
+            "en": "An INDEX is a list that tracks many big companies at once, like the {stockIndex}. Some funds buy a little of every company in an index, so one fund gives you a ready-made basket of many eggs.",
+            "ar": "المؤشر قائمة تتابع كثيراً من الشركات الكبيرة معاً، مثل {stockIndex}. بعض الصناديق تشتري قليلاً من كل شركة في المؤشر، فيعطيك صندوق واحد سلة جاهزة فيها بيض كثير."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "investing-smart",
+          "prompt": {
+            "en": "Which is MORE diversified?",
+            "ar": "أيهما أكثر تنويعاً؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A fund holding 100 different companies",
+                "ar": "صندوق يملك ١٠٠ شركة مختلفة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Shares in just your favourite game company",
+                "ar": "أسهم في شركة الألعاب المفضلة لديك فقط"
+              }
+            }
+          ],
+          "explain": {
+            "en": "More different companies = less damage if one has a bad year.",
+            "ar": "شركات مختلفة أكثر = ضرر أقل إذا مرت إحداها بسنة سيئة."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "investing-smart",
+          "prompt": {
+            "en": "The whole market falls 20% in a bad year. A patient long-term investor usually…",
+            "ar": "ينخفض السوق كله ٢٠٪ في سنة سيئة. المستثمر الصبور طويل الأجل عادة…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Stays calm and keeps their plan, because markets have recovered over time",
+                "ar": "يبقى هادئاً ويلتزم بخطته، لأن الأسواق تعافت مع الوقت"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Panics and sells everything at the bottom",
+                "ar": "يذعر ويبيع كل شيء في القاع"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Selling in a panic locks in the loss. Past markets have recovered over the long run, though there are no guarantees.",
+            "ar": "البيع بذعر يثبّت الخسارة. تعافت الأسواق في الماضي على المدى الطويل، لكن لا توجد ضمانات."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "investing-smart",
+          "prompt": {
+            "en": "What is the BEST reason to buy a company's shares?",
+            "ar": "ما أفضل سبب لشراء أسهم شركة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "You understand the business and plan to hold for years",
+                "ar": "تفهم عملها وتخطط للاحتفاظ بها لسنوات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A celebrity said it's going 'to the moon'",
+                "ar": "قال أحد المشاهير إنه سيصعد 'إلى القمر'"
+              }
+            },
+            {
+              "text": {
+                "en": "Everyone at school is buying it this week",
+                "ar": "الجميع في المدرسة يشترونه هذا الأسبوع"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Hype fades. Understanding what you own and being patient matters more.",
+            "ar": "الضجة تتلاشى. فهم ما تملكه والصبر أهم."
+          }
+        }
+      ]
+    },
+    {
+      "id": "savings-or-shares",
+      "kind": "minigame",
+      "game": "sort",
+      "icon": "⏱️",
+      "concepts": [
+        "risk-return"
+      ],
+      "title": {
+        "en": "Savings or Shares?",
+        "ar": "ادخار أم أسهم؟"
+      },
+      "config": {
+        "seconds": {
+          "7-9": 45,
+          "default": 35
+        },
+        "stars": [
+          1,
+          8,
+          14
+        ],
+        "bins": [
+          {
+            "id": "savings",
+            "emoji": "🐷",
+            "label": {
+              "en": "Better in savings",
+              "ar": "أفضل في الادخار"
+            }
+          },
+          {
+            "id": "shares",
+            "emoji": "📈",
+            "label": {
+              "en": "Could suit shares",
+              "ar": "قد تناسب الأسهم"
+            }
+          }
+        ],
+        "items": [
+          {
+            "emoji": "🚑",
+            "text": {
+              "en": "Emergency fund",
+              "ar": "صندوق الطوارئ"
+            },
+            "bin": "savings"
+          },
+          {
+            "emoji": "🏠",
+            "text": {
+              "en": "Next month's rent",
+              "ar": "إيجار الشهر القادم"
+            },
+            "bin": "savings"
+          },
+          {
+            "emoji": "🚌",
+            "text": {
+              "en": "School trip next week",
+              "ar": "رحلة مدرسية الأسبوع القادم"
+            },
+            "bin": "savings"
+          },
+          {
+            "emoji": "🚲",
+            "text": {
+              "en": "A bike in 3 months",
+              "ar": "دراجة بعد ٣ أشهر"
+            },
+            "bin": "savings"
+          },
+          {
+            "emoji": "🏖️",
+            "text": {
+              "en": "This summer's holiday",
+              "ar": "عطلة هذا الصيف"
+            },
+            "bin": "savings"
+          },
+          {
+            "emoji": "🧾",
+            "text": {
+              "en": "Money for bills",
+              "ar": "مال للفواتير"
+            },
+            "bin": "savings"
+          },
+          {
+            "emoji": "👵",
+            "text": {
+              "en": "Retirement in 30 years",
+              "ar": "التقاعد بعد ٣٠ سنة"
+            },
+            "bin": "shares"
+          },
+          {
+            "emoji": "🎓",
+            "text": {
+              "en": "University in 12 years",
+              "ar": "الجامعة بعد ١٢ سنة"
+            },
+            "bin": "shares"
+          },
+          {
+            "emoji": "🌳",
+            "text": {
+              "en": "Long-term growth pot",
+              "ar": "وعاء نمو طويل الأجل"
+            },
+            "bin": "shares"
+          },
+          {
+            "emoji": "⏳",
+            "text": {
+              "en": "Money you won't touch for 15 years",
+              "ar": "مال لن تلمسه ١٥ سنة"
+            },
+            "bin": "shares"
+          },
+          {
+            "emoji": "🧺",
+            "text": {
+              "en": "Extra money after the emergency fund is full",
+              "ar": "مال إضافي بعد امتلاء صندوق الطوارئ"
+            },
+            "bin": "shares"
+          },
+          {
+            "emoji": "🏡",
+            "text": {
+              "en": "A home deposit in 20 years",
+              "ar": "دفعة منزل بعد ٢٠ سنة"
+            },
+            "bin": "shares"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "kind": "quiz",
+      "icon": "📝",
+      "title": {
+        "en": "Stock Market quiz",
+        "ar": "اختبار سوق الأسهم"
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "shares-basics",
+          "prompt": {
+            "en": "A share is…",
+            "ar": "السهم هو…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A small piece of ownership in a company",
+                "ar": "جزء صغير من ملكية شركة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "A bank loan",
+                "ar": "قرض بنكي"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Shareholders are part-owners.",
+            "ar": "المساهمون مالكون جزئيون."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "trading",
+          "prompt": {
+            "en": "Shares are bought and sold on…",
+            "ar": "تُشترى الأسهم وتُباع في…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "A stock exchange, like {exchangeShort}",
+                "ar": "البورصة، مثل {exchangeShort}"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "The supermarket",
+                "ar": "السوبرماركت"
+              }
+            }
+          ],
+          "explain": {
+            "en": "The exchange matches buyers and sellers.",
+            "ar": "البورصة تطابق المشترين والبائعين."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "price-moves",
+          "prompt": {
+            "en": "If many more people want to sell a share than buy it, the price…",
+            "ar": "إذا أراد البيع أناس أكثر بكثير ممن يريدون الشراء فإن السعر…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Falls",
+                "ar": "ينخفض"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Rises",
+                "ar": "يرتفع"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Too many sellers push the price down.",
+            "ar": "كثرة البائعين تخفض السعر."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "risk-return",
+          "prompt": {
+            "en": "Money you need in 2 weeks is safest…",
+            "ar": "المال الذي تحتاجه بعد أسبوعين أكثر أماناً…"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "In savings",
+                "ar": "في الادخار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "In shares",
+                "ar": "في الأسهم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Shares can drop at the wrong moment.",
+            "ar": "قد تنخفض الأسهم في الوقت الخطأ."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "investing-smart",
+          "prompt": {
+            "7-9": {
+              "en": "You split [[20]] equally across 4 companies. How much in each?",
+              "ar": "قسّمت [[20]] بالتساوي على ٤ شركات. كم في كل واحدة؟"
+            },
+            "default": {
+              "en": "You split [[600]] equally across 6 companies. How much in each?",
+              "ar": "قسّمت [[600]] بالتساوي على ٦ شركات. كم في كل واحدة؟"
+            }
+          },
+          "answer": {
+            "7-9": 5,
+            "default": 100
+          },
+          "explain": {
+            "en": "Total ÷ number of companies.",
+            "ar": "المجموع ÷ عدد الشركات."
+          },
+          "money": true
+        }
+      ]
+    },
+    {
+      "id": "boss",
+      "kind": "boss",
+      "icon": "🐂",
+      "title": {
+        "en": "Boss: the Hype Bull",
+        "ar": "الزعيم: ثور الضجيج"
+      },
+      "boss": {
+        "id": "the-hype-bull",
+        "name": {
+          "en": "The Hype Bull",
+          "ar": "ثور الضجيج"
+        },
+        "color": "#0072B2",
+        "intro": {
+          "en": "SNORT! I'm the Hype Bull. I charge around shouting 'Get rich quick!' Answer my tricks wisely, or I'll stampede your savings!",
+          "ar": "سنورت! أنا ثور الضجيج. أركض صائحاً 'اغتنِ بسرعة!' أجب عن خدعي بحكمة وإلا داهمت مدخراتك!"
+        },
+        "taunt": {
+          "en": "Ha! You followed the hype. Try again!",
+          "ar": "ها! اتبعت الضجيج. حاول مجدداً!"
+        },
+        "defeat": {
+          "en": "Moo... you saw through my hype. You think like a real investor!",
+          "ar": "مووو... كشفت ضجيجي. تفكر مثل مستثمر حقيقي!"
+        }
+      },
+      "steps": [
+        {
+          "type": "choice",
+          "concept": "investing-smart",
+          "prompt": {
+            "en": "Bull: 'Put ALL your money in one hot company!' Smart?",
+            "ar": "الثور: 'ضع كل مالك في شركة واحدة رائجة!' هل هذا ذكي؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No: spread it across many companies",
+                "ar": "لا: وزّعه على شركات كثيرة"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, all in!",
+                "ar": "نعم، كله!"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Diversify so one bad egg can't break the basket.",
+            "ar": "نوّع حتى لا تكسر بيضة فاسدة السلة كلها."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "price-moves",
+          "prompt": {
+            "en": "Bull: 'Share prices only ever go up!' True?",
+            "ar": "الثور: 'أسعار الأسهم ترتفع دائماً فقط!' صحيح؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, they go up AND down",
+                "ar": "لا، ترتفع وتنخفض"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes, always up",
+                "ar": "نعم، دائماً ترتفع"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Bad years happen. Patience and time help.",
+            "ar": "السنوات السيئة تحدث. الصبر والوقت يساعدان."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "risk-return",
+          "prompt": {
+            "en": "Bull: 'Use your emergency fund to buy shares!' Good idea?",
+            "ar": "الثور: 'استخدم صندوق الطوارئ لشراء الأسهم!' فكرة جيدة؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "No, emergency money stays safe in savings",
+                "ar": "لا، مال الطوارئ يبقى آمناً في الادخار"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Yes",
+                "ar": "نعم"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Emergencies don't wait for markets to recover.",
+            "ar": "الطوارئ لا تنتظر تعافي الأسواق."
+          }
+        },
+        {
+          "type": "choice",
+          "concept": "trading",
+          "prompt": {
+            "en": "Bull: 'Send your money to my unlicensed app, guaranteed 50% a month!' What do you do?",
+            "ar": "الثور: 'أرسل مالك إلى تطبيقي غير المرخّص، ٥٠٪ مضمونة شهرياً!' ماذا تفعل؟"
+          },
+          "options": [
+            {
+              "text": {
+                "en": "Say no: it's a scam. Only licensed brokers, no guarantees",
+                "ar": "أرفض: إنه احتيال. وسطاء مرخّصون فقط ولا ضمانات"
+              },
+              "correct": true
+            },
+            {
+              "text": {
+                "en": "Send it quickly!",
+                "ar": "أرسله بسرعة!"
+              }
+            }
+          ],
+          "explain": {
+            "en": "Guaranteed huge returns + unlicensed = scam. Tell a grown-up.",
+            "ar": "عوائد ضخمة مضمونة + غير مرخّص = احتيال. أخبر شخصاً بالغاً."
+          }
+        },
+        {
+          "type": "number",
+          "concept": "price-moves",
+          "prompt": {
+            "7-9": {
+              "en": "Bull: 'You bought a share for [[10]] and sold it for [[14]].' What's your profit?",
+              "ar": "الثور: 'اشتريت سهماً بـ[[10]] وبعته بـ[[14]].' كم ربحك؟"
+            },
+            "default": {
+              "en": "Bull: 'You bought 5 shares at [[40]] and sold them at [[46]].' What's your profit?",
+              "ar": "الثور: 'اشتريت ٥ أسهم بسعر [[40]] وبعتها بسعر [[46]].' كم ربحك؟"
+            }
+          },
+          "answer": {
+            "7-9": 4,
+            "default": 30
+          },
+          "explain": {
+            "7-9": {
+              "en": "14 − 10 = 4.",
+              "ar": "١٤ − ١٠ = ٤."
+            },
+            "default": {
+              "en": "(46 − 40) × 5 = 30.",
+              "ar": "(٤٦ − ٤٠) × ٥ = ٣٠."
+            }
+          },
+          "money": true
+        }
+      ]
+    }
+  ]
+}

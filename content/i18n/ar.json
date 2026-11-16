@@ -336,5 +336,6 @@
   "arcade.profit": "الربح: {n}!",
   "arcade.loss": "خسارة: {n}. الأسواق قد تنخفض أيضاً!",
   "arcade.moves": "{n} حركات",
-  "arcade.hidden": "بطاقة مخفية"
+  "arcade.hidden": "بطاقة مخفية",
+  "journey.advanced": "متقدم"
 }

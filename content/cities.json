@@ -182,6 +182,22 @@
         "historyLine": {
           "en": "Long ago, pearl divers and traders met in the souks by the Creek to swap pearls, dates, fish and spices.",
           "ar": "قديماً كان الغوّاصون والتجار يلتقون في الأسواق عند الخور لتبادل اللؤلؤ والتمر والسمك والبهارات."
+        },
+        "exchange": {
+          "en": "the Dubai Financial Market (DFM)",
+          "ar": "سوق دبي المالي"
+        },
+        "exchangeShort": {
+          "en": "DFM",
+          "ar": "سوق دبي المالي"
+        },
+        "stockIndex": {
+          "en": "DFM General Index",
+          "ar": "مؤشر سوق دبي المالي العام"
+        },
+        "regulator": {
+          "en": "Securities and Commodities Authority (SCA)",
+          "ar": "هيئة الأوراق المالية والسلع"
         }
       },
       "nums": {
@@ -381,6 +397,13 @@
             "ar": "زنزانة الديون تحت دبي"
           },
           "landmark": "🐉"
+        },
+        "stock-market": {
+          "location": {
+            "en": "the Dubai Financial Market",
+            "ar": "سوق دبي المالي"
+          },
+          "landmark": "📈"
         }
       },
       "priceScale": 1,
@@ -582,6 +605,22 @@
         "historyLine": {
           "en": "Long ago, people here dived for pearls and traded them with merchants for food, cloth and other goods.",
           "ar": "قديماً كان الناس هنا يغوصون بحثاً عن اللؤلؤ ويبادلونه مع التجار بالطعام والقماش وغيرها."
+        },
+        "exchange": {
+          "en": "the Abu Dhabi Securities Exchange (ADX)",
+          "ar": "سوق أبوظبي للأوراق المالية"
+        },
+        "exchangeShort": {
+          "en": "ADX",
+          "ar": "سوق أبوظبي"
+        },
+        "stockIndex": {
+          "en": "ADX General Index",
+          "ar": "مؤشر سوق أبوظبي العام"
+        },
+        "regulator": {
+          "en": "Securities and Commodities Authority (SCA)",
+          "ar": "هيئة الأوراق المالية والسلع"
         }
       },
       "nums": {
@@ -781,6 +820,13 @@
             "ar": "زنزانة الديون تحت أبوظبي"
           },
           "landmark": "🐉"
+        },
+        "stock-market": {
+          "location": {
+            "en": "the Abu Dhabi Securities Exchange",
+            "ar": "سوق أبوظبي للأوراق المالية"
+          },
+          "landmark": "📈"
         }
       },
       "priceScale": 1,
@@ -988,6 +1034,22 @@
         "historyLine": {
           "en": "For hundreds of years, coins were made right here at the Tower of London, at the Royal Mint.",
           "ar": "لمئات السنين كانت العملات تُسك هنا في برج لندن، في دار سك العملة الملكية."
+        },
+        "exchange": {
+          "en": "the London Stock Exchange (LSE)",
+          "ar": "بورصة لندن"
+        },
+        "exchangeShort": {
+          "en": "LSE",
+          "ar": "بورصة لندن"
+        },
+        "stockIndex": {
+          "en": "FTSE 100",
+          "ar": "مؤشر فوتسي ١٠٠"
+        },
+        "regulator": {
+          "en": "Financial Conduct Authority (FCA)",
+          "ar": "هيئة السلوك المالي"
         }
       },
       "nums": {
@@ -1069,6 +1131,13 @@
             "ar": "زنزانة الديون تحت لندن"
           },
           "landmark": "🐉"
+        },
+        "stock-market": {
+          "location": {
+            "en": "the London Stock Exchange in the City",
+            "ar": "بورصة لندن في الحي المالي"
+          },
+          "landmark": "📈"
         }
       },
       "places": {
@@ -1388,6 +1457,22 @@
         "historyLine": {
           "en": "For centuries, farmers and traders brought food to the great market of Les Halles to swap and sell.",
           "ar": "لقرون كان المزارعون والتجار يجلبون الطعام إلى سوق لي هال الكبير للمبادلة والبيع."
+        },
+        "exchange": {
+          "en": "Euronext Paris",
+          "ar": "يورونكست باريس"
+        },
+        "exchangeShort": {
+          "en": "Euronext",
+          "ar": "يورونكست"
+        },
+        "stockIndex": {
+          "en": "CAC 40",
+          "ar": "مؤشر كاك ٤٠"
+        },
+        "regulator": {
+          "en": "Autorité des marchés financiers (AMF)",
+          "ar": "هيئة الأسواق المالية الفرنسية"
         }
       },
       "nums": {
@@ -1469,6 +1554,13 @@
             "ar": "زنزانة الديون تحت باريس"
           },
           "landmark": "🐉"
+        },
+        "stock-market": {
+          "location": {
+            "en": "Euronext Paris at La Défense",
+            "ar": "يورونكست باريس في لا ديفانس"
+          },
+          "landmark": "📈"
         }
       },
       "places": {
@@ -1790,6 +1882,22 @@
         "historyLine": {
           "en": "Mumbai grew as a busy port where merchants traded cotton, spices and cloth with the whole world.",
           "ar": "نمت مومباي كميناء مزدحم يتاجر فيه التجار بالقطن والبهارات والقماش مع العالم كله."
+        },
+        "exchange": {
+          "en": "the Bombay Stock Exchange (BSE) and National Stock Exchange (NSE)",
+          "ar": "بورصة بومباي والبورصة الوطنية الهندية"
+        },
+        "exchangeShort": {
+          "en": "BSE and NSE",
+          "ar": "بورصة بومباي والبورصة الوطنية"
+        },
+        "stockIndex": {
+          "en": "Sensex and Nifty 50",
+          "ar": "مؤشري سينسكس ونيفتي ٥٠"
+        },
+        "regulator": {
+          "en": "Securities and Exchange Board of India (SEBI)",
+          "ar": "مجلس الأوراق المالية والبورصات الهندي"
         }
       },
       "nums": {
@@ -1871,6 +1979,13 @@
             "ar": "زنزانة الديون تحت مومباي"
           },
           "landmark": "🐉"
+        },
+        "stock-market": {
+          "location": {
+            "en": "Dalal Street and the Bombay Stock Exchange",
+            "ar": "شارع دلال وبورصة بومباي"
+          },
+          "landmark": "📈"
         }
       },
       "places": {
@@ -2187,6 +2302,22 @@
         "historyLine": {
           "en": "Long ago, sailing ships crowded the harbour at South Street, and traders bought and sold goods from all over the world.",
           "ar": "قديماً امتلأ ميناء ساوث ستريت بالسفن الشراعية، وكان التجار يبيعون ويشترون بضائع من كل أنحاء العالم."
+        },
+        "exchange": {
+          "en": "the New York Stock Exchange (NYSE) and Nasdaq",
+          "ar": "بورصة نيويورك وناسداك"
+        },
+        "exchangeShort": {
+          "en": "NYSE",
+          "ar": "بورصة نيويورك"
+        },
+        "stockIndex": {
+          "en": "S&P 500",
+          "ar": "مؤشر إس آند بي ٥٠٠"
+        },
+        "regulator": {
+          "en": "Securities and Exchange Commission (SEC)",
+          "ar": "هيئة الأوراق المالية والبورصات الأمريكية"
         }
       },
       "nums": {
@@ -2268,6 +2399,13 @@
             "ar": "زنزانة الديون تحت نيويورك"
           },
           "landmark": "🐉"
+        },
+        "stock-market": {
+          "location": {
+            "en": "Wall Street and the New York Stock Exchange",
+            "ar": "وول ستريت وبورصة نيويورك"
+          },
+          "landmark": "📈"
         }
       },
       "places": {

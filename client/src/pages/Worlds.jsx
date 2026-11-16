@@ -67,6 +67,7 @@ export default function Worlds() {
                 <span className="text-4xl block" aria-hidden>{open ? meta.landmark : '🔒'}</span>
                 <span className="text-[11px] font-bold uppercase text-soft block">{t('journey.stop', { n: i + 1 })} · {tx(meta.location)}</span>
                 <span className="font-extrabold leading-tight block">{meta.icon} {tx(meta.name)}</span>
+                {meta.advanced && <span className="chip bg-sky-pale text-xs mt-1">🎓 {t('journey.advanced')}</span>}
                 {open && (
                   <span className="flex items-center gap-1 mt-1">
                     <Progress value={stars.got / (stars.max || 1)} color={meta.color} height={6} />

@@ -9,6 +9,27 @@ import { BrandMark } from '../components/Brand.jsx';
 
 /** Interactive explainers, referenced from lesson JSON by `"sim": "<id>"`. All maths comes from engine/sims. */
 const L = {
+  spCompany: { en: 'Sunny Juice Co. share', ar: 'سهم شركة صني للعصير' },
+  spBuyers: { en: 'People who want to BUY', ar: 'أشخاص يريدون الشراء' },
+  spSellers: { en: 'People who want to SELL', ar: 'أشخاص يريدون البيع' },
+  spStart: { en: 'Price yesterday', ar: 'السعر أمس' },
+  spNow: { en: 'Price now', ar: 'السعر الآن' },
+  spGood: { en: 'Good news: record profits!', ar: 'خبر جيد: أرباح قياسية!' },
+  spBad: { en: 'Bad news: the factory flooded', ar: 'خبر سيئ: الفيضان أغرق المصنع' },
+  spUp: { en: 'More buyers than sellers, so the price goes UP.', ar: 'المشترون أكثر من البائعين، فيرتفع السعر.' },
+  spDown: { en: 'More sellers than buyers, so the price goes DOWN.', ar: 'البائعون أكثر من المشترين، فينخفض السعر.' },
+  spFlat: { en: 'Buyers and sellers are balanced, so the price stays the same.', ar: 'المشترون والبائعون متوازنون، فيبقى السعر كما هو.' },
+  svTotal: { en: 'Money to put away', ar: 'المال الذي ستضعه جانباً' },
+  svShares: { en: 'Put in shares', ar: 'ضع في الأسهم' },
+  svSavings: { en: 'In savings', ar: 'في الادخار' },
+  svYears: { en: 'Years to wait', ar: 'سنوات الانتظار' },
+  svAllSavings: { en: 'If all in savings (3% a year)', ar: 'لو كله في الادخار (٣٪ سنوياً)' },
+  svYourMix: { en: 'Your mix', ar: 'مزيجك' },
+  svWorst: { en: 'Worst year for shares: year {y}, {pct}%', ar: 'أسوأ سنة للأسهم: السنة {y}، {pct}٪' },
+  svLegSav: { en: 'savings (steady)', ar: 'ادخار (ثابت)' },
+  svLegSh: { en: 'shares (bumpy)', ar: 'أسهم (متقلبة)' },
+  svAhead: { en: 'Shares are ahead of savings', ar: 'الأسهم متقدمة على الادخار' },
+  svBehind: { en: 'Shares are behind savings right now', ar: 'الأسهم متأخرة عن الادخار الآن' },
   goal: { en: 'Goal price', ar: 'سعر الهدف' },
   perWeek: { en: 'Saved each week', ar: 'الادخار الأسبوعي' },
   weeksNeeded: { en: 'Weeks to your goal', ar: 'أسابيع حتى الهدف' },
@@ -635,4 +656,81 @@ function Debt({ params, onGoal }) {
   );
 }
 
-export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare, payslip: Payslip, budget: Budget, atm: Atm, currency: Currency, stand: Stand, cheque: Cheque, cafe: Cafe, debt: Debt };
+function SharePrice({ params, onGoal }) {
+  const { tx, money } = useT();
+  const start = params.start ?? 10;
+  const [buyers, setBuyers] = useState(10);
+  const [sellers, setSellers] = useState(10);
+  const price = S.sharePrice(start, buyers, sellers);
+  const t = params.target || {};
+  const met = (t.rise && price > start) || (t.fall && price < start);
+  useEffect(() => {
+    if (onGoal) onGoal(!!met);
+  }, [met]); // eslint-disable-line react-hooks/exhaustive-deps
+  const news = (b, s2) => { setBuyers(Math.min(20, Math.max(1, buyers + b))); setSellers(Math.min(20, Math.max(1, sellers + s2))); };
+  const crowd = (n, e) => <div className="text-xl leading-tight min-h-[56px]" aria-hidden>{Array.from({ length: n }, () => e).join('')}</div>;
+  return (
+    <div className="space-y-3">
+      <p className="font-extrabold text-center">🧃 {tx(L.spCompany)}</p>
+      <div className="grid grid-cols-2 gap-2">
+        <Stat label={tx(L.spStart)} value={money(start)} />
+        <Stat label={tx(L.spNow)} value={`${money(price)} ${price > start ? '▲' : price < start ? '▼' : ''}`} tone={price > start ? 'bg-leaf-pale' : price < start ? 'bg-ember-pale' : 'bg-cream'} />
+      </div>
+      <div className="grid grid-cols-2 gap-2 text-center">
+        <div className="rounded-2xl bg-leaf-pale p-2">{crowd(buyers, '🙋')}</div>
+        <div className="rounded-2xl bg-ember-pale p-2">{crowd(sellers, '🙅')}</div>
+      </div>
+      <Slider label={`🙋 ${tx(L.spBuyers)}`} value={buyers} min={1} max={20} onChange={setBuyers} />
+      <Slider label={`🙅 ${tx(L.spSellers)}`} value={sellers} min={1} max={20} onChange={setSellers} />
+      <div className="grid grid-cols-2 gap-2">
+        <button type="button" className="btn-ghost text-sm min-h-[56px]" onClick={() => news(5, -3)}>📰 {tx(L.spGood)}</button>
+        <button type="button" className="btn-ghost text-sm min-h-[56px]" onClick={() => news(-3, 5)}>🌊 {tx(L.spBad)}</button>
+      </div>
+      <p className="text-sm font-bold text-center" role="status">{tx(buyers > sellers ? L.spUp : buyers < sellers ? L.spDown : L.spFlat)}</p>
+    </div>
+  );
+}
+
+function SavingsShares({ params, onGoal }) {
+  const { tx, money } = useT();
+  const { age } = useGame();
+  const total = params.total ?? 1000;
+  const step = total / 10;
+  const [inShares, setInShares] = useState(params.startShares ?? total / 2);
+  const [years, setYears] = useState(params.startYears ?? 3);
+  const rows = S.savingsVsShares(total, inShares, years);
+  const last = rows.at(-1);
+  const worst = S.worstYear(years);
+  const max = Math.max(...rows.map((r) => Math.max(r.total, r.allSavings)));
+  const t = params.target || {};
+  const met = years >= (t.minYears ?? 0) && inShares >= (t.minShares ?? 0);
+  useEffect(() => {
+    if (onGoal) onGoal(!!met);
+  }, [met]); // eslint-disable-line react-hooks/exhaustive-deps
+  const sharesOnly = S.savingsVsShares(total, total, years).at(-1).total;
+  return (
+    <div className="space-y-3">
+      <Stat label={`💰 ${tx(L.svTotal)}`} value={money(total)} />
+      <Slider label={`📈 ${tx(L.svShares)}`} value={inShares} min={0} max={total} step={step} onChange={setInShares} format={money} />
+      <p className="text-sm font-bold">🐷 {tx(L.svSavings)}: {money(total - inShares)}</p>
+      <Slider label={`📅 ${tx(L.svYears)}`} value={years} min={1} max={age === '7-9' ? 10 : 15} onChange={setYears} />
+      <div className="flex items-end gap-[3px] h-32" role="img" aria-label={`${money(total)} → ${money(last.total)}`}>
+        {rows.map((r) => (
+          <div key={r.year} className="flex-1 flex flex-col justify-end h-full">
+            <motion.div className="rounded-t bg-sky" animate={{ height: `${(r.shares / max) * 100}%` }} />
+            <motion.div className="bg-leaf" animate={{ height: `${(r.savings / max) * 100}%` }} />
+          </div>
+        ))}
+      </div>
+      <p className="text-xs text-soft flex gap-3"><span><span className="text-leaf">■</span> {tx(L.svLegSav)}</span><span><span className="text-sky">■</span> {tx(L.svLegSh)}</span></p>
+      <div className="grid grid-cols-2 gap-2">
+        <Stat label={tx(L.svAllSavings)} value={money(last.allSavings)} />
+        <Stat label={`${tx(L.svYourMix)}`} value={money(last.total)} tone={last.total >= last.allSavings ? 'bg-leaf-pale' : 'bg-ember-pale'} />
+      </div>
+      {worst.pct < 0 && <p className="text-sm font-bold">📉 {tx(L.svWorst, { y: worst.year, pct: worst.pct })}</p>}
+      <p className="text-sm">{sharesOnly >= last.allSavings ? '📈 ' + tx(L.svAhead) : '⏳ ' + tx(L.svBehind)}</p>
+    </div>
+  );
+}
+
+export const SIMS = { savingsGoal: SavingsGoal, jars: Jars, compound: Compound, loan: Loan, bankSpread: BankSpread, profitShare: ProfitShare, payslip: Payslip, budget: Budget, atm: Atm, currency: Currency, stand: Stand, cheque: Cheque, cafe: Cafe, debt: Debt, sharePrice: SharePrice, savingsShares: SavingsShares };

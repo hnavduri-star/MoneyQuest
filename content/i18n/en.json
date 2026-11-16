@@ -336,5 +336,6 @@
   "arcade.profit": "Profit: {n}!",
   "arcade.loss": "Loss: {n}. Markets can go down too!",
   "arcade.moves": "{n} moves",
-  "arcade.hidden": "Hidden card"
+  "arcade.hidden": "Hidden card",
+  "journey.advanced": "Advanced"
 }
